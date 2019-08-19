@@ -17,13 +17,11 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "lint": "eslint 'src/**/*.{js,jsx}' --fix",
-    "format": "prettier --write 'src/**/*.{js,jsx,css,scss}'"
+    "lint": "eslint './src/*.{js,jsx}' --fix"
   },
   "lint-staged": {
     "**/*.js": [
       "eslint --fix",
-      "prettier-eslint --write",
       "git add"
     ]
   },
