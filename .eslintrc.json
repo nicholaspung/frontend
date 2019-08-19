@@ -5,7 +5,7 @@
         "node": true
     },
     "extends": [
-        "airbnb/hooks",
+        "airbnb",
         "react-app"
     ],
     "globals": {
@@ -30,6 +30,7 @@
     ],
     "rules": {
         "react/jsx-filename-extension": 0,
-        "comma-dangle": 0
+        "comma-dangle": 0,
+        "no-console": 0
     }
 }
