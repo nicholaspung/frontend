@@ -4,13 +4,14 @@ import axios from 'axios'
 export default class App extends Component {
   state = {
     users: [],
-    devURL: 'http://localhost:5000'
+    devURL: 'http://localhost:5000',
+    prodURL: 'https://lambdanextbackend.herokuapp.com'
   }
 
   async componentDidMount() {
-    const { devURL } = this.state
+    const { devURL, prodURL } = this.state
     try {
-      const { data } = await axios.get(`${devURL}/users`)
+      const { data } = await axios.get(`${prodURL}/users`)
       this.setState({ users: data })
     } catch (err) {
       console.error({ message: err.message })
