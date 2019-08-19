@@ -1,4 +1,8 @@
 files:
+  linters:
+    eslint:
+      config: './eslint.config'
+
   ignore:
     - 'bower_components/*'
     - 'node_modules/*'
