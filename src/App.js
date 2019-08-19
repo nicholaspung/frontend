@@ -1,27 +1,30 @@
-import React, { Component } from 'react'
-import axios from 'axios'
+import React, { Component } from "react";
+import axios from "axios";
 
 export default class App extends Component {
-  state = {
-    users: [],
-    devURL: 'http://localhost:5000',
-    prodURL: 'https://lambdanextbackend.herokuapp.com'
+  constructor(props) {
+    super(props);
+    this.state = {
+      users: [],
+      devURL: "http://localhost:5000",
+      prodURL: "https://lambdanextbackend.herokuapp.com"
+    };
   }
 
   async componentDidMount() {
-    const { devURL, prodURL } = this.state
+    const { devURL, prodURL } = this.state;
     try {
-      const { data } = await axios.get(`${prodURL}/users`)
-      this.setState({ users: data })
+      const { data } = await axios.get(`${prodURL}/users`);
+      this.setState({ users: data });
     } catch (err) {
-      console.error({ message: err.message })
+      console.error({ message: err.message });
     }
   }
 
   render() {
-    const { users } = this.state
+    const { users } = this.state;
     return (
-      <div className="testRun">
+      <div>
         <h1>Testing Frontend/Server/Database connection...</h1>
         {users.map(user => {
           return (
@@ -29,9 +32,9 @@ export default class App extends Component {
               <p>{user.username}</p>
               <p>{user.email}</p>
             </div>
-          )
+          );
         })}
       </div>
-    )
+    );
   }
 }
