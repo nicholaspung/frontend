@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+
+import ProblemDashBoard from './components/problemdashboard';
 
 export default class App extends Component {
   constructor(props) {
@@ -24,16 +27,20 @@ export default class App extends Component {
   render() {
     const { problems } = this.state;
     return (
-      <div>
-        <h1>Testing Frontend/Server/Database connection...</h1>
-        {problems.map((problem) => (
-          <div key={problem.problem_title}>
-            <p>{problem.problem_title}</p>
-            <p>{problem.problem_category}</p>
-            <p>{problem.problem_description}</p>
-          </div>
-        ))}
-      </div>
+      <Router>
+        <Route path="/solve_problems" component={ProblemDashBoard} />
+        <div>
+          <h1>Testing Frontend/Server/Database connection...</h1>
+          {problems.map((problem) => (
+            <div key={problem.problem_title}>
+              <p>{problem.problem_title}</p>
+              <p>{problem.problem_category}</p>
+              <p>{problem.problem_description}</p>
+            </div>
+          ))}
+        </div>
+
+      </Router>
     );
   }
 }
