@@ -2,7 +2,7 @@ import React from 'react';
 
 const Footer = () => (
   <>
-    <p>Footer</p>
+    <p>Copyright Lambda NeXt</p>
   </>
 );
 
