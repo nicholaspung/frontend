@@ -29,6 +29,8 @@ export default class App extends Component {
         {problems.map((problem) => (
           <div key={problem.problem_title}>
             <p>{problem.problem_title}</p>
+            <p>{problem.problem_category}</p>
+            <p>{problem.problem_description}</p>
           </div>
         ))}
       </div>
