@@ -8,7 +8,7 @@ import HowItWorks from './HowItWorks';
 import Login from './Login';
 import Register from './Register';
 import Footer from './Footer';
-import ProblemDashboard from './ProblemDashboard';
+import ProblemDashboard from './problemdashboard';
 
 export default class App extends Component {
   constructor(props) {
