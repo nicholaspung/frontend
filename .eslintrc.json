@@ -31,6 +31,9 @@
     "rules": {
         "react/jsx-filename-extension": 0,
         "comma-dangle": 0,
-        "no-console": 0
+        "max-len":0,
+        "no-console": 0,
+        "react/destructuring-assignment":0,
+        "react/no-unused-state":0
     }
 }

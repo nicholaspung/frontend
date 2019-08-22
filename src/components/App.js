@@ -8,6 +8,7 @@ import HowItWorks from './HowItWorks';
 import Login from './Login';
 import Register from './Register';
 import Footer from './Footer';
+import ProblemDashboard from './problemdashboard';
 
 export default class App extends Component {
   constructor(props) {
@@ -21,7 +22,7 @@ export default class App extends Component {
         <Header />
 
         <Route exact path="/" component={HomePage} />
-        <Route path="/problems" />
+        <Route path="/problems" component={ProblemDashboard} />
         <Route path="/about" component={About} />
         <Route path="/howitworks" component={HowItWorks} />
         <Route path="/login" component={Login} />
