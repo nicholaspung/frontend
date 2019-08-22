@@ -5,31 +5,32 @@ export default class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      users: [],
+      problems: [],
       devURL: 'http://localhost:5000',
-      prodURL: 'https://lambdanextbackend.herokuapp.com'
+      prodURL: 'https://my-json-server.typicode.com/ryanboris/json/results'
     };
   }
 
   async componentDidMount() {
     const { devURL, prodURL } = this.state;
     try {
-      const { data } = await axios.get(`${prodURL}/users`);
-      this.setState({ users: data });
+      const { data } = await axios.get(`${prodURL}`);
+      this.setState({ problems: data.data.problems });
     } catch (err) {
       console.error({ message: err.message });
     }
   }
 
   render() {
-    const { users } = this.state;
+    const { problems } = this.state;
     return (
       <div>
         <h1>Testing Frontend/Server/Database connection...</h1>
-        {users.map((user) => (
-          <div key={user.id}>
-            <p>{user.username}</p>
-            <p>{user.email}</p>
+        {problems.map((problem) => (
+          <div key={problem.problem_title}>
+            <p>{problem.problem_title}</p>
+            <p>{problem.problem_category}</p>
+            <p>{problem.problem_description}</p>
           </div>
         ))}
       </div>
