@@ -15,7 +15,7 @@ export default class App extends Component {
   }
 
   async componentDidMount() {
-    const { devURL, prodURL } = this.state;
+    const { prodURL } = this.state;
     try {
       const { data } = await axios.get(`${prodURL}`);
       this.setState({ problems: data.data.problems });
