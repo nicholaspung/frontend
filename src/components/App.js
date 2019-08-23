@@ -23,7 +23,7 @@ export default function App() {
         <Route path="/submitaproblem" component={ProblemSubmission} />
         <Route path="/about" component={About} />
         <Route path="/howitworks" component={HowItWorks} />
-        <Route path="/problem-details" component={ProblemCard} />
+        <Route exact path="/problem-details" component={ProblemCard} />
         <Route path="/problem-details/:id" component={DetailsPage} />
         <Footer />
       </Container>
