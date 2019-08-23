@@ -9,7 +9,7 @@ export const getProblems = () => (dispatch) => {
   dispatch({ type: FETCH_PROBLEM_START });
 
   return axios
-    .get('https://my-json-server.typicode.com/ryanboris/json/results')
+    .get('https://labs15-lambdanext.herokuapp.com/problems')
     .then((res) => {
       dispatch({ type: FETCH_PROBLEM_SUCCESS, payload: res.data });
     })

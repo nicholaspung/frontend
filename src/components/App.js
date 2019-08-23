@@ -20,8 +20,8 @@ export default class App extends Component {
   render() {
     return (
       <>
-        <CssBaseline maxWidth="lg" />
-        <Container>
+        <CssBaseline />
+        <Container maxWidth="lg">
           <Header />
 
           <Route exact path="/" component={HomePage} />
