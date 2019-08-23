@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Route } from 'react-router-dom';
 
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -9,29 +9,23 @@ import About from './About';
 import HowItWorks from './HowItWorks';
 import Footer from './Footer';
 import ProblemDashboard from './problemdashboard';
+import ProblemSubmission from './ProblemSubmission';
 
+export default function App() {
+  return (
+    <>
+      <CssBaseline />
+      <Container maxWidth="lg">
+        <Header />
 
-export default class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
+        <Route exact path="/" component={HomePage} />
+        <Route path="/problems" component={ProblemDashboard} />
+        <Route path="/submitaproblem" component={ProblemSubmission} />
+        <Route path="/about" component={About} />
+        <Route path="/howitworks" component={HowItWorks} />
 
-  render() {
-    return (
-      <>
-        <CssBaseline maxWidth="lg" />
-        <Container>
-          <Header />
-
-          <Route exact path="/" component={HomePage} />
-          <Route path="/problems" component={ProblemDashboard} />
-          <Route path="/about" component={About} />
-          <Route path="/howitworks" component={HowItWorks} />
-
-          <Footer />
-        </Container>
-      </>
-    );
-  }
+        <Footer />
+      </Container>
+    </>
+  );
 }

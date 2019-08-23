@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
   button: {
     color: 'white',
     textDecoration: 'none'
-  },
+  }
 }));
 
 const Header = () => {
@@ -29,6 +29,11 @@ const Header = () => {
             Lambda NeXt
           </Link>
           <div>
+            <Button>
+              <Link to="/submitaproblem" className={classes.button}>
+                Submit A Button
+              </Link>
+            </Button>
             <Button>
               <Link to="/problems" className={classes.button}>
                 See Problems

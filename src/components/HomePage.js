@@ -53,6 +53,7 @@ const HomePage = () => {
             title={title1}
             description={description1}
             displayButton={button1}
+            buttonLink="/submitaproblem"
           />
         </Grid>
         <Grid item>
@@ -60,6 +61,7 @@ const HomePage = () => {
             title={title2}
             description={description2}
             displayButton={button2}
+            buttonLink="/problems"
           />
         </Grid>
       </Grid>
