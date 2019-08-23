@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Card from '@material-ui/core/Card';
@@ -13,7 +14,9 @@ const useStyles = makeStyles({
   }
 });
 
-const MarketingCard = ({ title, description, displayButton }) => {
+const MarketingCard = ({
+  title, description, displayButton, buttonLink
+}) => {
   const classes = useStyles();
   return (
     <Card className={classes.card}>
@@ -27,7 +30,7 @@ const MarketingCard = ({ title, description, displayButton }) => {
       </CardContent>
       <CardActions>
         <Button size="small" color="primary">
-          {displayButton}
+          <Link to={buttonLink}>{displayButton}</Link>
         </Button>
       </CardActions>
     </Card>
@@ -37,13 +40,15 @@ const MarketingCard = ({ title, description, displayButton }) => {
 MarketingCard.defaultProps = {
   title: 'Title',
   description: 'Description',
-  displayButton: 'Button'
+  displayButton: 'Button',
+  buttonLink: 'Link'
 };
 
 MarketingCard.propTypes = {
   title: PropTypes.string,
   description: PropTypes.string,
-  displayButton: PropTypes.string
+  displayButton: PropTypes.string,
+  buttonLink: PropTypes.string
 };
 
 export default MarketingCard;
