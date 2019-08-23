@@ -1,43 +1,86 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+import { connect } from 'react-redux';
+// import { makeStyles } from "@material-ui/core/styles";
+import Card from '@material-ui/core/Card';
+import CardActionArea from '@material-ui/core/CardActionArea';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import CardMedia from '@material-ui/core/CardMedia';
+import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
+import { styled } from '@material-ui/styles';
+import PropTypes from 'prop-types';
+import { getProblems } from '../actions';
+import sweetPic from '../static/images/cards/reptile.jpg';
 
-export default class ProblemCard extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      problem: [],
-      devURL: 'http://localhost:5000',
-      prodURL: 'https://my-json-server.typicode.com/ryanboris/json/results'
-    };
-  }
+const MyCard = styled(Card)({
+  maxWidth: 345
+});
 
-  async componentDidMount() {
-    const { devURL, prodURL } = this.state;
-    try {
-      const { data } = await axios.get(`${prodURL}`);
+const MyCardMedia = styled(CardMedia)({
+  height: 140
+});
 
-      this.setState({ problem: data.data.problems });
-    } catch (err) {
-      console.error({ message: err.message });
-    }
+class ProblemCard extends Component {
+  componentDidMount() {
+    this.props.getProblems();
   }
 
   render() {
-    const { problem } = this.state;
-    console.log(problem);
     return (
-      <div>
-        {problem.map((unit) => (
-          <div key={unit.problem_title}>
-            <p>{unit.problem_title}</p>
-            <p>{unit.problem_category}</p>
-            <p>{unit.problem_description}</p>
-            <p>{unit.date_created}</p>
-            <p>{unit.created_by}</p>
-            <p>{unit.sign_ups}</p>
-          </div>
-        ))}
-      </div>
+      <MyCard>
+        <CardActionArea>
+          <CardContent>
+            {this.props.problems.map((unit) => (
+              <MyCard>
+                <MyCardMedia
+                  component="img"
+                  src={sweetPic}
+                  title="Contemplative Reptile"
+                />
+                <Typography gutterBottom variant="h5" component="h2">
+                  {unit.problem_title}
+                </Typography>
+
+                <Typography variant="body2" color="textSecondary" component="p">
+                  {unit.problem_description}
+                </Typography>
+                <CardActions>
+                  <Button size="small" color="primary">
+                    Share
+                  </Button>
+                  <Button size="small" color="primary">
+                    Learn More
+                  </Button>
+                </CardActions>
+              </MyCard>
+            ))}
+          </CardContent>
+        </CardActionArea>
+      </MyCard>
     );
   }
 }
+
+const mapStateToProps = (state) => ({
+  problems: state.problems
+});
+
+ProblemCard.defaultProps = {
+  problems: {},
+  getProblems() {}
+};
+
+ProblemCard.propTypes = {
+  problems: PropTypes.shape({
+    problem_title: PropTypes.string,
+    problem_description: PropTypes.string,
+    map: PropTypes.func
+  }),
+  getProblems: PropTypes.func
+};
+
+export default connect(
+  mapStateToProps,
+  { getProblems }
+)(ProblemCard);
