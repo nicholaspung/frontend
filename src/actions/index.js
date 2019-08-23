@@ -15,11 +15,11 @@ export const getProblems = () => (dispatch) => {
     .catch((err) => dispatch({ type: FETCH_PROBLEM_FAIL, payload: err }));
 };
 
-export const getProblemsByID = () => (dispatch) => {
+export const getProblemsByID = (id) => (dispatch) => {
   dispatch({ type: FETCH_PROBLEM_START });
 
   return axios
-    .get('https://labs15-lambdanext.herokuapp.com/problems/:id')
+    .get(`https://labs15-lambdanext.herokuapp.com/problems/${id}`)
     .then((res) => {
       dispatch({ type: FETCH_PROBLEM_SUCCESS, payload: res.data });
     })
