@@ -2,6 +2,7 @@ import { FETCH_PROBLEM_START, FETCH_PROBLEM_SUCCESS, FETCH_PROBLEM_FAIL } from '
 
 const initialState = {
   problems: [],
+  problem:{},
   error: false,
   fetchingProblems: false
 };
