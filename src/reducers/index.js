@@ -1,18 +1,26 @@
-import { FETCH_PROBLEM_START, FETCH_PROBLEM_SUCCESS, FETCH_PROBLEM_FAIL } from '../actions';
+import {
+  FETCH_PROBLEM_START,
+  FETCH_PROBLEM_SUCCESS,
+  FETCH_PROBLEM_FAIL,
+  ADD_PROBLEM_START,
+  ADD_PROBLEM_SUCCESS,
+  ADD_PROBLEM_FAIL
+} from '../actions';
 
 const initialState = {
   problems: [],
+  newlyAddedProblem: {},
   error: false,
-  fetchingProblems: false
+  fetchingProblems: false,
+  addingNewProblem: false
 };
-
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case FETCH_PROBLEM_START:
       return {
         ...state,
-        error: false,
+        error: '',
         fetchingProblems: true
       };
 
@@ -20,20 +28,40 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         problems: action.payload,
-        error: false,
-        fetchingProblems: false,
-
+        error: '',
+        fetchingProblems: false
       };
 
     case FETCH_PROBLEM_FAIL:
       return {
         ...state,
         error: action.payload,
-        fetchingProblems: false,
-
+        fetchingProblems: false
       };
 
-    default: return state;
+    case ADD_PROBLEM_START:
+      return {
+        ...state,
+        error: '',
+        addingNewProblem: true
+      };
+
+    case ADD_PROBLEM_SUCCESS:
+      return {
+        ...state,
+        newlyAddedProblem: action.payload,
+        error: '',
+        addingNewProblem: false
+      };
+
+    case ADD_PROBLEM_FAIL:
+      return {
+        ...state,
+        error: action.payload,
+        addingNewProblem: false
+      };
+    default:
+      return state;
   }
 };
 
