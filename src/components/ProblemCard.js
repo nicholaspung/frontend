@@ -1,5 +1,4 @@
 import React from 'react';
-// import { makeStyles } from "@material-ui/core/styles";
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
@@ -18,15 +17,12 @@ import finance from '../static/images/cards/finance.png'
 import { Link } from 'react-router-dom';
 import sweetPic from '../static/images/cards/reptile.jpg';
 
- const ProblemCard =  (props) => {
-   const problem = props.problems;
+const MyCard = styled(Card)({
+   width: 250,
+   marginBottom: 25
+});
 
-   const MyCard = styled(Card)({
-      width: 250,
-      marginBottom: 25
-    });
-
-    const MyButton = styled(Button)({
+const MyButton = styled(Button)({
   background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
   border: 0,
   width: '100%',
@@ -37,30 +33,30 @@ import sweetPic from '../static/images/cards/reptile.jpg';
   padding: '0 30px'
 });
 
-const category = [
-  {name:'health', value:health},
-  {name:'technology', value:technology},
-  {name:'fitness', value:fitness},
-  {name:'personal', value:personal},
-  {name:'science', value:science},
-  {name:'finance', value:finance}
-]
+const MyCardMedia = styled(CardMedia)({
+  width: '100%',
+  backgroundColor:'white'
+});
 
-function getImage(image_category){
-  const cat = category.find(item => item.name === image_category.toLowerCase());
-  console.log(cat)
-  return cat.value
-  
-}
-  
-  
-  
-  const MyCardMedia = styled(CardMedia)({
-    width: '100%',
-    backgroundColor:'white'
-  });
+const ProblemCard =  (props) => {
+   const problem = props.problems;
 
-   
+   const category = [
+     {name:'health', value:health},
+     {name:'technology', value:technology},
+     {name:'fitness', value:fitness},
+     {name:'personal', value:personal},
+     {name:'science', value:science},
+     {name:'finance', value:finance}
+   ]
+
+   function getImage(image_category){
+     const cat = category.find(item => item.name === image_category.toLowerCase());
+     console.log(cat)
+     return cat.value
+
+   }
+ 
     return (
       <MyCard>
         <MyCardMedia
@@ -89,45 +85,11 @@ function getImage(image_category){
         </CardActions>
       </MyCard>
     );
-  
 };
 
 export default ProblemCard;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+// Previous code --------------------------------------------------
 // import React from 'react';
 // // import { makeStyles } from "@material-ui/core/styles";
 // import Card from '@material-ui/core/Card';
