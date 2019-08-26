@@ -15,7 +15,7 @@ import finance from '../static/images/cards/finance.png'
 //import PropTypes from 'prop-types';
 
 import { Link } from 'react-router-dom';
-import sweetPic from '../static/images/cards/reptile.jpg';
+//import sweetPic from '../static/images/cards/reptile.jpg';
 
 const MyCard = styled(Card)({
    width: 250,
@@ -35,9 +35,18 @@ const MyButton = styled(Button)({
 
 const MyCardMedia = styled(CardMedia)({
   width: '100%',
-  backgroundColor:'white'
+  height:'200px',
+  backgroundColor:'white',
+  padding:'10px'
 });
 
+const MyTypography = styled(Typography)({
+  minHeight:'40px'
+})
+
+const MyCategory = styled(Typography)({
+  fontWeight:'bold'
+})
 const ProblemCard =  (props) => {
    const problem = props.problems;
 
@@ -52,7 +61,6 @@ const ProblemCard =  (props) => {
 
    function getImage(image_category){
      const cat = category.find(item => item.name === image_category.toLowerCase());
-     console.log(cat)
      return cat.value
 
    }
@@ -68,12 +76,12 @@ const ProblemCard =  (props) => {
           <Link to={`/problem-details/${problem.id}`}>{problem.problem_title}</Link>
         </MyButton>
         <CardContent>
-          <Typography variant="body2" color="textSecondary" component="p">
+          <MyCategory variant="body2" color="textSecondary" component="p">
             {problem.problem_category}
-          </Typography>
-          <Typography variant="body2" color="textSecondary" component="p">
-            {problem.problem_description}
-          </Typography>
+          </MyCategory>
+          <MyTypography variant="body2" color="textSecondary" component="p">
+            {problem.problem_description.substring(0,50)+"..."}
+          </MyTypography>
         </CardContent>
         <CardActions>
           <Button size="small" color="primary">
