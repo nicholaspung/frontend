@@ -21,14 +21,29 @@ const MyButton = styled(Button)({
 
 const MyFilledInput = styled(FilledInput)({
   minWidth: 200
-})
+});
 
 const formStyles = {
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'center',
-  alignItems: 'flex-start'
-}
+  display: "flex",
+  flexDirection: "column",
+  justifyContent: "center",
+  alignItems: "flex-start"
+};
+
+const months = [
+  "Jan",
+  "Feb",
+  "Mar",
+  "Apr",
+  "May",
+  "Jun",
+  "Jul",
+  "Aug",
+  "Sep",
+  "Oct",
+  "Nov",
+  "Dec"
+];
 class ProblemSubmission extends React.Component {
   constructor() {
     super();
@@ -57,17 +72,24 @@ class ProblemSubmission extends React.Component {
   onButtonSubmit = event => {
     event.preventDefault();
     let problem = this.state.newProblem;
-    problem.date_created = new Date();
+    let today = new Date();
+    problem.date_created = `${months[today.getMonth()]} ${today.getDate()}, ${today.getFullYear()}`;
     this.props.addProblems(problem).then(res => {
       console.log(res);
     });
     console.log("submitted!");
+    // to redirect
+    // this.props.history.push(`/problem-details/${res.data.id}`)
     // redirect to problem description page of problem
   };
 
   render() {
     return (
-      <form onSubmit={event => this.onButtonSubmit(event)} autoComplete="off" style={formStyles}>
+      <form
+        onSubmit={event => this.onButtonSubmit(event)}
+        autoComplete="off"
+        style={formStyles}
+      >
         <TextField
           id="problem_title"
           label="Problem Title"
