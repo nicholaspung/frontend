@@ -31,7 +31,7 @@ const Header = () => {
           <div>
             <Button>
               <Link to="/submitaproblem" className={classes.button}>
-                Submit A Button
+                Submit A Problem
               </Link>
             </Button>
             <Button>
