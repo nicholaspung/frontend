@@ -14,8 +14,7 @@ import science from "../static/images/cards/science.jpg";
 import finance from "../static/images/cards/finance.png";
 //import PropTypes from 'prop-types';
 
-import { Link } from "react-router-dom";
-import sweetPic from "../static/images/cards/reptile.jpg";
+import { Link } from 'react-router-dom';
 
 const MyCard = styled(Card)({
   width: 250,
@@ -34,27 +33,34 @@ const MyButton = styled(Button)({
 });
 
 const MyCardMedia = styled(CardMedia)({
-  width: "100%",
-  backgroundColor: "white"
+  width: '100%',
+  height:'200px',
+  backgroundColor:'white',
+  padding:'10px'
 });
 
-const ProblemCard = props => {
-  const problem = props.problems;
+const MyTypography = styled(Typography)({
+  minHeight:'40px'
+})
 
-  const category = [
-    { name: "health", value: health },
-    { name: "technology", value: technology },
-    { name: "fitness", value: fitness },
-    { name: "personal", value: personal },
-    { name: "science", value: science },
-    { name: "finance", value: finance }
-  ];
+const MyCategory = styled(Typography)({
+  fontWeight:'bold'
+})
+const ProblemCard =  (props) => {
+   const problem = props.problems;
 
-  function getImage(image_category) {
-    const cat = category.find(
-      item => item.name === image_category.toLowerCase()
-    );
-    return cat.value;
+   const category = [
+     {name:'health', value:health},
+     {name:'technology', value:technology},
+     {name:'fitness', value:fitness},
+     {name:'personal', value:personal},
+     {name:'science', value:science},
+     {name:'finance', value:finance}
+   ]
+
+   function getImage(image_category){
+     const cat = category.find(item => item.name === image_category.toLowerCase());
+     return cat.value
   }
 
   return (
