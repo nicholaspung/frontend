@@ -54,7 +54,6 @@ const ProblemCard = props => {
     const cat = category.find(
       item => item.name === image_category.toLowerCase()
     );
-    console.log(cat);
     return cat.value;
   }
 
