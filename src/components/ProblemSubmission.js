@@ -73,12 +73,13 @@ class ProblemSubmission extends React.Component {
     event.preventDefault();
     let problem = this.state.newProblem;
     let today = new Date();
-    problem.date_created = `${months[today.getMonth()]} ${today.getDate()}, ${today.getFullYear()}`;
-    this.props.addProblems(problem).then(res => {
-      console.log(res);
-    });
+    problem.date_created = `${
+      months[today.getMonth()]
+    } ${today.getDate()}, ${today.getFullYear()}`;
+    this.props.addProblems(problem);
     console.log("submitted!");
     // to redirect
+    this.props.history.push(`/problems`);
     // this.props.history.push(`/problem-details/${res.data.id}`)
     // redirect to problem description page of problem
   };
