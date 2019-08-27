@@ -44,55 +44,56 @@ const MyTypography = styled(Typography)({
 })
 
 const MyCategory = styled(Typography)({
-  fontWeight:'bold'
+  fontWeight:'40px'
 })
+
+const category = [
+  {name:'health', value:health},
+  {name:'technology', value:technology},
+  {name:'fitness', value:fitness},
+  {name:'personal', value:personal},
+  {name:'science', value:science},
+  {name:'finance', value:finance}
+];
+
 const ProblemCard =  (props) => {
    const problem = props.problems;
 
-   const category = [
-     {name:'health', value:health},
-     {name:'technology', value:technology},
-     {name:'fitness', value:fitness},
-     {name:'personal', value:personal},
-     {name:'science', value:science},
-     {name:'finance', value:finance}
-   ]
 
    function getImage(image_category){
      const cat = category.find(item => item.name === image_category.toLowerCase());
      return cat.value
-  }
 
-  return (
-    <MyCard>
-      <MyCardMedia
-        component="img"
-        src={getImage(problem.problem_category)}
-        title="Contemplative Reptile"
-      />
-      <MyButton>
-        <Link to={`/problem-details/${problem.id}`}>
-          {problem.problem_title}
-        </Link>
-      </MyButton>
-      <CardContent>
-        <MyCategory variant="body2" color="textSecondary" component="p">
-          {problem.problem_category}
-        </MyCategory>
-        <MyTypography variant="body2" color="textSecondary" component="p">
-          {problem.problem_description}
-        </MyTypography>
-      </CardContent>
-      <CardActions>
-        <Button size="small" color="primary">
-          Share
-        </Button>
-        <Button size="small" color="primary">
-          Learn More
-        </Button>
-      </CardActions>
-    </MyCard>
-  );
+   }
+ 
+    return (
+      <MyCard>
+        <MyCardMedia
+          component="img"
+          src={getImage(problem.problem_category)}
+          title="Contemplative Reptile"
+        />
+        <MyButton>
+          <Link to={`/problem-details/${problem.id}`}>{problem.problem_title}</Link>
+        </MyButton>
+        <CardContent>
+          <Typography variant="body2" color="textSecondary" component="p">
+            {problem.problem_category}
+          </Typography>
+          <MyTypography variant="body2" color="textSecondary" component="p">
+            {problem.problem_description.substring(0,50)+"..."}
+          </MyTypography>
+        </CardContent>
+        <CardActions>
+          <Button size="small" color="primary">
+            Share
+          </Button>
+          <Button size="small" color="primary">
+            Learn More
+          </Button>
+        </CardActions>
+      </MyCard>
+    );
 };
 
 export default ProblemCard;
