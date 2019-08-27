@@ -54,7 +54,8 @@ class ProblemSubmission extends React.Component {
         problem_category: "",
         date_created: "",
         created_by: ""
-      }
+      },
+      error: ""
     };
   }
 
@@ -72,6 +73,16 @@ class ProblemSubmission extends React.Component {
   onButtonSubmit = event => {
     event.preventDefault();
     let problem = this.state.newProblem;
+    if (problem.problem_category === "") {
+      this.setState(prevState => {
+        return {
+          ...prevState,
+          error: "You must choose a category."
+        };
+      });
+      return;
+    }
+
     let today = new Date();
     problem.date_created = `${
       months[today.getMonth()]
@@ -110,13 +121,14 @@ class ProblemSubmission extends React.Component {
             }
           >
             <option value="" />
-            <option value="health">Health</option>
-            <option value="technology">Technology</option>
-            <option value="fitness">Fitness</option>
-            <option value="personal">Personal</option>
-            <option value="science">Science</option>
-            <option value="finance">Finance</option>
+            <option value="Health">Health</option>
+            <option value="Technology">Technology</option>
+            <option value="Fitness">Fitness</option>
+            <option value="Personal">Personal</option>
+            <option value="Science">Science</option>
+            <option value="Finance">Finance</option>
           </Select>
+          {this.state.error ? <span>{this.state.error}</span> : null}
         </FormControl>
         <TextField
           id="problem_description"
