@@ -3,24 +3,24 @@ import PropTypes from 'prop-types';
 import { Link as RouterLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { getProblems } from '../actions';
-import { styled } from '@material-ui/styles';
-import Card from '@material-ui/core/Card';
+// import { styled } from '@material-ui/styles';
+// import Card from '@material-ui/core/Card';
 
 import {
   DetailsCard, DetailsContainer, DetailsTitle,DetailsDescription, DetailsBackButton, DetailsBackLink,
 } from '../static/stylingComponents'
 
-const signee = [
-  {name:"Henry", email:"something@gmail.com"},
-  {name:"Alan", email:"something@gmail.com"},
-  {name:"Nicholas", email:"something@gmail.com"},
-  {name:"Tina", email:"something@gmail.com"},
-  {name:"Raydon", email:"something@gmail.com"},
-];
+// const signee = [
+//   {name:"Henry", email:"something@gmail.com"},
+//   {name:"Alan", email:"something@gmail.com"},
+//   {name:"Nicholas", email:"something@gmail.com"},
+//   {name:"Tina", email:"something@gmail.com"},
+//   {name:"Raydon", email:"something@gmail.com"},
+// ];
 
-const totalSignedNeeded = 10;
+// const totalSignedNeeded = 10;
 
-const progress = (signee.length / totalSignedNeeded) * 100;
+//const progress = (signee.length / totalSignedNeeded) * 100;
 
 // const ProgressBar = styled(Card)({
 //   fontWeight:'bold',
