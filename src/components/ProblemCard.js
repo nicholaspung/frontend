@@ -45,19 +45,21 @@ const MyTypography = styled(Typography)({
 })
 
 const MyCategory = styled(Typography)({
-  fontWeight:'bold'
+  fontWeight:'40px'
 })
+
+const category = [
+  {name:'health', value:health},
+  {name:'technology', value:technology},
+  {name:'fitness', value:fitness},
+  {name:'personal', value:personal},
+  {name:'science', value:science},
+  {name:'finance', value:finance}
+];
+
 const ProblemCard =  (props) => {
    const problem = props.problems;
 
-   const category = [
-     {name:'health', value:health},
-     {name:'technology', value:technology},
-     {name:'fitness', value:fitness},
-     {name:'personal', value:personal},
-     {name:'science', value:science},
-     {name:'finance', value:finance}
-   ]
 
    function getImage(image_category){
      const cat = category.find(item => item.name === image_category.toLowerCase());
@@ -76,9 +78,9 @@ const ProblemCard =  (props) => {
           <Link to={`/problem-details/${problem.id}`}>{problem.problem_title}</Link>
         </MyButton>
         <CardContent>
-          <MyCategory variant="body2" color="textSecondary" component="p">
+          <Typography variant="body2" color="textSecondary" component="p">
             {problem.problem_category}
-          </MyCategory>
+          </Typography>
           <MyTypography variant="body2" color="textSecondary" component="p">
             {problem.problem_description.substring(0,50)+"..."}
           </MyTypography>
