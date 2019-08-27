@@ -76,12 +76,12 @@ const ProblemCard =  (props) => {
         </Link>
       </MyButton>
       <CardContent>
-        <Typography variant="body2" color="textSecondary" component="p">
+        <MyCategory variant="body2" color="textSecondary" component="p">
           {problem.problem_category}
-        </Typography>
-        <Typography variant="body2" color="textSecondary" component="p">
+        </MyCategory>
+        <MyTypography variant="body2" color="textSecondary" component="p">
           {problem.problem_description}
-        </Typography>
+        </MyTypography>
       </CardContent>
       <CardActions>
         <Button size="small" color="primary">
