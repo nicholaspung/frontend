@@ -89,7 +89,7 @@ const ProblemCard =  (props) => {
             Share
           </Button>
           <Button size="small" color="primary">
-            Learn More
+            <Link to={`/problem-details/${problem.id}`}>Learn More</Link>
           </Button>
         </CardActions>
       </MyCard>
