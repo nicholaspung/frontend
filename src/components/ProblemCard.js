@@ -15,7 +15,6 @@ import finance from '../static/images/cards/finance.png'
 //import PropTypes from 'prop-types';
 
 import { Link } from 'react-router-dom';
-//import sweetPic from '../static/images/cards/reptile.jpg';
 
 const MyCard = styled(Card)({
    width: 250,
