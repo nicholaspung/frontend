@@ -1,6 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
 import { addUser } from "../actions";
+import "../styles/SignUpForm.css";
+
+import { DetailsBackButton } from "../static/stylingComponents";
 
 class SignUpForm extends React.Component {
   constructor() {
@@ -62,7 +65,7 @@ class SignUpForm extends React.Component {
   render() {
     console.log(this.props.addUser);
     return (
-      <div>
+      <div class="form-style-6">
         <form onSubmit={this.handleSubmit}>
           <input
             type="text"
@@ -77,7 +80,9 @@ class SignUpForm extends React.Component {
             placeholder="Email"
             onChange={this.handleInputChange("email")}
           />
-          <button onClick={this.handleSubmit}> Sign up! </button>
+          <DetailsBackButton onClick={this.handleSubmit}>
+            Sign up!
+          </DetailsBackButton>
         </form>
       </div>
     );
