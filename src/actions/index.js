@@ -47,15 +47,15 @@ export const addProblems = problem => dispatch => {
     });
 };
 
-// export const addUser = user => dispatch => {
-//   dispatch({ type: ADD_USER_START });
+export const addUser = user => dispatch => {
+  dispatch({ type: ADD_USER_START });
 
-//   return axios
-//     .post("https://labs15-lambdanext.herokuapp.com/users", user)
-//     .then(res => {
-//       dispatch({ type: ADD_USER_SUCCESS, payload: res.data });
-//     })
-//     .catch(error => {
-//       dispatch({ type: ADD_USER_FAIL, payload: error });
-//     });
-// };
+  return axios
+    .post("http://labs15-lambdanext.herokuapp.com/users/signup", user)
+    .then(res => {
+      dispatch({ type: ADD_USER_SUCCESS, payload: res.data });
+    })
+    .catch(error => {
+      dispatch({ type: ADD_USER_FAIL, payload: error });
+    });
+};

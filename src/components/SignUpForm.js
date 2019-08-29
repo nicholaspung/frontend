@@ -1,19 +1,87 @@
-import React, { Component } from "react";
+import React from "react";
+import { connect } from "react-redux";
+import { addUser } from "../actions";
 
-export class SignUpForm extends Component {
+class SignUpForm extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      newUser: {
+        problem_id: "",
+        full_name: "",
+        email: ""
+      },
+      error: ""
+    };
+  }
+
+  handleInputChange = name => e => {
+    e.persist();
+    this.setState(prevState => ({
+      ...prevState,
+      newUser: {
+        ...prevState.newUser,
+        [name]: e.target.value
+      }
+    }));
+  };
+
+  // handleInputChange = e => {
+  //   this.setState(prevState => ({
+  //     ...prevState,
+  //     newUser: {
+  //       ...prevState.newUser,
+  //       [e.target.name]: e.target.value
+  //     }
+  //   }));
+  // };
+
+  handleSubmit = e => {
+    e.preventDefault();
+    const user = {
+      problem_id: this.props.problem_id,
+      full_name: this.state.full_name,
+      email: this.state.email
+    };
+
+    this.props.addUser(user);
+    this.setState({
+      problem_id: "",
+      full_name: "",
+      email: ""
+    });
+  };
+
+  //email must be unique and all fields are required
+
   render() {
     return (
       <div>
-        <form>
-          <input name="username" type="text" placeholder="Username" />
-
-          <input name="email" type="email" placeholder="Email" />
-
-          <button>Sign up!</button>
+        <form onSubmit={this.handleSubmit}>
+          <input
+            type="text"
+            name="full_name"
+            placeholder="Full Name"
+            onChange={this.handleInputChange("full_name")}
+            value={this.state.newUser.full_name}
+          />
+          <input
+            name="email"
+            type="email"
+            placeholder="Email"
+            onChange={this.handleInputChange("email")}
+          />
         </form>
       </div>
     );
   }
 }
 
-export default SignUpForm;
+// const mapStateToProps = state => ({
+//   users: state.users
+// });
+
+export default connect(
+  null,
+  { addUser }
+)(SignUpForm);

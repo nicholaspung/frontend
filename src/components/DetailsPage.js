@@ -3,8 +3,10 @@ import PropTypes from "prop-types";
 import { Link as RouterLink } from "react-router-dom";
 import { connect } from "react-redux";
 import { getProblems } from "../actions";
+
 // import { styled } from '@material-ui/styles';
 // import Card from '@material-ui/core/Card';
+import SignUpForm from "./SignUpForm";
 
 import {
   DetailsCard,
@@ -14,8 +16,6 @@ import {
   DetailsBackButton,
   DetailsBackLink
 } from "../static/stylingComponents";
-
-import SignUpForm from "./SignUpForm";
 
 // const signee = [
 //   {name:"Henry", email:"something@gmail.com"},
@@ -90,7 +90,7 @@ class DetailsPage extends Component {
           </ProgressBarContainer>
         </ProgressContainer> */}
         </DetailsContainer>
-        <SignUpForm />
+        <SignUpForm problem_id={id} />
       </div>
     );
   }
