@@ -49,7 +49,7 @@ export const addProblems = problem => dispatch => {
 
 export const addUser = user => dispatch => {
   dispatch({ type: ADD_USER_START });
-
+  console.log(user);
   return axios
     .post("http://labs15-lambdanext.herokuapp.com/users/signup", user)
     .then(res => {

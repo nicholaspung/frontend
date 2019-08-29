@@ -15,6 +15,11 @@ class SignUpForm extends React.Component {
     };
   }
 
+  // componentDidMount() {
+  //   this.props.addUser();
+  //   // this.setState({ list: { ...this.props.smurfs } });
+  // }
+
   handleInputChange = name => e => {
     e.persist();
     this.setState(prevState => ({
@@ -39,7 +44,7 @@ class SignUpForm extends React.Component {
   handleSubmit = e => {
     e.preventDefault();
     const user = {
-      problem_id: this.props.problem_id,
+      problem_id: this.props.problem_idYo,
       full_name: this.state.full_name,
       email: this.state.email
     };
@@ -55,6 +60,7 @@ class SignUpForm extends React.Component {
   //email must be unique and all fields are required
 
   render() {
+    console.log(this.props.addUser);
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
@@ -71,6 +77,7 @@ class SignUpForm extends React.Component {
             placeholder="Email"
             onChange={this.handleInputChange("email")}
           />
+          <button onClick={this.handleSubmit}> Sign up! </button>
         </form>
       </div>
     );

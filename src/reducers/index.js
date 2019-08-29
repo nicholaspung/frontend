@@ -16,6 +16,7 @@ const initialState = {
   error: false,
   fetchingProblems: false,
   addingNewProblem: false,
+
   users: [],
   newlyAddedUser: {},
   addingNewUser: false
