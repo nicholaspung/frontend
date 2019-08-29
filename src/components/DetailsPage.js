@@ -90,7 +90,7 @@ class DetailsPage extends Component {
           </ProgressBarContainer>
         </ProgressContainer> */}
         </DetailsContainer>
-        <SignUpForm problem_id={id} />
+        <SignUpForm problem_idYo={id} />
       </div>
     );
   }
