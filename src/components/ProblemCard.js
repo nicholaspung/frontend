@@ -12,9 +12,10 @@ import fitness from "../static/images/cards/fitness.png";
 import personal from "../static/images/cards/personal.png";
 import science from "../static/images/cards/science.jpg";
 import finance from "../static/images/cards/finance.png";
+
 //import PropTypes from 'prop-types';
 
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 const MyCard = styled(Card)({
   width: 250,
@@ -33,67 +34,69 @@ const MyButton = styled(Button)({
 });
 
 const MyCardMedia = styled(CardMedia)({
-  width: '100%',
-  height:'200px',
-  backgroundColor:'white',
-  padding:'10px'
+  width: "100%",
+  height: "200px",
+  backgroundColor: "white",
+  padding: "10px"
 });
 
 const MyTypography = styled(Typography)({
-  minHeight:'40px'
-})
+  minHeight: "40px"
+});
 
-const MyCategory = styled(Typography)({
-  fontWeight:'40px'
-})
+// const MyCategory = styled(Typography)({
+//   fontWeight: "40px"
+// });
 
 const category = [
-  {name:'health', value:health},
-  {name:'technology', value:technology},
-  {name:'fitness', value:fitness},
-  {name:'personal', value:personal},
-  {name:'science', value:science},
-  {name:'finance', value:finance}
+  { name: "health", value: health },
+  { name: "technology", value: technology },
+  { name: "fitness", value: fitness },
+  { name: "personal", value: personal },
+  { name: "science", value: science },
+  { name: "finance", value: finance }
 ];
 
-const ProblemCard =  (props) => {
-   const problem = props.problems;
+const ProblemCard = props => {
+  const problem = props.problems;
 
-
-   function getImage(image_category){
-     const cat = category.find(item => item.name === image_category.toLowerCase());
-     return cat.value
-
-   }
- 
-    return (
-      <MyCard>
-        <MyCardMedia
-          component="img"
-          src={getImage(problem.problem_category)}
-          title="Contemplative Reptile"
-        />
-        <MyButton>
-          <Link to={`/problem-details/${problem.id}`}>{problem.problem_title}</Link>
-        </MyButton>
-        <CardContent>
-          <Typography variant="body2" color="textSecondary" component="p">
-            {problem.problem_category}
-          </Typography>
-          <MyTypography variant="body2" color="textSecondary" component="p">
-            {problem.problem_description.substring(0,50)+"..."}
-          </MyTypography>
-        </CardContent>
-        <CardActions>
-          <Button size="small" color="primary">
-            Share
-          </Button>
-          <Button size="small" color="primary">
-            <Link to={`/problem-details/${problem.id}`}>Learn More</Link>
-          </Button>
-        </CardActions>
-      </MyCard>
+  function getImage(image_category) {
+    const cat = category.find(
+      item => item.name === image_category.toLowerCase()
     );
+    return cat.value;
+  }
+
+  return (
+    <MyCard>
+      <MyCardMedia
+        component="img"
+        src={getImage(problem.problem_category)}
+        title="Contemplative Reptile"
+      />
+      <MyButton>
+        <Link to={`/problem-details/${problem.id}`}>
+          {problem.problem_title}
+        </Link>
+      </MyButton>
+      <CardContent>
+        <Typography variant="body2" color="textSecondary" component="p">
+          {problem.problem_category}
+        </Typography>
+        <MyTypography variant="body2" color="textSecondary" component="p">
+          {problem.problem_description.substring(0, 50) + "..."}
+        </MyTypography>
+      </CardContent>
+      <CardActions>
+        <Button size="small" color="primary">
+          Share
+        </Button>
+        <Button size="small" color="primary">
+          <Link to={`/problem-details/${problem.id}`}>Learn More</Link>
+        </Button>
+      </CardActions>
+    </MyCard>
+  );
 };
 
 export default ProblemCard;

@@ -1,14 +1,21 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { Link as RouterLink } from 'react-router-dom';
-import { connect } from 'react-redux';
-import { getProblems } from '../actions';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { Link as RouterLink } from "react-router-dom";
+import { connect } from "react-redux";
+import { getProblems } from "../actions";
 // import { styled } from '@material-ui/styles';
 // import Card from '@material-ui/core/Card';
 
 import {
-  DetailsCard, DetailsContainer, DetailsTitle,DetailsDescription, DetailsBackButton, DetailsBackLink,
-} from '../static/stylingComponents'
+  DetailsCard,
+  DetailsContainer,
+  DetailsTitle,
+  DetailsDescription,
+  DetailsBackButton,
+  DetailsBackLink
+} from "../static/stylingComponents";
+
+import SignUpForm from "./SignUpForm";
 
 // const signee = [
 //   {name:"Henry", email:"something@gmail.com"},
@@ -29,7 +36,6 @@ import {
 //   height:'35px'
 // })
 
-
 class DetailsPage extends Component {
   componentDidMount() {
     this.props.getProblems();
@@ -39,7 +45,7 @@ class DetailsPage extends Component {
     const { id } = this.props.match.params;
     const { problems } = this.props;
 
-    const problem = problems.find((item) => `${item.id}` === id);
+    const problem = problems.find(item => `${item.id}` === id);
 
     if (!problem) {
       return (
@@ -49,26 +55,33 @@ class DetailsPage extends Component {
       );
     }
     return (
-      <DetailsContainer>
-        <DetailsBackButton>
-          <DetailsBackLink component={RouterLink} to="/problems">Back To Problem Page</DetailsBackLink>
-        </DetailsBackButton>
-        <DetailsCard>
-          <DetailsTitle variant="body2" color="textSecondary" component="p">
-            {problem.problem_title}
-          </DetailsTitle>
-          <DetailsDescription variant="body2" color="textSecondary" component="p">
-            {problem.problem_description}
-          </DetailsDescription>
-        </DetailsCard>
+      <div>
+        <DetailsContainer>
+          <DetailsBackButton>
+            <DetailsBackLink component={RouterLink} to="/problems">
+              Back To Problem Page
+            </DetailsBackLink>
+          </DetailsBackButton>
+          <DetailsCard>
+            <DetailsTitle variant="body2" color="textSecondary" component="p">
+              {problem.problem_title}
+            </DetailsTitle>
+            <DetailsDescription
+              variant="body2"
+              color="textSecondary"
+              component="p"
+            >
+              {problem.problem_description}
+            </DetailsDescription>
+          </DetailsCard>
 
-        {/* <SigneeContainer>
+          {/* <SigneeContainer>
           <SigneeCount variant="body2" color="textSecondary" component="p">
             {`${signee.length} people signed up to help`}
           </SigneeCount>
         </SigneeContainer> */}
 
-        {/* <ProgressContainer>
+          {/* <ProgressContainer>
           <ProgressTitle variant="body2" color="textSecondary" component="p">
               Progress Bar
           </ProgressTitle>
@@ -76,12 +89,14 @@ class DetailsPage extends Component {
             <ProgressBar></ProgressBar>
           </ProgressBarContainer>
         </ProgressContainer> */}
-      </DetailsContainer>
+        </DetailsContainer>
+        <SignUpForm />
+      </div>
     );
   }
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   problems: state.problems
 });
 
