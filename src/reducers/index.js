@@ -4,15 +4,22 @@ import {
   FETCH_PROBLEM_FAIL,
   ADD_PROBLEM_START,
   ADD_PROBLEM_SUCCESS,
-  ADD_PROBLEM_FAIL
-} from '../actions';
+  ADD_PROBLEM_FAIL,
+  ADD_USER_START,
+  ADD_USER_SUCCESS,
+  ADD_USER_FAIL
+} from "../actions";
 
 const initialState = {
   problems: [],
   newlyAddedProblem: {},
   error: false,
   fetchingProblems: false,
-  addingNewProblem: false
+  addingNewProblem: false,
+
+  users: [],
+  newlyAddedUser: {},
+  addingNewUser: false
 };
 
 const reducer = (state = initialState, action) => {
@@ -20,7 +27,7 @@ const reducer = (state = initialState, action) => {
     case FETCH_PROBLEM_START:
       return {
         ...state,
-        error: '',
+        error: "",
         fetchingProblems: true
       };
 
@@ -28,7 +35,7 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         problems: action.payload,
-        error: '',
+        error: "",
         fetchingProblems: false
       };
 
@@ -42,7 +49,7 @@ const reducer = (state = initialState, action) => {
     case ADD_PROBLEM_START:
       return {
         ...state,
-        error: '',
+        error: "",
         addingNewProblem: true
       };
 
@@ -50,7 +57,7 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         newlyAddedProblem: action.payload,
-        error: '',
+        error: "",
         addingNewProblem: false
       };
 
@@ -59,6 +66,27 @@ const reducer = (state = initialState, action) => {
         ...state,
         error: action.payload,
         addingNewProblem: false
+      };
+    case ADD_USER_START:
+      return {
+        ...state,
+        error: "",
+        addingNewUser: true
+      };
+
+    case ADD_USER_SUCCESS:
+      return {
+        ...state,
+        newlyAddedUser: action.payload,
+        error: "",
+        addingNewUser: false
+      };
+
+    case ADD_USER_FAIL:
+      return {
+        ...state,
+        error: action.payload,
+        addingNewUser: false
       };
     default:
       return state;
