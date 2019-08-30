@@ -10,7 +10,6 @@ class SignUpForm extends React.Component {
     super();
     this.state = {
       newUser: {
-        problem_id: "",
         full_name: "",
         email: ""
       },
@@ -46,15 +45,17 @@ class SignUpForm extends React.Component {
 
   handleSubmit = e => {
     e.preventDefault();
+
+    const problemID = parseInt(this.props.problem_idYo);
+
     const user = {
-      problem_id: this.props.problem_idYo,
-      full_name: this.state.full_name,
-      email: this.state.email
+      problem_id: problemID,
+      full_name: this.state.newUser.full_name,
+      email: this.state.newUser.email
     };
 
     this.props.addUser(user);
     this.setState({
-      problem_id: "",
       full_name: "",
       email: ""
     });
@@ -79,6 +80,7 @@ class SignUpForm extends React.Component {
             type="email"
             placeholder="Email"
             onChange={this.handleInputChange("email")}
+            value={this.state.newUser.email}
           />
           <DetailsBackButton onClick={this.handleSubmit}>
             Sign up!
