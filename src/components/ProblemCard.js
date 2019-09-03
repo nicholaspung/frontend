@@ -69,7 +69,7 @@ const ProblemCard = props => {
         <MyCardMedia
           component="img"
           src={getImage(problem.problem_category)}
-          title="Contemplative Reptile"
+          title={problem.problem_title}
         />
         <CardContent>
           <Typography gutterBottom variant="headline" color="textSecondary" component="h2">
