@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { styled } from '@material-ui/styles';
-import { getProblems } from '../actions';
+import { getProblems, getUsers } from '../actions';
 import ProblemCard from './ProblemCard';
 
 import Grid from '@material-ui/core/Grid';
@@ -37,6 +37,7 @@ class ProblemDashboard extends React.Component {
       this.setState({problemCount:true})
     }
     this.props.getProblems();
+    this.props.getUsers();
   }
 
 
@@ -57,8 +58,8 @@ class ProblemDashboard extends React.Component {
     }
   }
 
-  render() {
 
+  render() {
 
     return (
       <div>
@@ -88,7 +89,7 @@ class ProblemDashboard extends React.Component {
               <MyGrid container spacing={4}>
                 {this.sCategory().map(problem => (
                   <Grid item key={problem.id}>
-                    <ProblemCard problems={problem} />
+                    <ProblemCard/>
                   </Grid>
                 ))}
               </MyGrid>
@@ -103,8 +104,8 @@ class ProblemDashboard extends React.Component {
 
 
 
-const mapStateToProps = ({problems}) => ({problems});
+const mapStateToProps = ({problems, users}) => ({problems, users});
 export default connect(
   mapStateToProps,
-  { getProblems }
+  { getProblems, getUsers }
 )(ProblemDashboard);
