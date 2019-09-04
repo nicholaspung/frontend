@@ -7,7 +7,7 @@ import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";
 
 import { Typography } from "@material-ui/core";
-import banner from "../static/images/cards/finding-problem-solution.jpg";
+import banner from "../static/images/marketing/finding-problem-solution.jpg";
 import MarketingCard from "./MarketingCard";
 
 const useStyles = makeStyles(theme => ({
@@ -45,7 +45,7 @@ const HomePage = () => {
       <CardMedia
         component="img"
         alt="Person who has a problem, thinks about it, and then solves it."
-        height="700"
+        height="500"
         src={banner}
         title="Contemplative Person"
       />
