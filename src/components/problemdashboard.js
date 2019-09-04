@@ -9,6 +9,7 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
+import Container from '@material-ui/core/Container';
 
 const MyGrid = styled(Grid)({
   padding:24
@@ -61,38 +62,40 @@ class ProblemDashboard extends React.Component {
 
     return (
       <div>
-        <MyGrid>
-          <FormControl spacing={2} style={{minWidth:120}}>
-            <InputLabel htmlFor="categories">Filter</InputLabel>
-            <Select
-              value={this.state.selectedCategory} 
-              onChange={this.categorySelected}
-              inputprops={{
-                name:this.state.selectedCategory,
-                id:'categories'
-              }}
-            >
-              {category.map((cat, index) =>(  
-                <MenuItem  key={index}
-                value={cat}
-                >{cat.toUpperCase()}</MenuItem>
-              ))}
-            </Select>
-          </FormControl>
-        </MyGrid>
-        {this.sCategory().length > 0 ? (
-          <div>
+        <Container style={{minHeight:'600px'}}>
+          <MyGrid>
+            <FormControl spacing={2} style={{minWidth:120}}>
+              <InputLabel htmlFor="categories">Filter</InputLabel>
+              <Select
+                value={this.state.selectedCategory} 
+                onChange={this.categorySelected}
+                inputprops={{
+                  name:this.state.selectedCategory,
+                  id:'categories'
+                }}
+              >
+                {category.map((cat, index) =>(  
+                  <MenuItem  key={index}
+                  value={cat}
+                  >{cat.toUpperCase()}</MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+          </MyGrid>
+          {this.sCategory().length > 0 ? (
+            <div>
 
-            <MyGrid container spacing={4}>
-              {this.sCategory().map(problem => (
-                <Grid item key={problem.id}>
-                  <ProblemCard problems={problem} />
-                </Grid>
-              ))}
-            </MyGrid>
-          </div>
+              <MyGrid container spacing={4}>
+                {this.sCategory().map(problem => (
+                  <Grid item key={problem.id}>
+                    <ProblemCard problems={problem} />
+                  </Grid>
+                ))}
+              </MyGrid>
+            </div>
 
-        ) : (<MyGrid container>Sorry {this.state.selectedCategory.toUpperCase()} problems are not available </MyGrid>)}
+          ) : (<MyGrid container>Sorry {this.state.selectedCategory.toUpperCase()} problems are not available </MyGrid>)}
+        </Container>
       </div>
     )
   }
