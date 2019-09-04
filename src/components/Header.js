@@ -44,11 +44,6 @@ const Header = () => {
                 About Us
               </Link>
             </Button>
-            <Button>
-              <Link to="/howitworks" className={classes.button}>
-                How It Works
-              </Link>
-            </Button>
           </div>
         </Toolbar>
       </AppBar>
