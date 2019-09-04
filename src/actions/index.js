@@ -54,7 +54,7 @@ export const addProblems = problem => dispatch => {
 export const getUsers = () => dispatch => {
   dispatch({ type: FETCH_USERS_START });
   return axios
-    .post("https://labs15-lambdanext.herokuapp.com/users")
+    .get("https://labs15-lambdanext.herokuapp.com/users")
     .then(res => {
       dispatch({ type: FETCH_USERS_SUCCESS, payload: res.data });
     })
