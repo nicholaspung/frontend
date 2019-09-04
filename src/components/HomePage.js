@@ -45,7 +45,7 @@ const HomePage = () => {
       <CardMedia
         component="img"
         alt="Person who has a problem, thinks about it, and then solves it."
-        height="500"
+        height="auto"
         src={banner}
         title="Contemplative Person"
       />
