@@ -5,7 +5,6 @@ import Container from '@material-ui/core/Container';
 import Header from './Header';
 import HomePage from './HomePage';
 import About from './About';
-import HowItWorks from './HowItWorks';
 import Footer from './Footer';
 import ProblemDashboard from './problemdashboard';
 import ProblemCard from './ProblemCard';
@@ -23,7 +22,6 @@ export default function App() {
         <Route path="/problems" component={ProblemDashboard} />
         <Route path="/submitaproblem" component={ProblemSubmission} />
         <Route path="/about" component={About} />
-        <Route path="/howitworks" component={HowItWorks} />
         <Route exact path="/problem-details" component={ProblemCard} />
         <Route path="/problem-details/:id" component={DetailsPage} />
         <Footer />
