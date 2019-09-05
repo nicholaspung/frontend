@@ -1,5 +1,6 @@
 import { styled } from '@material-ui/styles';
 import Card from '@material-ui/core/Card';
+import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import Link from '@material-ui/core/Link';
@@ -81,3 +82,14 @@ export const CallToActionBtn2 = styled(Button)({
   background:'#87CEFA',
   color:'white'
 })
+
+export const ProblemCards = styled(Card)({
+  
+  boxShadow:'2px 4px silver',
+  maxWidth:260
+});
+
+export const ProblemCardMedia = styled(CardMedia)({
+  backgroundColor: "white",
+  height:200
+});
