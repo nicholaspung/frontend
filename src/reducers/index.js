@@ -5,6 +5,9 @@ import {
   ADD_PROBLEM_START,
   ADD_PROBLEM_SUCCESS,
   ADD_PROBLEM_FAIL,
+  FETCH_USERS_START,
+  FETCH_USERS_SUCCESS,
+  FETCH_USERS_FAIL,
   ADD_USER_START,
   ADD_USER_SUCCESS,
   ADD_USER_FAIL
@@ -18,6 +21,7 @@ const initialState = {
   addingNewProblem: false,
 
   users: [],
+  fetchingUsers:false,
   newlyAddedUser: {},
   addingNewUser: false
 };
@@ -87,6 +91,27 @@ const reducer = (state = initialState, action) => {
         ...state,
         error: action.payload,
         addingNewUser: false
+      };
+    case FETCH_USERS_START:
+      return {
+        ...state,
+        error: "",
+        fetchingUsers: true
+      };
+
+    case FETCH_USERS_SUCCESS:
+      return {
+        ...state,
+        users: action.payload,
+        error: "",
+        fetchingUsers: false
+      };
+
+    case FETCH_USERS_FAIL:
+      return {
+        ...state,
+        error: action.payload,
+        fetchingUsers: false
       };
     default:
       return state;
