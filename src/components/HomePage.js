@@ -26,7 +26,7 @@ const CardGrid = styled(Grid)({
 });
 
 const HomeImage = styled(Grid)({
-  backgroundColor: "blue"
+  backgroundColor: "#b51d4b"
 });
 
 const HomePage = () => {
