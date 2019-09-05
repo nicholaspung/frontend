@@ -1,91 +1,91 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
-import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Grid from "@material-ui/core/Grid";
-import TextField from "@material-ui/core/TextField";
-
-import { Typography } from "@material-ui/core";
+// import Paper from "@material-ui/core/Paper";
+// import CardContent from "@material-ui/core/CardContent";
+// import Typography from "@material-ui/core/Typography";
+// import TextField from "@material-ui/core/TextField";
 import banner from "../static/images/marketing/finding-problem-solution.jpg";
 import MarketingCard from "./MarketingCard";
+import { styled } from "@material-ui/styles";
+import { useTheme } from "@material-ui/styles";
+import GroupIcon from "@material-ui/icons/Group";
+import BuildIcon from "@material-ui/icons/Build";
 
-const useStyles = makeStyles(theme => ({
-  root: {
-    flexGrow: 1
-  },
-  descriptors: {
-    flexGrow: 1,
-    margin: "10px 0"
-  },
-  newsletter: {
-    color: "white",
-    backgroundColor: "blue",
-    textAlign: "center"
-  },
-  textField: {
-    marginLeft: theme.spacing(1),
-    marginRight: theme.spacing(1)
-  }
-}));
+// const Newsletter = styled(Paper)({
+//   color: "white",
+//   backgroundColor: "blue",
+//   textAlign: "center"
+// });
+
+// const SignUpField = styled(TextField)({
+//   marginLeft: "10px",
+//   marginRight: "10px"
+// });
+
+const HomeImage = styled(Grid)({
+  backgroundColor: "#b51d4b"
+});
 
 const HomePage = () => {
-  const classes = useStyles();
-  const title1 = "Have a problem?";
-  const title2 = "Help solve a problem!";
-  const description1 =
-    '"I need this problem solved!" We understand that there are plenty of problems that need to be solved. We also know that finding users that can help us pinpoint how to solve the problems are hard to find. Usually you would need to ask friends of friends, or pass out flyers to get volunteers to gather data on where to start. We help solve this by offering a platform where people can signup to help give information on the problem they want solved!';
-  const description2 =
-    "Have a problem in your life that hasn't been solved by any company so far? Search our website to see if anyone else around the globe also has the same problem that they are trying to solve! All you need to do is look through our website and find that problem that is bugging you. By signing up and helping out with research, we'll let you know when the problem turns into a project to be solved.";
-  const button1 = "Submit A Problem";
-  const button2 = "See Problem List";
+  const theme = useTheme();
+  const title1 = "Have a Tech Project Made.";
+  const title2 = "Help a Project to be Made.";
+  const description1 = "Organizations/Individuals submit tech project ideas";
+  const description2 = "Individuals looking to have a tech project made";
+  const button1 = "Submit A Project Idea";
+  const button2 = "See Project List";
 
   return (
-    <Card>
-      <CardMedia
-        component="img"
-        alt="Person who has a problem, thinks about it, and then solves it."
-        height="500"
-        src={banner}
-        title="Contemplative Person"
-      />
-      <Grid
-        container
-        className={classes.descriptors}
-        spacing={10}
-        justify="center"
-      >
-        <Grid item>
+    <Card style={{ backgroundColor: theme.palette.background.secondary }}>
+      <HomeImage container justify="center">
+        <Grid item xs={10} md={8} lg={6}>
+          <CardMedia
+            component="img"
+            alt="Person who has a problem, thinks about it, and then solves it."
+            height="auto"
+            src={banner}
+            title="Contemplative Person"
+          />
+        </Grid>
+      </HomeImage>
+
+      <Grid container justify="space-around" spacing={0}>
+        <Grid item xs={10} md={4}>
           <MarketingCard
             title={title1}
             description={description1}
             displayButton={button1}
             buttonLink="/submitaproblem"
+            icon={<BuildIcon fontSize="large" />}
           />
         </Grid>
-        <Grid item>
+        <Grid item xs={10} md={4}>
           <MarketingCard
             title={title2}
             description={description2}
             displayButton={button2}
             buttonLink="/problems"
+            icon={<GroupIcon fontSize="large" />}
           />
         </Grid>
       </Grid>
-      {/* <Card className={classes.newsletter}>
+      {/* Material UI Paper component is dumb when using square - if nothing is below, it'll have rounded corners. When something is below, it'll have square corners */}
+      {/* <Newsletter square>
         <CardContent>
           <Typography variant="h6" component="h2">
             Sign up to be notified for new problems!
           </Typography>
         </CardContent>
-        <TextField
+        <SignUpField
           id="newsletter-signup"
           label="Newsletter Signup"
-          className={classes.textField}
           margin="normal"
           variant="outlined"
         />
-      </Card> */}
+      </Newsletter>
+      <Paper>hi</Paper> */}
     </Card>
   );
 };
