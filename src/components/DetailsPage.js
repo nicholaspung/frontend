@@ -1,22 +1,36 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { connect } from 'react-redux';
 
 import { Link as RouterLink } from "react-router-dom";
+import {getProblems, getUsers} from '../actions'
+
+import Button from '@material-ui/core/Button';
+import Card from '@material-ui/core/Card';
+import Typography from '@material-ui/core/Typography';
+import { styled } from '@material-ui/styles';
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 
 import SignUpForm from "./SignUpForm";
-import {getProblems, getUsers} from '../actions'
-import { styled } from '@material-ui/styles';
-
-import Card from '@material-ui/core/Card';
-
 import {
   DetailsCard,DetailsContainer,DetailsTitle,DetailsDescription,DetailsBackButton,DetailsBackLink,
   SigneeContainer,SigneeCount,
   ProgressContainer,ProgressTitle,ProgressBarContainer
 } from "../static/stylingComponents";
-import { connect } from 'react-redux';
 
-const totalSignedNeeded = 10;
+
+
+import Icon from '@material-ui/core/Icon';
+const ImageSetter = require('../static/stylingComponents/ImageSetter')
+
+
+
+const theme = createMuiTheme();
+theme.typography.p = {
+  color:'green'
+}
+
+
 
 
 const ProgressBar = styled(Card)({
@@ -27,10 +41,17 @@ const ProgressBar = styled(Card)({
 
 
 class  DetailsPage extends React.Component {
-
+  
   componentDidMount(){
     this.props.getProblems()
     this.props.getUsers()
+  }
+  
+  
+  getProgress = () => {
+    const totalSignedNeeded = 10;
+    const val = this.getSignee() / totalSignedNeeded * 100;
+    return `${val}%`
   }
 
   getSignee = () =>{
@@ -42,17 +63,20 @@ class  DetailsPage extends React.Component {
   render(){
     const { id } = this.props.match.params;
     const problem = this.props.problems.find(prob => `${prob.id}` === id);
-   
-    //const signed = props.signees;
 
       if (!problem) {
         return (
+          <MuiThemeProvider theme={theme}>
+      {/* <Button>font-size: 1rem</Button> */}
           <div>
             <h1>You must be lost </h1>
           </div>
+    </MuiThemeProvider>
         );
       }
       return (
+        <MuiThemeProvider theme={theme}>
+      <Button>font-size: 1rem</Button>
         <div>
           <DetailsContainer>
             <DetailsBackButton>
@@ -74,22 +98,23 @@ class  DetailsPage extends React.Component {
             </DetailsCard>
   
             <SigneeContainer>
-            <SigneeCount variant="body2" color="textSecondary" component="p">
+            <Typography variant="body2" color="textSecondary" component="p">
               {`${this.getSignee()} people signed up to help`}
-            </SigneeCount>
+            </Typography>
           </SigneeContainer>
   
            <ProgressContainer>
-            <ProgressTitle variant="body2" color="textSecondary" component="p">
+            <ProgressTitle variant="body2" color="textSecondary" component="h2">
                 Progress Bar
             </ProgressTitle>
             <ProgressBarContainer>
-              <ProgressBar style={{width: (this.getSignee() / totalSignedNeeded) * 1000 }}></ProgressBar>
+              <ProgressBar style={{width:this.getProgress()}}></ProgressBar>
             </ProgressBarContainer>
           </ProgressContainer>
           </DetailsContainer>
           <SignUpForm problem_idYo={id} />
         </div>
+    </MuiThemeProvider>
       );
     }
 
