@@ -66,7 +66,7 @@ class SignUpForm extends React.Component {
   render() {
     console.log(this.props.addUser);
     return (
-      <div class="form-style-6">
+      <div className="form-style-6">
         <form onSubmit={this.handleSubmit}>
           <input
             type="text"
