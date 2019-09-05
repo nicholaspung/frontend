@@ -1,28 +1,25 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Toolbar from '@material-ui/core/Toolbar';
-import AppBar from '@material-ui/core/AppBar';
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1
-  },
-  title: {
-    flexGrow: 1
-  }
-}));
+import React from "react";
+import Toolbar from "@material-ui/core/Toolbar";
+import AppBar from "@material-ui/core/AppBar";
+import Grid from "@material-ui/core/Grid";
+import { useTheme } from "@material-ui/styles";
 
 const Footer = () => {
-  const classes = useStyles();
-
+  const theme = useTheme();
   return (
-    <div className={classes.root}>
-      <AppBar position="static">
+    <>
+      <AppBar position="static" color="secondary">
         <Toolbar>
-          <p className={classes.title}>Copyright Lambda NeXt</p>
+          <Grid container justify="center">
+            <Grid item>
+              <p style={{ color: theme.palette.footerText.main }}>
+                Copyright © 2019 Lambda School - All rights reserved
+              </p>
+            </Grid>
+          </Grid>
         </Toolbar>
       </AppBar>
-    </div>
+    </>
   );
 };
 
