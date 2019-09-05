@@ -9,6 +9,8 @@ import Grid from "@material-ui/core/Grid";
 import banner from "../static/images/marketing/finding-problem-solution.jpg";
 import MarketingCard from "./MarketingCard";
 import { styled } from "@material-ui/styles";
+import { useTheme } from "@material-ui/styles";
+import EmojiObjectsIcon from "@material-ui/icons/Videocam";
 
 // const Newsletter = styled(Paper)({
 //   color: "white",
@@ -21,28 +23,23 @@ import { styled } from "@material-ui/styles";
 //   marginRight: "10px"
 // });
 
-const CardGrid = styled(Grid)({
-  flexGrow: 1
-});
-
 const HomeImage = styled(Grid)({
   backgroundColor: "#b51d4b"
 });
 
 const HomePage = () => {
-  const title1 = "Have a problem?";
-  const title2 = "Help solve a problem!";
-  const description1 =
-    '"I need this problem solved!" We understand that there are plenty of problems that need to be solved. We also know that finding users that can help us pinpoint how to solve the problems are hard to find. Usually you would need to ask friends of friends, or pass out flyers to get volunteers to gather data on where to start. We help solve this by offering a platform where people can signup to help give information on the problem they want solved!';
-  const description2 =
-    "Have a problem in your life that hasn't been solved by any company so far? Search our website to see if anyone else around the globe also has the same problem that they are trying to solve! All you need to do is look through our website and find that problem that is bugging you. By signing up and helping out with research, we'll let you know when the problem turns into a project to be solved.";
-  const button1 = "Submit A Problem";
-  const button2 = "See Problem List";
+  const theme = useTheme();
+  const title1 = "Have a Tech Project Made.";
+  const title2 = "Help a Project to be Made.";
+  const description1 = "Organizations/Individuals with tech project ideas";
+  const description2 = "Individuals looking to have a tech project made";
+  const button1 = "Submit A Project Idea";
+  const button2 = "See Project List";
 
   return (
-    <Card>
+    <Card style={{ backgroundColor: theme.palette.background.secondary }}>
       <HomeImage container justify="center">
-        <Grid item xs={12} sm={8} md={6}>
+        <Grid item xs={10} md={8} lg={6}>
           <CardMedia
             component="img"
             alt="Person who has a problem, thinks about it, and then solves it."
@@ -52,13 +49,15 @@ const HomePage = () => {
           />
         </Grid>
       </HomeImage>
-      <CardGrid container justify="space-around">
+
+      <Grid container justify="space-around" spacing={0}>
         <Grid item xs={12} md={5}>
           <MarketingCard
             title={title1}
             description={description1}
             displayButton={button1}
             buttonLink="/submitaproblem"
+            icon={<EmojiObjectsIcon fontSize="large" />}
           />
         </Grid>
         <Grid item xs={12} md={5}>
@@ -67,9 +66,10 @@ const HomePage = () => {
             description={description2}
             displayButton={button2}
             buttonLink="/problems"
+            icon={<EmojiObjectsIcon fontSize="large" />}
           />
         </Grid>
-      </CardGrid>
+      </Grid>
       {/* Material UI Paper component is dumb when using square - if nothing is below, it'll have rounded corners. When something is below, it'll have square corners */}
       {/* <Newsletter square>
         <CardContent>

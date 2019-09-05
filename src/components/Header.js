@@ -55,7 +55,7 @@ const Header = () => {
   return (
     <div>
       <Grid container alignItems="center">
-        <AppBar position="sticky" color="default">
+        <AppBar position="sticky" color="primary">
           <Toolbar>
             <Logo to="/">
               <img src={LambdaLogo} width="130px" alt="Lambda School Logo" />
