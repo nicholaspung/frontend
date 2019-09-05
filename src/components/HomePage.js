@@ -1,36 +1,35 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
-import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Grid from "@material-ui/core/Grid";
-import TextField from "@material-ui/core/TextField";
-
-import { Typography } from "@material-ui/core";
+// import Paper from "@material-ui/core/Paper";
+// import CardContent from "@material-ui/core/CardContent";
+// import Typography from "@material-ui/core/Typography";
+// import TextField from "@material-ui/core/TextField";
 import banner from "../static/images/marketing/finding-problem-solution.jpg";
 import MarketingCard from "./MarketingCard";
+import { styled } from "@material-ui/styles";
 
-const useStyles = makeStyles(theme => ({
-  root: {
-    flexGrow: 1
-  },
-  descriptors: {
-    flexGrow: 1,
-    margin: "10px 0"
-  },
-  newsletter: {
-    color: "white",
-    backgroundColor: "blue",
-    textAlign: "center"
-  },
-  textField: {
-    marginLeft: theme.spacing(1),
-    marginRight: theme.spacing(1)
-  }
-}));
+// const Newsletter = styled(Paper)({
+//   color: "white",
+//   backgroundColor: "blue",
+//   textAlign: "center"
+// });
+
+// const SignUpField = styled(TextField)({
+//   marginLeft: "10px",
+//   marginRight: "10px"
+// });
+
+const CardGrid = styled(Grid)({
+  flexGrow: 1
+});
+
+const HomeImage = styled(Grid)({
+  backgroundColor: "blue"
+});
 
 const HomePage = () => {
-  const classes = useStyles();
   const title1 = "Have a problem?";
   const title2 = "Help solve a problem!";
   const description1 =
@@ -42,20 +41,19 @@ const HomePage = () => {
 
   return (
     <Card>
-      <CardMedia
-        component="img"
-        alt="Person who has a problem, thinks about it, and then solves it."
-        height="auto"
-        src={banner}
-        title="Contemplative Person"
-      />
-      <Grid
-        container
-        className={classes.descriptors}
-        spacing={10}
-        justify="center"
-      >
-        <Grid item>
+      <HomeImage container justify="center">
+        <Grid item xs={12} sm={8} md={6}>
+          <CardMedia
+            component="img"
+            alt="Person who has a problem, thinks about it, and then solves it."
+            height="auto"
+            src={banner}
+            title="Contemplative Person"
+          />
+        </Grid>
+      </HomeImage>
+      <CardGrid container justify="space-around">
+        <Grid item xs={12} md={5}>
           <MarketingCard
             title={title1}
             description={description1}
@@ -63,7 +61,7 @@ const HomePage = () => {
             buttonLink="/submitaproblem"
           />
         </Grid>
-        <Grid item>
+        <Grid item xs={12} md={5}>
           <MarketingCard
             title={title2}
             description={description2}
@@ -71,21 +69,22 @@ const HomePage = () => {
             buttonLink="/problems"
           />
         </Grid>
-      </Grid>
-      {/* <Card className={classes.newsletter}>
+      </CardGrid>
+      {/* Material UI Paper component is dumb when using square - if nothing is below, it'll have rounded corners. When something is below, it'll have square corners */}
+      {/* <Newsletter square>
         <CardContent>
           <Typography variant="h6" component="h2">
             Sign up to be notified for new problems!
           </Typography>
         </CardContent>
-        <TextField
+        <SignUpField
           id="newsletter-signup"
           label="Newsletter Signup"
-          className={classes.textField}
           margin="normal"
           variant="outlined"
         />
-      </Card> */}
+      </Newsletter>
+      <Paper>hi</Paper> */}
     </Card>
   );
 };
