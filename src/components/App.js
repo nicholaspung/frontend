@@ -14,8 +14,11 @@ import ProblemSubmission from "./ProblemSubmission";
 
 const theme = createMuiTheme({
   palette: {
-    primary: { main: "#bb1333" },
-    secondary: { main: "#14131c" }
+    primary: { main: "#ffffff" },
+    secondary: { main: "#14131c" },
+    background: { default: "#ffffff", secondary: "#f6f7fb" },
+    footerText: { main: "#707486" },
+    lambdaRed: { main: "#bb1333", secondary: '#750808' }
   }
 });
 
