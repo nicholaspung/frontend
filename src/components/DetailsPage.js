@@ -14,7 +14,7 @@ import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import SignUpForm from "./SignUpForm";
 import {
   DetailsCard,DetailsContainer,DetailsTitle,DetailsDescription,DetailsBackButton,DetailsBackLink,
-  SigneeContainer,SigneeCount,
+  SigneeContainer,
   ProgressContainer,ProgressTitle,ProgressBarContainer
 } from "../static/stylingComponents";
 
@@ -76,7 +76,7 @@ class  DetailsPage extends React.Component {
       }
       return (
         <MuiThemeProvider theme={theme}>
-      <Button>font-size: 1rem</Button>
+      {/* <Button>font-size: 1rem</Button> */}
         <div>
           <DetailsContainer>
             <DetailsBackButton>
