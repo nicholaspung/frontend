@@ -59,7 +59,7 @@ const MarketingCard = ({
       </CardContent>
       <CTACardActions>
         <ButtonLink to={buttonLink}>
-          <CTAButton size="small" fullWidth>
+          <CTAButton size="small" fullWidth disableRipple disableFocusRipple disableTouchRipple>
             {displayButton}
           </CTAButton>
         </ButtonLink>

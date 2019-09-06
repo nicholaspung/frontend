@@ -6,12 +6,12 @@ import Grid from "@material-ui/core/Grid";
 // import CardContent from "@material-ui/core/CardContent";
 // import Typography from "@material-ui/core/Typography";
 // import TextField from "@material-ui/core/TextField";
-import banner from "../static/images/marketing/finding-problem-solution.jpg";
-import MarketingCard from "./MarketingCard";
 import { styled } from "@material-ui/styles";
 import { useTheme } from "@material-ui/styles";
 import GroupIcon from "@material-ui/icons/Group";
 import BuildIcon from "@material-ui/icons/Build";
+import banner from "../../static/images/marketing/finding-problem-solution.jpg";
+import MarketingCard from "./MarketingCard";
 
 // const Newsletter = styled(Paper)({
 //   color: "white",
@@ -38,7 +38,12 @@ const HomePage = () => {
   const button2 = "See Project List";
 
   return (
-    <Card style={{ backgroundColor: theme.palette.background.secondary }}>
+    <Card
+      style={{
+        backgroundColor: theme.palette.background.secondary,
+        borderRadius: "0px"
+      }}
+    >
       <HomeImage container justify="center">
         <Grid item xs={10} md={8} lg={6}>
           <CardMedia
@@ -50,7 +55,6 @@ const HomePage = () => {
           />
         </Grid>
       </HomeImage>
-
       <Grid container justify="space-around" spacing={0}>
         <Grid item xs={10} md={4}>
           <MarketingCard
