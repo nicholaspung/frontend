@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { styled } from "@material-ui/styles";
+import { styled, useTheme } from "@material-ui/styles";
 import Button from "@material-ui/core/Button";
 import Toolbar from "@material-ui/core/Toolbar";
 import AppBar from "@material-ui/core/AppBar";
@@ -9,27 +9,10 @@ import Hidden from "@material-ui/core/Hidden";
 import Collapse from "@material-ui/core/Collapse";
 import Paper from "@material-ui/core/Paper";
 import MenuIcon from "@material-ui/icons/Menu";
-import LambdaLogo from "../static/images/marketing/lambda-logo.png";
-
-const HeaderLink = styled(Link)({
-  color: "#55596d",
-  textDecoration: "none"
-});
-
-const Logo = styled(HeaderLink)({
-  paddingTop: "5px",
-  width: "150",
-  position: "relative",
-  float: "left"
-});
+import LambdaLogo from "../../static/images/marketing/lambda-logo.png";
 
 const NavMenu = styled(MenuIcon)({
   cursor: "pointer"
-});
-
-const NavMenuButton = styled(Paper)({
-  backgroundColor: "#233d6e",
-  width: "100%"
 });
 
 const NavMenuLink = styled(Link)({
@@ -38,6 +21,24 @@ const NavMenuLink = styled(Link)({
 });
 
 const Header = () => {
+  const theme = useTheme();
+  const HeaderLink = styled(Link)({
+    color: theme.palette.primary.secondary,
+    textDecoration: "none"
+  });
+
+  const Logo = styled(HeaderLink)({
+    paddingTop: "5px",
+    width: "150",
+    position: "relative",
+    float: "left"
+  });
+
+  const NavMenuButton = styled(Paper)({
+    backgroundColor: theme.palette.secondary.secondary,
+    width: "100%"
+  });
+
   const [checked, setChecked] = useState(false);
 
   useEffect(() => {

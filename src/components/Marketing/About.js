@@ -3,17 +3,18 @@ import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 import CardMedia from "@material-ui/core/CardMedia";
+import Container from "@material-ui/core/Container";
 import { useTheme, styled } from "@material-ui/styles";
 import SubscriptionsIcon from "@material-ui/icons/Subscriptions";
 import SearchIcon from "@material-ui/icons/Search";
 import HowToRegIcon from "@material-ui/icons/HowToReg";
 import DoneAllIcon from "@material-ui/icons/DoneAll";
-import team from "../static/team";
+import team from "../../static/team";
 import TeamPictures from "./TeamPictures";
-import aboutus from "../static/images/marketing/teamwork.jpg";
+import aboutus from "../../static/images/marketing/teamwork.png";
 
 const HowItWorks = styled(Paper)({
-  margin: "20px"
+  margin: "2rem"
 });
 
 const BoldTypography = styled(Typography)({
@@ -21,11 +22,18 @@ const BoldTypography = styled(Typography)({
 });
 
 const PaddedBottomTypography = styled(Typography)({
-  paddingBottom: '5px'
-})
+  paddingBottom: "0.5rem"
+});
 
 const About = () => {
   const theme = useTheme();
+
+  const MeetTheTeamContainer = styled(Grid)({
+    backgroundColor: theme.palette.secondary.secondary,
+    paddingBottom: "2rem",
+    width: '100%'
+  });
+
   return (
     <Grid container justify="center">
       <Grid
@@ -43,7 +51,7 @@ const About = () => {
             title="Contemplative Person"
           />
         </Grid>
-        <Grid item lg={4} xs={10} style={{ paddingBottom: "20px" }}>
+        <Grid item lg={4} xs={10} style={{ paddingBottom: "1.5rem" }}>
           <BoldTypography
             variant="h4"
             component="h2"
@@ -72,7 +80,7 @@ const About = () => {
         style={{ backgroundColor: theme.palette.background.secondary }}
       >
         <HowItWorks square>
-          <Grid container justify="center" style={{ paddingTop: "10px" }}>
+          <Grid container justify="center" style={{ paddingTop: "0.75rem" }}>
             <BoldTypography variant="h4" component="h2">
               How It Works
             </BoldTypography>
@@ -133,7 +141,7 @@ const About = () => {
             container
             justify="center"
             alignItems="center"
-            style={{ paddingBotton: "10px" }}
+            style={{ paddingBotton: "0.75rem" }}
           >
             <Grid item xs={1}>
               <DoneAllIcon fontSize="large" />
@@ -151,22 +159,34 @@ const About = () => {
           </Grid>
         </HowItWorks>
       </Grid>
-      <Grid container justify="center">
-        <Typography variant="h6" component="h2">
-          Meet the team
-        </Typography>
-      </Grid>
-      <Grid container spacing={3} justify="center">
-        {team.map(person => (
-          <TeamPictures
-            name={person.name}
-            description={person.description}
-            github={person.github}
-            linkedin={person.linkedin}
-            key={person.name}
-          />
-        ))}
-      </Grid>
+      <MeetTheTeamContainer>
+        <Container>
+          <Grid container justify="center">
+            <Typography
+              variant="h4"
+              component="h2"
+              color="primary"
+              style={{ paddingTop: "1.5rem", paddingBottom: "1.5rem" }}
+            >
+              Meet the team
+            </Typography>
+          </Grid>
+          <Grid container spacing={3} justify="center">
+            {team
+              .sort((a, b) => (a.name > b.name ? 1 : -1))
+              .map(person => (
+                <TeamPictures
+                  name={person.name}
+                  description={person.description}
+                  github={person.github}
+                  linkedin={person.linkedin}
+                  position={person.position}
+                  key={person.name}
+                />
+              ))}
+          </Grid>
+        </Container>
+      </MeetTheTeamContainer>
     </Grid>
   );
 };
