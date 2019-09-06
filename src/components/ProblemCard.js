@@ -29,17 +29,21 @@ const ProblemCard = props => {
           title={problem.problem_title}
         />
         <CardContent>
-          <Typography gutterBottom variant="headline" color="textSecondary" component="h2">
-              {problem.problem_title}
+          <Typography gutterBottom variant="headline" color="textSecondary" component="h3">
+          {problem.problem_title.length > 25 ? problem.problem_title.substring(0, 25) + "..." :
+          problem.problem_title
+         }
           </Typography>
-          <Typography variant="body2" color="textSecondary" component="p">
+          <Typography variant="body1" color="textSecondary" component="p">
           
               <Icon>{ImageSetter.staticIcon(problem.problem_category)}</Icon>
               {problem.problem_category}
             
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
-            {problem.problem_description.substring(0, 50) + "..."}
+          {problem.problem_description.length > 50 ? problem.problem_description.substring(0, 50) + "..." :
+          problem.problem_description
+         }
           </Typography>
         </CardContent>
       </ProblemCardLink>
