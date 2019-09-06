@@ -43,7 +43,7 @@ class ProblemDashboard extends React.Component {
   handleChange = (e) =>{
     e.preventDefault();
     this.setState({
-      allProblems:'name',
+      selectedStatus:'name',
       selectByName: e.target.value
     })
   }
@@ -51,7 +51,7 @@ class ProblemDashboard extends React.Component {
 
   categorySelected = (e) =>{
     this.setState({
-      allProblems:'category',
+      selectedStatus:'category',
       selectedCategory:e.target.value
     })
 
@@ -70,13 +70,14 @@ class ProblemDashboard extends React.Component {
  
 
   findByName = () =>{
-    const userInput = this.state.selectByName;
+    const userInput = this.state.selectByName.trim();
       const problems = this.props.problems.filter(prob => prob.problem_title.toLowerCase().includes(userInput.toLowerCase()));
       return problems
   }
 
 
   allProblems = () =>{
+   console.log(this.state.selectedStatus)
     if(this.state.selectedStatus === 'start'){
       
       return this.props.problems
@@ -89,6 +90,7 @@ class ProblemDashboard extends React.Component {
     if(this.state.selectedStatus === 'name'){
       return this.findByName()
     }
+    console.log(this.state.selectedStatus)
   }
 
   render() {
