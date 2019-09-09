@@ -16,6 +16,10 @@ export const FETCH_USERS_START = "FETCH_USERS_START";
 export const FETCH_USERS_SUCCESS = "FETCH_USERS_SUCCESS";
 export const FETCH_USERS_FAIL = "FETCH_USERS_FAIL";
 
+export const SET_HEADER_NAV_FALSE = "SET_HEADER_NAV_FALSE";
+export const SET_HEADER_NAV_TRUE = "SET_HEADER_NAV_TRUE";
+export const SET_HEADER_NAV_OPPOSITE = "SET_HEADER_NAV_OPPOSITE";
+
 export const getProblems = () => dispatch => {
   dispatch({ type: FETCH_PROBLEM_START });
 
@@ -75,3 +79,14 @@ export const addUser = user => dispatch => {
     });
 };
 
+export const setHeaderNavFalse = () => dispatch => {
+  return dispatch({ type: SET_HEADER_NAV_FALSE, payload: false });
+};
+
+export const setHeaderNavTrue = () => dispatch => {
+  return dispatch({ type: SET_HEADER_NAV_TRUE, payload: true });
+};
+
+export const setHeaderNavOpposite = checked => dispatch => {
+  return dispatch({ type: SET_HEADER_NAV_OPPOSITE, payload: !checked });
+};
