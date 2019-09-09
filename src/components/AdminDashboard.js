@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { getAdminProblems } from "../actions";
+import { getAdminProblems, UpdateAdminProblems } from "../actions";
 
 import AdminProblem from "./AdminProblem";
 // import ProblemCard from "./ProblemCard";
@@ -60,6 +60,12 @@ class AdminDashboard extends React.Component {
     }
   };
 
+  updateProblem = (e, problem) => {
+    e.preventDefault();
+
+    this.props.UpdateAdminProblems(problem.id, !problem.isApproved);
+  };
+
   render() {
     return (
       <div>
@@ -88,7 +94,10 @@ class AdminDashboard extends React.Component {
               <MyGrid container spacing={4}>
                 {this.sCategory().map(problem => (
                   <Grid item key={problem.id}>
-                    <AdminProblem problems={problem} />
+                    <AdminProblem
+                      updateProblem={this.updateProblem}
+                      problems={problem}
+                    />
                   </Grid>
                 ))}
               </MyGrid>
@@ -108,5 +117,5 @@ class AdminDashboard extends React.Component {
 const mapStateToProps = ({ problems }) => ({ problems });
 export default connect(
   mapStateToProps,
-  { getAdminProblems }
+  { getAdminProblems, UpdateAdminProblems }
 )(AdminDashboard);

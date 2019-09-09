@@ -94,13 +94,17 @@ export const getAdminProblems = () => dispatch => {
     .catch(err => dispatch({ type: FETCH_ADMIN_PROBLEM_FAIL, payload: err }));
 };
 
-export const UpdateAdminProblems = id => dispatch => {
+export const UpdateAdminProblems = (id, isApproved) => dispatch => {
   dispatch({ type: UPDATE_ADMIN_PROBLEM_START });
 
   return axios
-    .put(`https://labs15-lambdanext.herokuapp.com/admin/all/${id}`)
+    .put(`https://labs15-lambdanext.herokuapp.com/admin/all/${id}`, {
+      isApproved
+    })
     .then(res => {
       dispatch({ type: UPDATE_ADMIN_PROBLEM_SUCCESS, payload: res.data });
     })
+    .then(() => dispatch(getAdminProblems()))
+
     .catch(err => dispatch({ type: UPDATE_ADMIN_PROBLEM_FAIL, payload: err }));
 };
