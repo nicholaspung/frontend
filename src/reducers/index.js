@@ -10,7 +10,10 @@ import {
   FETCH_USERS_FAIL,
   ADD_USER_START,
   ADD_USER_SUCCESS,
-  ADD_USER_FAIL
+  ADD_USER_FAIL,
+  FETCH_ADMIN_PROBLEM_START,
+  FETCH_ADMIN_PROBLEM_SUCCESS,
+  FETCH_ADMIN_PROBLEM_FAIL
 } from "../actions";
 
 const initialState = {
@@ -19,6 +22,8 @@ const initialState = {
   error: false,
   fetchingProblems: false,
   addingNewProblem: false,
+
+  fetchingAdminProblems: false,
 
   users: [],
   fetchingUsers: false,
@@ -71,6 +76,29 @@ const reducer = (state = initialState, action) => {
         error: action.payload,
         addingNewProblem: false
       };
+
+    case FETCH_ADMIN_PROBLEM_START:
+      return {
+        ...state,
+        error: "",
+        fetchingAdminProblems: true
+      };
+
+    case FETCH_ADMIN_PROBLEM_SUCCESS:
+      return {
+        ...state,
+        problems: action.payload,
+        error: "",
+        fetchingAdminProblems: false
+      };
+
+    case FETCH_ADMIN_PROBLEM_FAIL:
+      return {
+        ...state,
+        error: action.payload,
+        fetchingAdminProblems: false
+      };
+
     case ADD_USER_START:
       return {
         ...state,

@@ -16,6 +16,10 @@ export const FETCH_USERS_START = "FETCH_USERS_START";
 export const FETCH_USERS_SUCCESS = "FETCH_USERS_SUCCESS";
 export const FETCH_USERS_FAIL = "FETCH_USERS_FAIL";
 
+export const FETCH_ADMIN_PROBLEM_START = "FETCH_ADMIN_PROBLEM_START";
+export const FETCH_ADMIN_PROBLEM_SUCCESS = "FETCH_ADMIN_PROBLEM_SUCCESS";
+export const FETCH_ADMIN_PROBLEM_FAIL = "FETCH_ADMIN_PROBLEM_FAIL";
+
 export const getProblems = () => dispatch => {
   dispatch({ type: FETCH_PROBLEM_START });
 
@@ -73,4 +77,15 @@ export const addUser = user => dispatch => {
     .catch(error => {
       dispatch({ type: ADD_USER_FAIL, payload: error });
     });
+};
+
+export const getAdminProblems = () => dispatch => {
+  dispatch({ type: FETCH_ADMIN_PROBLEM_START });
+
+  return axios
+    .get("https://labs15-lambdanext.herokuapp.com/admin/all")
+    .then(res => {
+      dispatch({ type: FETCH_ADMIN_PROBLEM_SUCCESS, payload: res.data });
+    })
+    .catch(err => dispatch({ type: FETCH_ADMIN_PROBLEM_FAIL, payload: err }));
 };
