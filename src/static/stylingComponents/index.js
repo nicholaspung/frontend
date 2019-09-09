@@ -28,21 +28,21 @@ export const DetailsBackButton = styled(Button)({
 });
 
 export const DetailsBackLink = styled(Link)({
-    textDecoration:'none',
-    color:"#fff"
-})
-
+  textDecoration: "none",
+  color: "#fff"
+});
 
 export const ProblemCardLink = styled(Link)({
-    textDecoration:'none',
-    color:'black'
-})
+  textDecoration: "none",
+  color: "black"
+});
 
 export const DetailsDescription = styled(Typography)({
   margin: 0
 });
 
 export const ProgressContainer = styled(Card)({
+  border: "2px solid silver",
   border: "none",
   boxShadow: "none"
 });
@@ -74,15 +74,7 @@ export const ProblemCards = styled(Card)({
   maxWidth: 260
 });
 
-})
-
-
-export const CallToActionBtn1 = styled(Button)({
-  background:'#6495ED',
-  color:'white'
-})
-
-export const CallToActionBtn2 = styled(Button)({
-  background:'#87CEFA',
-  color:'white'
-})
+export const ProblemCardMedia = styled(CardMedia)({
+  backgroundColor: "white",
+  height: 200
+});
