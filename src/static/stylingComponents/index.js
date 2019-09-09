@@ -37,7 +37,13 @@ export const DetailsBackButton = styled(Button)({
 export const DetailsBackLink = styled(Link)({
     textDecoration:'none',
     color:"#fff"
-  })
+})
+
+
+export const ProblemCardLink = styled(Link)({
+    textDecoration:'none',
+    color:'black'
+})
 
 export const DetailsDescription = styled(Typography)({
    
@@ -62,4 +68,15 @@ export const ProgressBarContainer = styled(Card)({
     border:'2px solid silver',
     marginBottom:'20px'
 
-  })
+})
+
+
+export const CallToActionBtn1 = styled(Button)({
+  background:'#6495ED',
+  color:'white'
+})
+
+export const CallToActionBtn2 = styled(Button)({
+  background:'#87CEFA',
+  color:'white'
+})
