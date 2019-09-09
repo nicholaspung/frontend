@@ -91,7 +91,7 @@ const About = () => {
             justify="center"
             style={{ backgroundColor: theme.palette.background.secondary }}
           >
-            <Grid item xs={1}>
+            <Grid item xs={2}>
               <SearchIcon fontSize="large" />
             </Grid>
             <Grid item xs={8}>
@@ -104,7 +104,7 @@ const About = () => {
             </Grid>
           </Grid>
           <Grid container alignItems="center" justify="center">
-            <Grid item xs={1}>
+            <Grid item xs={2}>
               <SubscriptionsIcon fontSize="large" />
             </Grid>
             <Grid item xs={8}>
@@ -123,7 +123,7 @@ const About = () => {
             alignItems="center"
             style={{ backgroundColor: theme.palette.background.secondary }}
           >
-            <Grid item xs={1}>
+            <Grid item xs={2}>
               <HowToRegIcon fontSize="large" />
             </Grid>
             <Grid item xs={8}>
@@ -143,7 +143,7 @@ const About = () => {
             alignItems="center"
             style={{ paddingBotton: "0.75rem" }}
           >
-            <Grid item xs={1}>
+            <Grid item xs={2}>
               <DoneAllIcon fontSize="large" />
             </Grid>
             <Grid item xs={8}>
