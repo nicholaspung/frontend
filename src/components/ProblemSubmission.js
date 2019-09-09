@@ -83,7 +83,7 @@ class ProblemSubmission extends React.Component {
     this.props.addProblems(problem);
     console.log("submitted!");
     // to redirect
-    this.props.history.push(`/problems`);
+    this.props.props.history.push(`/problems`);
     // this.props.history.push(`/problem-details/${res.data.id}`)
     // redirect to problem description page of problem
   };
@@ -185,7 +185,7 @@ class ProblemSubmission extends React.Component {
             className={this.props.classes.inputFields}
           />
         </Container>
-        <Grid item={6} className={this.props.classes.buttonBackground}>
+        <Grid item className={this.props.classes.buttonBackground}>
           <Button
             type="submit"
             fullWidth
