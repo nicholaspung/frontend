@@ -11,23 +11,21 @@ import ProblemDashboard from "./problemdashboard";
 import ProblemCard from "./ProblemCard";
 import DetailsPage from "./DetailsPage";
 import ProblemSubmission from "./ProblemSubmission";
+
 //ss
 
 export default function App() {
   return (
-    <>
+    <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Container maxWidth="lg">
-        <Header />
-        <Route exact path="/" component={HomePage} />
-        <Route path="/problems" component={ProblemDashboard} />
-        <Route path="/submitaproblem" component={ProblemSubmission} />
-        <Route path="/about" component={About} />
-        <Route path="/howitworks" component={HowItWorks} />
-        <Route exact path="/problem-details" component={ProblemCard} />
-        <Route path="/problem-details/:id" component={DetailsPage} />
-        <Footer />
-      </Container>
-    </>
+      <Header />
+      <Route exact path="/" component={HomePage} />
+      <Route path="/problems" component={ProblemDashboard} />
+      <Route path="/submitaproblem" component={ProblemSubmissionHolder} />
+      <Route path="/about" component={About} />
+      <Route exact path="/problem-details" component={ProblemCard} />
+      <Route path="/problem-details/:id" component={DetailsPage} />
+      <Footer />
+    </ThemeProvider>
   );
 }

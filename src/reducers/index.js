@@ -21,7 +21,7 @@ const initialState = {
   addingNewProblem: false,
 
   users: [],
-  fetchingUsers:false,
+  fetchingUsers: false,
   newlyAddedUser: {},
   addingNewUser: false
 };
