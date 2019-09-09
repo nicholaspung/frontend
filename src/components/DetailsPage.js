@@ -25,7 +25,6 @@ import {
 import Icon from "@material-ui/core/Icon";
 const ImageSetter = require("../static/stylingComponents/ImageSetter");
 
-
 const theme = createMuiTheme();
 theme.typography.p = {
   color: "green"
@@ -92,11 +91,24 @@ class DetailsPage extends React.Component {
     }
     return (
       <MuiThemeProvider theme={theme}>
-        <Grid container style={{background: "#f6f7fb",width: "60%",margin: "0 auto"}}>
-          <Breadcrumbs aria-label="breadcrumb"  style={{ margin: "35px 0px" }}>
-            <Link color="inherit" href="/" style={{ fontWeight: "bold" }}>Home</Link>
-            <Link color="inherit" href="/problems" style={{ fontWeight: "bold" }}>Problems</Link>
-            <Typography style={{ color: "rgb(187, 19, 51)" }}>{problem.problem_title}</Typography>
+        <Grid
+          container
+          style={{ background: "#f6f7fb", width: "60%", margin: "0 auto" }}
+        >
+          <Breadcrumbs aria-label="breadcrumb" style={{ margin: "35px 0px" }}>
+            <Link color="inherit" href="/" style={{ fontWeight: "bold" }}>
+              Home
+            </Link>
+            <Link
+              color="inherit"
+              href="/problems"
+              style={{ fontWeight: "bold" }}
+            >
+              Problems
+            </Link>
+            <Typography style={{ color: "rgb(187, 19, 51)" }}>
+              {problem.problem_title}
+            </Typography>
           </Breadcrumbs>
 
           <Grid container>
@@ -110,21 +122,43 @@ class DetailsPage extends React.Component {
               />
 
               <DetailCard>
-                <CardTitle variant="headline" color="textSecondary" component="h2">
+                <CardTitle
+                  variant="headline"
+                  color="textSecondary"
+                  component="h2"
+                >
                   {problem.problem_title}
                 </CardTitle>
 
-                <DetailsDescription variant="body2" color="textSecondary" component="p">
-                  <Typography variant="body2" component="h4" style={{ margin: "5px 0px 5px 0px" }}>
+                <DetailsDescription
+                  variant="body2"
+                  color="textSecondary"
+                  component="p"
+                >
+                  <Typography
+                    variant="body2"
+                    component="h4"
+                    style={{ margin: "5px 0px 5px 0px" }}
+                  >
                     <Icon>category</Icon> {problem.problem_category}
                   </Typography>
 
-                  <Typography variant="body2" component="h4" alignItems='center' style={{ margin: "5px 0px 5px 0px" }}>
+                  <Typography
+                    variant="body2"
+                    component="h4"
+                    alignItems="center"
+                    style={{ margin: "5px 0px 5px 0px" }}
+                  >
                     <Icon>calendar_today</Icon> 16 days ago
                   </Typography>
                 </DetailsDescription>
 
-                <DetailsDescription variant="body2" color="textSecondary" component="p" style={{ margin: "15px 0px 0px 0px" }}>
+                <DetailsDescription
+                  variant="body2"
+                  color="textSecondary"
+                  component="p"
+                  style={{ margin: "15px 0px 0px 0px" }}
+                >
                   <Icon style={{ color: "rgb(187, 19, 51)" }}>star</Icon>
                   <Icon style={{ color: "rgb(187, 19, 51)" }}>star</Icon>
                   <Icon style={{ color: "rgb(187, 19, 51)" }}>star</Icon>
@@ -140,12 +174,20 @@ class DetailsPage extends React.Component {
 
               <DetailCard>
                 <ProgressContainer>
-                  <CardTitle variant="body2" component="h2">Status</CardTitle>
-                  <Typography variant="body2" color="textSecondary" component="p">
+                  <CardTitle variant="body2" component="h2">
+                    Status
+                  </CardTitle>
+                  <Typography
+                    variant="body2"
+                    color="textSecondary"
+                    component="p"
+                  >
                     {` ${this.getSignee()} people signed up to help`}
                   </Typography>
                   <ProgressBarContainer>
-                    <ProgressBar style={{ width: this.getProgress() }}></ProgressBar>
+                    <ProgressBar
+                      style={{ width: this.getProgress() }}
+                    ></ProgressBar>
                   </ProgressBarContainer>
                 </ProgressContainer>
               </DetailCard>
@@ -154,10 +196,18 @@ class DetailsPage extends React.Component {
             <Grid item lg={4} xs={10} style={{ paddingBottom: "1.5rem" }}>
               <ContainerRight>
                 <DetailCard>
-                  <DetailsTitle variant="headline" color="textSecondary" component="h2">
+                  <DetailsTitle
+                    variant="headline"
+                    color="textSecondary"
+                    component="h2"
+                  >
                     {problem.problem_title}
                   </DetailsTitle>
-                  <DetailsDescription variant="body2" color="textSecondary" component="p">
+                  <DetailsDescription
+                    variant="body2"
+                    color="textSecondary"
+                    component="p"
+                  >
                     {problem.problem_description}
                   </DetailsDescription>
                 </DetailCard>
@@ -193,7 +243,10 @@ DetailsPage.propTypes = {
   getProblems: PropTypes.func
 };
 
-const mapStateToProps = ({ problems, users }) => ({ problems, users });
+const mapStateToProps = ({ problems, users }) => ({
+  problems: problems.problems,
+  users: users.users
+});
 export default connect(
   mapStateToProps,
   { getProblems, getUsers }
