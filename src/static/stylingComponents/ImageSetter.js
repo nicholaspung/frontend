@@ -1,7 +1,7 @@
 import health from "../images/cards/health.jpg";
 import technology from "../images/cards/technology.jpg";
 import fitness from "../images/cards/fitness1.jpg";
-import personal from "../images/cards/personal.jpg";
+import personal from "../images/cards/personal.jpeg";
 import science from "../images/cards/science1.jpg";
 import finance from "../images/cards/finance.jpg";
 
