@@ -185,7 +185,7 @@ class ProblemSubmission extends React.Component {
             className={this.props.classes.inputFields}
           />
         </Container>
-        <Grid item={6} className={this.props.classes.buttonBackground}>
+        <Grid item className={this.props.classes.buttonBackground}>
           <Button
             type="submit"
             fullWidth
