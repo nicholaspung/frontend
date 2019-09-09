@@ -1,7 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
-import { styled } from "@material-ui/styles";
 import { getProblems } from "../actions";
+
+import { styled } from "@material-ui/styles";
 import ProblemCard from "./ProblemCard";
 
 import Grid from "@material-ui/core/Grid";
