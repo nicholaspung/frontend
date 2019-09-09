@@ -6,11 +6,12 @@ import Grid from "@material-ui/core/Grid";
 // import CardContent from "@material-ui/core/CardContent";
 // import Typography from "@material-ui/core/Typography";
 // import TextField from "@material-ui/core/TextField";
-import banner from "../static/images/marketing/finding-problem-solution.jpg";
-import MarketingCard from "./MarketingCard";
 import { styled } from "@material-ui/styles";
 import { useTheme } from "@material-ui/styles";
-import EmojiObjectsIcon from "@material-ui/icons/Videocam";
+import GroupIcon from "@material-ui/icons/Group";
+import BuildIcon from "@material-ui/icons/Build";
+import banner from "../../static/images/marketing/finding-problem-solution.jpg";
+import MarketingCard from "./MarketingCard";
 
 // const Newsletter = styled(Paper)({
 //   color: "white",
@@ -31,13 +32,18 @@ const HomePage = () => {
   const theme = useTheme();
   const title1 = "Have a Tech Project Made.";
   const title2 = "Help a Project to be Made.";
-  const description1 = "Organizations/Individuals with tech project ideas";
+  const description1 = "Organizations/Individuals submit tech project ideas";
   const description2 = "Individuals looking to have a tech project made";
   const button1 = "Submit A Project Idea";
   const button2 = "See Project List";
 
   return (
-    <Card style={{ backgroundColor: theme.palette.background.secondary }}>
+    <Card
+      style={{
+        backgroundColor: theme.palette.background.secondary,
+        borderRadius: "0px"
+      }}
+    >
       <HomeImage container justify="center">
         <Grid item xs={10} md={8} lg={6}>
           <CardMedia
@@ -49,24 +55,23 @@ const HomePage = () => {
           />
         </Grid>
       </HomeImage>
-
       <Grid container justify="space-around" spacing={0}>
-        <Grid item xs={12} md={5}>
+        <Grid item xs={10} md={4}>
           <MarketingCard
             title={title1}
             description={description1}
             displayButton={button1}
             buttonLink="/submitaproblem"
-            icon={<EmojiObjectsIcon fontSize="large" />}
+            icon={<BuildIcon fontSize="large" />}
           />
         </Grid>
-        <Grid item xs={12} md={5}>
+        <Grid item xs={10} md={4}>
           <MarketingCard
             title={title2}
             description={description2}
             displayButton={button2}
             buttonLink="/problems"
-            icon={<EmojiObjectsIcon fontSize="large" />}
+            icon={<GroupIcon fontSize="large" />}
           />
         </Grid>
       </Grid>

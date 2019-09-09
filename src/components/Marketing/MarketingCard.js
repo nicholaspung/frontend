@@ -8,8 +8,6 @@ import Button from "@material-ui/core/Button";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import { styled, useTheme } from "@material-ui/styles";
-import CardActionArea from "@material-ui/core/CardActionArea";
-import Card from "@material-ui/core/Card";
 
 const Marketing = styled(Paper)({
   margin: "20px",
@@ -41,28 +39,31 @@ const MarketingCard = ({
   });
   return (
     <Marketing square>
-      <CardActionArea>
-        <CardContent>
-          <Grid container wrap="nowrap" alignItems="center" justify="center">
-            <Grid item>
-              <Typography variant="h5" component="h2">
-                {title}
-              </Typography>
-            </Grid>
-            <Grid item>{icon}</Grid>
+      <CardContent>
+        <Grid
+          container
+          wrap="nowrap"
+          alignItems="center"
+          justify="space-around"
+        >
+          <Grid item>
+            <Typography variant="h5" component="h2">
+              {title}
+            </Typography>
+            <Typography variant="body1" color="textSecondary" component="p">
+              {description}
+            </Typography>
           </Grid>
-          <Typography variant="body2" color="textSecondary" component="p">
-            {description}
-          </Typography>
-        </CardContent>
-        <CTACardActions>
-          <ButtonLink to={buttonLink}>
-            <CTAButton size="small" color="textSecondary" fullWidth>
-              {displayButton}
-            </CTAButton>
-          </ButtonLink>
-        </CTACardActions>
-      </CardActionArea>
+          <Grid item>{icon}</Grid>
+        </Grid>
+      </CardContent>
+      <CTACardActions>
+        <ButtonLink to={buttonLink}>
+          <CTAButton size="small" fullWidth disableRipple disableFocusRipple disableTouchRipple>
+            {displayButton}
+          </CTAButton>
+        </ButtonLink>
+      </CTACardActions>
     </Marketing>
   );
 };
@@ -71,14 +72,16 @@ MarketingCard.defaultProps = {
   title: "Title",
   description: "Description",
   displayButton: "Button",
-  buttonLink: "Link"
+  buttonLink: "Link",
+  icon: "<>"
 };
 
 MarketingCard.propTypes = {
   title: PropTypes.string,
   description: PropTypes.string,
   displayButton: PropTypes.string,
-  buttonLink: PropTypes.string
+  buttonLink: PropTypes.string,
+  icon: PropTypes.element
 };
 
 export default MarketingCard;

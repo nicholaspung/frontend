@@ -6,14 +6,19 @@ import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 
-const TeamPictures = ({ name, description, github, linkedin }) => {
+const TeamPictures = ({ name, description, github, linkedin, position }) => {
   return (
-    <Grid item lg={4}>
-      <Card>
+    <Grid item xs={10} sm={6} md={4}>
+      <Card style={{ borderRadius: "0px" }}>
         <CardContent>
-          <Typography variant="h5" component="h2">
-            {name}
-          </Typography>
+          <div style={{ paddingBottom: "1rem" }}>
+            <Typography variant="h5" component="h2">
+              {name}
+            </Typography>
+            <Typography variant="caption" component="p">
+              {position}
+            </Typography>
+          </div>
           <Typography variant="body2" component="p">
             {description}
           </Typography>
