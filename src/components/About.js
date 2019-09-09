@@ -1,14 +1,14 @@
 import React from "react";
 import team from "../static/team";
 import TeamPictures from "./TeamPictures";
-import Grid from '@material-ui/core/Grid'
-import Paper from '@material-ui/core/Paper'
-import { styled } from '@material-ui/styles'
+import Grid from "@material-ui/core/Grid";
+import Paper from "@material-ui/core/Paper";
+import { styled } from "@material-ui/styles";
 
 const MyPaper = styled(Paper)({
-  fontSize: '3rem',
-  margin: '1rem'
-})
+  fontSize: "3rem",
+  margin: "1rem"
+});
 
 const About = () => (
   <Grid container justify="center">
@@ -22,7 +22,7 @@ const About = () => (
       problem before committing teams to solve the problem.
     </Paper>
     <MyPaper>Meet the team</MyPaper>
-    <Grid container spacing={3} justify='center'>
+    <Grid container spacing={3} justify="center">
       {team.map(person => (
         <TeamPictures
           name={person.name}

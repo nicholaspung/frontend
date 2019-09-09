@@ -17,11 +17,6 @@ class SignUpForm extends React.Component {
     };
   }
 
-  // componentDidMount() {
-  //   this.props.addUser();
-  //   // this.setState({ list: { ...this.props.smurfs } });
-  // }
-
   handleInputChange = name => e => {
     e.persist();
     this.setState(prevState => ({
@@ -32,16 +27,6 @@ class SignUpForm extends React.Component {
       }
     }));
   };
-
-  // handleInputChange = e => {
-  //   this.setState(prevState => ({
-  //     ...prevState,
-  //     newUser: {
-  //       ...prevState.newUser,
-  //       [e.target.name]: e.target.value
-  //     }
-  //   }));
-  // };
 
   handleSubmit = e => {
     e.preventDefault();
@@ -64,9 +49,8 @@ class SignUpForm extends React.Component {
   //email must be unique and all fields are required
 
   render() {
-    console.log(this.props.addUser);
     return (
-      <div class="form-style-6">
+      <div className="form-style-6">
         <form onSubmit={this.handleSubmit}>
           <input
             type="text"
@@ -90,10 +74,6 @@ class SignUpForm extends React.Component {
     );
   }
 }
-
-// const mapStateToProps = state => ({
-//   users: state.users
-// });
 
 export default connect(
   null,
