@@ -4,27 +4,27 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import Link from '@material-ui/core/Link';
+import { NONAME } from 'dns';
 
 
 export const DetailsCard = styled(Card)({
-    marginTop:'20px',
-    border:'3px solid gray',
-    padding:'20px',
+    border:'none',
+    boxShadow:'none',
     marginBottom:'20px'
   })
 
 export const DetailsContainer = styled(Card)({
-    marginTop:'20px',
-    boxShadow:'0px 0px 0px 0px'
+   
 })
 
 export const DetailsTitle = styled(Typography)({
-    fontWeight:'bold'
+    fontWeight:'bold',
+    margin:0,
+    color: 'rgb(187, 19, 51)'
   })
 
 export const SigneeContainer = styled(Card)({
-    marginTop:'20px',
-    boxShadow:'0px 0px 0px 0px'
+  
   })
 
 export const SigneeCount = styled(Typography)({
@@ -47,28 +47,25 @@ export const ProblemCardLink = styled(Link)({
 })
 
 export const DetailsDescription = styled(Typography)({
-   
+   margin:0
   })
 
 export const ProgressContainer = styled(Card)({
-    marginBottom:'20px',
     border:'2px solid silver',
-    background:'#66CDAA',
+    border:"none",
+    boxShadow:'none',
   })
 
-export const ProgressTitle = styled(Typography)({
-    textAlign:'center',
+export const CardTitle = styled(Typography)({
     fontWeight:'bold',
     fontSize:'20px',
-    color:'white'
+    margin:0,
+    marginBottom:'15px',
+    color:'rgb(187, 19, 51);'
   })
 
 export const ProgressBarContainer = styled(Card)({
-    width:'60%',
-    margin:'0 auto',
     border:'2px solid silver',
-    marginBottom:'20px'
-
 })
 
 

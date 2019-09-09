@@ -77,7 +77,6 @@ class ProblemDashboard extends React.Component {
 
 
   allProblems = () =>{
-   console.log(this.state.selectedStatus)
     if(this.state.selectedStatus === 'start'){
       
       return this.props.problems
@@ -90,7 +89,6 @@ class ProblemDashboard extends React.Component {
     if(this.state.selectedStatus === 'name'){
       return this.findByName()
     }
-    console.log(this.state.selectedStatus)
   }
 
   render() {
