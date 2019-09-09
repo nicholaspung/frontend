@@ -4,7 +4,6 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import Link from '@material-ui/core/Link';
-import { NONAME } from 'dns';
 
 
 export const DetailsCard = styled(Card)({
