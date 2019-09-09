@@ -1,8 +1,11 @@
 import React from "react";
 import { connect } from "react-redux";
-import { styled } from "@material-ui/styles";
 import { getAdminProblems } from "../actions";
+
+import AdminProblem from "./AdminProblem";
 // import ProblemCard from "./ProblemCard";
+
+import { styled } from "@material-ui/styles";
 
 import Grid from "@material-ui/core/Grid";
 import FormControl from "@material-ui/core/FormControl";
@@ -29,7 +32,7 @@ class AdminDashboard extends React.Component {
   state = {
     selectedCategory: "all",
     problemCount: false,
-    isApproved: true
+    isApproved: false
   };
 
   componentDidMount() {
@@ -85,7 +88,7 @@ class AdminDashboard extends React.Component {
               <MyGrid container spacing={4}>
                 {this.sCategory().map(problem => (
                   <Grid item key={problem.id}>
-                    <ProblemCard problems={problem} />
+                    <AdminProblem problems={problem} />
                   </Grid>
                 ))}
               </MyGrid>
