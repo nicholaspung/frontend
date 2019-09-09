@@ -114,7 +114,7 @@ const reducer = (state = initialState, action) => {
     case UPDATE_ADMIN_PROBLEM_SUCCESS:
       return {
         ...state,
-        problems: action.payload,
+        message: action.payload,
         error: "",
         updatingProblem: false
       };

@@ -62,7 +62,12 @@ const AdminProblem = props => {
       </CardContent>
       {/* </ProblemCardLink> */}
       <CardActions>
-        <CallToActionBtn2 size="medium" color="primary" href="/problems">
+        <CallToActionBtn2
+          size="medium"
+          color="primary"
+          onClick={e => props.updateProblem(e, problem)}
+          href="/problems"
+        >
           Approve
         </CallToActionBtn2>
       </CardActions>
