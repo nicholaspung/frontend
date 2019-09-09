@@ -16,7 +16,6 @@ import { ProblemCardLink, CallToActionBtn2 } from "../static/stylingComponents";
 
 import {
   ProblemCards,
-  ProblemCardLink,
   ProblemCardMedia,
   CallToActionBtn2
 } from "../static/stylingComponents";
