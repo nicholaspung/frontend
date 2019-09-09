@@ -1,11 +1,7 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import {
-  setHeaderNavFalse,
-  setHeaderNavTrue,
-  setHeaderNavOpposite
-} from "../../actions";
+import { setHeaderNavFalse, setHeaderNavOpposite } from "../../actions";
 import { styled, useTheme } from "@material-ui/styles";
 import Button from "@material-ui/core/Button";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -45,12 +41,7 @@ const Header = props => {
     width: "100%"
   });
 
-  const {
-    checked,
-    setHeaderNavFalse,
-    setHeaderNavTrue,
-    setHeaderNavOpposite
-  } = props;
+  const { checked, setHeaderNavFalse, setHeaderNavOpposite } = props;
 
   useEffect(() => {
     window.addEventListener("resize", () => {
@@ -124,5 +115,5 @@ const mapStateToProps = ({ nav }) => ({ checked: nav.checked });
 
 export default connect(
   mapStateToProps,
-  { setHeaderNavFalse, setHeaderNavTrue, setHeaderNavOpposite }
+  { setHeaderNavFalse, setHeaderNavOpposite }
 )(Header);

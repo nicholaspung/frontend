@@ -83,7 +83,7 @@ class ProblemSubmission extends React.Component {
     this.props.addProblems(problem);
     console.log("submitted!");
     // to redirect
-    this.props.history.push(`/problems`);
+    this.props.props.history.push(`/problems`);
     // this.props.history.push(`/problem-details/${res.data.id}`)
     // redirect to problem description page of problem
   };

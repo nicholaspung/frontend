@@ -2,7 +2,6 @@ import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { getProblems, getUsers } from "../actions";
-//import Rating from '@material-ui/lab/Rating';
 
 import Breadcrumbs from "@material-ui/core/Breadcrumbs";
 import Link from "@material-ui/core/Link";
@@ -129,14 +128,10 @@ class DetailsPage extends React.Component {
                     {problem.problem_title}
                   </CardTitle>
 
-                  <DetailsDescription
-                    variant="body2"
-                    color="textSecondary"
-                    component="p"
-                  >
+                  <div style={{ margin: 0 }}>
                     <Typography
                       variant="body2"
-                      component="h4"
+                      component="p"
                       style={{ margin: "5px 0px 5px 0px" }}
                     >
                       <Icon>category</Icon> {problem.problem_category}
@@ -145,19 +140,13 @@ class DetailsPage extends React.Component {
                     <Typography
                       variant="body2"
                       component="h4"
-                      alignItems="center"
                       style={{ margin: "5px 0px 5px 0px" }}
                     >
                       <Icon>calendar_today</Icon> 16 days ago
                     </Typography>
-                  </DetailsDescription>
+                  </div>
 
-                  <DetailsDescription
-                    variant="body2"
-                    color="textSecondary"
-                    component="p"
-                    style={{ margin: "15px 0px 0px 0px" }}
-                  >
+                  <div style={{ margin: "15px 0px 0px 0px" }}>
                     <Grid container justify="space-between">
                       <Box>
                         <Icon style={{ color: "rgb(187, 19, 51)" }}>star</Icon>
@@ -178,7 +167,7 @@ class DetailsPage extends React.Component {
                         <Icon>thumb_down</Icon>
                       </Box>
                     </Grid>
-                  </DetailsDescription>
+                  </div>
                 </DetailCard>
 
                 <DetailCard>
@@ -231,6 +220,7 @@ class DetailsPage extends React.Component {
           </Grid>{" "}
           {/* all content  / main container */}
           <Grid
+            item
             lg={12}
             xs={12}
             sm={12}
@@ -248,8 +238,8 @@ class DetailsPage extends React.Component {
 
 DetailsPage.defaultProps = {
   problems: {},
-  getUsers() {},
-  getProblems() {}
+  getUsers: function() {},
+  getProblems: function() {}
 };
 
 DetailsPage.propTypes = {
