@@ -68,7 +68,7 @@ const AdminProblem = props => {
           onClick={e => props.updateProblem(e, problem)}
           href="/problems"
         >
-          Approve
+          Approve!
         </CallToActionBtn2>
       </CardActions>
     </ProblemCards>

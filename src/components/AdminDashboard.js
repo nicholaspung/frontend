@@ -114,7 +114,7 @@ class AdminDashboard extends React.Component {
   }
 }
 
-const mapStateToProps = ({ problems }) => ({ problems });
+const mapStateToProps = ({ problems }) => ({ problems: problems.problems });
 export default connect(
   mapStateToProps,
   { getAdminProblems, UpdateAdminProblems }
