@@ -11,6 +11,7 @@ import ProblemDashboard from "./problemdashboard";
 import ProblemCard from "./ProblemCard";
 import DetailsPage from "./DetailsPage";
 import ProblemSubmissionHolder from "./ProblemSubmissionHolder";
+import AdminDashboard from "./AdminDashboard";
 
 const theme = createMuiTheme({
   palette: {
@@ -29,6 +30,7 @@ export default function App() {
       <Header />
       <Route exact path="/" component={HomePage} />
       <Route path="/problems" component={ProblemDashboard} />
+      <Route path="/admin-problems" component={AdminDashboard} />
       <Route path="/submitaproblem" component={ProblemSubmissionHolder} />
       <Route path="/about" component={About} />
       <Route exact path="/problem-details" component={ProblemCard} />
