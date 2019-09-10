@@ -12,6 +12,14 @@ export const ADD_USER_START = "ADD_USER_START";
 export const ADD_USER_SUCCESS = "ADD_USER_SUCCESS";
 export const ADD_USER_FAIL = "ADD_USER_FAIL";
 
+export const FETCH_USERS_START = "FETCH_USERS_START";
+export const FETCH_USERS_SUCCESS = "FETCH_USERS_SUCCESS";
+export const FETCH_USERS_FAIL = "FETCH_USERS_FAIL";
+
+export const SET_HEADER_NAV_FALSE = "SET_HEADER_NAV_FALSE";
+export const SET_HEADER_NAV_TRUE = "SET_HEADER_NAV_TRUE";
+export const SET_HEADER_NAV_OPPOSITE = "SET_HEADER_NAV_OPPOSITE";
+
 export const getProblems = () => dispatch => {
   dispatch({ type: FETCH_PROBLEM_START });
 
@@ -47,6 +55,18 @@ export const addProblems = problem => dispatch => {
     });
 };
 
+export const getUsers = () => dispatch => {
+  dispatch({ type: FETCH_USERS_START });
+  return axios
+    .get("https://labs15-lambdanext.herokuapp.com/users")
+    .then(res => {
+      dispatch({ type: FETCH_USERS_SUCCESS, payload: res.data });
+    })
+    .catch(error => {
+      dispatch({ type: FETCH_USERS_FAIL, payload: error });
+    });
+};
+
 export const addUser = user => dispatch => {
   dispatch({ type: ADD_USER_START });
   return axios
@@ -57,4 +77,16 @@ export const addUser = user => dispatch => {
     .catch(error => {
       dispatch({ type: ADD_USER_FAIL, payload: error });
     });
+};
+
+export const setHeaderNavFalse = () => dispatch => {
+  return dispatch({ type: SET_HEADER_NAV_FALSE, payload: false });
+};
+
+export const setHeaderNavTrue = () => dispatch => {
+  return dispatch({ type: SET_HEADER_NAV_TRUE, payload: true });
+};
+
+export const setHeaderNavOpposite = checked => dispatch => {
+  return dispatch({ type: SET_HEADER_NAV_OPPOSITE, payload: !checked });
 };

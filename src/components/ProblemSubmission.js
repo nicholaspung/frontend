@@ -1,34 +1,16 @@
 import React from "react";
 import { connect } from "react-redux";
 import { addProblems } from "../actions";
-import { styled } from "@material-ui/styles";
 import Button from "@material-ui/core/Button";
 import Select from "@material-ui/core/Select";
 import InputLabel from "@material-ui/core/InputLabel";
 import FormControl from "@material-ui/core/FormControl";
 import TextField from "@material-ui/core/TextField";
-import FilledInput from "@material-ui/core/FilledInput";
-
-const MyButton = styled(Button)({
-  background: "linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)",
-  border: 0,
-  borderRadius: 3,
-  boxShadow: "0 3px 5px 2px rgba(255, 105, 135, .3)",
-  color: "white",
-  height: 48,
-  padding: "0 30px"
-});
-
-const MyFilledInput = styled(FilledInput)({
-  minWidth: 200
-});
-
-const formStyles = {
-  display: "flex",
-  flexDirection: "column",
-  justifyContent: "center",
-  alignItems: "flex-start"
-};
+import Typography from "@material-ui/core/Typography";
+import MenuItem from "@material-ui/core/MenuItem";
+import Container from "@material-ui/core/Container";
+import Grid from "@material-ui/core/Grid";
+import { withStyles } from "@material-ui/styles";
 
 const months = [
   "Jan",
@@ -44,6 +26,17 @@ const months = [
   "Nov",
   "Dec"
 ];
+
+const styles = {
+  head: { paddingTop: "1.5rem" },
+  title: {
+    paddingTop: "1rem",
+    paddingBottom: "1rem"
+  },
+  inputFields: { paddingBottom: "1rem" },
+  buttonBackground: { backgroundColor: "#bb1333" },
+  buttonText: { color: "#ffffff" }
+};
 class ProblemSubmission extends React.Component {
   constructor() {
     super();
@@ -90,73 +83,125 @@ class ProblemSubmission extends React.Component {
     this.props.addProblems(problem);
     console.log("submitted!");
     // to redirect
-    this.props.history.push(`/problems`);
+    this.props.props.history.push(`/problems`);
     // this.props.history.push(`/problem-details/${res.data.id}`)
     // redirect to problem description page of problem
   };
 
   render() {
     return (
-      <form
-        onSubmit={event => this.onButtonSubmit(event)}
-        autoComplete="off"
-        style={formStyles}
-      >
-        <TextField
-          id="problem_title"
-          label="Problem Title"
-          value={this.state.newProblem.problem_title}
-          onChange={this.onInputChange("problem_title")}
-          margin="normal"
-          variant="filled"
-        />
-        <FormControl variant="filled" style={{ marginTop: 8 }}>
-          <InputLabel htmlFor="problem-category">Problem Category</InputLabel>
-          <Select
-            native
-            value={this.state.newProblem.problem_category}
-            onChange={this.onInputChange("problem_category")}
-            input={
-              <MyFilledInput name="problem_category" id="problem-category" />
-            }
+      <form onSubmit={event => this.onButtonSubmit(event)} autoComplete="off">
+        <Container>
+          <Typography
+            variant="subtitle2"
+            component="p"
+            className={this.props.classes.head}
           >
-            <option value="" />
-            <option value="Health">Health</option>
-            <option value="Technology">Technology</option>
-            <option value="Fitness">Fitness</option>
-            <option value="Personal">Personal</option>
-            <option value="Science">Science</option>
-            <option value="Finance">Finance</option>
-          </Select>
-          {this.state.error ? <span>{this.state.error}</span> : null}
-        </FormControl>
-        <TextField
-          id="problem_description"
-          label="Problem Description"
-          multiline
-          fullWidth
-          rowsMax="4"
-          value={this.state.newProblem.problem_description}
-          onChange={this.onInputChange("problem_description")}
-          margin="normal"
-          variant="filled"
-        />
-        <TextField
-          id="email"
-          label="Email Address"
-          type="email"
-          value={this.state.newProblem.created_by}
-          onChange={this.onInputChange("created_by")}
-          margin="normal"
-          variant="filled"
-        />
-        <MyButton type="submit">Submit Problem</MyButton>
+            WHAT ARE YOU HAVING TROUBLE WITH?
+          </Typography>
+          <Typography
+            variant="h3"
+            component="h1"
+            className={this.props.classes.title}
+          >
+            Problem Submission Overview
+          </Typography>
+          <Typography
+            variant="body1"
+            component="h2"
+            className={this.props.classes.inputFields}
+          >
+            Tell us your problem idea, category, description, and an email
+            address for us to follow up with.
+          </Typography>
+          <TextField
+            id="problem_title"
+            label="Problem Title"
+            value={this.state.newProblem.problem_title}
+            onChange={this.onInputChange("problem_title")}
+            margin="normal"
+            fullWidth
+            required
+            className={this.props.classes.inputFields}
+          />
+          <FormControl fullWidth required>
+            <InputLabel htmlFor="problem-category">Problem Category</InputLabel>
+            <Select
+              value={this.state.newProblem.problem_category}
+              onChange={this.onInputChange("problem_category")}
+              inputProps={{
+                name: "problem_category",
+                id: "problem-category"
+              }}
+            >
+              <MenuItem value="">
+                <em>None</em>
+              </MenuItem>
+              <MenuItem value="Health">Health</MenuItem>
+              <MenuItem value="Technology">Technology</MenuItem>
+              <MenuItem value="Fitness">Fitness</MenuItem>
+              <MenuItem value="Personal">Personal</MenuItem>
+              <MenuItem value="Science">Science</MenuItem>
+              <MenuItem value="Finance">Finance</MenuItem>
+            </Select>
+            {this.state.error ? <span>{this.state.error}</span> : null}
+            <Typography
+              component="p"
+              variant="body2"
+              className={this.props.classes.inputFields}
+            >
+              The category will help people use search criteria to find your
+              problem.
+            </Typography>
+          </FormControl>
+          <TextField
+            id="problem_description"
+            label="Problem Description"
+            fullWidth
+            value={this.state.newProblem.problem_description}
+            onChange={this.onInputChange("problem_description")}
+            margin="normal"
+            required
+            multiline
+          />
+          <Typography
+            component="p"
+            variant="body2"
+            className={this.props.classes.inputFields}
+          >
+            Describe your problem in 280 characters or less. This will be
+            displayed with the description on the Problems page.
+          </Typography>
+          <TextField
+            id="email"
+            label="Email Address"
+            type="email"
+            value={this.state.newProblem.created_by}
+            onChange={this.onInputChange("created_by")}
+            margin="normal"
+            fullWidth
+            required
+            autoComplete="false"
+            className={this.props.classes.inputFields}
+          />
+        </Container>
+        <Grid item className={this.props.classes.buttonBackground}>
+          <Button
+            type="submit"
+            fullWidth
+            className={this.props.classes.buttonText}
+          >
+            Submit Problem
+          </Button>
+        </Grid>
       </form>
     );
   }
 }
 
-export default connect(
-  null,
-  { addProblems }
-)(ProblemSubmission);
+export default withStyles(styles)(
+  connect(
+    null,
+    { addProblems }
+  )(ProblemSubmission)
+);
