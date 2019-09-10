@@ -1,0 +1,77 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ProblemCard ProblemCard Snapshot 1`] = `
+<div
+  className="MuiPaper-root MuiPaper-elevation1 MuiCard-root WithStyles(ForwardRef(Card))-root-1 MuiPaper-rounded"
+>
+  <a
+    className="MuiTypography-root MuiLink-root MuiLink-underlineHover WithStyles(ForwardRef(Link))-root-30 MuiTypography-colorPrimary"
+    onBlur={[Function]}
+    onFocus={[Function]}
+    to="/problem-details/1"
+  >
+    <img
+      className="WithStyles(ForwardRef(CardMedia))-root-67"
+      src="test-file-stub"
+      title="title"
+    />
+    <div
+      className="MuiCardContent-root"
+    >
+      <h3
+        className="MuiTypography-root MuiTypography-colorTextSecondary MuiTypography-gutterBottom"
+      >
+        title
+      </h3>
+      <p
+        className="MuiTypography-root MuiTypography-body1 MuiTypography-colorTextSecondary"
+      >
+        <span
+          aria-hidden={true}
+          className="material-icons MuiIcon-root"
+        >
+          settings_remote
+        </span>
+        technology
+      </p>
+      <p
+        className="MuiTypography-root MuiTypography-body2 MuiTypography-colorTextSecondary"
+        style={
+          Object {
+            "height": 40,
+          }
+        }
+      >
+        tech problem
+      </p>
+    </div>
+  </a>
+  <div
+    className="MuiCardActions-root MuiCardActions-spacing"
+  >
+    <a
+      aria-disabled={false}
+      className="MuiButtonBase-root MuiButton-root WithStyles(ForwardRef(Button))-root-80 MuiButton-text MuiButton-textPrimary"
+      href="/problem-details/1"
+      onBlur={[Function]}
+      onDragLeave={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseLeave={[Function]}
+      onMouseUp={[Function]}
+      onTouchEnd={[Function]}
+      onTouchMove={[Function]}
+      onTouchStart={[Function]}
+      tabIndex={0}
+    >
+      <span
+        className="MuiButton-label"
+      >
+        Learn More
+      </span>
+    </a>
+  </div>
+</div>
+`;

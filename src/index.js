@@ -8,6 +8,12 @@ import { composeWithDevTools } from "redux-devtools-extension";
 import reducer from "./reducers";
 import App from "./components/App";
 
+//google analytics code start//
+import ReactGA from "react-ga";
+ReactGA.initialize("UA-147523185-1");
+ReactGA.pageview(window.location.pathname + window.location.search);
+//google analytics code end//
+
 // const middleware = applyMiddleware(thunk);
 // const store = createStore(reducer, middleware);
 
