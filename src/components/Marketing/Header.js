@@ -1,5 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import { setHeaderNavFalse, setHeaderNavOpposite } from "../../actions";
 import { styled, useTheme } from "@material-ui/styles";
 import Button from "@material-ui/core/Button";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -20,7 +22,7 @@ const NavMenuLink = styled(Link)({
   textDecoration: "none"
 });
 
-const Header = () => {
+const Header = props => {
   const theme = useTheme();
   const HeaderLink = styled(Link)({
     color: theme.palette.primary.secondary,
@@ -39,18 +41,22 @@ const Header = () => {
     width: "100%"
   });
 
-  const [checked, setChecked] = useState(false);
+  const { checked, setHeaderNavFalse, setHeaderNavOpposite } = props;
 
   useEffect(() => {
     window.addEventListener("resize", () => {
       if (window.innerWidth > 600) {
-        setChecked(false);
+        setHeaderNavFalse();
       }
     });
-  }, [checked]);
+  }, [checked, setHeaderNavFalse]);
 
   function handleChange() {
-    setChecked(prev => !prev);
+    setHeaderNavOpposite(checked);
+  }
+
+  function handleLinkChange() {
+    setHeaderNavFalse();
   }
 
   return (
@@ -58,7 +64,7 @@ const Header = () => {
       <Grid container alignItems="center">
         <AppBar position="sticky" color="primary">
           <Toolbar>
-            <Logo to="/">
+            <Logo to="/" onClick={handleLinkChange}>
               <img src={LambdaLogo} width="130px" alt="Lambda School Logo" />
             </Logo>
             <Hidden xsDown>
@@ -85,16 +91,16 @@ const Header = () => {
       <Collapse in={checked}>
         <Grid container>
           <NavMenuButton square>
-            <Button fullWidth>
+            <Button fullWidth onClick={handleLinkChange}>
               <NavMenuLink to="/submitaproblem">Submit A Problem</NavMenuLink>
             </Button>
           </NavMenuButton>
-          <NavMenuButton square>
+          <NavMenuButton square onClick={handleLinkChange}>
             <Button fullWidth>
               <NavMenuLink to="/problems">See Problems</NavMenuLink>
             </Button>
           </NavMenuButton>
-          <NavMenuButton square>
+          <NavMenuButton square onClick={handleLinkChange}>
             <Button fullWidth>
               <NavMenuLink to="/about">About Us</NavMenuLink>
             </Button>
@@ -105,4 +111,9 @@ const Header = () => {
   );
 };
 
-export default Header;
+const mapStateToProps = ({ nav }) => ({ checked: nav.checked });
+
+export default connect(
+  mapStateToProps,
+  { setHeaderNavFalse, setHeaderNavOpposite }
+)(Header);
