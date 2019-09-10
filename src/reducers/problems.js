@@ -4,7 +4,13 @@ import {
   FETCH_PROBLEM_FAIL,
   ADD_PROBLEM_START,
   ADD_PROBLEM_SUCCESS,
-  ADD_PROBLEM_FAIL
+  ADD_PROBLEM_FAIL,
+  FETCH_ADMIN_PROBLEM_START,
+  FETCH_ADMIN_PROBLEM_SUCCESS,
+  FETCH_ADMIN_PROBLEM_FAIL,
+  UPDATE_ADMIN_PROBLEM_START,
+  UPDATE_ADMIN_PROBLEM_SUCCESS,
+  UPDATE_ADMIN_PROBLEM_FAIL
 } from "../actions";
 
 const initialState = {
@@ -59,6 +65,49 @@ const problems = (state = initialState, action) => {
         ...state,
         error: action.payload,
         addingNewProblem: false
+      };
+    case FETCH_ADMIN_PROBLEM_START:
+      return {
+        ...state,
+        error: "",
+        fetchingAdminProblems: true
+      };
+
+    case FETCH_ADMIN_PROBLEM_SUCCESS:
+      return {
+        ...state,
+        problems: action.payload,
+        error: "",
+        fetchingAdminProblems: false
+      };
+
+    case FETCH_ADMIN_PROBLEM_FAIL:
+      return {
+        ...state,
+        error: action.payload,
+        fetchingAdminProblems: false
+      };
+
+    case UPDATE_ADMIN_PROBLEM_START:
+      return {
+        ...state,
+        error: "",
+        updatingProblem: true
+      };
+
+    case UPDATE_ADMIN_PROBLEM_SUCCESS:
+      return {
+        ...state,
+        message: action.payload,
+        error: "",
+        updatingProblem: false
+      };
+
+    case UPDATE_ADMIN_PROBLEM_FAIL:
+      return {
+        ...state,
+        error: action.payload,
+        updatingProblem: false
       };
 
     default:
