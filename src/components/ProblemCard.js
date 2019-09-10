@@ -2,13 +2,6 @@ import React from "react";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
-<<<<<<< HEAD
-import Icon from '@material-ui/core/Icon';
-import { Link } from "react-router-dom";
-
-import {
-  ProblemCards, ProblemCardLink, ProblemCardMedia,
-=======
 import Icon from "@material-ui/core/Icon";
 import { Link as RouterLink } from "react-router-dom";
 
@@ -16,7 +9,6 @@ import {
   ProblemCards,
   ProblemCardLink,
   ProblemCardMedia,
->>>>>>> cfd350929685267090016f1a0a3527af30e8f00a
   CallToActionBtn2
 } from "../static/stylingComponents";
 
@@ -27,14 +19,10 @@ const ProblemCard = props => {
 
   return (
     <ProblemCards>
-<<<<<<< HEAD
-      <ProblemCardLink to={`/problem-details/${problem.id}`}>
-=======
       <ProblemCardLink
         component={RouterLink}
         to={`/problem-details/${problem.id}`}
       >
->>>>>>> cfd350929685267090016f1a0a3527af30e8f00a
         <ProblemCardMedia
           component="img"
           src={ImageSetter.staticImage(problem.problem_category)}
@@ -52,15 +40,8 @@ const ProblemCard = props => {
               : problem.problem_title}
           </Typography>
           <Typography variant="body1" color="textSecondary" component="p">
-<<<<<<< HEAD
-
-              <Icon>{ImageSetter.staticIcon(problem.problem_category)}</Icon>
-              {problem.problem_category}
-
-=======
             <Icon>{ImageSetter.staticIcon(problem.problem_category)}</Icon>
             {problem.problem_category}
->>>>>>> cfd350929685267090016f1a0a3527af30e8f00a
           </Typography>
           <Typography
             variant="body2"
