@@ -20,6 +20,14 @@ export const SET_HEADER_NAV_FALSE = "SET_HEADER_NAV_FALSE";
 export const SET_HEADER_NAV_TRUE = "SET_HEADER_NAV_TRUE";
 export const SET_HEADER_NAV_OPPOSITE = "SET_HEADER_NAV_OPPOSITE";
 
+export const FETCH_ADMIN_PROBLEM_START = "FETCH_ADMIN_PROBLEM_START";
+export const FETCH_ADMIN_PROBLEM_SUCCESS = "FETCH_ADMIN_PROBLEM_SUCCESS";
+export const FETCH_ADMIN_PROBLEM_FAIL = "FETCH_ADMIN_PROBLEM_FAIL";
+
+export const UPDATE_ADMIN_PROBLEM_START = "UPDATE_ADMIN_PROBLEM_START";
+export const UPDATE_ADMIN_PROBLEM_SUCCESS = "UPDATE_ADMIN_PROBLEM_SUCCESS";
+export const UPDATE_ADMIN_PROBLEM_FAIL = "UPDATE_ADMIN_PROBLEM_FAIL";
+
 export const getProblems = () => dispatch => {
   dispatch({ type: FETCH_PROBLEM_START });
 
@@ -89,4 +97,30 @@ export const setHeaderNavTrue = () => dispatch => {
 
 export const setHeaderNavOpposite = checked => dispatch => {
   return dispatch({ type: SET_HEADER_NAV_OPPOSITE, payload: !checked });
+};
+
+export const getAdminProblems = () => dispatch => {
+  dispatch({ type: FETCH_ADMIN_PROBLEM_START });
+
+  return axios
+    .get("https://labs15-lambdanext.herokuapp.com/admin/all")
+    .then(res => {
+      dispatch({ type: FETCH_ADMIN_PROBLEM_SUCCESS, payload: res.data });
+    })
+    .catch(err => dispatch({ type: FETCH_ADMIN_PROBLEM_FAIL, payload: err }));
+};
+
+export const UpdateAdminProblems = (id, isApproved) => dispatch => {
+  dispatch({ type: UPDATE_ADMIN_PROBLEM_START });
+
+  return axios
+    .put(`https://labs15-lambdanext.herokuapp.com/admin/all/${id}`, {
+      isApproved
+    })
+    .then(res => {
+      dispatch({ type: UPDATE_ADMIN_PROBLEM_SUCCESS, payload: res.data });
+    })
+    .then(() => dispatch(getAdminProblems()))
+
+    .catch(err => dispatch({ type: UPDATE_ADMIN_PROBLEM_FAIL, payload: err }));
 };
