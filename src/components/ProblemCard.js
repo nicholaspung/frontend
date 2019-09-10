@@ -2,56 +2,87 @@ import React from "react";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
+<<<<<<< HEAD
 import Icon from '@material-ui/core/Icon';
 import { Link } from "react-router-dom";
 
 import {
   ProblemCards, ProblemCardLink, ProblemCardMedia,
+=======
+import Icon from "@material-ui/core/Icon";
+import { Link as RouterLink } from "react-router-dom";
+
+import {
+  ProblemCards,
+  ProblemCardLink,
+  ProblemCardMedia,
+>>>>>>> cfd350929685267090016f1a0a3527af30e8f00a
   CallToActionBtn2
-} from '../static/stylingComponents'
+} from "../static/stylingComponents";
 
-
-
-
-const ImageSetter = require('../static/stylingComponents/ImageSetter')
-
+const ImageSetter = require("../static/stylingComponents/ImageSetter");
 
 const ProblemCard = props => {
-
   const problem = props.problems;
 
   return (
     <ProblemCards>
+<<<<<<< HEAD
       <ProblemCardLink to={`/problem-details/${problem.id}`}>
+=======
+      <ProblemCardLink
+        component={RouterLink}
+        to={`/problem-details/${problem.id}`}
+      >
+>>>>>>> cfd350929685267090016f1a0a3527af30e8f00a
         <ProblemCardMedia
           component="img"
-          src={ ImageSetter.staticImage(problem.problem_category)}
+          src={ImageSetter.staticImage(problem.problem_category)}
           title={problem.problem_title}
         />
         <CardContent>
-          <Typography gutterBottom variant="headline" color="textSecondary" component="h3">
-          {problem.problem_title.length > 25 ? problem.problem_title.substring(0, 25) + "..." :
-          problem.problem_title
-         }
+          <Typography
+            gutterBottom
+            variant="h6"
+            color="textSecondary"
+            component="h3"
+          >
+            {problem.problem_title.length > 25
+              ? problem.problem_title.substring(0, 25) + "..."
+              : problem.problem_title}
           </Typography>
           <Typography variant="body1" color="textSecondary" component="p">
+<<<<<<< HEAD
 
               <Icon>{ImageSetter.staticIcon(problem.problem_category)}</Icon>
               {problem.problem_category}
 
+=======
+            <Icon>{ImageSetter.staticIcon(problem.problem_category)}</Icon>
+            {problem.problem_category}
+>>>>>>> cfd350929685267090016f1a0a3527af30e8f00a
           </Typography>
-          <Typography variant="body2" color="textSecondary" component="p" style={{height:40}}>
-          {problem.problem_description.length > 50 ? problem.problem_description.substring(0, 50) + "..." :
-          problem.problem_description
-         }
+          <Typography
+            variant="body2"
+            color="textSecondary"
+            component="p"
+            style={{ height: 40 }}
+          >
+            {problem.problem_description.length > 50
+              ? problem.problem_description.substring(0, 50) + "..."
+              : problem.problem_description}
           </Typography>
         </CardContent>
       </ProblemCardLink>
-        <CardActions>
-          <CallToActionBtn2 size="medium" color="primary" href={`/problem-details/${problem.id}`} >
-            Learn More
-          </CallToActionBtn2>
-        </CardActions>
+      <CardActions>
+        <CallToActionBtn2
+          size="medium"
+          color="primary"
+          href={`/problem-details/${problem.id}`}
+        >
+          Learn More
+        </CallToActionBtn2>
+      </CardActions>
     </ProblemCards>
   );
 };
