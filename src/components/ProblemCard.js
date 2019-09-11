@@ -3,6 +3,7 @@ import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import Icon from "@material-ui/core/Icon";
+import Tooltip from '@material-ui/core/Tooltip';
 import { Link as RouterLink } from "react-router-dom";
 
 import {
@@ -29,16 +30,19 @@ const ProblemCard = props => {
           title={problem.problem_title}
         />
         <CardContent>
+            <Tooltip title={problem.problem_title}>
           <Typography
             gutterBottom
             variant="h6"
             color="textSecondary"
             component="h3"
           >
-            {problem.problem_title.length > 25
-              ? problem.problem_title.substring(0, 25) + "..."
+
+            {problem.problem_title.length > 20
+              ? problem.problem_title.substring(0, 20) + "..."
               : problem.problem_title}
           </Typography>
+            </Tooltip>
           <Typography variant="body1" color="textSecondary" component="p">
             <Icon>{ImageSetter.staticIcon(problem.problem_category)}</Icon>
             {problem.problem_category}
