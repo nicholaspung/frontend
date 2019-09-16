@@ -11,14 +11,15 @@ import ProblemDashboard from "./problemdashboard";
 import ProblemCard from "./ProblemCard";
 import DetailsPage from "./DetailsPage";
 import ProblemSubmissionHolder from "./ProblemSubmissionHolder";
+import AdminDashboard from "./AdminDashboard";
 
 const theme = createMuiTheme({
   palette: {
-    primary: { main: "#ffffff", secondary: '#55596d' },
-    secondary: { main: "#14131c", secondary: '#233d6e' },
+    primary: { main: "#ffffff", secondary: "#55596d" },
+    secondary: { main: "#14131c", secondary: "#233d6e" },
     background: { default: "#ffffff", secondary: "#f6f7fb" },
     footerText: { main: "#707486" },
-    lambdaRed: { main: "#bb1333", secondary: '#750808' }
+    lambdaRed: { main: "#bb1333", secondary: "#750808" }
   }
 });
 
@@ -29,6 +30,7 @@ export default function App() {
       <Header />
       <Route exact path="/" component={HomePage} />
       <Route path="/problems" component={ProblemDashboard} />
+      <Route path="/admin-problems" component={AdminDashboard} />
       <Route path="/submitaproblem" component={ProblemSubmissionHolder} />
       <Route path="/about" component={About} />
       <Route exact path="/problem-details" component={ProblemCard} />
