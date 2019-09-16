@@ -4,7 +4,7 @@ import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 import CardMedia from "@material-ui/core/CardMedia";
 import Container from "@material-ui/core/Container";
-import { useTheme, styled } from "@material-ui/styles";
+import { withStyles } from "@material-ui/styles";
 import SubscriptionsIcon from "@material-ui/icons/Subscriptions";
 import SearchIcon from "@material-ui/icons/Search";
 import HowToRegIcon from "@material-ui/icons/HowToReg";
@@ -13,26 +13,24 @@ import team from "../../static/team";
 import TeamPictures from "./TeamPictures";
 import aboutus from "../../static/images/marketing/teamwork.png";
 
-const HowItWorks = styled(Paper)({
-  margin: "2rem"
-});
-
-const BoldTypography = styled(Typography)({
-  fontWeight: "bold"
-});
-
-const PaddedBottomTypography = styled(Typography)({
-  paddingBottom: "0.5rem"
-});
-
-const About = () => {
-  const theme = useTheme();
-
-  const MeetTheTeamContainer = styled(Grid)({
-    backgroundColor: theme.palette.secondary.secondary,
+const styles = {
+  howItWorks: { margin: "2rem" },
+  bolding: { fontWeight: "bold" },
+  centering: { textAlign: "center" },
+  paddedBottomSmall: { paddingBottom: "0.5rem" },
+  paddedBottomMedium: { paddingBottom: "1.5rem" },
+  paddedTopSmall: { paddingTop: "0.75rem" },
+  paddedTopMedium: { paddingTop: "1.5rem" },
+  meetTheTeam: {
+    backgroundColor: "#233d6e",
     paddingBottom: "2rem",
-    width: '100%'
-  });
+    width: "100%"
+  },
+  secondaryBackground: { backgroundColor: "#f6f7fb" }
+};
+
+const About = props => {
+  const { classes } = props;
 
   return (
     <Grid container justify="center">
@@ -51,18 +49,18 @@ const About = () => {
             title="Contemplative Person"
           />
         </Grid>
-        <Grid item lg={4} xs={10} style={{ paddingBottom: "1.5rem" }}>
-          <BoldTypography
+        <Grid item lg={4} xs={10} className={classes.paddedBottomMedium}>
+          <Typography
             variant="h4"
             component="h2"
-            style={{ textAlign: "center" }}
+            className={`${classes.bolding} ${classes.centering}`}
           >
             About Us
-          </BoldTypography>
+          </Typography>
           <Typography
             variant="body1"
             component="p"
-            style={{ textAlign: "center" }}
+            className={classes.centering}
           >
             Lambda School NeXt is Lambda School's flagship program to help their
             students build a fully functional project to showcase their skills.
@@ -74,33 +72,37 @@ const About = () => {
           </Typography>
         </Grid>
       </Grid>
-      <Grid
-        container
-        justify="center"
-        style={{ backgroundColor: theme.palette.background.secondary }}
-      >
-        <HowItWorks square>
-          <Grid container justify="center" style={{ paddingTop: "0.75rem" }}>
-            <BoldTypography variant="h4" component="h2">
+      <Grid container justify="center" className={classes.secondaryBackground}>
+        <Paper square className={classes.howItWorks}>
+          <Grid container justify="center" className={classes.paddedTopSmall}>
+            <Typography variant="h4" component="h2" className={classes.bolding}>
               How It Works
-            </BoldTypography>
+            </Typography>
           </Grid>
           <Grid
             container
             alignItems="center"
             justify="center"
-            style={{ backgroundColor: theme.palette.background.secondary }}
+            className={classes.secondaryBackground}
           >
             <Grid item xs={2}>
               <SearchIcon fontSize="large" />
             </Grid>
             <Grid item xs={8}>
-              <BoldTypography variant="body2" component="p">
+              <Typography
+                variant="body2"
+                component="p"
+                className={classes.bolding}
+              >
                 Step 1
-              </BoldTypography>
-              <PaddedBottomTypography variant="body1" component="p">
+              </Typography>
+              <Typography
+                variant="body1"
+                component="p"
+                className={classes.paddedBottomSmall}
+              >
                 Find a problem that you have.
-              </PaddedBottomTypography>
+              </Typography>
             </Grid>
           </Grid>
           <Grid container alignItems="center" justify="center">
@@ -108,65 +110,89 @@ const About = () => {
               <SubscriptionsIcon fontSize="large" />
             </Grid>
             <Grid item xs={8}>
-              <BoldTypography variant="body2" component="p">
+              <Typography
+                variant="body2"
+                component="p"
+                className={classes.bolding}
+              >
                 Step 2
-              </BoldTypography>
-              <PaddedBottomTypography variant="body1" component="p">
+              </Typography>
+              <Typography
+                variant="body1"
+                component="p"
+                className={classes.paddedBottomSmall}
+              >
                 Sign up to a problem, and when enough participants are
                 registered, we'll turn the problem into a project.
-              </PaddedBottomTypography>
+              </Typography>
             </Grid>
           </Grid>
           <Grid
             container
             justify="center"
             alignItems="center"
-            style={{ backgroundColor: theme.palette.background.secondary }}
+            className={classes.secondaryBackground}
           >
             <Grid item xs={2}>
               <HowToRegIcon fontSize="large" />
             </Grid>
             <Grid item xs={8}>
-              <BoldTypography variant="body2" component="p">
+              <Typography
+                variant="body2"
+                component="p"
+                className={classes.bolding}
+              >
                 Step 3
-              </BoldTypography>
-              <PaddedBottomTypography variant="body1" component="p">
+              </Typography>
+              <Typography
+                variant="body1"
+                component="p"
+                className={classes.paddedBottomSmall}
+              >
                 Lambda School students will reach out to ask for help.
                 Afterwards, they will start building the project that solves
                 your problem.
-              </PaddedBottomTypography>
+              </Typography>
             </Grid>
           </Grid>
           <Grid
             container
             justify="center"
             alignItems="center"
-            style={{ paddingBotton: "0.75rem" }}
+            className={classes.paddedBottomSmall}
           >
             <Grid item xs={2}>
               <DoneAllIcon fontSize="large" />
             </Grid>
             <Grid item xs={8}>
-              <BoldTypography variant="body2" component="p">
+              <Typography
+                variant="body2"
+                component="p"
+                className={classes.bolding}
+              >
                 Step 4
-              </BoldTypography>
-              <PaddedBottomTypography variant="body1" component="p">
+              </Typography>
+              <Typography
+                variant="body1"
+                component="p"
+                className={classes.paddedBottomSmall}
+              >
                 After 8 weeks, Lambda School students have finished Version 1.0
                 of the project! You'll be able to try out the project as soon as
                 they are finished.
-              </PaddedBottomTypography>
+              </Typography>
             </Grid>
           </Grid>
-        </HowItWorks>
+        </Paper>
       </Grid>
-      <MeetTheTeamContainer>
+      <Grid className={classes.meetTheTeam}>
         <Container>
           <Grid container justify="center">
             <Typography
               variant="h4"
               component="h2"
               color="primary"
-              style={{ paddingTop: "1.5rem", paddingBottom: "1.5rem" }}
+              className={`${classes.paddedTopMedium} ${classes.paddedBottomMedium}`}
             >
               Meet the team
             </Typography>
@@ -186,9 +212,9 @@ const About = () => {
               ))}
           </Grid>
         </Container>
-      </MeetTheTeamContainer>
+      </Grid>
     </Grid>
   );
 };
 
-export default About;
+export default withStyles(styles)(About);

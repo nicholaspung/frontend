@@ -7,38 +7,37 @@ import CardActions from "@material-ui/core/CardActions";
 import Button from "@material-ui/core/Button";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
-import { styled, useTheme } from "@material-ui/styles";
+import { withStyles } from "@material-ui/styles";
 
-const Marketing = styled(Paper)({
-  margin: "20px",
-  textAlign: "center"
-});
-
-const MarketingCard = ({
-  title,
-  description,
-  displayButton,
-  buttonLink,
-  icon
-}) => {
-  const theme = useTheme();
-  const CTAButton = styled(Button)({
-    backgroundColor: theme.palette.lambdaRed.main,
+const styles = {
+  marketing: { margin: "20px", textAlign: "center" },
+  ctaButton: {
+    backgroundColor: "#bb1333",
     borderRadius: "0px",
-    color: theme.palette.primary.main
-  });
-  const ButtonLink = styled(Link)({
+    color: "#ffffff"
+  },
+  buttonLink: {
     textDecoration: "none",
     flexGrow: 1,
     "&:hover": {
-      backgroundColor: theme.palette.lambdaRed.secondary
+      backgroundColor: "#750808"
     }
-  });
-  const CTACardActions = styled(CardActions)({
-    padding: "0px"
-  });
+  },
+  noPadding: { padding: "0px" }
+};
+
+const MarketingCard = props => {
+  const {
+    classes,
+    title,
+    description,
+    displayButton,
+    buttonLink,
+    icon
+  } = props;
+
   return (
-    <Marketing square>
+    <Paper square className={classes.marketing}>
       <CardContent>
         <Grid
           container
@@ -57,14 +56,21 @@ const MarketingCard = ({
           <Grid item>{icon}</Grid>
         </Grid>
       </CardContent>
-      <CTACardActions>
-        <ButtonLink to={buttonLink}>
-          <CTAButton size="small" fullWidth disableRipple disableFocusRipple disableTouchRipple>
+      <CardActions className={classes.noPadding}>
+        <Link to={buttonLink} className={classes.buttonLink}>
+          <Button
+            size="small"
+            fullWidth
+            disableRipple
+            disableFocusRipple
+            disableTouchRipple
+            className={classes.ctaButton}
+          >
             {displayButton}
-          </CTAButton>
-        </ButtonLink>
-      </CTACardActions>
-    </Marketing>
+          </Button>
+        </Link>
+      </CardActions>
+    </Paper>
   );
 };
 
@@ -84,4 +90,4 @@ MarketingCard.propTypes = {
   icon: PropTypes.element
 };
 
-export default MarketingCard;
+export default withStyles(styles)(MarketingCard);
