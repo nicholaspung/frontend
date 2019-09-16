@@ -18,7 +18,7 @@ const ProblemSubmissionHolder = props => {
     <Grid container justify="center" className={classes.background}>
       <Grid item xs={11} md={7}>
         <Paper square elevation={12} className={classes.paper}>
-          <ProblemSubmission props={props}/>
+          <ProblemSubmission props={props} />
         </Paper>
       </Grid>
     </Grid>
