@@ -1,17 +1,15 @@
 import React from "react";
+import HowItWorks from "./HowItWorks";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 import CardMedia from "@material-ui/core/CardMedia";
 import Container from "@material-ui/core/Container";
 import { withStyles } from "@material-ui/styles";
-import SubscriptionsIcon from "@material-ui/icons/Subscriptions";
-import SearchIcon from "@material-ui/icons/Search";
-import HowToRegIcon from "@material-ui/icons/HowToReg";
-import DoneAllIcon from "@material-ui/icons/DoneAll";
 import team from "../../static/team";
 import TeamPictures from "./TeamPictures";
 import aboutus from "../../static/images/marketing/teamwork.png";
+import howItWorks from "../../static/howItWorks";
 
 const styles = {
   howItWorks: { margin: "2rem" },
@@ -79,110 +77,9 @@ const About = props => {
               How It Works
             </Typography>
           </Grid>
-          <Grid
-            container
-            alignItems="center"
-            justify="center"
-            className={classes.secondaryBackground}
-          >
-            <Grid item xs={2}>
-              <SearchIcon fontSize="large" />
-            </Grid>
-            <Grid item xs={8}>
-              <Typography
-                variant="body2"
-                component="p"
-                className={classes.bolding}
-              >
-                Step 1
-              </Typography>
-              <Typography
-                variant="body1"
-                component="p"
-                className={classes.paddedBottomSmall}
-              >
-                Find a problem that you have.
-              </Typography>
-            </Grid>
-          </Grid>
-          <Grid container alignItems="center" justify="center">
-            <Grid item xs={2}>
-              <SubscriptionsIcon fontSize="large" />
-            </Grid>
-            <Grid item xs={8}>
-              <Typography
-                variant="body2"
-                component="p"
-                className={classes.bolding}
-              >
-                Step 2
-              </Typography>
-              <Typography
-                variant="body1"
-                component="p"
-                className={classes.paddedBottomSmall}
-              >
-                Sign up to a problem, and when enough participants are
-                registered, we'll turn the problem into a project.
-              </Typography>
-            </Grid>
-          </Grid>
-          <Grid
-            container
-            justify="center"
-            alignItems="center"
-            className={classes.secondaryBackground}
-          >
-            <Grid item xs={2}>
-              <HowToRegIcon fontSize="large" />
-            </Grid>
-            <Grid item xs={8}>
-              <Typography
-                variant="body2"
-                component="p"
-                className={classes.bolding}
-              >
-                Step 3
-              </Typography>
-              <Typography
-                variant="body1"
-                component="p"
-                className={classes.paddedBottomSmall}
-              >
-                Lambda School students will reach out to ask for help.
-                Afterwards, they will start building the project that solves
-                your problem.
-              </Typography>
-            </Grid>
-          </Grid>
-          <Grid
-            container
-            justify="center"
-            alignItems="center"
-            className={classes.paddedBottomSmall}
-          >
-            <Grid item xs={2}>
-              <DoneAllIcon fontSize="large" />
-            </Grid>
-            <Grid item xs={8}>
-              <Typography
-                variant="body2"
-                component="p"
-                className={classes.bolding}
-              >
-                Step 4
-              </Typography>
-              <Typography
-                variant="body1"
-                component="p"
-                className={classes.paddedBottomSmall}
-              >
-                After 8 weeks, Lambda School students have finished Version 1.0
-                of the project! You'll be able to try out the project as soon as
-                they are finished.
-              </Typography>
-            </Grid>
-          </Grid>
+          {howItWorks.map(steps => (
+            <HowItWorks steps={steps} key={steps.step} />
+          ))}
         </Paper>
       </Grid>
       <Grid className={classes.meetTheTeam}>
