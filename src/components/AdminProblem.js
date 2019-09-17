@@ -1,20 +1,20 @@
-import React from "react";
-import CardActions from "@material-ui/core/CardActions";
-import CardContent from "@material-ui/core/CardContent";
-import Typography from "@material-ui/core/Typography";
-import Icon from "@material-ui/core/Icon";
-import { Link as RouterLink } from "react-router-dom";
+import React from 'react';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import Typography from '@material-ui/core/Typography';
+import Icon from '@material-ui/core/Icon';
+import { Link as RouterLink } from 'react-router-dom';
 
 import {
   ProblemCards,
   //   ProblemCardLink,
   ProblemCardMedia,
   CallToActionBtn2
-} from "../static/stylingComponents";
+} from '../static/stylingComponents';
 
-const ImageSetter = require("../static/stylingComponents/ImageSetter");
+const ImageSetter = require('../static/stylingComponents/ImageSetter');
 
-const AdminProblem = props => {
+const AdminProblem = (props) => {
   const problem = props.problems;
 
   return (
@@ -36,7 +36,7 @@ const AdminProblem = props => {
           component="h3"
         >
           {problem.problem_title.length > 25
-            ? problem.problem_title.substring(0, 25) + "..."
+            ? `${problem.problem_title.substring(0, 25)}...`
             : problem.problem_title}
         </Typography>
         <Typography variant="body1" color="textSecondary" component="p">
@@ -50,13 +50,15 @@ const AdminProblem = props => {
           style={{ height: 40 }}
         >
           {problem.problem_description.length > 50
-            ? problem.problem_description.substring(0, 50) + "..."
+            ? `${problem.problem_description.substring(0, 50)}...`
             : problem.problem_description}
         </Typography>
 
         {/* added new category to problem card */}
         <Typography variant="headline" color="textSecondary" component="h3">
-          Rating: {problem.rating}
+          Rating:
+          {' '}
+          {problem.rating}
         </Typography>
         {/* added new category to problem card */}
       </CardContent>
@@ -66,10 +68,18 @@ const AdminProblem = props => {
         <CallToActionBtn2
           size="medium"
           color="primary"
-          onClick={e => props.updateProblem(e, problem)}
+          onClick={(e) => props.updateProblem(e, problem)}
           href="/problems"
         >
-          Approve!
+          Approve
+        </CallToActionBtn2>
+        <CallToActionBtn2
+          size="medium"
+          color="secondary"
+          onClick={(e) => props.declineProblem(e, problem)}
+          href="/problems"
+        >
+          Decline
         </CallToActionBtn2>
       </CardActions>
     </ProblemCards>
