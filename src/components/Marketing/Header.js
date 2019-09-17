@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { withStyles } from "@material-ui/styles";
+import PropTypes from "prop-types";
 import Button from "@material-ui/core/Button";
 import Toolbar from "@material-ui/core/Toolbar";
 import AppBar from "@material-ui/core/AppBar";
@@ -124,6 +125,20 @@ const Header = props => {
       </Collapse>
     </div>
   );
+};
+
+Header.defaultProps = {
+  classes: {},
+  checked: false,
+  setHeaderNavFalse: function wrong() {},
+  setHeaderNavOpposite: function wrong2() {}
+};
+
+Header.propTypes = {
+  classes: PropTypes.objectOf(PropTypes.string),
+  checked: PropTypes.bool,
+  setHeaderNavFalse: PropTypes.func,
+  setHeaderNavOpposite: PropTypes.func
 };
 
 const mapStateToProps = ({ nav }) => ({ checked: nav.checked });

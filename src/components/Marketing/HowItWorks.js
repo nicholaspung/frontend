@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import { withStyles } from "@material-ui/styles";
@@ -34,6 +35,26 @@ const HowItWorks = ({ classes, steps }) => {
       </Grid>
     </Grid>
   );
+};
+
+HowItWorks.defaultProps = {
+  classes: {},
+  steps: {
+    grey: false,
+    icon: null,
+    step: "",
+    description: ""
+  }
+};
+
+HowItWorks.propTypes = {
+  classes: PropTypes.objectOf(PropTypes.string),
+  steps: PropTypes.shape({
+    grey: PropTypes.bool,
+    icon: PropTypes.elementType,
+    step: PropTypes.string,
+    description: PropTypes.string
+  })
 };
 
 export default withStyles(styles)(HowItWorks);
