@@ -12,8 +12,8 @@ describe("nav", () => {
   };
 
   const initialStateFalse = {
-      checked: false
-  }
+    checked: false
+  };
   it("should return the initial state", () => {
     expect(nav(initialStateFalse, {})).toEqual({ checked: false });
   });
