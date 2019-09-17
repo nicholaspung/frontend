@@ -87,17 +87,20 @@ export const addUser = user => dispatch => {
     });
 };
 
-export const setHeaderNavFalse = () => dispatch => {
-  return dispatch({ type: SET_HEADER_NAV_FALSE, payload: false });
-};
+export const setHeaderNavFalse = () => ({
+  type: SET_HEADER_NAV_FALSE,
+  payload: false
+});
 
-export const setHeaderNavTrue = () => dispatch => {
-  return dispatch({ type: SET_HEADER_NAV_TRUE, payload: true });
-};
+export const setHeaderNavTrue = () => ({
+  type: SET_HEADER_NAV_TRUE,
+  payload: true
+});
 
-export const setHeaderNavOpposite = checked => dispatch => {
-  return dispatch({ type: SET_HEADER_NAV_OPPOSITE, payload: !checked });
-};
+export const setHeaderNavOpposite = checked => ({
+  type: SET_HEADER_NAV_OPPOSITE,
+  payload: !checked
+});
 
 export const getAdminProblems = () => dispatch => {
   dispatch({ type: FETCH_ADMIN_PROBLEM_START });
