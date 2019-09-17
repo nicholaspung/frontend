@@ -79,7 +79,8 @@ MarketingCard.defaultProps = {
   description: "Description",
   displayButton: "Button",
   buttonLink: "Link",
-  icon: "<>"
+  icon: "<>",
+  classes: {}
 };
 
 MarketingCard.propTypes = {
@@ -87,7 +88,8 @@ MarketingCard.propTypes = {
   description: PropTypes.string,
   displayButton: PropTypes.string,
   buttonLink: PropTypes.string,
-  icon: PropTypes.element
+  icon: PropTypes.element,
+  classes: PropTypes.objectOf(PropTypes.string)
 };
 
 export default withStyles(styles)(MarketingCard);

@@ -1,5 +1,5 @@
 import React from "react";
-import HowItWorks from "./HowItWorks";
+import PropTypes from "prop-types";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
@@ -9,6 +9,7 @@ import { withStyles } from "@material-ui/styles";
 import team from "../../static/team";
 import TeamPictures from "./TeamPictures";
 import aboutus from "../../static/images/marketing/teamwork.png";
+import HowItWorks from "./HowItWorks";
 import howItWorks from "../../static/howItWorks";
 
 const styles = {
@@ -112,6 +113,14 @@ const About = props => {
       </Grid>
     </Grid>
   );
+};
+
+About.defaultProps = {
+  classes: {}
+};
+
+About.propTypes = {
+  classes: PropTypes.objectOf(PropTypes.string)
 };
 
 export default withStyles(styles)(About);
