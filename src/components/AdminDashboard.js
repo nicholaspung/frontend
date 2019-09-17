@@ -1,6 +1,5 @@
-import React from "react";
-import { connect } from "react-redux";
-import { getAdminProblems, UpdateAdminProblems } from "../actions";
+import React from 'react';
+import { connect } from 'react-redux';
 
 import AdminProblem from "./AdminProblem";
 // import ProblemCard from "./ProblemCard";
@@ -14,24 +13,25 @@ import Select from "@material-ui/core/Select";
 import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
 import Container from "@material-ui/core/Container";
+import { getAdminProblems, UpdateAdminProblems } from "../actions";
 
 const MyGrid = styled(Grid)({
   padding: 24
 });
 
 const category = [
-  "all",
-  "health",
-  "technology",
-  "fitness",
-  "personal",
-  "science",
-  "finance"
+  'all',
+  'health',
+  'technology',
+  'fitness',
+  'personal',
+  'science',
+  'finance'
 ];
 
 class AdminDashboard extends React.Component {
   state = {
-    selectedCategory: "all",
+    selectedCategory: 'all',
     problemCount: false,
     isApproved: false,
     isOpen: false
@@ -44,7 +44,7 @@ class AdminDashboard extends React.Component {
     this.props.getAdminProblems();
   }
 
-  categorySelected = e => {
+  categorySelected = (e) => {
     this.setState({
       selectedCategory: e.target.value
     });
@@ -57,9 +57,9 @@ class AdminDashboard extends React.Component {
     );
     if (selected === "all") {
       return this.props.problems;
-    } else {
+    } 
       return problems;
-    }
+    
   };
 
   updateProblem = (e, problem) => {
@@ -69,10 +69,17 @@ class AdminDashboard extends React.Component {
     this.setState({ isOpen: true });
   };
 
+  declineProblem = (e, problem) => {
+    e.preventDefault();
+
+    this.props.UpdateAdminProblems(problem.id, !problem.isApproved);
+    this.setState({ isOpen: false });
+  };
+
   render() {
     return (
       <div>
-        <Container style={{ minHeight: "600px" }}>
+        <Container style={{ minHeight: '600px' }}>
           <MyGrid>
             <FormControl spacing={2} style={{ minWidth: 120 }}>
               <InputLabel htmlFor="categories">Filter</InputLabel>
@@ -81,7 +88,7 @@ class AdminDashboard extends React.Component {
                 onChange={this.categorySelected}
                 inputprops={{
                   name: this.state.selectedCategory,
-                  id: "categories"
+                  id: 'categories'
                 }}
               >
                 {category.map((cat, index) => (
@@ -95,7 +102,7 @@ class AdminDashboard extends React.Component {
           {this.sCategory().length > 0 ? (
             <div>
               <MyGrid container spacing={4}>
-                {this.sCategory().map(problem => (
+                {this.sCategory().map((problem) => (
                   <Grid item key={problem.id}>
                     <AdminProblem
                       updateProblem={this.updateProblem}
@@ -107,14 +114,19 @@ class AdminDashboard extends React.Component {
             </div>
           ) : (
             <MyGrid container>
-              Sorry {this.state.selectedCategory.toUpperCase()} problems are not
-              available{" "}
+              Sorry 
+{' '}
+{this.state.selectedCategory.toUpperCase()}
+{' '}
+problems are not
+              available
+{" "}
             </MyGrid>
           )}
         </Container>
         <Modal
           isOpen={this.state.isOpen}
-          onClose={e => this.setState({ isOpen: false })}
+          onClose={(e) => this.setState({ isOpen: false })}
         >
           This problem has been successfully approved!
         </Modal>
