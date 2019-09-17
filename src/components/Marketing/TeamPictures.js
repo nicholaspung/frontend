@@ -5,13 +5,26 @@ import CardActions from "@material-ui/core/CardActions";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
+import { withStyles } from "@material-ui/styles";
 
-const TeamPictures = ({ name, description, github, linkedin, position }) => {
+const styles = {
+  noBorderRadius: { borderRadius: "0px" },
+  paddedBottom: { paddingBottom: "1rem" }
+};
+
+const TeamPictures = ({
+  name,
+  description,
+  github,
+  linkedin,
+  position,
+  classes
+}) => {
   return (
     <Grid item xs={10} sm={6} md={4}>
-      <Card style={{ borderRadius: "0px" }}>
+      <Card className={classes.noBorderRadius}>
         <CardContent>
-          <div style={{ paddingBottom: "1rem" }}>
+          <div className={classes.paddedBottom}>
             <Typography variant="h5" component="h2">
               {name}
             </Typography>
@@ -44,4 +57,4 @@ const TeamPictures = ({ name, description, github, linkedin, position }) => {
   );
 };
 
-export default TeamPictures;
+export default withStyles(styles)(TeamPictures);

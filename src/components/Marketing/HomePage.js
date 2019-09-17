@@ -6,30 +6,30 @@ import Grid from "@material-ui/core/Grid";
 // import CardContent from "@material-ui/core/CardContent";
 // import Typography from "@material-ui/core/Typography";
 // import TextField from "@material-ui/core/TextField";
-import { styled } from "@material-ui/styles";
-import { useTheme } from "@material-ui/styles";
+import { withStyles } from "@material-ui/styles";
 import GroupIcon from "@material-ui/icons/Group";
 import BuildIcon from "@material-ui/icons/Build";
 import banner from "../../static/images/marketing/finding-problem-solution.jpg";
 import MarketingCard from "./MarketingCard";
-
-// const Newsletter = styled(Paper)({
-//   color: "white",
-//   backgroundColor: "blue",
-//   textAlign: "center"
-// });
 
 // const SignUpField = styled(TextField)({
 //   marginLeft: "10px",
 //   marginRight: "10px"
 // });
 
-const HomeImage = styled(Grid)({
-  backgroundColor: "#b51d4b"
-});
+const styles = {
+  newsletter: {
+    color: "white",
+    backgroundColor: "blue",
+    textAlign: "center",
+    borderRadius: "0px"
+  },
+  signUpField: { marginLeft: "0.75rem", marginRight: "0.75rem" },
+  homeImage: { backgroundColor: "#b51d4b" },
+  root: { backgroundColor: "#f6f7fb", borderRadius: "0px" }
+};
 
-const HomePage = () => {
-  const theme = useTheme();
+const HomePage = ({ classes }) => {
   const title1 = "Have a Tech Project Made.";
   const title2 = "Help a Project to be Made.";
   const description1 = "Organizations/Individuals submit tech project ideas";
@@ -38,13 +38,8 @@ const HomePage = () => {
   const button2 = "See Project List";
 
   return (
-    <Card
-      style={{
-        backgroundColor: theme.palette.background.secondary,
-        borderRadius: "0px"
-      }}
-    >
-      <HomeImage container justify="center">
+    <Card className={classes.root}>
+      <Grid container justify="center" className={classes.homeImage}>
         <Grid item xs={10} md={8} lg={6}>
           <CardMedia
             component="img"
@@ -54,7 +49,7 @@ const HomePage = () => {
             title="Contemplative Person"
           />
         </Grid>
-      </HomeImage>
+      </Grid>
       <Grid container justify="space-around" spacing={0}>
         <Grid item xs={10} md={4}>
           <MarketingCard
@@ -76,22 +71,21 @@ const HomePage = () => {
         </Grid>
       </Grid>
       {/* Material UI Paper component is dumb when using square - if nothing is below, it'll have rounded corners. When something is below, it'll have square corners */}
-      {/* <Newsletter square>
+      {/* <Paper className={classes.newsletter}>
         <CardContent>
           <Typography variant="h6" component="h2">
             Sign up to be notified for new problems!
           </Typography>
         </CardContent>
-        <SignUpField
+        <TextField className={classes.signUpField}
           id="newsletter-signup"
           label="Newsletter Signup"
           margin="normal"
           variant="outlined"
         />
-      </Newsletter>
-      <Paper>hi</Paper> */}
+      </Paper> */}
     </Card>
   );
 };
 
-export default HomePage;
+export default withStyles(styles)(HomePage);
