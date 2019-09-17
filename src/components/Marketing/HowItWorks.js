@@ -41,7 +41,7 @@ HowItWorks.defaultProps = {
   classes: {},
   steps: {
     grey: false,
-    icon: null,
+    icon: <div>Hi</div>,
     step: "",
     description: ""
   }
@@ -51,7 +51,7 @@ HowItWorks.propTypes = {
   classes: PropTypes.objectOf(PropTypes.string),
   steps: PropTypes.shape({
     grey: PropTypes.bool,
-    icon: PropTypes.elementType,
+    icon: PropTypes.element,
     step: PropTypes.string,
     description: PropTypes.string
   })
