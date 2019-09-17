@@ -71,6 +71,14 @@ const AdminProblem = props => {
         >
           Approve!
         </CallToActionBtn2>
+        <CallToActionBtn2
+          size="medium"
+          color="primary"
+          onClick={e => props.removeProblem(e, problem)}
+          href="/problems"
+        >
+          Decline!
+        </CallToActionBtn2>
       </CardActions>
     </ProblemCards>
   );

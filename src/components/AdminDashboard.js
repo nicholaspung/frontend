@@ -5,6 +5,7 @@ import { getAdminProblems, UpdateAdminProblems } from "../actions";
 import AdminProblem from "./AdminProblem";
 // import ProblemCard from "./ProblemCard";
 import Modal from "./Modal";
+import ModalTwo from "./ModalTwo";
 
 import { styled } from "@material-ui/styles";
 
@@ -34,7 +35,8 @@ class AdminDashboard extends React.Component {
     selectedCategory: "all",
     problemCount: false,
     isApproved: false,
-    isOpen: false
+    isOpen: false,
+    isOpenR: false
   };
 
   componentDidMount() {
@@ -69,6 +71,13 @@ class AdminDashboard extends React.Component {
     this.setState({ isOpen: true });
   };
 
+  removeProblem = (e, problem) => {
+    e.preventDefault();
+
+    this.props.UpdateAdminProblems(problem.id, !problem.isApproved);
+    this.setState({ isOpenR: true });
+  };
+
   render() {
     return (
       <div>
@@ -99,6 +108,7 @@ class AdminDashboard extends React.Component {
                   <Grid item key={problem.id}>
                     <AdminProblem
                       updateProblem={this.updateProblem}
+                      removeProblem={this.removeProblem}
                       problems={problem}
                     />
                   </Grid>
@@ -118,6 +128,12 @@ class AdminDashboard extends React.Component {
         >
           This problem has been successfully approved!
         </Modal>
+        <ModalTwo
+          isOpenR={this.state.isOpenR}
+          onClose={e => this.setState({ isOpenR: false })}
+        >
+          This problem has been rejected!
+        </ModalTwo>
       </div>
     );
   }
