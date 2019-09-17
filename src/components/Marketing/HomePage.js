@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import Card from "@material-ui/core/Card";
 import CardMedia from "@material-ui/core/CardMedia";
 import Grid from "@material-ui/core/Grid";
@@ -9,8 +10,9 @@ import Grid from "@material-ui/core/Grid";
 import { withStyles } from "@material-ui/styles";
 import GroupIcon from "@material-ui/icons/Group";
 import BuildIcon from "@material-ui/icons/Build";
-import banner from "../../static/images/marketing/finding-problem-solution.jpg";
 import MarketingCard from "./MarketingCard";
+import banner from "../../static/images/marketing/finding-problem-solution.jpg";
+import homePage from "../../static/homePage";
 
 // const SignUpField = styled(TextField)({
 //   marginLeft: "10px",
@@ -30,12 +32,14 @@ const styles = {
 };
 
 const HomePage = ({ classes }) => {
-  const title1 = "Have a Tech Project Made.";
-  const title2 = "Help a Project to be Made.";
-  const description1 = "Organizations/Individuals submit tech project ideas";
-  const description2 = "Individuals looking to have a tech project made";
-  const button1 = "Submit A Project Idea";
-  const button2 = "See Project List";
+  const {
+    title1,
+    title2,
+    description1,
+    description2,
+    button1,
+    button2
+  } = homePage;
 
   return (
     <Card className={classes.root}>
@@ -86,6 +90,14 @@ const HomePage = ({ classes }) => {
       </Paper> */}
     </Card>
   );
+};
+
+HomePage.defaultProps = {
+  classes: {}
+};
+
+HomePage.propTypes = {
+  classes: PropTypes.objectOf(PropTypes.string)
 };
 
 export default withStyles(styles)(HomePage);

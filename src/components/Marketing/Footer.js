@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import Toolbar from "@material-ui/core/Toolbar";
 import AppBar from "@material-ui/core/AppBar";
 import Grid from "@material-ui/core/Grid";
@@ -25,6 +26,14 @@ const Footer = props => {
       </AppBar>
     </>
   );
+};
+
+Footer.defaultProps = {
+  classes: {}
+};
+
+Footer.propTypes = {
+  classes: PropTypes.objectOf(PropTypes.string)
 };
 
 export default withStyles(styles)(Footer);
