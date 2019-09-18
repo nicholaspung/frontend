@@ -36,7 +36,8 @@ class ProblemDashboard extends React.Component {
     this.state = {
       selectedCategory: "all",
       selectByName: "",
-      selectedStatus: "start"
+      selectedStatus: "start",
+      problems: []
     };
   }
 
@@ -122,7 +123,7 @@ class ProblemDashboard extends React.Component {
             </Select>
           </FormControl>
 
-          {this.props.problems.length > 0 ? (
+          {this.allProblems().length > 0 ? (
             <Grid
               container
               spacing={2}
