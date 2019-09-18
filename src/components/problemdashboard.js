@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { withStyles } from "@material-ui/styles";
 
@@ -151,6 +152,14 @@ class ProblemDashboard extends React.Component {
       </Grid>
     );
   }
+}
+
+ProblemDashboard.defaultProps = {
+
+}
+
+ProblemDashboard.propTypes = {
+  
 }
 
 const mapStateToProps = ({ problems }) => ({ problems: problems.problems });
