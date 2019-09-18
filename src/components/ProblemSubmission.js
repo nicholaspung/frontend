@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import Button from "@material-ui/core/Button";
 import Select from "@material-ui/core/Select";
@@ -81,11 +82,14 @@ class ProblemSubmission extends React.Component {
       months[today.getMonth()]
     } ${today.getDate()}, ${today.getFullYear()}`;
     this.props.addProblems(problem);
-    console.log("submitted!");
-    // to redirect
-    this.props.props.history.push(`/problems`);
-    // this.props.history.push(`/problem-details/${res.data.id}`)
-    // redirect to problem description page of problem
+    const modalPromise = new Promise((resolve, reject) => {
+      // add way for a modal to pop up and say, "Your problem has been submitted and is waiting for approval."
+      setTimeout(() => {
+        resolve("Success!");
+      }, 1000);
+    });
+
+    modalPromise.then(response => this.props.props.history.push(`/problems`))
   };
 
   render() {
@@ -198,6 +202,18 @@ class ProblemSubmission extends React.Component {
     );
   }
 }
+
+ProblemSubmission.defaultProps = {
+  classes: {},
+  addProblems: function hi() {},
+  props: {}
+};
+
+ProblemSubmission.propTypes = {
+  classes: PropTypes.objectOf(PropTypes.string),
+  addProblems: PropTypes.func,
+  props: PropTypes.object
+};
 
 export default withStyles(styles)(
   connect(
