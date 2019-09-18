@@ -4,12 +4,7 @@ import { styled } from "@material-ui/styles";
 import { getProblems } from "../actions";
 import ProblemCard from "./ProblemCard";
 
-import Grid from "@material-ui/core/Grid";
-import FormControl from "@material-ui/core/FormControl";
-import Select from "@material-ui/core/Select";
-import TextField from "@material-ui/core/TextField";
-import MenuItem from "@material-ui/core/MenuItem";
-import Container from "@material-ui/core/Container";
+import {Grid, Container, FormControl, Select, TextField, MenuItem} from "@material-ui/core";
 
 const MyGrid = styled(Grid)({
   padding: 24
@@ -88,8 +83,8 @@ class ProblemDashboard extends React.Component {
   render() {
     return (
       <div>
+        <Grid style={{background:'#f6f7fb' }}>
         <Container style={{ minHeight: "600px" }}>
-          <MyGrid>
             <form>
               <FormControl spacing={12} style={{ minWidth: 120 }}>
                 <TextField
@@ -116,15 +111,16 @@ class ProblemDashboard extends React.Component {
                 </Select>
               </FormControl>
             </form>
-          </MyGrid>
+          
+          
           {this.props.problems.length > 0 ? (
             <div>
-              <MyGrid container spacing={4}>
-                {this.allProblems().map(problem => (
-                  <Grid item key={problem.id}>
-                    <ProblemCard problems={problem} />
-                  </Grid>
-                ))}
+              <MyGrid container spacing={2}>
+                  {this.allProblems().map(problem => (
+                    <Grid item key={problem.id} xs={12} sm={6} md={4}>
+                      <ProblemCard problems={problem} />
+                    </Grid>
+                  ))}
               </MyGrid>
             </div>
           ) : (
@@ -134,6 +130,7 @@ class ProblemDashboard extends React.Component {
             </MyGrid>
           )}
         </Container>
+        </Grid>
       </div>
     );
   }
