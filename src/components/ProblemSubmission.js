@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import Button from "@material-ui/core/Button";
 import Select from "@material-ui/core/Select";
@@ -10,6 +11,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
 import { withStyles } from "@material-ui/styles";
+import ProblemSubmissionModal from "./ProblemSubmissionModal";
 import { addProblems } from "../actions";
 
 const months = [
@@ -48,7 +50,9 @@ class ProblemSubmission extends React.Component {
         date_created: "",
         created_by: ""
       },
-      error: ""
+      error: "",
+      modalHidden: true,
+      modalResponse: ""
     };
   }
 
@@ -80,12 +84,29 @@ class ProblemSubmission extends React.Component {
     problem.date_created = `${
       months[today.getMonth()]
     } ${today.getDate()}, ${today.getFullYear()}`;
-    this.props.addProblems(problem);
-    console.log("submitted!");
-    // to redirect
-    this.props.props.history.push(`/problems`);
-    // this.props.history.push(`/problem-details/${res.data.id}`)
-    // redirect to problem description page of problem
+    const modalPromise = new Promise((resolve, reject) => {
+      this.setState(prevState => ({
+        ...prevState,
+        modalHidden: false,
+        modalResponse:
+          "Your problem has been submitted and is waiting for approval."
+      }));
+      setTimeout(() => {
+        resolve("Success!");
+      }, 1000);
+    });
+    this.props
+      .addProblems(problem)
+      .then(response => modalPromise)
+      .then(response => this.props.props.history.push(`/problems`))
+      .catch(error =>
+        this.setState(prevState => ({
+          ...prevState,
+          modalHidden: false,
+          modalResponse:
+            "There was an error submitting your problem. Please try again."
+        }))
+      );
   };
 
   render() {
@@ -194,10 +215,26 @@ class ProblemSubmission extends React.Component {
             Submit Problem
           </Button>
         </Grid>
+        <ProblemSubmissionModal
+          hidden={this.state.modalHidden}
+          text={this.state.modalResponse}
+        />
       </form>
     );
   }
 }
+
+ProblemSubmission.defaultProps = {
+  classes: {},
+  addProblems: function hi() {},
+  props: {}
+};
+
+ProblemSubmission.propTypes = {
+  classes: PropTypes.objectOf(PropTypes.string),
+  addProblems: PropTypes.func,
+  props: PropTypes.object
+};
 
 export default withStyles(styles)(
   connect(
