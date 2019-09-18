@@ -1,14 +1,17 @@
 import React from "react";
 import { connect } from "react-redux";
-import { styled } from "@material-ui/styles";
+import { withStyles } from "@material-ui/styles";
+
+import Grid from "@material-ui/core/Grid";
+import Container from "@material-ui/core/Container";
+import FormControl from "@material-ui/core/FormControl";
+import Select from "@material-ui/core/Select";
+import TextField from "@material-ui/core/TextField";
+import MenuItem from "@material-ui/core/MenuItem";
+import Typography from "@material-ui/core/Typography";
+
 import { getProblems } from "../actions";
 import ProblemCard from "./ProblemCard";
-
-import {Grid, Container, FormControl, Select, TextField, MenuItem} from "@material-ui/core";
-
-const MyGrid = styled(Grid)({
-  padding: 24
-});
 
 const category = [
   "all",
@@ -20,13 +23,22 @@ const category = [
   "finance"
 ];
 
+const styles = {
+  gridPadding: { padding: "1.5rem" },
+  greyBackground: { backgroundColor: "#f6f7fb" },
+  minimumWidth: { minWidth: "8rem" },
+  minimumHeight: { minHeight: "40rem" }
+};
+
 class ProblemDashboard extends React.Component {
-  state = {
-    selectedCategory: "all",
-    selectByName: "",
-    selectedStatus: "start",
-    numOfProblems: 0
-  };
+  constructor() {
+    super();
+    this.state = {
+      selectedCategory: "all",
+      selectByName: "",
+      selectedStatus: "start"
+    };
+  }
 
   componentDidMount() {
     this.props.getProblems();
@@ -82,62 +94,69 @@ class ProblemDashboard extends React.Component {
 
   render() {
     return (
-      <div>
-        <Grid style={{background:'#f6f7fb' }}>
-        <Container style={{ minHeight: "600px" }}>
-            <form>
-              <FormControl spacing={12} style={{ minWidth: 120 }}>
-                <TextField
-                  id="select-name"
-                  label="filter by name"
-                  value={this.state.selectByName}
-                  onChange={this.handleChange}
-                  margin="normal"
-                />
+      <Grid container className={this.props.classes.greyBackground}>
+        <Container className={this.props.classes.minimumHeight}>
+          <FormControl spacing={12} className={this.props.classes.minimumWidth}>
+            <TextField
+              id="select-name"
+              label="Filter By Name"
+              value={this.state.selectByName}
+              onChange={this.handleChange}
+              margin="normal"
+              autoComplete="off"
+            />
 
-                <Select
-                  value={this.state.selectedCategory}
-                  onChange={this.categorySelected}
-                  inputprops={{
-                    name: this.state.selectedCategory,
-                    id: "categories"
-                  }}
-                >
-                  {category.map((cat, index) => (
-                    <MenuItem key={index} value={cat}>
-                      {cat.toUpperCase()}
-                    </MenuItem>
-                  ))}
-                </Select>
-              </FormControl>
-            </form>
-          
-          
+            <Select
+              value={this.state.selectedCategory}
+              onChange={this.categorySelected}
+              inputprops={{
+                name: this.state.selectedCategory,
+                id: "categories"
+              }}
+            >
+              {category.map((cat, index) => (
+                <MenuItem key={cat} value={cat}>
+                  {cat.toUpperCase()}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+
           {this.props.problems.length > 0 ? (
-            <div>
-              <MyGrid container spacing={2}>
-                  {this.allProblems().map(problem => (
-                    <Grid item key={problem.id} xs={12} sm={6} md={4}>
-                      <ProblemCard problems={problem} />
-                    </Grid>
-                  ))}
-              </MyGrid>
-            </div>
+            <Grid
+              container
+              spacing={2}
+              className={this.props.classes.gridPadding}
+            >
+              {this.allProblems().map(problem => (
+                <Grid item key={problem.id} xs={12} sm={6} md={4}>
+                  <ProblemCard problem={problem} />
+                </Grid>
+              ))}
+            </Grid>
           ) : (
-            <MyGrid container>
-              Sorry {this.state.selectedCategory.toUpperCase()} problems are not
-              available{" "}
-            </MyGrid>
+            <Grid
+              container
+              justify="center"
+              className={this.props.classes.gridPadding}
+            >
+              <Typography>
+                Sorry {this.state.selectedCategory.toUpperCase()} problems are
+                not available.
+              </Typography>
+            </Grid>
           )}
         </Container>
-        </Grid>
-      </div>
+      </Grid>
     );
   }
 }
 
 const mapStateToProps = ({ problems }) => ({ problems: problems.problems });
-export default connect(
-  mapStateToProps,
-  { getProblems }
-)(ProblemDashboard);
+
+export default withStyles(styles)(
+  connect(
+    mapStateToProps,
+    { getProblems }
+  )(ProblemDashboard)
+);
