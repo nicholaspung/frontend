@@ -11,6 +11,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
 import { withStyles } from "@material-ui/styles";
+import ProblemSubmissionModal from "./ProblemSubmissionModal";
 import { addProblems } from "../actions";
 
 const months = [
@@ -49,7 +50,9 @@ class ProblemSubmission extends React.Component {
         date_created: "",
         created_by: ""
       },
-      error: ""
+      error: "",
+      modalHidden: true,
+      modalResponse: ""
     };
   }
 
@@ -81,15 +84,29 @@ class ProblemSubmission extends React.Component {
     problem.date_created = `${
       months[today.getMonth()]
     } ${today.getDate()}, ${today.getFullYear()}`;
-    this.props.addProblems(problem);
     const modalPromise = new Promise((resolve, reject) => {
-      // add way for a modal to pop up and say, "Your problem has been submitted and is waiting for approval."
+      this.setState(prevState => ({
+        ...prevState,
+        modalHidden: false,
+        modalResponse:
+          "Your problem has been submitted and is waiting for approval."
+      }));
       setTimeout(() => {
         resolve("Success!");
       }, 1000);
     });
-
-    modalPromise.then(response => this.props.props.history.push(`/problems`))
+    this.props
+      .addProblems(problem)
+      .then(response => modalPromise)
+      .then(response => this.props.props.history.push(`/problems`))
+      .catch(error =>
+        this.setState(prevState => ({
+          ...prevState,
+          modalHidden: false,
+          modalResponse:
+            "There was an error submitting your problem. Please try again."
+        }))
+      );
   };
 
   render() {
@@ -198,6 +215,10 @@ class ProblemSubmission extends React.Component {
             Submit Problem
           </Button>
         </Grid>
+        <ProblemSubmissionModal
+          hidden={this.state.modalHidden}
+          text={this.state.modalResponse}
+        />
       </form>
     );
   }
