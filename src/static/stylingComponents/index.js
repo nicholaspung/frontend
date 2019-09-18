@@ -70,10 +70,10 @@ export const CallToActionBtn2 = styled(Button)({
 
 export const ProblemCards = styled(Card)({
   boxShadow: "2px 4px silver",
-  maxWidth: 260
+
 });
 
 export const ProblemCardMedia = styled(CardMedia)({
   backgroundColor: "white",
-  height: 200
+  width:'100%'
 });
