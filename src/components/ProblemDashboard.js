@@ -37,8 +37,7 @@ class ProblemDashboard extends React.Component {
     this.state = {
       selectedCategory: "all",
       selectByName: "",
-      selectedStatus: "start",
-      problems: []
+      selectedStatus: "start"
     };
   }
 
@@ -46,18 +45,18 @@ class ProblemDashboard extends React.Component {
     this.props.getProblems();
   }
 
-  handleChange = e => {
-    e.preventDefault();
+  handleChange = event => {
+    event.preventDefault();
     this.setState({
       selectedStatus: "name",
-      selectByName: e.target.value
+      selectByName: event.target.value
     });
   };
 
-  categorySelected = e => {
+  categorySelected = event => {
     this.setState({
       selectedStatus: "category",
-      selectedCategory: e.target.value
+      selectedCategory: event.target.value
     });
   };
 
@@ -155,12 +154,16 @@ class ProblemDashboard extends React.Component {
 }
 
 ProblemDashboard.defaultProps = {
-
-}
+  getProblems: function hi() {},
+  problems: [],
+  classes: {}
+};
 
 ProblemDashboard.propTypes = {
-  
-}
+  getProblems: PropTypes.func,
+  problems: PropTypes.arrayOf(PropTypes.object),
+  classes: PropTypes.objectOf(PropTypes.string)
+};
 
 const mapStateToProps = ({ problems }) => ({ problems: problems.problems });
 
