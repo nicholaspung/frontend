@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import Button from "@material-ui/core/Button";
 import Card from "@material-ui/core/Card";
 import CardMedia from "@material-ui/core/CardMedia";
@@ -84,6 +85,20 @@ const ProblemCard = props => {
       </Grid>
     </Card>
   );
+};
+
+ProblemCard.defaultProps = {
+  problem: {},
+  classes: {}
+};
+
+ProblemCard.propTypes = {
+  problem: PropTypes.shape({
+    id: PropTypes.number,
+    problem_category: PropTypes.string,
+    problem_title: PropTypes.string
+  }),
+  classes: PropTypes.objectOf(PropTypes.string)
 };
 
 export default withStyles(styles)(ProblemCard);
