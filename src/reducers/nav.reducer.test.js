@@ -2,9 +2,9 @@ import {
   SET_HEADER_NAV_FALSE,
   SET_HEADER_NAV_TRUE,
   SET_HEADER_NAV_OPPOSITE
-} from "../actions";
+} from "../actions/nav.action";
 
-import nav from "./nav";
+import nav from "./nav.reducer";
 
 describe("nav", () => {
   const initialStateTrue = {
