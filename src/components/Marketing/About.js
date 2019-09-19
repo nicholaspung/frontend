@@ -101,9 +101,7 @@ const About = props => {
               .map(person => (
                 <TeamPictures
                   name={person.name}
-                  description={person.description}
                   github={person.github}
-                  linkedin={person.linkedin}
                   position={person.position}
                   key={person.name}
                 />
