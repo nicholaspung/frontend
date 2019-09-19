@@ -8,15 +8,12 @@ import Button from "@material-ui/core/Button";
 import { withStyles } from "@material-ui/styles";
 
 const styles = {
-  noBorderRadius: { borderRadius: "0px" },
-  paddedBottom: { paddingBottom: "1rem" }
+  noBorderRadius: { borderRadius: "0px" }
 };
 
 const TeamPictures = ({
   name,
-  description,
   github,
-  linkedin,
   position,
   classes
 }) => {
@@ -24,34 +21,22 @@ const TeamPictures = ({
     <Grid item xs={10} sm={6} md={4}>
       <Card className={classes.noBorderRadius}>
         <CardContent>
-          <div className={classes.paddedBottom}>
-            <Typography variant="h5" component="h2">
-              {name}
-            </Typography>
-            <Typography variant="caption" component="p">
-              {position}
-            </Typography>
-          </div>
-          <Typography variant="body2" component="p">
-            {description}
+          <Typography variant="h5" component="h2">
+            {name}
           </Typography>
+          <Typography variant="caption" component="p">
+            {position}
+          </Typography>
+          <Grid container justify="space-between">
+            <Grid item lg={3}>
+              <CardActions>
+                <Button>
+                  <a href={github}>GitHub</a>
+                </Button>
+              </CardActions>
+            </Grid>
+          </Grid>
         </CardContent>
-        <Grid container justify="space-between">
-          <Grid item lg={3}>
-            <CardActions>
-              <Button>
-                <a href={github}>GitHub</a>
-              </Button>
-            </CardActions>
-          </Grid>
-          <Grid item lg={3}>
-            <CardActions>
-              <Button>
-                <a href={linkedin}>LinkedIn</a>
-              </Button>
-            </CardActions>
-          </Grid>
-        </Grid>
       </Card>
     </Grid>
   );

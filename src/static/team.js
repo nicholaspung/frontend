@@ -1,65 +1,47 @@
 export default [
   {
-    name: "nicholaspung",
-    description: "test1",
-    github: "g1",
-    linkedin: "l1",
+    name: "Nicholas Pung",
+    github: "https://www.github.com/nicholaspung",
     position: "Front End Developer"
   },
   {
-    name: "raidondesu",
-    description: "test2",
-    github: "g2",
-    linkedin: "l2",
+    name: "Raidon Amakobe",
+    github: "https://www.github.com/raidondesu",
     position: "Back End Developer"
   },
   {
-    name: "alanperez",
-    description: "test3",
-    github: "g3",
-    linkedin: "l3",
+    name: "Alan Perez",
+    github: "https://www.github.com/alanperez",
     position: "Back End Developer"
   },
   {
-    name: "trucane",
-    description: "test4",
-    github: "g4",
-    linkedin: "l4",
+    name: "Henry Leverette",
+    github: "https://www.github.com/trucane",
     position: "Front End Developer"
   },
   {
-    name: "sosafarasa",
-    description: "test5",
-    github: "g5",
-    linkedin: "l5",
+    name: "Agustina Sosa",
+    github: "https://www.github.com/sosfarasa",
     position: "Back End Developer"
   },
   {
-    name: "gsadams2",
-    description: "test6",
-    github: "g6",
-    linkedin: "l6",
+    name: "George Adams",
+    github: "https://www.github.com/gsadams2",
     position: "Front End Developer"
   },
   {
-    name: "aquariax",
-    description: "test7",
-    github: "g7",
-    linkedin: "l7",
+    name: "Robert Harris",
+    github: "https://www.github.com/aquariax",
     position: "Back End Developer"
   },
   {
-    name: "ryanboris",
-    description: "test8",
-    github: "g8",
-    linkedin: "l8",
+    name: "Ryan Boris",
+    github: "https://www.github.com/ryanboris",
     position: "Retired Team Lead"
   },
   {
-    name: "landoooooo",
-    description: "test9",
-    github: "g9",
-    linkedin: "l9",
+    name: "Alando Appling",
+    github: "https://www.github.com/landoooooo",
     position: "Current Team Lead"
   }
 ];
