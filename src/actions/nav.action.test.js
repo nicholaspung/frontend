@@ -1,4 +1,4 @@
-import * as actions from "./index";
+import * as actions from "./nav.action";
 
 describe("set header nav", () => {
   it("should create an action to set header nav false", () => {
