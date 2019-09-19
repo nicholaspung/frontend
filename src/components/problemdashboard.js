@@ -84,7 +84,7 @@ class ProblemDashboard extends React.Component {
     return (
       <div>
         <Grid style={{background:'#f6f7fb' }}>
-        <Container style={{ minHeight: "600px" }}>
+        <Container style={{ minHeight: "620px" }}>
             <form>
               <FormControl spacing={12} style={{ minWidth: 120 }}>
                 <TextField

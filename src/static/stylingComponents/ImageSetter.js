@@ -19,6 +19,7 @@ const category = [
 
 
 export const staticImage = (image_category) =>{
+  console.log(image_category)
     const cat = category.find(
         item => item.name === image_category.toLowerCase()
       );
