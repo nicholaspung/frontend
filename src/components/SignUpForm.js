@@ -6,8 +6,8 @@ import "../styles/SignUpForm.css";
 import { DetailsBackButton } from "../static/stylingComponents";
 
 class SignUpForm extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       newUser: {
         full_name: "",
@@ -68,6 +68,10 @@ class SignUpForm extends React.Component {
           />
           <DetailsBackButton onClick={this.handleSubmit}>
             Sign up!
+          </DetailsBackButton>
+
+          <DetailsBackButton onClick={this.props.opener}>
+            cancel 
           </DetailsBackButton>
         </form>
       </div>

@@ -1,10 +1,16 @@
 import {
-  FETCH_PROBLEM_START,
-  FETCH_PROBLEM_SUCCESS,
-  FETCH_PROBLEM_FAIL,
+  FETCH_PROBLEMS_START,
+  FETCH_PROBLEMS_SUCCESS,
+  FETCH_PROBLEMS_FAIL,
   ADD_PROBLEM_START,
   ADD_PROBLEM_SUCCESS,
   ADD_PROBLEM_FAIL,
+  FETCH_PROBLEM_START,
+  FETCH_PROBLEM_SUCCESS,
+  FETCH_PROBLEM_FAIL,
+  UPDATE_PROBLEM_START,
+  UPDATE_PROBLEM_SUCCESS,
+  UPDATE_PROBLEM_FAIL,
   FETCH_ADMIN_PROBLEM_START,
   FETCH_ADMIN_PROBLEM_SUCCESS,
   FETCH_ADMIN_PROBLEM_FAIL,
@@ -15,22 +21,24 @@ import {
 
 const initialState = {
   problems: [],
+  problem:{},
   newlyAddedProblem: {},
   error: false,
   fetchingProblems: false,
+  fetchingProblem: false,
   addingNewProblem: false
 };
 
 const problems = (state = initialState, action) => {
   switch (action.type) {
-    case FETCH_PROBLEM_START:
+    case FETCH_PROBLEMS_START:
       return {
         ...state,
         error: "",
         fetchingProblems: true
       };
 
-    case FETCH_PROBLEM_SUCCESS:
+    case FETCH_PROBLEMS_SUCCESS:
       return {
         ...state,
         problems: action.payload,
@@ -38,7 +46,7 @@ const problems = (state = initialState, action) => {
         fetchingProblems: false
       };
 
-    case FETCH_PROBLEM_FAIL:
+    case FETCH_PROBLEMS_FAIL:
       return {
         ...state,
         error: action.payload,
@@ -65,6 +73,50 @@ const problems = (state = initialState, action) => {
         ...state,
         error: action.payload,
         addingNewProblem: false
+      };
+
+    case FETCH_PROBLEM_START:
+      return {
+        ...state,
+        error: "",
+        fetchingProblem: true
+      };
+
+    case FETCH_PROBLEM_SUCCESS:
+      return {
+        ...state,
+        problem: action.payload,
+        error: "",
+        fetchingProblem: false
+      };
+
+    case FETCH_PROBLEM_FAIL:
+      return {
+        ...state,
+        error: action.payload,
+        fetchingProblem: false
+      };
+
+    case UPDATE_PROBLEM_START:
+      return {
+        ...state,
+        error: "",
+        fetchingProblem: true
+      };
+
+    case UPDATE_PROBLEM_SUCCESS:
+      return {
+        ...state,
+        problem: action.payload,
+        error: "",
+        fetchingProblem: false
+      };
+
+    case UPDATE_PROBLEM_FAIL:
+      return {
+        ...state,
+        error: action.payload,
+        fetchingProblem: false
       };
     case FETCH_ADMIN_PROBLEM_START:
       return {
