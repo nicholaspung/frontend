@@ -7,7 +7,7 @@ import Header from "./Marketing/Header";
 import HomePage from "./Marketing/HomePage";
 import About from "./Marketing/About";
 import Footer from "./Marketing/Footer";
-import ProblemDashboard from "./problemdashboard";
+import ProblemDashboard from "./ProblemDashboard";
 import ProblemCard from "./ProblemCard";
 import DetailsPage from "./DetailsPage";
 import ProblemSubmissionHolder from "./ProblemSubmissionHolder";
