@@ -12,6 +12,10 @@ export const FETCH_PROBLEM_START = "FETCH_PROBLEM_START";
 export const FETCH_PROBLEM_SUCCESS = "FETCH_PROBLEM_SUCCESS";
 export const FETCH_PROBLEM_FAIL = "FETCH_PROBLEM_FAIL";
 
+export const FETCH_POPULAR_START = "FETCH_POPULAR_START";
+export const FETCH_POPULAR_SUCCESS = "FETCH_POPULAR_SUCCESS";
+export const FETCH_POPULAR_FAIL = "FETCH_POPULAR_FAIL";
+
 export const UPDATE_PROBLEM_START = "UPDATE_PROBLEM_START";
 export const UPDATE_PROBLEM_SUCCESS = "UPDATE_PROBLEM_SUCCESS";
 export const UPDATE_PROBLEM_FAIL = "UPDATE_PROBLEM_FAIL";
@@ -84,12 +88,24 @@ export const updateVote = (id, vote) => dispatch => {
     });
 };
 
+export const getPopular = () => dispatch =>{
+  dispatch({type: FETCH_POPULAR_START})
+
+  return axios
+    .get('https://labs15-lambdanext.herokuapp.com/problems/popular')
+    .then(res =>{
+      dispatch({type: FETCH_POPULAR_SUCCESS, payload:res.data})
+    })
+    .catch(error =>{
+      dispatch({type: FETCH_POPULAR_FAIL})
+    })
+}
+
 export const getUsers = () => dispatch => {
   dispatch({ type: FETCH_USERS_START });
   return axios
     .get("https://labs15-lambdanext.herokuapp.com/users")
     .then(res => {
-      console.log(res.data)
       dispatch({ type: FETCH_USERS_SUCCESS, payload: res.data });
     })
     .catch(error => {

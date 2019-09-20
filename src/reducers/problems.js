@@ -5,6 +5,9 @@ import {
   ADD_PROBLEM_START,
   ADD_PROBLEM_SUCCESS,
   ADD_PROBLEM_FAIL,
+  FETCH_POPULAR_START,
+  FETCH_POPULAR_SUCCESS,
+  FETCH_POPULAR_FAIL,
   FETCH_PROBLEM_START,
   FETCH_PROBLEM_SUCCESS,
   FETCH_PROBLEM_FAIL,
@@ -22,10 +25,12 @@ import {
 const initialState = {
   problems: [],
   problem:{},
+  popular:[],
   newlyAddedProblem: {},
   error: false,
   fetchingProblems: false,
   fetchingProblem: false,
+  fetchingPopular: false,
   addingNewProblem: false
 };
 
@@ -95,6 +100,28 @@ const problems = (state = initialState, action) => {
         ...state,
         error: action.payload,
         fetchingProblem: false
+      };
+
+    case FETCH_POPULAR_START:
+      return {
+        ...state,
+        error: "",
+        fetchingPopular: true
+      };
+
+    case FETCH_POPULAR_SUCCESS:
+      return {
+        ...state,
+        popular: action.payload,
+        error: "",
+        fetchingPopular: false
+      };
+
+    case FETCH_POPULAR_FAIL:
+      return {
+        ...state,
+        error: action.payload,
+        fetchingPopular: false
       };
 
     case UPDATE_PROBLEM_START:
