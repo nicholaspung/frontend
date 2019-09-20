@@ -4,6 +4,8 @@ import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import Icon from "@material-ui/core/Icon";
 import { Link as RouterLink } from "react-router-dom";
+import Grid from "@material-ui/core/Grid";
+import Button from "@material-ui/core/Button";
 
 import {
   ProblemCards,
@@ -35,9 +37,7 @@ const AdminProblem = props => {
           color="textSecondary"
           component="h3"
         >
-          {problem.problem_title.length > 25
-            ? problem.problem_title.substring(0, 25) + "..."
-            : problem.problem_title}
+          {problem.problem_title}
         </Typography>
         <Typography variant="body1" color="textSecondary" component="p">
           <Icon>{ImageSetter.staticIcon(problem.problem_category)}</Icon>
@@ -49,9 +49,7 @@ const AdminProblem = props => {
           component="p"
           style={{ height: 40 }}
         >
-          {problem.problem_description.length > 50
-            ? problem.problem_description.substring(0, 50) + "..."
-            : problem.problem_description}
+          {problem.problem_description}
         </Typography>
 
         {/* added new category to problem card */}
@@ -78,6 +76,13 @@ const AdminProblem = props => {
           href="/problems"
         >
           Decline!
+        </CallToActionBtn2>
+        <CallToActionBtn2
+          size="medium"
+          color="primary"
+          href={`/problem-details/${problem.id}`}
+        >
+          Learn More
         </CallToActionBtn2>
       </CardActions>
     </ProblemCards>
