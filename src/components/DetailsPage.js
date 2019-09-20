@@ -11,6 +11,7 @@ import {
   Button,
   Box,
   Card,
+  Icon,
   Paper,
   CardMedia,
   Typography,
@@ -18,9 +19,7 @@ import {
   Link
 } from "@material-ui/core";
 import { styled } from "@material-ui/styles";
-
-import Icon from "@material-ui/core/Icon";
-// const ImageSetter = require("../static/stylingComponents/ImageSetter");
+const ImageSetter = require("../static/stylingComponents/ImageSetter");
 
 const ContainerLeft = styled(Grid)({});
 
@@ -142,48 +141,52 @@ class DetailsPage extends React.Component {
             </Typography>
           </Breadcrumbs>
 
-          <Grid container style={{ background: "white" }} alignItems="stretch">
+          <Grid container spacing={2}>
             <ContainerLeft item xs={12} md={6} style={{}}>
               <Box>
-                {problem.problem_category}
                 <DetailProfieImage
                   component="img"
                   alt={`${problem.problem_category}: ${problem.problem_title}`}
                   height="auto"
-                  // src={ImageSetter.staticImage()}
+                  // src={ImageSetter.staticImage('technology')}
+                  src={ImageSetter.staticImage(`${problem.problem_category}`)}
                   title={`${problem.problem_category}: ${problem.problem_title}`}
                 />
                 {/* <Button style={{background:'#233d6e', width:'100%', color:'#fff'}}>Sign up</Button>*/}
               </Box>
             </ContainerLeft>
 
-            <ContainerRight item xs={12} md={6} style={{}}>
-              <DetailCard style={{}}>
-                <CardTitle
-                  style={{ margin: 0 }}
-                  variant="headline"
-                  color="textSecondary"
-                  component="h2"
-                >
-                  {problem.problem_title}
-                </CardTitle>
+            <ContainerRight item xs={12} md={6}>
+              <DetailCard style={{background:'#fff'}}>
+                <Grid container justify="space-between" style={{marginBottom:20}}>
+                  <CardTitle
+                    style={{ margin: 0 }}
+                    variant="headline"
+                    color="textSecondary"
+                    component="h2"
+                  >
+                    {problem.problem_title}
+                  </CardTitle>
 
-                <Box style={{}}>
-                  <Typography variant="body2" component="p" style={{}}>
-                    {problem.problem_category}
-                  </Typography>
-                </Box>
-                <Mypaper>
+                  <Box style={{}}>
+                    <Typography variant="body2" component="p" style={{}}>
+                      <Icon>
+                        {ImageSetter.staticIcon(`${problem.problem_category}`)}
+                      </Icon>
+                    </Typography>
+                  </Box>
+                </Grid>
+                <Box style={{margin:'20px 0px', textAlign:"center"}}>
                   <Typography variant="body2" component="" style={{}}>
                     Description:
                   </Typography>
                   <Typography>{problem.problem_description}</Typography>
-                </Mypaper>
+                </Box>
 
                 <Mypaper style={{}}>
                   <Grid container justify="space-between">
                     <Typography>
-                      Votes: {this.getVotes(problem.numOfRatings)}{" "}
+                      Votes: {this.getVotes(problem.numOfRatings)}
                     </Typography>
                     <Box>
                       <Icon onClick={() => this.vote(problem.numOfRatings)}>

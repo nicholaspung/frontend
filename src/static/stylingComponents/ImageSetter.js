@@ -19,16 +19,23 @@ const category = [
 
 
 export const staticImage = (image_category) =>{
-  console.log(image_category)
     const cat = category.find(
         item => item.name === image_category.toLowerCase()
       );
-      return cat.value;
+
+      if(cat){
+
+        return cat.value;
+      }
 }
 
 export const staticIcon = (image_category) =>{
     const cat = category.find(
       item => item.name === image_category.toLowerCase()
     );
-    return cat.icon;
+
+    if(cat){
+
+      return cat.icon;
+    }
 }
