@@ -242,8 +242,8 @@ DetailsPage.propTypes = {
   getProblems: PropTypes.func
 };
 
-const mapStateToProps = ({ problem, users }) => ({
-  problem: problem.problem,
+const mapStateToProps = ({ problems, users }) => ({
+  problem: problems.problem,
   users: users.users
 });
 export default connect(
