@@ -29,7 +29,8 @@ const styles = {
   gridPadding: { padding: "1.5rem" },
   greyBackground: { backgroundColor: "#f6f7fb" },
   minimumWidth: { minWidth: "8rem" },
-  minimumHeight: { minHeight: "40rem" }
+  minimumHeight: { minHeight: "40rem" },
+  divider: { borderBottom: "2px solid gray", padding: 0, margin: 0 }
 };
 
 class ProblemDashboard extends React.Component {
@@ -124,17 +125,12 @@ class ProblemDashboard extends React.Component {
             </Select>
           </FormControl>
 
-          <Grid
-            container
-            spacing={2}
-            style={{borderBottom:'2px solid gray', padding:0, margin:0}}
-          >
-            {this.props.featured.map(feature =>(
+          <Grid container spacing={2} className={this.props.classes.divider}>
+            {this.props.featured.map(feature => (
               <Grid item key={feature.id} xs={12} sm={6} md={3}>
                 <FeatureCard problem={feature} />
               </Grid>
             ))}
-
           </Grid>
 
           {this.allProblems().length > 0 ? (
@@ -170,7 +166,7 @@ class ProblemDashboard extends React.Component {
 ProblemDashboard.defaultProps = {
   getProblems: function hi() {},
   problems: [],
-  featured:[],
+  featured: [],
   classes: {}
 };
 
@@ -180,10 +176,10 @@ ProblemDashboard.propTypes = {
   classes: PropTypes.objectOf(PropTypes.string)
 };
 
-const mapStateToProps = ({ problems, featured }) => ({ 
+const mapStateToProps = ({ problems, featured }) => ({
   problems: problems.problems,
-  featured:problems.problems
- });
+  featured: problems.problems
+});
 
 export default withStyles(styles)(
   connect(
