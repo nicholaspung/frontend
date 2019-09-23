@@ -93,7 +93,7 @@ const AdminProblem = props => {
         <CallToActionBtn2
           size="medium"
           color="primary"
-          onClick={e => props.seeUsers(e, problem)}
+          // onClick={e => props.seeUsers(e, problem)}
           // href="/admin-problems"
         >
           See list of volunteers

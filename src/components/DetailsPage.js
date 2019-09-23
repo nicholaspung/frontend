@@ -183,6 +183,7 @@ class DetailsPage extends React.Component {
         </Container>
         {/* all content  / main container */}
 
+
         <Grid
           item
           lg={12}
