@@ -69,7 +69,7 @@ const AdminProblem = props => {
           size="medium"
           color="primary"
           onClick={e => props.updateProblem(e, problem)}
-          href="/problems"
+          // href="/problems"
         >
           Approve!
         </CallToActionBtn2>
@@ -77,7 +77,7 @@ const AdminProblem = props => {
           size="medium"
           color="primary"
           onClick={e => props.removeProblem(e, problem)}
-          href="/problems"
+          // href="/admin-problems"
         >
           Reject!
         </CallToActionBtn2>
@@ -87,6 +87,16 @@ const AdminProblem = props => {
           href={`/problem-details/${problem.id}`}
         >
           Learn More
+        </CallToActionBtn2>
+
+        {/* new stuff for users modal */}
+        <CallToActionBtn2
+          size="medium"
+          color="primary"
+          onClick={e => props.seeUsers(e, problem)}
+          // href="/admin-problems"
+        >
+          See list of volunteers
         </CallToActionBtn2>
       </CardActions>
     </ProblemCards>
