@@ -36,7 +36,8 @@ class AdminDashboard extends React.Component {
     problemCount: false,
     isApproved: false,
     isOpen: false,
-    isOpenR: false
+    isOpenR: false,
+    isOpenUsers: false
   };
 
   componentDidMount() {
@@ -67,16 +68,35 @@ class AdminDashboard extends React.Component {
   updateProblem = (e, problem) => {
     e.preventDefault();
 
-    this.props.UpdateAdminProblems(problem.id, !problem.isApproved);
-    this.setState({ isOpen: true });
+    if (problem.isApproved === false) {
+      this.props.UpdateAdminProblems(problem.id, !problem.isApproved);
+      this.setState({ isOpen: true });
+    }
   };
 
   removeProblem = (e, problem) => {
     e.preventDefault();
 
-    this.props.UpdateAdminProblems(problem.id, !problem.isApproved);
-    this.setState({ isOpenR: true });
+    if (problem.isApproved) {
+      this.props.UpdateAdminProblems(problem.id, !problem.isApproved);
+
+      this.setState({ isOpenR: true });
+    }
   };
+
+  // updateProblem = (e, problem) => {
+  //   e.preventDefault();
+
+  //   this.props.UpdateAdminProblems(problem.id, !problem.isApproved);
+  //   this.setState({ isOpen: true });
+  // };
+
+  // removeProblem = (e, problem) => {
+  //   e.preventDefault();
+
+  //   this.props.UpdateAdminProblems(problem.id, !problem.isApproved);
+  //   this.setState({ isOpenR: true });
+  // };
 
   render() {
     return (
@@ -134,6 +154,12 @@ class AdminDashboard extends React.Component {
         >
           This problem has been successfully rejected!
         </ModalTwo>
+        {/* <UsersModal
+          isOpenUsers={this.state.isOpenUsers}
+          onClose={e => this.setState({ isOpenUsers: false })}
+        >
+          This problem has been successfully rejected!
+        </UsersModal> */}
       </div>
     );
   }
