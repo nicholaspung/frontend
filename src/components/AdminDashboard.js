@@ -1,11 +1,15 @@
 import React from "react";
 import { connect } from "react-redux";
-import { getAdminProblems, UpdateAdminProblems } from "../actions";
+import { getAdminProblems, UpdateAdminProblems, getUsers } from "../actions";
 
 import AdminProblem from "./AdminProblem";
+
 // import ProblemCard from "./ProblemCard";
+import AdminDashboardComponent from "./AdminDashboardComponent";
+
 import Modal from "./Modal";
 import ModalTwo from "./ModalTwo";
+import UsersModal from "./UsersModal";
 
 import { styled } from "@material-ui/styles";
 
@@ -41,6 +45,7 @@ class AdminDashboard extends React.Component {
   };
 
   componentDidMount() {
+    this.props.getUsers();
     if (this.props.getAdminProblems()) {
       this.setState({ problemCount: true });
     }
@@ -154,21 +159,27 @@ class AdminDashboard extends React.Component {
         >
           This problem has been successfully rejected!
         </ModalTwo>
-        {/* <UsersModal
+        <UsersModal
           isOpenUsers={this.state.isOpenUsers}
           onClose={e => this.setState({ isOpenUsers: false })}
         >
-          This problem has been successfully rejected!
-        </UsersModal> */}
+          <AdminDashboardComponent users={this.props.users} />
+        </UsersModal>
       </div>
     );
   }
 }
 
-const mapStateToProps = ({ problems }) => ({ problems: problems.problems });
+const mapStateToProps = state => ({
+  problems: state.problems.problems,
+  users: state.users
+  // users: state.users.users
+});
+
+// const mapStateToProps = ({ problems }) => ({ problems: problems.problems });
 export default connect(
   mapStateToProps,
-  { getAdminProblems, UpdateAdminProblems }
+  { getAdminProblems, UpdateAdminProblems, getUsers }
 )(AdminDashboard);
 
 // import React from "react";

@@ -49,7 +49,6 @@ class SignUpForm extends React.Component {
   //email must be unique and all fields are required
 
   render() {
-    console.log(this.state.newUser.full_name);
     return (
       <div className="form-style-6">
         <form onSubmit={this.handleSubmit}>
