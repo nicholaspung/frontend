@@ -1,12 +1,24 @@
 import axios from "axios";
 
-export const FETCH_PROBLEM_START = "FETCH_PROBLEMS_START";
-export const FETCH_PROBLEM_SUCCESS = "FETCH_PROBLEMS_SUCCESS";
-export const FETCH_PROBLEM_FAIL = "FETCH_PROBLEMS_FAIL";
+export const FETCH_PROBLEMS_START = "FETCH_PROBLEMS_START";
+export const FETCH_PROBLEMS_SUCCESS = "FETCH_PROBLEMS_SUCCESS";
+export const FETCH_PROBLEMS_FAIL = "FETCH_PROBLEMS_FAIL";
 
 export const ADD_PROBLEM_START = "ADD_PROBLEM_START";
 export const ADD_PROBLEM_SUCCESS = "ADD_PROBLEM_SUCCESS";
 export const ADD_PROBLEM_FAIL = "ADD_PROBLEM_FAIL";
+
+export const FETCH_PROBLEM_START = "FETCH_PROBLEM_START";
+export const FETCH_PROBLEM_SUCCESS = "FETCH_PROBLEM_SUCCESS";
+export const FETCH_PROBLEM_FAIL = "FETCH_PROBLEM_FAIL";
+
+export const FETCH_POPULAR_START = "FETCH_POPULAR_START";
+export const FETCH_POPULAR_SUCCESS = "FETCH_POPULAR_SUCCESS";
+export const FETCH_POPULAR_FAIL = "FETCH_POPULAR_FAIL";
+
+export const UPDATE_PROBLEM_START = "UPDATE_PROBLEM_START";
+export const UPDATE_PROBLEM_SUCCESS = "UPDATE_PROBLEM_SUCCESS";
+export const UPDATE_PROBLEM_FAIL = "UPDATE_PROBLEM_FAIL";
 
 export const ADD_USER_START = "ADD_USER_START";
 export const ADD_USER_SUCCESS = "ADD_USER_SUCCESS";
@@ -25,14 +37,14 @@ export const UPDATE_ADMIN_PROBLEM_SUCCESS = "UPDATE_ADMIN_PROBLEM_SUCCESS";
 export const UPDATE_ADMIN_PROBLEM_FAIL = "UPDATE_ADMIN_PROBLEM_FAIL";
 
 export const getProblems = () => dispatch => {
-  dispatch({ type: FETCH_PROBLEM_START });
+  dispatch({ type: FETCH_PROBLEMS_START });
 
   return axios
     .get("https://labs15-lambdanext.herokuapp.com/problems")
     .then(res => {
-      dispatch({ type: FETCH_PROBLEM_SUCCESS, payload: res.data });
+      dispatch({ type: FETCH_PROBLEMS_SUCCESS, payload: res.data });
     })
-    .catch(err => dispatch({ type: FETCH_PROBLEM_FAIL, payload: err }));
+    .catch(err => dispatch({ type: FETCH_PROBLEMS_FAIL, payload: err }));
 };
 
 export const getProblemsByID = id => dispatch => {
@@ -58,6 +70,32 @@ export const addProblems = problem => dispatch => {
       dispatch({ type: ADD_PROBLEM_FAIL, payload: error });
     });
 };
+
+export const updateVote = (id, vote) => dispatch => {
+  dispatch({ type: UPDATE_PROBLEM_START });
+
+  return axios
+    .put(`https://labs15-lambdanext.herokuapp.com/problems/${id}/rate`, vote)
+    .then(res => {
+      dispatch({ type: UPDATE_PROBLEM_SUCCESS, payload: res.data });
+    })
+    .catch(error => {
+      dispatch({ type: UPDATE_PROBLEM_FAIL, payload: error });
+    });
+};
+
+export const getPopular = () => dispatch =>{
+  dispatch({type: FETCH_POPULAR_START})
+
+  return axios
+    .get('https://labs15-lambdanext.herokuapp.com/problems/popular')
+    .then(res =>{
+      dispatch({type: FETCH_POPULAR_SUCCESS, payload:res.data})
+    })
+    .catch(error =>{
+      dispatch({type: FETCH_POPULAR_FAIL})
+    })
+}
 
 export const getUsers = () => dispatch => {
   dispatch({ type: FETCH_USERS_START });
