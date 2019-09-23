@@ -132,7 +132,7 @@ class AdminDashboard extends React.Component {
           isOpenR={this.state.isOpenR}
           onClose={e => this.setState({ isOpenR: false })}
         >
-          This problem has been rejected!
+          This problem has been successfully rejected!
         </ModalTwo>
       </div>
     );

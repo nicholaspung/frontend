@@ -56,7 +56,11 @@ const AdminProblem = props => {
         <Typography variant="headline" color="textSecondary" component="h3">
           Rating: {problem.rating}
         </Typography>
-        {/* added new category to problem card */}
+
+        <Typography variant="headline" color="textSecondary" component="h3">
+          {/* show if the problem is approved or not */}
+          Status: {problem.isApproved ? "Approved" : "Rejected"}
+        </Typography>
       </CardContent>
       {/* </ProblemCardLink> */}
 
@@ -75,7 +79,7 @@ const AdminProblem = props => {
           onClick={e => props.removeProblem(e, problem)}
           href="/problems"
         >
-          Decline!
+          Reject!
         </CallToActionBtn2>
         <CallToActionBtn2
           size="medium"
