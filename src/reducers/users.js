@@ -11,8 +11,8 @@ const initialUserState = {
   users: [],
   error: false,
   newlyAddedUser: {},
-  addingNewUser: false,
-  fetchingUsers: false
+  fetchingUsers: false,
+  addingNewUser: false
 };
 
 const users = (state = initialUserState, action) => {
@@ -38,7 +38,6 @@ const users = (state = initialUserState, action) => {
         error: action.payload,
         fetchingUsers: false
       };
-
     case ADD_USER_START:
       return {
         ...state,
