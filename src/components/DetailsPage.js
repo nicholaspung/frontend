@@ -224,7 +224,7 @@ class DetailsPage extends React.Component {
 
 
 DetailsPage.defaultProps = {
-  problem: {},
+  problems: {},
   getUsers: function() {},
   getProblem: function() {}
 };
