@@ -3,11 +3,13 @@ import { connect } from "react-redux";
 import { addUser } from "../actions";
 import "../styles/SignUpForm.css";
 
+import {Grid} from "@material-ui/core";
+
 import { DetailsBackButton } from "../static/stylingComponents";
 
 class SignUpForm extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       newUser: {
         full_name: "",
@@ -66,9 +68,15 @@ class SignUpForm extends React.Component {
             onChange={this.handleInputChange("email")}
             value={this.state.newUser.email}
           />
-          <DetailsBackButton onClick={this.handleSubmit}>
-            Sign up!
-          </DetailsBackButton>
+          <Grid container justify="space-between">
+            <DetailsBackButton onClick={this.handleSubmit}>
+              Sign up!
+            </DetailsBackButton>
+
+            <DetailsBackButton onClick={this.props.opener}>
+              cancel 
+            </DetailsBackButton>
+          </Grid>
         </form>
       </div>
     );
