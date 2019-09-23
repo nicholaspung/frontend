@@ -95,7 +95,7 @@ class DetailsPage extends React.Component {
   
 
   render() {
-    const problem = this.props.problem;
+    const problem = this.props.problems;
 
     if (!problem) {
       return (
@@ -224,7 +224,7 @@ class DetailsPage extends React.Component {
 
 
 DetailsPage.defaultProps = {
-  problem: {},
+  problems: {},
   getUsers: function() {},
   getProblem: function() {}
 };
@@ -242,8 +242,8 @@ DetailsPage.propTypes = {
   getProblems: PropTypes.func
 };
 
-const mapStateToProps = ({ problem, users }) => ({
-  problem: problem.problem,
+const mapStateToProps = ({ problems, users }) => ({
+  problems: problems.problem,
   users: users.users
 });
 export default connect(
