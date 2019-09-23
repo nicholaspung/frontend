@@ -3,9 +3,10 @@ import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import Icon from "@material-ui/core/Icon";
-import { Link as RouterLink } from "react-router-dom";
-import Grid from "@material-ui/core/Grid";
-import Button from "@material-ui/core/Button";
+
+// import { Link as RouterLink } from "react-router-dom";
+// import Grid from "@material-ui/core/Grid";
+// import Button from "@material-ui/core/Button";
 
 import {
   ProblemCards,
@@ -59,7 +60,7 @@ const AdminProblem = props => {
 
         <Typography variant="headline" color="textSecondary" component="h3">
           {/* show if the problem is approved or not */}
-          Status: {problem.isApproved ? "Approved" : "Rejected"}
+          Status: {problem.isApproved ? "Approved" : "Not Approved"}
         </Typography>
       </CardContent>
       {/* </ProblemCardLink> */}
@@ -93,7 +94,7 @@ const AdminProblem = props => {
         <CallToActionBtn2
           size="medium"
           color="primary"
-          // onClick={e => props.seeUsers(e, problem)}
+          onClick={e => props.seeUsers(e)}
           // href="/admin-problems"
         >
           See list of volunteers
