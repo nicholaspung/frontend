@@ -14,14 +14,14 @@ const styles = {
   ctaButton: {
     backgroundColor: "#bb1333",
     borderRadius: "0px",
-    color: "#ffffff"
-  },
-  buttonLink: {
-    textDecoration: "none",
-    flexGrow: 1,
+    color: "#ffffff",
     "&:hover": {
       backgroundColor: "#750808"
     }
+  },
+  buttonLink: {
+    textDecoration: "none",
+    flexGrow: 1
   },
   noPadding: { padding: "0px" }
 };
@@ -61,9 +61,6 @@ const MarketingCard = props => {
           <Button
             size="small"
             fullWidth
-            disableRipple
-            disableFocusRipple
-            disableTouchRipple
             className={classes.ctaButton}
           >
             {displayButton}

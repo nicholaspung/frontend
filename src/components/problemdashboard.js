@@ -116,7 +116,7 @@ class ProblemDashboard extends React.Component {
                 id: "categories"
               }}
             >
-              {category.map((cat, index) => (
+              {category.map(cat => (
                 <MenuItem key={cat} value={cat}>
                   {cat.toUpperCase()}
                 </MenuItem>

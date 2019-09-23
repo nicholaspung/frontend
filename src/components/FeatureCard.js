@@ -19,7 +19,10 @@ const styles = {
     textAlign: "center",
     width: "100%",
     background: "#bb1333",
-    color: "#fff"
+    color: "#fff",
+    "&:hover": {
+      backgroundColor: "#750808"
+    }
   }
 };
 
