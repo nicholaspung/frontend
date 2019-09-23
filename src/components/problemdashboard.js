@@ -69,9 +69,8 @@ class ProblemDashboard extends React.Component {
     );
     if (selected === "all") {
       return this.props.problems;
-    } else {
-      return problems;
     }
+    return problems;
   };
 
   findByName = () => {
@@ -83,7 +82,6 @@ class ProblemDashboard extends React.Component {
   };
 
   allProblems = () => {
-
     if (this.state.selectedStatus === "start") {
       return this.props.problems;
     }
@@ -126,47 +124,22 @@ class ProblemDashboard extends React.Component {
             </Select>
           </FormControl>
 
-<<<<<<< HEAD
-          <Grid container spacing={2} className={this.props.classes.divider}>
-            {this.props.featured.map(feature => (
-              <Grid item key={feature.id} xs={12} sm={6} md={3}>
-                <FeatureCard problem={feature} />
-              </Grid>
-            ))}
-          </Grid>
-=======
-
           <Grid className={this.props.classes.gridPadding}>
-
             <Typography>Featured Cards</Typography>
->>>>>>> ce7f5e4f688dba9e28f5b1542bf3ed0de77b5fe4
 
-            <Grid
-              container
-              spacing={2}
-              style={{borderBottom:'2px solid gray', padding:0, margin:0}}
-            >
-              {this.props.featured.map(feature =>(
+            <Grid container spacing={2} className={this.props.classes.divider}>
+              {this.props.featured.map(feature => (
                 <Grid item key={feature.id} xs={12} sm={6} md={3}>
                   <FeatureCard problem={feature} />
                 </Grid>
               ))}
-
             </Grid>
           </Grid>
 
-
-
-
-
           <Grid className={this.props.classes.gridPadding}>
             <Typography>Problem Cards</Typography>
-
             {this.allProblems().length > 0 ? (
-              <Grid
-                container
-                spacing={2}
-              >
+              <Grid container spacing={2}>
                 {this.allProblems().map(problem => (
                   <Grid item key={problem.id} xs={12} sm={6} md={4}>
                     <ProblemCard problem={problem} />
@@ -202,6 +175,7 @@ ProblemDashboard.defaultProps = {
 ProblemDashboard.propTypes = {
   getProblems: PropTypes.func,
   problems: PropTypes.arrayOf(PropTypes.object),
+  featured: PropTypes.arrayOf(PropTypes.object),
   classes: PropTypes.objectOf(PropTypes.string)
 };
 
