@@ -243,7 +243,11 @@ DetailsPage.propTypes = {
 };
 
 const mapStateToProps = ({ problems, users }) => ({
+<<<<<<< HEAD
   problems: problems.problem,
+=======
+  problem: problems.problem,
+>>>>>>> f902176cdde77eb9ce081d9ce480073ae21d91c1
   users: users.users
 });
 export default connect(
