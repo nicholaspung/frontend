@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { getProblemsByID, getUsers, updateVote } from "../actions";
 import { CardTitle } from "../static/stylingComponents";
 import SignUpModal from './ModalSignUp';
+import { withStyles } from "@material-ui/styles";
 
 import {
   Grid,
@@ -41,6 +42,14 @@ const Mypaper = styled(Paper)({
   padding: 10,
   marginBottom: 20
 });
+
+const styles = {
+  wholeContainer:{background:'#f6f7fb'},
+  gridCenter: { width: "80%", margin:'0px auto', paddingTop:'35px', height:'615px' },
+  lostPaper: { padding: "1rem", marginTop:'2rem', background:'#fff' },
+  minimumHeight: { minHeight: "40rem" },
+  crumbs:{marginBottom:'35px'}
+};
 
 
 
@@ -97,35 +106,48 @@ class DetailsPage extends React.Component {
   render() {
     const problem = this.props.problem;
 
-    if (!problem) {
+    if (!problem || problem.isApproved === false) {
       return (
-        <div>
-          <Breadcrumbs aria-label="breadcrumb" style={{ margin: "35px 0px" }}>
-            <Link color="inherit" href="/" style={{ fontWeight: "bold" }}>
-              Home
-            </Link>
-            <Link
-              color="inherit"
-              href="/problems"
-              style={{ fontWeight: "bold" }}
-            >
-              Problems
-            </Link>
-          </Breadcrumbs>
-          <h1>You must be lost </h1>
-        </div>
+        <Grid  className={this.props.classes.wholeContainer}>
+          <Grid className={this.props.classes.gridCenter}>
+
+            <Breadcrumbs aria-label="breadcrumb" className={this.props.classes.crumbs}>
+              <Link color="inherit" href="/" style={{ fontWeight: "bold" }}>
+                Home
+              </Link>
+              <Link
+                color="inherit"
+                href="/problems"
+                style={{ fontWeight: "bold" }}
+              >
+                Problems
+              </Link>
+            </Breadcrumbs>
+            <Paper className={this.props.classes.lostPaper}>
+
+              <Typography variant='h2' component='h3'>You must be lost return to   
+                <small>
+                  
+                  <Link color="inherit" href="/problems">
+                      problems
+                  </Link> 
+                </small>
+              </Typography>
+            </Paper>
+          </Grid>
+        </Grid>
       );
     }
     return (
       <div>
-      <Grid container style={{ background: "#f6f7fb" }}>
+      <Grid container className={this.props.classes.wholeContainer}>
         <SignUpModal modaler={this.openModal}
           isOpen={this.state.isOpen}
           onClose={e => this.setState({ isOpen: false })}
         >
         </SignUpModal>
-        <Container style={{ width: "80%", margin: "0 auto", height:'615px' }}>
-          <Breadcrumbs aria-label="breadcrumb" style={{ margin: "35px 0px" }}>
+        <Container className={this.props.classes.gridCenter}>
+          <Breadcrumbs aria-label="breadcrumb"  className={this.props.classes.crumbs}>
             <Link color="inherit" href="/" style={{ fontWeight: "bold" }}>
               Home
             </Link>
@@ -246,7 +268,7 @@ const mapStateToProps = ({ problems, users }) => ({
   problem: problems.problem,
   users: users.users
 });
-export default connect(
+export default withStyles(styles)( connect(
   mapStateToProps,
   { getProblemsByID, getUsers, updateVote }
-)(DetailsPage);
+)(DetailsPage));
