@@ -13,6 +13,7 @@ import Typography from "@material-ui/core/Typography";
 
 import { getProblems } from "../actions";
 import ProblemCard from "./ProblemCard";
+import FeatureCard from "./FeatureCard";
 
 const category = [
   "all",
@@ -123,6 +124,19 @@ class ProblemDashboard extends React.Component {
             </Select>
           </FormControl>
 
+          <Grid
+            container
+            spacing={2}
+            style={{borderBottom:'2px solid gray', padding:0, margin:0}}
+          >
+            {this.props.featured.map(feature =>(
+              <Grid item key={feature.id} xs={12} sm={6} md={3}>
+                <FeatureCard problem={feature} />
+              </Grid>
+            ))}
+
+          </Grid>
+
           {this.allProblems().length > 0 ? (
             <Grid
               container
@@ -156,6 +170,7 @@ class ProblemDashboard extends React.Component {
 ProblemDashboard.defaultProps = {
   getProblems: function hi() {},
   problems: [],
+  featured:[],
   classes: {}
 };
 
@@ -165,7 +180,10 @@ ProblemDashboard.propTypes = {
   classes: PropTypes.objectOf(PropTypes.string)
 };
 
-const mapStateToProps = ({ problems }) => ({ problems: problems.problems });
+const mapStateToProps = ({ problems, featured }) => ({ 
+  problems: problems.problems,
+  featured:problems.problems
+ });
 
 export default withStyles(styles)(
   connect(
