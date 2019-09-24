@@ -11,7 +11,7 @@ import TextField from "@material-ui/core/TextField";
 import MenuItem from "@material-ui/core/MenuItem";
 import Typography from "@material-ui/core/Typography";
 
-import { getProblems } from "../actions";
+import { getProblems, getPopular } from "../actions";
 import ProblemCard from "./ProblemCard";
 import FeatureCard from "./FeatureCard";
 
@@ -44,6 +44,7 @@ class ProblemDashboard extends React.Component {
 
   componentDidMount() {
     this.props.getProblems();
+    this.props.getPopular();
   }
 
   handleChange = event => {
@@ -96,6 +97,7 @@ class ProblemDashboard extends React.Component {
   };
 
   render() {
+    console.log(this.props.featured)
     return (
       <Grid container className={this.props.classes.greyBackground}>
         <Container className={this.props.classes.minimumHeight}>
@@ -202,6 +204,6 @@ const mapStateToProps = ({ problems, featured }) => ({
 export default withStyles(styles)(
   connect(
     mapStateToProps,
-    { getProblems }
+    { getProblems, getPopular }
   )(ProblemDashboard)
 );

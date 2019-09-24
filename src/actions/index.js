@@ -94,6 +94,7 @@ export const getPopular = () => dispatch =>{
   return axios
     .get('https://labs15-lambdanext.herokuapp.com/problems/popular')
     .then(res =>{
+      console.log(res.data)
       dispatch({type: FETCH_POPULAR_SUCCESS, payload:res.data})
     })
     .catch(error =>{
