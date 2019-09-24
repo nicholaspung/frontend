@@ -24,11 +24,11 @@ const styles = {
   gridCenter: {
     width: "80%",
     margin: "0px auto",
-    paddingTop: "35px",
-    height: "615px"
+    paddingTop: "2.5rem",
+    paddingBottom: "2.5rem",
+    minHeight: "615px"
   },
   lostPaper: { padding: "1rem", marginTop: "2rem", background: "#fff" },
-  minimumHeight: { minHeight: "40rem" },
   crumbs: { marginBottom: "35px" },
   detailProfileImage: {
     width: "100%",
