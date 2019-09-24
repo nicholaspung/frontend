@@ -1,9 +1,8 @@
 import React from "react";
+import Grid from "@material-ui/core/Grid";
 import { connect } from "react-redux";
 import { addUser } from "../actions";
 import "../styles/SignUpForm.css";
-
-import {Grid} from "@material-ui/core";
 
 import { DetailsBackButton } from "../static/stylingComponents";
 
@@ -74,7 +73,7 @@ class SignUpForm extends React.Component {
             </DetailsBackButton>
 
             <DetailsBackButton onClick={this.props.opener}>
-              cancel 
+              cancel
             </DetailsBackButton>
           </Grid>
         </form>
