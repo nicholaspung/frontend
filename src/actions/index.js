@@ -142,10 +142,11 @@ export const setHeaderNavOpposite = checked => ({
 
 export const getAdminProblems = () => dispatch => {
   dispatch({ type: FETCH_ADMIN_PROBLEM_START });
-
+  
   return axios
-    .get("https://labs15-lambdanext.herokuapp.com/admin/all")
-    .then(res => {
+  .get("https://labs15-lambdanext.herokuapp.com/admin/all")
+  .then(res => {
+    console.log(res.data)
       dispatch({ type: FETCH_ADMIN_PROBLEM_SUCCESS, payload: res.data });
     })
     .catch(err => dispatch({ type: FETCH_ADMIN_PROBLEM_FAIL, payload: err }));
