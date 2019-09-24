@@ -1,23 +1,25 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { getProblems, getUsers } from "../actions";
+import { getProblemsByID, getUsers, updateVote } from "../actions";
 import { CardTitle } from "../static/stylingComponents";
-import SignUpForm from "./SignUpForm";
+import SignUpModal from './ModalSignUp';
+import { withStyles } from "@material-ui/styles";
 
 import {
   Grid,
   Container,
+  Button,
   Box,
   Card,
+  Icon,
+  Paper,
   CardMedia,
   Typography,
   Breadcrumbs,
   Link
 } from "@material-ui/core";
 import { styled } from "@material-ui/styles";
-
-import Icon from "@material-ui/core/Icon";
 const ImageSetter = require("../static/stylingComponents/ImageSetter");
 
 const ContainerLeft = styled(Grid)({});
@@ -36,16 +38,36 @@ const DetailCard = styled(Card)({
   padding: 20
 });
 
-const Boxes = styled(Box)({
-  boxShadow: "2px 2px silver",
+const Mypaper = styled(Paper)({
   padding: 10,
   marginBottom: 20
 });
 
+const styles = {
+  wholeContainer:{background:'#f6f7fb'},
+  gridCenter: { width: "80%", margin:'0px auto', paddingTop:'35px', height:'615px' },
+  lostPaper: { padding: "1rem", marginTop:'2rem', background:'#fff' },
+  minimumHeight: { minHeight: "40rem" },
+  crumbs:{marginBottom:'35px'}
+};
+
+
+
+
 class DetailsPage extends React.Component {
+
+  state = {
+    isOpen: false
+  };
+
   componentDidMount() {
-    this.props.getProblems();
+    const { id } = this.props.match.params;
+    this.props.getProblemsByID(id);
     this.props.getUsers();
+  }
+
+  openModal = () => {
+    this.setState({ isOpen: !this.state.isOpen});
   }
 
   getProgress = () => {
@@ -56,56 +78,76 @@ class DetailsPage extends React.Component {
 
   getSignee = () => {
     const signed = this.props.users.filter(
-      signee => `${signee.problem_id}` === this.props.match.params.id
+      signee => `${signee.problem_id}` === `${this.props.match.params.id}`
     );
+    
     return signed.length;
   };
 
-  getVotes = (voteData) =>{
-    let votes = 0
-    if(voteData){
-      votes = voteData
+  getVotes = voteData => {
+    let votes = 0;
+    if (voteData) {
+      votes = voteData;
     }
-    return votes
-  }
+    return votes;
+  };
 
-  vote = (voteData) =>{
-    let vote = 0
-    //const vote = this.getVotes(voteData)
-    let newVote = vote + 1 ;
+  vote = voteData => {
+    const { id } = this.props.match.params;
+    let vote = this.getVotes(voteData);
 
+    let newVote = vote + 1;
     vote = newVote;
+    this.props.updateVote(id, vote);
+  };
 
-    console.log(vote)
-  }
+  
 
   render() {
-    const { id } = this.props.match.params;
-    const problem = this.props.problems.find(prob => `${prob.id}` === id);
+    const problem = this.props.problem;
 
-    if (!problem) {
+    if (!problem || problem.isApproved === false) {
       return (
-        <div>
-          <Breadcrumbs aria-label="breadcrumb" style={{ margin: "35px 0px" }}>
-            <Link color="inherit" href="/" style={{ fontWeight: "bold" }}>
-              Home
-            </Link>
-            <Link
-              color="inherit"
-              href="/problems"
-              style={{ fontWeight: "bold" }}
-            >
-              Problems
-            </Link>
-          </Breadcrumbs>
-          <h1>You must be lost </h1>
-        </div>
+        <Grid  className={this.props.classes.wholeContainer}>
+          <Grid className={this.props.classes.gridCenter}>
+
+            <Breadcrumbs aria-label="breadcrumb" className={this.props.classes.crumbs}>
+              <Link color="inherit" href="/" style={{ fontWeight: "bold" }}>
+                Home
+              </Link>
+              <Link
+                color="inherit"
+                href="/problems"
+                style={{ fontWeight: "bold" }}
+              >
+                Problems
+              </Link>
+            </Breadcrumbs>
+            <Paper className={this.props.classes.lostPaper}>
+
+              <Typography variant='h2' component='h3'>You must be lost return to   
+                <small>
+                  
+                  <Link color="inherit" href="/problems">
+                      problems
+                  </Link> 
+                </small>
+              </Typography>
+            </Paper>
+          </Grid>
+        </Grid>
       );
     }
     return (
-      <Grid style={{ background: "#f6f7fb" }}>
-        <Container style={{ width: "80%", margin: "0 auto" }}>
-          <Breadcrumbs aria-label="breadcrumb" style={{ margin: "35px 0px" }}>
+      <div>
+      <Grid container className={this.props.classes.wholeContainer}>
+        <SignUpModal modaler={this.openModal}
+          isOpen={this.state.isOpen}
+          onClose={e => this.setState({ isOpen: false })}
+        >
+        </SignUpModal>
+        <Container className={this.props.classes.gridCenter}>
+          <Breadcrumbs aria-label="breadcrumb"  className={this.props.classes.crumbs}>
             <Link color="inherit" href="/" style={{ fontWeight: "bold" }}>
               Home
             </Link>
@@ -121,87 +163,92 @@ class DetailsPage extends React.Component {
             </Typography>
           </Breadcrumbs>
 
-          <Grid container style={{ background: "white" }} alignItems="stretch">
+          <Grid container spacing={2}>
             <ContainerLeft item xs={12} md={6} style={{}}>
               <Box>
                 <DetailProfieImage
                   component="img"
                   alt={`${problem.problem_category}: ${problem.problem_title}`}
                   height="auto"
-                  src={ImageSetter.staticImage(problem.problem_category)}
+                  // src={ImageSetter.staticImage('technology')}
+                  src={ImageSetter.staticImage(`${problem.problem_category}`)}
                   title={`${problem.problem_category}: ${problem.problem_title}`}
                 />
-                {/* <Button style={{background:'#233d6e', width:'100%', color:'#fff'}}>Sign up</Button> */}
+                {/* <Button style={{background:'#233d6e', width:'100%', color:'#fff'}}>Sign up</Button>*/}
               </Box>
             </ContainerLeft>
 
-            <ContainerRight item xs={12} md={6} style={{}}>
-              <DetailCard style={{}}>
-                <CardTitle
-                  style={{ margin: 0 }}
-                  variant="headline"
-                  color="textSecondary"
-                  component="h2"
-                >
-                  {problem.problem_title}
-                </CardTitle>
+            <ContainerRight item xs={12} md={6}>
+              <DetailCard style={{background:'#fff'}}>
+                <Grid container justify="space-between" style={{marginBottom:20}}>
+                  <CardTitle
+                    style={{ margin: 0 }}
+                    variant="headline"
+                    color="textSecondary"
+                    component="h2"
+                  >
+                    {problem.problem_title}
+                  </CardTitle>
 
-                <Box style={{}}>
-                  <Typography variant="body2" component="p" style={{}}>
-                    {problem.problem_category}
-                  </Typography>
-                </Box>
-                <Boxes>
-                  <Typography variant="body2" component="subtitle1" style={{}}>
+                  <Box style={{}}>
+                    <Typography variant="body2" component="p" style={{}}>
+                      <Icon>
+                        {ImageSetter.staticIcon(`${problem.problem_category}`)}
+                      </Icon>
+                    </Typography>
+                  </Box>
+                </Grid>
+                <Box style={{margin:'20px 0px', textAlign:"center"}}>
+                  <Typography variant="body2" component="" style={{}}>
                     Description:
                   </Typography>
                   <Typography>{problem.problem_description}</Typography>
-                </Boxes>
+                </Box>
 
-                <Boxes style={{}}>
+                <Mypaper style={{}}>
                   <Grid container justify="space-between">
-                    <Typography>Votes:{this.getVotes(problem.numOfRatings)} </Typography>
+                    <Typography>
+                      Votes: {this.getVotes(problem.numOfRatings)}
+                    </Typography>
                     <Box>
-                      <Icon
-                        onClick={() => this.vote(problem.numOfRatings)}
-                      >thumb_up</Icon>
+                      <Icon onClick={() => this.vote(problem.numOfRatings)}>
+                        thumb_up
+                      </Icon>
                     </Box>
                   </Grid>
-                </Boxes>
+                </Mypaper>
 
-                <Boxes style={{}}>
+                <Mypaper style={{}}>
                   <Grid container justify="space-between">
-                    <Typography>Signess:</Typography>
+                    <Typography onClick={this.getSignee}>
+                      Signess: {this.getSignee()}
+                    </Typography>
                     <Box>
-                      <button>Sign Up</button>
+                      {problem.isAccepting ? (
+                        <Button onClick={this.openModal}>Sign Up</Button>
+                      ) : (
+                        <Button disabled>Sign Up</Button>
+                      )}
                     </Box>
                   </Grid>
-                </Boxes>
+                </Mypaper>
               </DetailCard>
             </ContainerRight>
           </Grid>
         </Container>
         {/* all content  / main container */}
-
-        <Grid
-          item
-          lg={12}
-          xs={12}
-          sm={12}
-          xl={12}
-          style={{ background: "#233d6e", padding: 50 }}
-        >
-          <SignUpForm problem_idYo={id} />
-        </Grid>
       </Grid>
+     </div>
     );
   }
 }
 
+
+
 DetailsPage.defaultProps = {
-  problems: [],
+  problems: {},
   getUsers: function() {},
-  getProblems: function() {}
+  getProblem: function() {}
 };
 
 DetailsPage.propTypes = {
@@ -218,10 +265,10 @@ DetailsPage.propTypes = {
 };
 
 const mapStateToProps = ({ problems, users }) => ({
-  problems: problems.problems,
+  problem: problems.problem,
   users: users.users
 });
-export default connect(
+export default withStyles(styles)( connect(
   mapStateToProps,
-  { getProblems, getUsers }
-)(DetailsPage);
+  { getProblemsByID, getUsers, updateVote }
+)(DetailsPage));
