@@ -10,7 +10,7 @@ import Grid from "@material-ui/core/Grid";
 import { withStyles } from "@material-ui/styles";
 
 const styles = {
-  marketing: { margin: "1.5rem", textAlign: "center" },
+  marketing: { marginTop: "1.5rem", marginBottom: "1.5rem", textAlign: "center" },
   ctaButton: {
     backgroundColor: "#bb1333",
     borderRadius: "0px",
