@@ -82,7 +82,6 @@ class ProblemDashboard extends React.Component {
   };
 
   allProblems = () => {
-
     if (this.state.selectedStatus === "start") {
       return this.props.problems;
     }
@@ -125,37 +124,27 @@ class ProblemDashboard extends React.Component {
             </Select>
           </FormControl>
 
-
           <Grid className={this.props.classes.gridPadding}>
-
             <Typography>Featured Cards</Typography>
 
             <Grid
               container
               spacing={2}
-              style={{borderBottom:'2px solid gray', padding:0, margin:0}}
+              style={{ borderBottom: "2px solid gray", padding: 0, margin: 0 }}
             >
-              {this.props.featured.map(feature =>(
+              {this.props.featured.map(feature => (
                 <Grid item key={feature.id} xs={12} sm={6} md={3}>
                   <FeatureCard problem={feature} />
                 </Grid>
               ))}
-
             </Grid>
           </Grid>
-
-
-
-
 
           <Grid className={this.props.classes.gridPadding}>
             <Typography>Problem Cards</Typography>
 
             {this.allProblems().length > 0 ? (
-              <Grid
-                container
-                spacing={2}
-              >
+              <Grid container spacing={2}>
                 {this.allProblems().map(problem => (
                   <Grid item key={problem.id} xs={12} sm={6} md={4}>
                     <ProblemCard problem={problem} />
@@ -184,7 +173,7 @@ class ProblemDashboard extends React.Component {
 ProblemDashboard.defaultProps = {
   getProblems: function hi() {},
   problems: [],
-  featured:[],
+  featured: [],
   classes: {}
 };
 
@@ -194,10 +183,10 @@ ProblemDashboard.propTypes = {
   classes: PropTypes.objectOf(PropTypes.string)
 };
 
-const mapStateToProps = ({ problems, featured }) => ({ 
+const mapStateToProps = ({ problems, featured }) => ({
   problems: problems.problems,
-  featured:problems.problems
- });
+  featured: problems.problems
+});
 
 export default withStyles(styles)(
   connect(
