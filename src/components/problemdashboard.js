@@ -96,7 +96,7 @@ class ProblemDashboard extends React.Component {
   };
 
   render() {
-    console.log(this.props.featured)
+    console.log(this.props.featured);
     return (
       <Grid container className={this.props.classes.greyBackground}>
         <Container className={this.props.classes.minimumHeight}>
@@ -169,6 +169,7 @@ class ProblemDashboard extends React.Component {
 
 ProblemDashboard.defaultProps = {
   getProblems: function hi() {},
+  getPopular: function hi() {},
   problems: [],
   featured: [],
   classes: {}
@@ -176,14 +177,15 @@ ProblemDashboard.defaultProps = {
 
 ProblemDashboard.propTypes = {
   getProblems: PropTypes.func,
+  getPopular: PropTypes.func,
   problems: PropTypes.arrayOf(PropTypes.object),
   featured: PropTypes.arrayOf(PropTypes.object),
   classes: PropTypes.objectOf(PropTypes.string)
 };
 
-const mapStateToProps = ({ problems, featured }) => ({
+const mapStateToProps = ({ problems }) => ({
   problems: problems.problems,
-  featured: problems.problems
+  featured: problems.popular
 });
 
 export default withStyles(styles)(

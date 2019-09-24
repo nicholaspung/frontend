@@ -124,7 +124,10 @@ class ProblemSubmission extends React.Component {
 
   render() {
     return (
-      <form onSubmit={event => this.onButtonSubmit(event)} autoComplete="off">
+      <form
+        onSubmit={event => this.onButtonSubmit(event)}
+        autoComplete="off"
+      >
         <Container>
           <Typography
             variant="subtitle2"

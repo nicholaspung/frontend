@@ -6,7 +6,7 @@ import { withStyles } from "@material-ui/styles";
 
 const styles = {
   secondaryBackground: { backgroundColor: "#f6f7fb" },
-  bolding: { fontWeight: "bold" },
+  bolding: { fontWeight: "bold", paddingTop: "0.5rem" },
   paddedBottomSmall: { paddingBottom: "0.5rem" }
 };
 
