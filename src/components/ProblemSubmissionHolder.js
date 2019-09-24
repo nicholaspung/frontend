@@ -15,7 +15,8 @@ const styles = {
   },
   questionMark: {
     backgroundImage: `url(${QuestionMark})`,
-    backgroundSize: "5rem 9.5rem",
+    backgroundSize: "5rem 6rem",
+    backgroundRepeat: 'repeat-x',
     minHeight: "9.5rem"
   }
 };
