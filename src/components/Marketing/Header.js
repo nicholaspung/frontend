@@ -11,7 +11,7 @@ import Hidden from "@material-ui/core/Hidden";
 import Collapse from "@material-ui/core/Collapse";
 import Paper from "@material-ui/core/Paper";
 import MenuIcon from "@material-ui/icons/Menu";
-import LambdaLogo from "../../static/images/marketing/lambda-logo.png";
+import LambdaLogo from "../../static/images/marketing/LambdaNeXt-14.png";
 import {
   setHeaderNavFalse,
   setHeaderNavOpposite
