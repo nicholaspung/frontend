@@ -26,7 +26,7 @@ export default [
   {
     name: "Agustina Sosa",
     github: "https://www.github.com/sosfarasa",
-    githubname: 'sosfarasa',
+    githubname: 'sosafarasa',
     position: "Back End Developer"
   },
   {

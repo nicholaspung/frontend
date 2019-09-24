@@ -112,6 +112,7 @@ const About = props => {
                 <TeamPictures
                   name={person.name}
                   github={person.github}
+                  githubname={person.githubname}
                   position={person.position}
                   key={person.name}
                 />
