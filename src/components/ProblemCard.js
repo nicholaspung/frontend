@@ -17,7 +17,10 @@ const styles = {
   callToActionBtn2: {
     backgroundColor: "#bb1333",
     borderRadius: "0px",
-    color: "#ffffff"
+    color: "#ffffff",
+    "&:hover": {
+      backgroundColor: "#750808"
+    }
   },
   bolded: { fontWeight: "bold" },
   padded: { paddingBottom: "1rem", paddingRight: "1rem", paddingLeft: "1rem" }

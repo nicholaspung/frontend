@@ -18,7 +18,7 @@ const Footer = props => {
           <Grid container justify="center">
             <Grid item>
               <p className={classes.mainColor}>
-                Copyright © 2019 Lambda School - All rights reserved
+                Copyright © 2019 Lambda NeXt - All rights reserved
               </p>
             </Grid>
           </Grid>
