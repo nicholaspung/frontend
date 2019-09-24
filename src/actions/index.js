@@ -44,7 +44,7 @@ export const getProblems = () => dispatch => {
   dispatch({ type: FETCH_PROBLEMS_START });
 
   return axios
-    .get("http://127.0.0.1:5000/problems")
+    .get("https://labs15-lambdanext.herokuapp.com/problems")
     .then(res => {
       dispatch({ type: FETCH_PROBLEMS_SUCCESS, payload: res.data });
     })
@@ -55,7 +55,7 @@ export const getProblemsByID = id => dispatch => {
   dispatch({ type: FETCH_PROBLEM_START });
 
   return axios
-    .get(`http://127.0.0.1:5000/problems/${id}`)
+    .get(`https://labs15-lambdanext.herokuapp.com/problems/${id}`)
     .then(res => {
       dispatch({ type: FETCH_PROBLEM_SUCCESS, payload: res.data });
     })
@@ -66,7 +66,7 @@ export const addProblems = problem => dispatch => {
   dispatch({ type: ADD_PROBLEM_START });
 
   return axios
-    .post("http://127.0.0.1:5000/problems", problem)
+    .post("https://labs15-lambdanext.herokuapp.com/problems", problem)
     .then(res => {
       dispatch({ type: ADD_PROBLEM_SUCCESS, payload: res.data });
     })
@@ -79,7 +79,7 @@ export const updateVote = (id, vote) => dispatch => {
   dispatch({ type: UPDATE_PROBLEM_START });
 
   return axios
-    .put(`http://127.0.0.1:5000/problems/${id}/rate`, vote)
+    .put(`https://labs15-lambdanext.herokuapp.com/problems/${id}/rate`, vote)
     .then(res => {
       dispatch({ type: UPDATE_PROBLEM_SUCCESS, payload: res.data });
     })
@@ -92,7 +92,7 @@ export const getPopular = () => dispatch => {
   dispatch({ type: FETCH_POPULAR_START });
 
   return axios
-    .get("http://127.0.0.1:5000/problems/popular")
+    .get("https://labs15-lambdanext.herokuapp.com/problems/popular")
     .then(res => {
       dispatch({ type: FETCH_POPULAR_SUCCESS, payload: res.data });
     })
@@ -104,7 +104,7 @@ export const getPopular = () => dispatch => {
 export const getUsers = () => dispatch => {
   dispatch({ type: FETCH_USERS_START });
   return axios
-    .get("http://127.0.0.1:5000/users")
+    .get("https://labs15-lambdanext.herokuapp.com/users")
     .then(res => {
       dispatch({ type: FETCH_USERS_SUCCESS, payload: res.data });
     })
@@ -116,7 +116,7 @@ export const getUsers = () => dispatch => {
 export const addUser = user => dispatch => {
   dispatch({ type: ADD_USER_START });
   return axios
-    .post("http://127.0.0.1:5000/users/signup", user)
+    .post("https://labs15-lambdanext.herokuapp.com/users/signup", user)
     .then(res => {
       dispatch({ type: ADD_USER_SUCCESS, payload: res.data });
     })
@@ -143,10 +143,12 @@ export const setHeaderNavOpposite = checked => ({
 export const getAdminProblems = () => dispatch => {
   dispatch({ type: FETCH_ADMIN_PROBLEM_START });
 
-  axios.get("http://127.0.0.1:5000/users").then(res => console.log("hello"));
+  // axios
+  //   .get("https://labs15-lambdanext.herokuapp.com/users")
+  //   .then(res => console.log("hello"));
 
   return axios
-    .get("http://127.0.0.1:5000/admin/all")
+    .get("https://labs15-lambdanext.herokuapp.com/admin/all")
     .then(res => {
       console.log(res.data);
       dispatch({ type: FETCH_ADMIN_PROBLEM_SUCCESS, payload: res.data });
@@ -158,7 +160,7 @@ export const UpdateAdminProblems = (id, isApproved) => dispatch => {
   dispatch({ type: UPDATE_ADMIN_PROBLEM_START });
 
   return axios
-    .put(`http://127.0.0.1:5000/admin/all/${id}`, {
+    .put(`https://labs15-lambdanext.herokuapp.com/admin/all/${id}`, {
       isApproved
     })
     .then(res => {

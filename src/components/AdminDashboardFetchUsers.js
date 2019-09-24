@@ -21,7 +21,7 @@ class AdminDashboardFetchUsers extends React.Component {
 
   render() {
     const users = this.props.users;
-    console.log(users);
+
     return (
       <div>
         <AdminProblem seeUsers={this.seeUsers} />
