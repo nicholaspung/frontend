@@ -47,7 +47,7 @@ const HomePage = ({ classes }) => {
         </Grid>
       </Grid>
       <Grid container justify="center" className={classes.description}>
-        <Grid item xs={10} md={8} lg={6}>
+        <Grid item xs={10} md={8} lg={5}>
           <Typography component="h1" variant="h3" gutterBottom>
             Discover Projects For Lambda to Build
           </Typography>
