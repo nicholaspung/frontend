@@ -12,12 +12,15 @@ import Collapse from "@material-ui/core/Collapse";
 import Paper from "@material-ui/core/Paper";
 import MenuIcon from "@material-ui/icons/Menu";
 import LambdaLogo from "../../static/images/marketing/lambda-logo.png";
-import { setHeaderNavFalse, setHeaderNavOpposite } from "../../actions/nav.action";
+import {
+  setHeaderNavFalse,
+  setHeaderNavOpposite
+} from "../../actions/nav.action";
 
 const styles = {
   navMenu: { cursor: "pointer" },
   navMenuLink: { color: "white", textDecoration: "none", width: "100%" },
-  headerLink: { color: "#55596d", textDecoration: "none" },
+  headerLink: { color: "#55596d", textDecoration: "none", borderRadius: "0px" },
   logo: {
     paddingTop: "5px",
     width: "150",
@@ -61,21 +64,15 @@ const Header = props => {
             </Link>
             <Hidden xsDown>
               <Grid container justify="flex-end">
-                <Button>
-                  <Link to="/submitaproblem" className={classes.headerLink}>
-                    Submit A Problem
-                  </Link>
-                </Button>
-                <Button>
-                  <Link to="/problems" className={classes.headerLink}>
-                    See Problems
-                  </Link>
-                </Button>
-                <Button>
-                  <Link to="/about" className={classes.headerLink}>
-                    About Us
-                  </Link>
-                </Button>
+                <Link to="/submitaproblem" className={classes.headerLink}>
+                  <Button>Submit A Problem</Button>
+                </Link>
+                <Link to="/problems" className={classes.headerLink}>
+                  <Button>See Problems</Button>
+                </Link>
+                <Link to="/about" className={classes.headerLink}>
+                  <Button>About Us</Button>
+                </Link>
               </Grid>
             </Hidden>
             <Hidden smUp>

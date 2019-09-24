@@ -24,8 +24,8 @@ import {
 
 const initialState = {
   problems: [],
-  problem:{},
-  popular:[],
+  problem: {},
+  popular: [],
   newlyAddedProblem: {},
   error: false,
   fetchingProblems: false,
