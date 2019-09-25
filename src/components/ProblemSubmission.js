@@ -175,7 +175,7 @@ class ProblemSubmission extends React.Component {
                 <em>None</em>
               </MenuItem>
               {categories.map(category => (
-                <MenuItem value="category" key={category}>
+                <MenuItem value={category} key={category}>
                   {category}
                 </MenuItem>
               ))}
