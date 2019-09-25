@@ -23,14 +23,15 @@ const styles = {
     "&:hover": {
       backgroundColor: "#750808"
     }
-  }
+  },
+  noTextDecoration: {textDecoration: 'none'}
 };
 
 const FeatureCard = props => {
   const { problem, classes } = props;
 
   return (
-    <Link to={`/problem-details/${problem.id}`}>
+    <Link to={`/problem-details/${problem.id}`} className={classes.noTextDecoration}>
       <Card className={classes.problemCards}>
         <CardMedia
           component="img"
