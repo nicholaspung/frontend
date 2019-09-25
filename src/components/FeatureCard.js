@@ -27,7 +27,7 @@ const FeatureCard = props => {
   const { problem, classes } = props;
 
   return (
-      <Link to={`/problem-details/${problem.id}`}>
+      <Link to={`/problem-details/${problem.id}`} style={{textDecoration:'none'}}>
         <Card className={classes.problemCards}>
         <CardMedia
             className={classes.backgroundWhite}
@@ -43,22 +43,26 @@ const FeatureCard = props => {
         >
             <Grid container item>
             <CardContent style={{padding:5, textAlign:"center", width:'100%',background:'#bb1333', color:'#fff'}}>
-                <Tooltip title={problem.problem_title}>
-                <Typography
-                    className={classes.bolded}
-                    noWrap
-                    gutterBottom
-                    variant="body2"
-                    color="initial"
-                    component="h3"
-                    style={{padding:5, justify:"center"}}
-                >{ <Icon>{ImageSetter.staticIcon(problem.problem_category)}</Icon> }
+                <Grid container alignItems="center">
+                    { <Icon>{ImageSetter.staticIcon(problem.problem_category)}</Icon> }
 
-                    {problem.problem_title.length > 20
-                    ? problem.problem_title.substring(0, 20) + "..."
-                    : problem.problem_title}
-                </Typography>
-                </Tooltip>
+                    <Tooltip title={problem.problem_title}>
+                    <Typography
+                        className={classes.bolded}
+                        noWrap
+                        gutterBottom
+                        variant="body2"
+                        color="initial"
+                        component="h3"
+                        style={{padding:5, justify:"center"}}
+                    >
+
+                        {problem.problem_title.length > 20
+                        ? problem.problem_title.substring(0, 20) + "..."
+                        : problem.problem_title}
+                    </Typography>
+                    </Tooltip>
+                </Grid>
             </CardContent>
             </Grid>
         </Grid>
