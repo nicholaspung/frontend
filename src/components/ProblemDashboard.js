@@ -10,7 +10,7 @@ import TextField from "@material-ui/core/TextField";
 import MenuItem from "@material-ui/core/MenuItem";
 import Typography from "@material-ui/core/Typography";
 
-import { getProblems, getPopular } from "../actions";
+import { getProblems, getPopular, getUsers } from "../actions";
 import ProblemCard from "./ProblemCard";
 import FeatureCard from "./FeatureCard";
 
@@ -41,13 +41,34 @@ class ProblemDashboard extends React.Component {
     this.state = {
       selectedCategory: "all",
       selectByName: "",
-      selectedStatus: "start"
+      selectedStatus: "start",
+      idsObject: {}
     };
   }
 
   componentDidMount() {
     this.props.getProblems();
     this.props.getPopular();
+    this.props.getUsers().then(() => {
+      console.log(this.props.problems);
+      const idObject = {};
+      this.props.users.map(user => {
+        if (idObject[user.problem_id]) {
+          idObject[user.problem_id] += 1;
+          return null;
+        }
+        idObject[user.problem_id] = 1;
+        return null;
+      });
+      this.props.problems.map(problem => {
+        if (!idObject[problem.id]) {
+          idObject[problem.id] = 0;
+          return null;
+        }
+        return null;
+      });
+      this.setState(prevState => ({ ...prevState, idsObject: idObject }));
+    });
   }
 
   handleChange = event => {
@@ -88,13 +109,14 @@ class ProblemDashboard extends React.Component {
     if (this.state.selectedStatus === "start") {
       return this.props.problems;
     }
-
     if (this.state.selectedStatus === "category") {
       return this.findByCategory();
     }
     if (this.state.selectedStatus === "name") {
       return this.findByName();
     }
+
+    return null;
   };
 
   render() {
@@ -176,7 +198,10 @@ class ProblemDashboard extends React.Component {
               <Grid container spacing={2}>
                 {this.allProblems().map(problem => (
                   <Grid item key={problem.id} xs={12} sm={6} md={4}>
-                    <ProblemCard problem={problem} />
+                    <ProblemCard
+                      problem={problem}
+                      signups={this.state.idsObject[problem.id]}
+                    />
                   </Grid>
                 ))}
               </Grid>
@@ -202,27 +227,37 @@ class ProblemDashboard extends React.Component {
 ProblemDashboard.defaultProps = {
   getProblems: function hi() {},
   getPopular: function hi() {},
+  getUsers: function hi() {},
   problems: [],
   featured: [],
-  classes: {}
+  classes: {},
+  users: []
 };
 
 ProblemDashboard.propTypes = {
   getProblems: PropTypes.func,
   getPopular: PropTypes.func,
+  getUsers: PropTypes.func,
   problems: PropTypes.arrayOf(PropTypes.object),
   featured: PropTypes.arrayOf(PropTypes.object),
-  classes: PropTypes.objectOf(PropTypes.string)
+  classes: PropTypes.objectOf(PropTypes.string),
+  users: PropTypes.shape({
+    email: PropTypes.string,
+    full_name: PropTypes.string,
+    id: PropTypes.number,
+    problem_id: PropTypes.number
+  })
 };
 
-const mapStateToProps = ({ problems }) => ({
+const mapStateToProps = ({ problems, users }) => ({
   problems: problems.problems,
-  featured: problems.popular
+  featured: problems.popular,
+  users: users.users
 });
 
 export default withStyles(styles)(
   connect(
     mapStateToProps,
-    { getProblems, getPopular }
+    { getProblems, getPopular, getUsers }
   )(ProblemDashboard)
 );

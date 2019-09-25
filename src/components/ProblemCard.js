@@ -30,7 +30,7 @@ const styles = {
 };
 
 const ProblemCard = props => {
-  const { problem, classes } = props;
+  const { problem, classes, signups } = props;
 
   return (
     <Card className={classes.problemCards} raised>
@@ -76,7 +76,7 @@ const ProblemCard = props => {
         <Grid container alignItems="center" direction="row-reverse">
           <Grid item xs={12} sm={6} className={classes.buttonPadding}>
             <Typography variant="body2" component="p" align="center">
-              # of Sign Ups: <span className={classes.bolded}>{1}</span>
+              # of Sign Ups: <span className={classes.bolded}>{signups}</span>
             </Typography>
           </Grid>
           <Grid item xs={12} sm={6}>
@@ -102,7 +102,8 @@ const ProblemCard = props => {
 
 ProblemCard.defaultProps = {
   problem: {},
-  classes: {}
+  classes: {},
+  signups: 0
 };
 
 ProblemCard.propTypes = {
@@ -112,7 +113,8 @@ ProblemCard.propTypes = {
     problem_title: PropTypes.string,
     problem_description: PropTypes.string
   }),
-  classes: PropTypes.objectOf(PropTypes.string)
+  classes: PropTypes.objectOf(PropTypes.string),
+  signups: PropTypes.number
 };
 
 export default withStyles(styles)(ProblemCard);
