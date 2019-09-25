@@ -1,10 +1,17 @@
 import React, { Component } from "react";
 import AdminProblem from "./AdminProblem";
+import styled from "styled-components";
+
+const AdminMiddleDiv = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+`;
 
 export class AdminMiddle extends Component {
   render() {
     return (
-      <div>
+      <AdminMiddleDiv>
         {this.props.problems.map(problem => {
           return (
             <AdminProblem
@@ -15,7 +22,7 @@ export class AdminMiddle extends Component {
             />
           );
         })}
-      </div>
+      </AdminMiddleDiv>
     );
   }
 }

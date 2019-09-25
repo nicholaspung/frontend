@@ -1,4 +1,6 @@
 import React from "react";
+import styled from "styled-components";
+
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
@@ -11,7 +13,8 @@ import UsersModal from "./UsersModal";
 
 const useStyles = makeStyles({
   card: {
-    maxWidth: 345
+    maxWidth: 345,
+    marginTop: 20
   },
   media: {
     height: 140
