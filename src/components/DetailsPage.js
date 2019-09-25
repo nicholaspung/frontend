@@ -91,6 +91,8 @@ class DetailsPage extends React.Component {
 
   render() {
     const { problem } = this.props;
+    const { id } = this.props.match.params;
+    console.log(id)
 
     if (!problem || problem.isApproved === false) {
       return (
@@ -131,6 +133,7 @@ class DetailsPage extends React.Component {
           modaler={this.openModal}
           isOpen={this.state.isOpen}
           onClose={() => this.setState({ isOpen: false })}
+          id={id}
         />
         <Container className={this.props.classes.gridCenter}>
           <Breadcrumbs
