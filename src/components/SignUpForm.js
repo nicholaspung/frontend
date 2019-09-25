@@ -32,7 +32,7 @@ class SignUpForm extends React.Component {
   handleSubmit = e => {
     e.preventDefault();
 
-    const problemID = parseInt(this.props.problem_idYo);
+    const problemID = parseInt(this.props.id);
 
     const user = {
       problem_id: problemID,
