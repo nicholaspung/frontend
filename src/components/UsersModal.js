@@ -35,7 +35,7 @@ let dialogCloseButtonStyles = {
   alignSelf: "flex-end"
 };
 
-class ModalTwo extends Component {
+class UsersModal extends Component {
   render() {
     let popup = (
       <div style={dialogStyles}>
@@ -50,11 +50,11 @@ class ModalTwo extends Component {
       </div>
     );
 
-    if (!this.props.isOpenR) {
+    if (!this.props.isOpenUsers) {
       popup = null;
     }
     return <div>{popup}</div>;
   }
 }
 
-export default ModalTwo;
+export default UsersModal;

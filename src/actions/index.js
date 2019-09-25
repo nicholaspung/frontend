@@ -84,18 +84,18 @@ export const updateVote = (id, vote) => dispatch => {
     });
 };
 
-export const getPopular = () => dispatch =>{
-  dispatch({type: FETCH_POPULAR_START})
+export const getPopular = () => dispatch => {
+  dispatch({ type: FETCH_POPULAR_START });
 
   return axios
-    .get('https://labs15-lambdanext.herokuapp.com/problems/popular')
-    .then(res =>{
-      dispatch({type: FETCH_POPULAR_SUCCESS, payload:res.data})
+    .get("https://labs15-lambdanext.herokuapp.com/problems/popular")
+    .then(res => {
+      dispatch({ type: FETCH_POPULAR_SUCCESS, payload: res.data });
     })
-    .catch(error =>{
-      dispatch({type: FETCH_POPULAR_FAIL})
-    })
-}
+    .catch(error => {
+      dispatch({ type: FETCH_POPULAR_FAIL });
+    });
+};
 
 export const getUsers = () => dispatch => {
   dispatch({ type: FETCH_USERS_START });
@@ -124,10 +124,10 @@ export const addUser = user => dispatch => {
 
 export const getAdminProblems = () => dispatch => {
   dispatch({ type: FETCH_ADMIN_PROBLEM_START });
-
   return axios
     .get("https://labs15-lambdanext.herokuapp.com/admin/all")
     .then(res => {
+      console.log(res.data);
       dispatch({ type: FETCH_ADMIN_PROBLEM_SUCCESS, payload: res.data });
     })
     .catch(err => dispatch({ type: FETCH_ADMIN_PROBLEM_FAIL, payload: err }));

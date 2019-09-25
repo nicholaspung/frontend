@@ -1,13 +1,17 @@
 import {
-  FETCH_USERS_START, FETCH_USERS_SUCCESS, FETCH_USERS_FAIL,
-  ADD_USER_START, ADD_USER_SUCCESS, ADD_USER_FAIL
- } from "../actions";
+  ADD_USER_START,
+  ADD_USER_SUCCESS,
+  ADD_USER_FAIL,
+  FETCH_USERS_START,
+  FETCH_USERS_SUCCESS,
+  FETCH_USERS_FAIL
+} from "../actions";
 
 const initialUserState = {
   users: [],
   error: false,
   newlyAddedUser: {},
-  fetchingUsers:false,
+  fetchingUsers: false,
   addingNewUser: false
 };
 
