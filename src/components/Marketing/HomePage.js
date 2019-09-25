@@ -15,9 +15,10 @@ import homePage from "../../static/homePage";
 const styles = {
   description: {
     backgroundColor: "#ffffff",
-    paddingTop: "1.5rem",
-    paddingBottom: "1.5rem"
+    paddingTop: "4.5rem",
+    paddingBottom: "4.5rem"
   },
+  paddingMarketing: { paddingTop: "3rem", paddingBottom: "3rem" },
   homeImage: { backgroundColor: "#b51d4b" },
   root: { backgroundColor: "#f6f7fb", borderRadius: "0px" },
   link: { color: "#bb1333", textDecoration: "none" }
@@ -60,7 +61,12 @@ const HomePage = ({ classes }) => {
           </Typography>
         </Grid>
       </Grid>
-      <Grid container justify="space-around" spacing={0}>
+      <Grid
+        container
+        justify="space-around"
+        spacing={0}
+        className={classes.paddingMarketing}
+      >
         <Grid item xs={10} md={4}>
           <MarketingCard
             title={title1}
