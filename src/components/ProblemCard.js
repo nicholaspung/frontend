@@ -13,7 +13,7 @@ import { withStyles } from "@material-ui/styles";
 const ImageSetter = require("../static/stylingComponents/ImageSetter");
 
 const styles = {
-  problemCards: { boxShadow: "1.5px 1.5px silver", borderRadius: "0px" },
+  problemCards: { boxShadow: "1.5px silver", borderRadius: "0px" },
   backgroundWhite: { backgroundColor: "white", width: "100%" },
   callToActionBtn2: {
     backgroundColor: "#bb1333",
@@ -33,7 +33,7 @@ const ProblemCard = props => {
   const { problem, classes } = props;
 
   return (
-    <Card className={classes.problemCards}>
+    <Card className={classes.problemCards} raised>
       <CardMedia
         className={classes.backgroundWhite}
         component="img"
