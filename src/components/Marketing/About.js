@@ -13,13 +13,13 @@ import HowItWorks from "./HowItWorks";
 import howItWorks from "../../static/howItWorks";
 
 const styles = {
-  howItWorks: { margin: "2rem" },
+  howItWorks: { margin: "4.5rem 2rem" },
   bolding: { fontWeight: "bold" },
   centering: { textAlign: "center" },
   paddedBottomSmall: { paddingBottom: "0.5rem" },
-  paddedBottomMedium: { paddingBottom: "1.5rem" },
+  paddedBottomMedium: { paddingBottom: "4.5rem" },
   paddedTopSmall: { paddingTop: "0.75rem" },
-  paddedTopMedium: { paddingTop: "1.5rem" },
+  paddedTopMedium: { paddingTop: "4.5rem" },
   meetTheTeam: {
     backgroundColor: "#233d6e",
     paddingBottom: "2rem",

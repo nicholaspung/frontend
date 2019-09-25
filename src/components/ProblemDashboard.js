@@ -4,7 +4,6 @@ import { connect } from "react-redux";
 import { withStyles } from "@material-ui/styles";
 
 import Grid from "@material-ui/core/Grid";
-import Container from "@material-ui/core/Container";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import TextField from "@material-ui/core/TextField";
@@ -26,11 +25,14 @@ const category = [
 ];
 
 const styles = {
-  gridPadding: { padding: "1.5rem" },
+  gridPadding: { padding: "1.5rem 3rem" },
   greyBackground: { backgroundColor: "#f6f7fb" },
   minimumWidth: { minWidth: "8rem" },
-  minimumHeight: { minHeight: "40rem" },
-  divider: { borderBottom: "2px solid gray", padding: 0, margin: 0 }
+  minimumHeight: { minHeight: window.innerHeight - 8 * 16 },
+  divider: { borderTop: "1px #bdb7b7 solid" },
+  topPadding: { paddingTop: "3rem" },
+  whiteBackground: { backgroundColor: "#fffff" },
+  bottomMargin: { marginBottom: "1.5rem" }
 };
 
 class ProblemDashboard extends React.Component {
@@ -97,38 +99,65 @@ class ProblemDashboard extends React.Component {
 
   render() {
     return (
-      <Grid container className={this.props.classes.greyBackground}>
-        <Container className={this.props.classes.minimumHeight}>
-          <FormControl spacing={12} className={this.props.classes.minimumWidth}>
-            <TextField
-              id="select-name"
-              label="Filter By Name"
-              value={this.state.selectByName}
-              onChange={this.handleChange}
-              margin="normal"
-              autoComplete="off"
-            />
-
-            <Select
-              value={this.state.selectedCategory}
-              onChange={this.categorySelected}
-              inputprops={{
-                name: this.state.selectedCategory,
-                id: "categories"
-              }}
-            >
-              {category.map(cat => (
-                <MenuItem key={cat} value={cat}>
-                  {cat.toUpperCase()}
-                </MenuItem>
-              ))}
-            </Select>
+      <div className={this.props.classes.minimumHeight}>
+        <div className={this.props.classes.bottomMargin}>
+          <Typography
+            component="h1"
+            variant="h4"
+            align="center"
+            className={this.props.classes.topPadding}
+            gutterBottom
+          >
+            Crowdsourced Problems - Idea Management Platform
+          </Typography>
+          <FormControl fullWidth>
+            <Grid container justify="center" alignItems="flex-end">
+              <Grid item xs={5} sm={3} align="center">
+                <TextField
+                  id="select-name"
+                  label="Search By Name"
+                  value={this.state.selectByName}
+                  onChange={this.handleChange}
+                  autoComplete="off"
+                  className={this.props.classes.minimumWidth}
+                />
+              </Grid>
+              <Grid item xs={5} sm={3} align="center">
+                <Typography
+                  component="h3"
+                  variant="body2"
+                  color="textSecondary"
+                >
+                  Or Search By Category ↓{" "}
+                </Typography>
+                <Select
+                  className={this.props.classes.minimumWidth}
+                  value={this.state.selectedCategory}
+                  onChange={this.categorySelected}
+                  inputprops={{
+                    name: this.state.selectedCategory,
+                    id: "categories"
+                  }}
+                >
+                  {category.map(cat => (
+                    <MenuItem key={cat} value={cat}>
+                      {cat.toUpperCase()}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </Grid>
+            </Grid>
           </FormControl>
-
+        </div>
+        <div
+          className={`${this.props.classes.greyBackground} ${this.props.classes.divider}`}
+        >
           <Grid className={this.props.classes.gridPadding}>
-            <Typography>Featured Cards</Typography>
+            <Typography component="h1" variant="h4" gutterBottom>
+              Featured Cards
+            </Typography>
 
-            <Grid container spacing={2} className={this.props.classes.divider}>
+            <Grid container spacing={2}>
               {this.props.featured.map(feature => (
                 <Grid item key={feature.id} xs={12} sm={6} md={3}>
                   <FeatureCard problem={feature} />
@@ -136,9 +165,13 @@ class ProblemDashboard extends React.Component {
               ))}
             </Grid>
           </Grid>
+        </div>
 
+        <div className={this.props.classes.divider}>
           <Grid className={this.props.classes.gridPadding}>
-            <Typography>Problem Cards</Typography>
+            <Typography component="h1" variant="h4" gutterBottom>
+              Problem Cards
+            </Typography>
             {this.allProblems().length > 0 ? (
               <Grid container spacing={2}>
                 {this.allProblems().map(problem => (
@@ -160,8 +193,8 @@ class ProblemDashboard extends React.Component {
               </Grid>
             )}
           </Grid>
-        </Container>
-      </Grid>
+        </div>
+      </div>
     );
   }
 }
