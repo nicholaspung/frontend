@@ -82,97 +82,105 @@ const AdminProblem = props => {
   const problem = props.problem;
   const user = props.user;
 
-  return (
-    <Card className={classes.card}>
-      <Typography className={classes.mainTitle} variant="h6" component="h3">
-        {problem.problem_title}
-      </Typography>
-      <CardActionArea className={classes.actionarea}>
-        <CardMedia
-          className={classes.media}
-          image={healthImage}
-          title="Contemplative Reptile"
-        />
-        {/* <CardContent className={classes.content}> */}
+  if (problem) {
+    return (
+      <Card className={classes.card}>
+        <Typography className={classes.mainTitle} variant="h6" component="h3">
+          {problem.problem_title}
+        </Typography>
+        <CardActionArea className={classes.actionarea}>
+          <CardMedia
+            className={classes.media}
+            image={healthImage}
+            title="Contemplative Reptile"
+          />
+          {/* <CardContent className={classes.content}> */}
 
-        <div className={classes.ratingStatus}>
-          <Typography className={classes.category} variant="h6" component="h2">
-            {problem.problem_category}
-          </Typography>
-          <Typography variant="headline" component="h3">
-            Rating: {problem.rating}
-          </Typography>
-          <Typography variant="headline" component="h3">
-            {/* show if the problem is approved or not */}
-            Status:
-            {problem.isApproved ? (
-              <span style={{ color: "green" }}> Approved</span>
-            ) : (
-              <span style={{ color: "#a60202" }}> Not Approved</span>
-            )}
-          </Typography>
-        </div>
-        {/* </CardContent> */}
-      </CardActionArea>
-      <Typography
-        variant="body2"
-        color="textSecondary"
-        component="p"
-        style={{
-          height: 40,
-          textAlign: "center",
-          width: "100%",
-          paddingTop: 8
-        }}
-      >
-        {problem.problem_description}
-      </Typography>
-      <CardActions className={classes.actionsContainer}>
-        <div className={classes.approveReject}>
-          <Button
-            size="medium"
-            color="green"
-            onClick={e => props.updateProblem(e, problem)}
-            // href="/problems"
-          >
-            <FontAwesomeIcon icon={faCheck} color="green" size="2x" />
-          </Button>
-          <Button
-            size="medium"
-            color="red"
-            onClick={e => props.removeProblem(e, problem)}
-            // href="/admin-problems"
-          >
-            <FontAwesomeIcon icon={faBan} color="#FF0000" size="2x" />
-          </Button>
-        </div>
-        <div className={classes.infoDiv}>
-          <Button
-            size="small"
-            color="primary"
-            href={`/problem-details/${problem.id}`}
-            style={{ width: 10, marginRight: 30 }}
-          >
-            Learn More
-          </Button>
+          <div className={classes.ratingStatus}>
+            <Typography
+              className={classes.category}
+              variant="h6"
+              component="h2"
+            >
+              {problem.problem_category}
+            </Typography>
+            <Typography variant="headline" component="h3">
+              Upvotes: {problem.numOfRatings}
+            </Typography>
+            <Typography variant="headline" component="h3">
+              {/* show if the problem is approved or not */}
+              Status:
+              {problem.isApproved ? (
+                <span style={{ color: "green" }}> Approved</span>
+              ) : (
+                <span style={{ color: "#a60202" }}> Not Approved</span>
+              )}
+            </Typography>
+          </div>
+          {/* </CardContent> */}
+        </CardActionArea>
+        <Typography
+          variant="body2"
+          color="textSecondary"
+          component="p"
+          style={{
+            height: 40,
+            textAlign: "center",
+            width: "100%",
+            paddingTop: 8
+          }}
+        >
+          {problem.problem_description}
+        </Typography>
+        <CardActions className={classes.actionsContainer}>
+          <div className={classes.approveReject}>
+            <Button
+              size="medium"
+              color="green"
+              onClick={e => props.updateProblem(e, problem)}
+              // href="/problems"
+            >
+              <FontAwesomeIcon icon={faCheck} color="green" size="2x" />
+            </Button>
+            <Button
+              size="medium"
+              color="red"
+              onClick={e => props.removeProblem(e, problem)}
+              // href="/admin-problems"
+            >
+              <FontAwesomeIcon icon={faBan} color="#FF0000" size="2x" />
+            </Button>
+          </div>
+          <div className={classes.infoDiv}>
+            <Button
+              size="small"
+              color="primary"
+              href={`/problem-details/${problem.id}`}
+              style={{ width: 10, marginRight: 30 }}
+            >
+              Learn More
+            </Button>
 
-          {/* new stuff for users modal */}
-          <Button
-            size="small"
-            color="primary"
-            onClick={e => props.seeUsers(e)}
-            style={{ width: 15 }}
-            // href="/admin-problems"
-          >
-            See list of volunteers
-          </Button>
-        </div>
-      </CardActions>
-      {/* <UsersModal onClose={e => this.setState({ isOpenUsers: false })}>
+            {/* new stuff for users modal */}
+            <Button
+              size="small"
+              color="primary"
+              onClick={e => props.seeUsers(e)}
+              style={{ width: 15 }}
+              // href="/admin-problems"
+            >
+              See list of volunteers
+            </Button>
+          </div>
+        </CardActions>
+        {/* <UsersModal onClose={e => this.setState({ isOpenUsers: false })}>
         {user.full_name}
       </UsersModal> */}
-    </Card>
-  );
+      </Card>
+    );
+  } else {
+    return <div></div>;
+  }
 };
 
 export default AdminProblem;
