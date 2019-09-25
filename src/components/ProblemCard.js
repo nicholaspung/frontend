@@ -32,8 +32,6 @@ const styles = {
 const ProblemCard = props => {
   const { problem, classes } = props;
 
-  console.log(problem);
-
   return (
     <Card className={classes.problemCards}>
       <CardMedia
