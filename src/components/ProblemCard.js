@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 import Button from "@material-ui/core/Button";
 import Card from "@material-ui/core/Card";
 import CardMedia from "@material-ui/core/CardMedia";
@@ -22,6 +23,7 @@ const styles = {
       backgroundColor: "#750808"
     }
   },
+  noTextDecoration: { textDecoration: "none" },
   bolded: { fontWeight: "bold" },
   padded: { paddingBottom: "1rem", paddingRight: "1rem", paddingLeft: "1rem" },
   buttonPadding: { padding: "0.5rem" }
@@ -68,35 +70,31 @@ const ProblemCard = props => {
                 ? problem.problem_description.substring(0, 40) + "..."
                 : problem.problem_description}
             </Typography>
-            <Typography
-              variant="subtitle2"
-              color="textSecondary"
-              component="p"
-            >
+            <Typography variant="subtitle2" color="textSecondary" component="p">
               Category: {problem.problem_category}
             </Typography>
           </CardContent>
         </Grid>
-        <Grid
-          container
-          alignItems="center"
-          direction="row-reverse"
-        >
+        <Grid container alignItems="center" direction="row-reverse">
           <Grid item xs={12} sm={6} className={classes.buttonPadding}>
             <Typography variant="body2" component="p" align="center">
               # of Sign Ups: <span className={classes.bolded}>{1}</span>
             </Typography>
           </Grid>
           <Grid item xs={12} sm={6}>
-            <Button
-              className={classes.callToActionBtn2}
-              size="medium"
-              color="primary"
-              href={`/problem-details/${problem.id}`}
-              fullWidth
+            <Link
+              to={`/problem-details/${problem.id}`}
+              className={classes.noTextDecoration}
             >
-              Learn More
-            </Button>
+              <Button
+                className={classes.callToActionBtn2}
+                size="medium"
+                color="primary"
+                fullWidth
+              >
+                Learn More
+              </Button>
+            </Link>
           </Grid>
         </Grid>
       </Grid>
