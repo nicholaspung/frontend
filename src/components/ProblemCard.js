@@ -60,16 +60,6 @@ const ProblemCard = props => {
               {/* <Icon>{ImageSetter.staticIcon(problem.problem_category)}</Icon> */}
               {problem.problem_category}
             </Typography>
-            {/* <Typography
-            variant="body2"
-            color="textSecondary"
-            component="p"
-            style={{ height: 40 }}
-          >
-            {problem.problem_description.length > 50
-              ? problem.problem_description.substring(0, 50) + "..."
-              : problem.problem_description}
-          </Typography> */}
           </CardContent>
         </Grid>
         <Grid item className={classes.padded}>

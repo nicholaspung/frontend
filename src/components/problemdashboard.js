@@ -97,7 +97,6 @@ class ProblemDashboard extends React.Component {
   };
 
   render() {
-    console.log(this.props.featured)
     return (
       <Grid container className={this.props.classes.greyBackground}>
         <Container className={this.props.classes.minimumHeight}>
