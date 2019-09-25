@@ -1,4 +1,5 @@
 import React from "react";
+import styled from "styled-components";
 
 import { connect } from "react-redux";
 
@@ -9,6 +10,15 @@ import Modal from "./Modal";
 import ModalTwo from "./ModalTwo";
 // import UsersModal from "./UsersModal";
 import AdminModalFetchUsers from "./AdminModalFetchUsers";
+
+const AdminMain = styled.div`
+  background: black;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 100%;
+`;
 
 class AdminDashboard extends React.Component {
   constructor() {
@@ -53,7 +63,7 @@ class AdminDashboard extends React.Component {
   render() {
     console.log(this.props.problems);
     return (
-      <div>
+      <AdminMain>
         <AdminMiddle
           updateProblem={this.updateProblem}
           removeProblem={this.removeProblem}
@@ -78,7 +88,7 @@ class AdminDashboard extends React.Component {
         >
           <AdminDashboardFetchUsers />
         </UsersModal> */}
-      </div>
+      </AdminMain>
     );
   }
 }
