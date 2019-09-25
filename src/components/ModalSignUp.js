@@ -24,7 +24,7 @@ let dialogStyles = {
         let popup = (
             <div style={dialogStyles}>
                 <div style={{marginTop:'20%'}}>
-                    <SignUpForm opener={props.modaler} />
+                    <SignUpForm id={props.id} opener={props.modaler} />
                 </div>
             </div>
           );

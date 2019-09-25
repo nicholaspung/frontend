@@ -110,6 +110,7 @@ export const getUsers = () => dispatch => {
 };
 
 export const addUser = user => dispatch => {
+  console.log(user)
   dispatch({ type: ADD_USER_START });
   return axios
     .post("https://labs15-lambdanext.herokuapp.com/users/signup", user)
