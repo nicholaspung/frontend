@@ -170,11 +170,9 @@ class DetailsPage extends React.Component {
                   component="img"
                   alt={`${problem.problem_category}: ${problem.problem_title}`}
                   height="auto"
-                  // src={ImageSetter.staticImage('technology')}
                   src={ImageSetter.staticImage(`${problem.problem_category}`)}
                   title={`${problem.problem_category}: ${problem.problem_title}`}
                 />
-                {/* <Button style={{background:'#233d6e', width:'100%', color:'#fff'}}>Sign up</Button>*/}
               </Box>
             </ContainerLeft>
 
