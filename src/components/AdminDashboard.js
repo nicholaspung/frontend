@@ -12,10 +12,10 @@ import ModalTwo from "./ModalTwo";
 import AdminModalFetchUsers from "./AdminModalFetchUsers";
 
 const AdminMain = styled.div`
-  background: black;
+  background: #394f4c;
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: space-between;
   flex-wrap: wrap;
   width: 100%;
 `;
