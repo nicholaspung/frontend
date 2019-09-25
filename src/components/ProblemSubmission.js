@@ -29,6 +29,15 @@ const months = [
   "Dec"
 ];
 
+const categories = [
+  "Health",
+  "Technology",
+  "Fitness",
+  "Personal",
+  "Science",
+  "Finance"
+];
+
 const styles = {
   head: { paddingTop: "1.5rem" },
   title: {
@@ -84,6 +93,9 @@ class ProblemSubmission extends React.Component {
     problem.date_created = `${
       months[today.getMonth()]
     } ${today.getDate()}, ${today.getFullYear()}`;
+
+    console.log(problem);
+
     const modalPromise = new Promise((resolve, reject) => {
       this.setState(prevState => ({
         ...prevState,
@@ -93,13 +105,14 @@ class ProblemSubmission extends React.Component {
       }));
       setTimeout(() => {
         resolve("Success!");
-      }, 1000);
+      }, 2000);
     });
+
     this.props
       .addProblems(problem)
-      .then(response => modalPromise)
-      .then(response => this.props.props.history.push(`/problems`))
-      .catch(error =>
+      .then(() => modalPromise)
+      .then(() => this.props.props.history.push("/problems"))
+      .catch(() =>
         this.setState(prevState => ({
           ...prevState,
           modalHidden: false,
@@ -111,7 +124,10 @@ class ProblemSubmission extends React.Component {
 
   render() {
     return (
-      <form onSubmit={event => this.onButtonSubmit(event)} autoComplete="off">
+      <form
+        onSubmit={event => this.onButtonSubmit(event)}
+        autoComplete="off"
+      >
         <Container>
           <Typography
             variant="subtitle2"
@@ -158,12 +174,11 @@ class ProblemSubmission extends React.Component {
               <MenuItem value="">
                 <em>None</em>
               </MenuItem>
-              <MenuItem value="Health">Health</MenuItem>
-              <MenuItem value="Technology">Technology</MenuItem>
-              <MenuItem value="Fitness">Fitness</MenuItem>
-              <MenuItem value="Personal">Personal</MenuItem>
-              <MenuItem value="Science">Science</MenuItem>
-              <MenuItem value="Finance">Finance</MenuItem>
+              {categories.map(category => (
+                <MenuItem value="category" key={category}>
+                  {category}
+                </MenuItem>
+              ))}
             </Select>
             {this.state.error ? <span>{this.state.error}</span> : null}
             <Typography

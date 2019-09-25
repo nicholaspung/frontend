@@ -29,7 +29,8 @@ const styles = {
   gridPadding: { padding: "1.5rem" },
   greyBackground: { backgroundColor: "#f6f7fb" },
   minimumWidth: { minWidth: "8rem" },
-  minimumHeight: { minHeight: "40rem" }
+  minimumHeight: { minHeight: "40rem" },
+  divider: { borderBottom: "2px solid gray", padding: 0, margin: 0 }
 };
 
 class ProblemDashboard extends React.Component {
@@ -69,9 +70,8 @@ class ProblemDashboard extends React.Component {
     );
     if (selected === "all") {
       return this.props.problems;
-    } else {
-      return problems;
     }
+    return problems;
   };
 
   findByName = () => {
@@ -83,7 +83,6 @@ class ProblemDashboard extends React.Component {
   };
 
   allProblems = () => {
-
     if (this.state.selectedStatus === "start") {
       return this.props.problems;
     }
@@ -118,7 +117,7 @@ class ProblemDashboard extends React.Component {
                 id: "categories"
               }}
             >
-              {category.map((cat, index) => (
+              {category.map(cat => (
                 <MenuItem key={cat} value={cat}>
                   {cat.toUpperCase()}
                 </MenuItem>
@@ -126,37 +125,22 @@ class ProblemDashboard extends React.Component {
             </Select>
           </FormControl>
 
-
           <Grid className={this.props.classes.gridPadding}>
-
             <Typography>Featured Cards</Typography>
 
-            <Grid
-              container
-              spacing={2}
-              style={{borderBottom:'2px solid gray', padding:0, margin:0}}
-            >
-              {this.props.featured.map(feature =>(
+            <Grid container spacing={2} className={this.props.classes.divider}>
+              {this.props.featured.map(feature => (
                 <Grid item key={feature.id} xs={12} sm={6} md={3}>
                   <FeatureCard problem={feature} />
                 </Grid>
               ))}
-
             </Grid>
           </Grid>
 
-
-
-
-
           <Grid className={this.props.classes.gridPadding}>
             <Typography>Problem Cards</Typography>
-
             {this.allProblems().length > 0 ? (
-              <Grid
-                container
-                spacing={2}
-              >
+              <Grid container spacing={2}>
                 {this.allProblems().map(problem => (
                   <Grid item key={problem.id} xs={12} sm={6} md={4}>
                     <ProblemCard problem={problem} />
@@ -184,21 +168,24 @@ class ProblemDashboard extends React.Component {
 
 ProblemDashboard.defaultProps = {
   getProblems: function hi() {},
+  getPopular: function hi() {},
   problems: [],
-  featured:[],
+  featured: [],
   classes: {}
 };
 
 ProblemDashboard.propTypes = {
   getProblems: PropTypes.func,
+  getPopular: PropTypes.func,
   problems: PropTypes.arrayOf(PropTypes.object),
+  featured: PropTypes.arrayOf(PropTypes.object),
   classes: PropTypes.objectOf(PropTypes.string)
 };
 
-const mapStateToProps = ({ problems, featured }) => ({ 
+const mapStateToProps = ({ problems }) => ({
   problems: problems.problems,
-  featured:problems.problems
- });
+  featured: problems.popular
+});
 
 export default withStyles(styles)(
   connect(
