@@ -123,11 +123,6 @@ export const addUser = user => dispatch => {
 
 export const getAdminProblems = () => dispatch => {
   dispatch({ type: FETCH_ADMIN_PROBLEM_START });
-
-  // axios
-  //   .get("https://labs15-lambdanext.herokuapp.com/users")
-  //   .then(res => console.log("hello"));
-
   return axios
     .get("https://labs15-lambdanext.herokuapp.com/admin/all")
     .then(res => {

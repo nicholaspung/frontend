@@ -16,10 +16,6 @@ import Link from "@material-ui/core/Link";
 import { getProblemsByID, getUsers, updateVote } from "../actions";
 import { CardTitle } from "../static/stylingComponents";
 import SignUpModal from "./ModalSignUp";
-<<<<<<< HEAD
-import { withStyles } from "@material-ui/styles";
-=======
->>>>>>> 8cd6866c5d398d4b438ec03ca2c4e7d746ba9e64
 
 const ImageSetter = require("../static/stylingComponents/ImageSetter");
 
@@ -28,20 +24,6 @@ const styles = {
   gridCenter: {
     width: "80%",
     margin: "0px auto",
-<<<<<<< HEAD
-    paddingTop: "35px",
-    height: "615px"
-  },
-  lostPaper: { padding: "1rem", marginTop: "2rem", background: "#fff" },
-  minimumHeight: { minHeight: "40rem" },
-  crumbs: { marginBottom: "35px" }
-};
-
-class DetailsPage extends React.Component {
-  state = {
-    isOpen: false
-  };
-=======
     paddingTop: "2.5rem",
     paddingBottom: "2.5rem",
     minHeight: "615px"
@@ -65,7 +47,6 @@ class DetailsPage extends React.Component {
       isOpen: false
     };
   }
->>>>>>> 8cd6866c5d398d4b438ec03ca2c4e7d746ba9e64
 
   componentDidMount() {
     const { id } = this.props.match.params;
@@ -74,11 +55,7 @@ class DetailsPage extends React.Component {
   }
 
   openModal = () => {
-<<<<<<< HEAD
-    this.setState({ isOpen: !this.state.isOpen });
-=======
     this.setState(prevState => ({ isOpen: !prevState.isOpen }));
->>>>>>> 8cd6866c5d398d4b438ec03ca2c4e7d746ba9e64
   };
 
   getProgress = () => {
@@ -149,117 +126,6 @@ class DetailsPage extends React.Component {
       );
     }
     return (
-<<<<<<< HEAD
-      <div>
-        <Grid container className={this.props.classes.wholeContainer}>
-          <SignUpModal
-            modaler={this.openModal}
-            isOpen={this.state.isOpen}
-            onClose={e => this.setState({ isOpen: false })}
-          ></SignUpModal>
-          <Container className={this.props.classes.gridCenter}>
-            <Breadcrumbs
-              aria-label="breadcrumb"
-              className={this.props.classes.crumbs}
-            >
-              <Link color="inherit" href="/" style={{ fontWeight: "bold" }}>
-                Home
-              </Link>
-              <Link
-                color="inherit"
-                href="/problems"
-                style={{ fontWeight: "bold" }}
-              >
-                Problems
-              </Link>
-              <Typography style={{ color: "rgb(187, 19, 51)" }}>
-                {problem.problem_title}
-              </Typography>
-            </Breadcrumbs>
-
-            <Grid container spacing={2}>
-              <ContainerLeft item xs={12} md={6} style={{}}>
-                <Box>
-                  <DetailProfieImage
-                    component="img"
-                    alt={`${problem.problem_category}: ${problem.problem_title}`}
-                    height="auto"
-                    // src={ImageSetter.staticImage('technology')}
-                    src={ImageSetter.staticImage(`${problem.problem_category}`)}
-                    title={`${problem.problem_category}: ${problem.problem_title}`}
-                  />
-                  {/* <Button style={{background:'#233d6e', width:'100%', color:'#fff'}}>Sign up</Button>*/}
-                </Box>
-              </ContainerLeft>
-
-              <ContainerRight item xs={12} md={6}>
-                <DetailCard style={{ background: "#fff" }}>
-                  <Grid
-                    container
-                    justify="space-between"
-                    style={{ marginBottom: 20 }}
-                  >
-                    <CardTitle
-                      style={{ margin: 0 }}
-                      variant="headline"
-                      color="textSecondary"
-                      component="h2"
-                    >
-                      {problem.problem_title}
-                    </CardTitle>
-
-                    <Box style={{}}>
-                      <Typography variant="body2" component="p" style={{}}>
-                        <Icon>
-                          {ImageSetter.staticIcon(
-                            `${problem.problem_category}`
-                          )}
-                        </Icon>
-                      </Typography>
-                    </Box>
-                  </Grid>
-                  <Box style={{ margin: "20px 0px", textAlign: "center" }}>
-                    <Typography variant="body2" component="" style={{}}>
-                      Description:
-                    </Typography>
-                    <Typography>{problem.problem_description}</Typography>
-                  </Box>
-
-                  <Mypaper style={{}}>
-                    <Grid container justify="space-between">
-                      <Typography>
-                        Votes: {this.getVotes(problem.numOfRatings)}
-                      </Typography>
-                      <Box>
-                        <Icon onClick={() => this.vote(problem.numOfRatings)}>
-                          thumb_up
-                        </Icon>
-                      </Box>
-                    </Grid>
-                  </Mypaper>
-
-                  <Mypaper style={{}}>
-                    <Grid container justify="space-between">
-                      <Typography onClick={this.getSignee}>
-                        Signess: {this.getSignee()}
-                      </Typography>
-                      <Box>
-                        {problem.isAccepting ? (
-                          <Button onClick={this.openModal}>Sign Up</Button>
-                        ) : (
-                          <Button disabled>Sign Up</Button>
-                        )}
-                      </Box>
-                    </Grid>
-                  </Mypaper>
-                </DetailCard>
-              </ContainerRight>
-            </Grid>
-          </Container>
-          {/* all content  / main container */}
-        </Grid>
-      </div>
-=======
       <Grid container className={this.props.classes.wholeContainer}>
         <SignUpModal
           modaler={this.openModal}
@@ -357,7 +223,6 @@ class DetailsPage extends React.Component {
           </Grid>
         </Container>
       </Grid>
->>>>>>> 8cd6866c5d398d4b438ec03ca2c4e7d746ba9e64
     );
   }
 }

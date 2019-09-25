@@ -2,10 +2,10 @@ import React from "react";
 import { connect } from "react-redux";
 import { getUsers } from "../actions";
 
-import UsersModal from "./UsersModal";
-import AdminProblem from "./AdminProblem";
+// import UsersModal from "./UsersModal";
+import AdminModalMiddle from "./AdminModalMiddle";
 
-class AdminDashboardFetchUsers extends React.Component {
+class AdminModalFetchUsers extends React.Component {
   state = {
     isOpenUsers: false
   };
@@ -20,17 +20,14 @@ class AdminDashboardFetchUsers extends React.Component {
   };
 
   render() {
-    const users = this.props.users;
-
+    console.log(this.props.users);
     return (
       <div>
-        <AdminProblem seeUsers={this.seeUsers} />
-        <UsersModal
-          isOpenUsers={this.state.isOpenUsers}
-          onClose={e => this.setState({ isOpenUsers: false })}
-        >
-          {users.full_name}
-        </UsersModal>
+        <AdminModalMiddle
+          users={this.props.users}
+          seeUsers={this.seeUsers}
+          // isOpenUsers={this.state.isOpenUsers}
+        />
       </div>
     );
   }
@@ -43,4 +40,4 @@ const mapStateToProps = ({ users }) => ({
 export default connect(
   mapStateToProps,
   { getUsers }
-)(AdminDashboardFetchUsers);
+)(AdminModalFetchUsers);
