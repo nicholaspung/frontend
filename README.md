@@ -80,6 +80,8 @@ Libraries
 - Helmet
 - Cors
 
+#### Back end deployed to `Heroku`
+
 # APIs
 
 ### SendGrid Email
@@ -94,10 +96,11 @@ No Environment Variables were used.
 
 # Content Licenses
 
+We could not find licensing information for all photos used in this project. If an image of yours is used in our project, please contact us to remove the picture, and it will be done ASAP. Create a GitHub issue to notify us to take picture down.
+
 | Image Filename | Source / Creator | License                                                                      |
 | -------------- | ---------------- | ---------------------------------------------------------------------------- |
-| doodles.png    | Nicole Bennett   | [Creative Commons](https://www.toptal.com/designers/subtlepatterns/doodles/) |
-| rings.svg      | Sam Herbert      | [MIT](https://github.com/SamHerbert/SVG-Loaders)                             |
+| n/a            | n/a              | [Creative Commons](https://creativecommons.org/) |
 
 # Testing
 
@@ -112,13 +115,25 @@ For testing, we mainly used PropType validation, and began testing with Jest.
     - Figure out how to mock test reducers
     - Needs more test coverage.
 
+# Future Features + Needs Work
+
+- Need to increase Performance score in [Google Lighthouse](https://developers.google.com/web/tools/lighthouse) (Chrome DevTools -> Audits)
+- Need styling in ProblemSubmissionModal (couldn't figure out how to style Dialog component from Material UI)
+- Need to switch Admin Components to Material UI (currently using Styled Components)
+- Need to adjust styling for Admin Components to match entire site
+- Remove unneccessary files from repository
+- Remove unneccessary code from JS files
+- Increasing test coverage
+- Connect back end with DS project to autopopulate problem dashboard
+  - Add some kind of pagination to application when there's too many problems
+
 # Installation Instructions
 
 To get client running locally:
 
 - Clone this repo
 - npm install to install all required dependencies
-- Delete 'package-lock.json' after dependencies are installed
+- Delete 'package-lock.json' after dependencies are installed (very important)
 - yarn start to start the local server
 - yarn test to start using testing environment
 
