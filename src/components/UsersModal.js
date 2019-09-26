@@ -8,16 +8,17 @@ import {
 
 let dialogStyles = {
   width: "500px",
+  height: "500px",
   maxWidth: "100%",
-  margin: "0 auto",
+  margin: "2 auto",
   position: "fixed",
   left: "50%",
   top: "50%",
   transform: "translate(-50%,-50%)",
   zIndex: "999",
   backgroundColor: "#A9A9A9",
-  fontWeight: "bold",
-  padding: "10px 20px 40px",
+  // fontWeight: "bold",
+  padding: "5px 5px 5px 5px",
   borderRadius: "8px",
   display: "flex",
   flexDirection: "column"

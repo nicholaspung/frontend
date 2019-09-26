@@ -1,4 +1,5 @@
 import React from "react";
+
 import styled from "styled-components";
 
 import { makeStyles } from "@material-ui/core/styles";
@@ -18,63 +19,147 @@ import healthImage from "../static/images/cards/health.jpg";
 
 const ImageSetter = require("../static/stylingComponents/ImageSetter");
 
-const useStyles = makeStyles({
-  card: {
-    maxWidth: "30%",
-    marginTop: 20,
-    display: "flex",
-    flexDirection: "row",
-    flexWrap: "wrap",
-    backgroundColor: "#778899",
-    // opacity: 0.8,
-    "&:hover": {
-      backgroundColor: "#adc7e0"
-    }
-  },
+// #adc7e0
 
-  actionarea: {
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "space-around"
-  },
-  media: {
-    height: 100,
-    width: "20%"
-  },
-  // content: {
-  //   maxWidth: "30%",
-  //   display: "flex",
-  //   flexDirection: "row"
-  // },
-  ratingStatus: {
-    display: "flex",
-    flexDirection: "column"
-  },
-  category: {
-    textTransform: "capitalize"
-  },
-  mainTitle: {
-    display: "flex",
-    justifyContent: "center",
-    textAlign: "center",
-    width: "100%",
-    textTransform: "uppercase"
-  },
-  actionsContainer: {
-    display: "flex",
-    justifyContent: "space-between",
-    flexDirection: "row"
-  },
-  approveReject: {
-    display: "flex",
-    flexDirection: "row"
-  },
-  infoDiv: {
-    display: "flex",
-    flexDirection: "row",
-    alignContent: "flex-end",
-    paddingLeft: 90
-  }
+const useStyles = makeStyles(theme => {
+  return {
+    card: {
+      maxWidth: "30%",
+      marginTop: 20,
+      display: "flex",
+      flexDirection: "row",
+      flexWrap: "wrap",
+      backgroundColor: "#778899",
+      "&:hover": {
+        backgroundColor: "#ccd6e0"
+      }
+    },
+
+    actionarea: {
+      display: "flex",
+      flexDirection: "row",
+      justifyContent: "space-around",
+
+      [theme.breakpoints.down("sm")]: {
+        width: "80%",
+        fontSize: ".5rem"
+      }
+    },
+
+    media: {
+      height: 100,
+      width: "20%",
+      [theme.breakpoints.down("sm")]: {
+        paddingLeft: "10%",
+        width: "60%",
+        paddingRight: "5%",
+        height: 60
+      }
+    },
+
+    ratingStatus: {
+      display: "flex",
+      flexDirection: "column",
+      [theme.breakpoints.down("sm")]: {
+        fontSize: "0.4rem"
+      }
+    },
+    category: {
+      textTransform: "capitalize"
+    },
+    mainTitle: {
+      display: "flex",
+      justifyContent: "center",
+      textAlign: "center",
+      width: "100%",
+      textTransform: "uppercase",
+      paddingBottom: 5,
+      [theme.breakpoints.down("sm")]: {
+        fontSize: "0.8rem"
+      }
+    },
+    descriptionYo: {
+      [theme.breakpoints.down("sm")]: {
+        fontSize: "0.5rem",
+        marginBottom: "5%"
+      }
+    },
+    actionsContainer: {
+      display: "flex",
+      justifyContent: "center",
+
+      flexDirection: "row",
+      alignItems: "center",
+      width: "100%",
+      [theme.breakpoints.down("sm")]: {
+        // width: "10%"
+        flexWrap: "wrap",
+        width: "100%"
+      }
+    },
+    buttonYo1: {
+      background: "none",
+      textTransform: "uppercase",
+      border: "none",
+      font: "black",
+      fontWeight: "bold",
+      [theme.breakpoints.down("sm")]: {
+        fontSize: ".5rem"
+      }
+    },
+
+    buttonYo2: {
+      background: "none",
+      textTransform: "uppercase",
+      border: "none",
+      font: "black",
+      fontWeight: "bold",
+      [theme.breakpoints.down("sm")]: {
+        fontSize: ".5rem",
+        paddingLeft: "1"
+      }
+    },
+    buttonYo3: {
+      background: "none",
+      textTransform: "uppercase",
+      border: "none",
+      font: "black",
+      fontWeight: "bold",
+      [theme.breakpoints.down("sm")]: {
+        fontSize: ".5rem"
+      }
+    },
+    buttonYo4: {
+      background: "none",
+      textTransform: "uppercase",
+      border: "none",
+      font: "black",
+      fontWeight: "bold",
+      [theme.breakpoints.down("sm")]: {
+        fontSize: ".5rem"
+      }
+    },
+    buttonYo5: {
+      background: "none",
+      textTransform: "uppercase",
+      border: "none",
+      font: "black",
+      fontWeight: "bold",
+      [theme.breakpoints.down("sm")]: {
+        fontSize: ".5rem"
+      }
+    }
+    // approveReject: {
+    //   display: "flex",
+    //   flexDirection: "row"
+    // },
+    // infoDiv: {
+    //   display: "flex",
+    //   flexDirection: "row",
+    //   alignContent: "flex-end",
+    //   paddingLeft: 30
+    // }
+  };
 });
 
 const AdminProblem = props => {
@@ -82,33 +167,28 @@ const AdminProblem = props => {
   const problem = props.problem;
   const user = props.user;
 
+  const deleteProblem = e => {
+    props.deleteAdminProblem(problem.id);
+  };
+
+  console.log("ADMIN PROBLEM", props);
   if (problem) {
     return (
       <Card className={classes.card}>
         <Typography className={classes.mainTitle} variant="h6" component="h3">
-          {problem.problem_title}
+          {problem.problem_title} || {problem.problem_category}
         </Typography>
+
         <CardActionArea className={classes.actionarea}>
           <CardMedia
             className={classes.media}
-            image={healthImage}
-            title="Contemplative Reptile"
+            component="img"
+            src={ImageSetter.staticImage(problem.problem_category)}
+            title={problem.problem_title}
           />
-          {/* <CardContent className={classes.content}> */}
 
           <div className={classes.ratingStatus}>
-            <Typography
-              className={classes.category}
-              variant="h6"
-              component="h2"
-            >
-              {problem.problem_category}
-            </Typography>
-            <Typography variant="headline" component="h3">
-              Upvotes: {problem.numOfRatings}
-            </Typography>
-            <Typography variant="headline" component="h3">
-              {/* show if the problem is approved or not */}
+            <Typography variant="headline" component="h2">
               Status:
               {problem.isApproved ? (
                 <span style={{ color: "green" }}> Approved</span>
@@ -117,9 +197,9 @@ const AdminProblem = props => {
               )}
             </Typography>
           </div>
-          {/* </CardContent> */}
         </CardActionArea>
         <Typography
+          className={classes.descriptionYo}
           variant="body2"
           color="textSecondary"
           component="p"
@@ -127,55 +207,45 @@ const AdminProblem = props => {
             height: 40,
             textAlign: "center",
             width: "100%",
-            paddingTop: 8
+            paddingTop: 8,
+            marginBottom: 5
           }}
         >
           {problem.problem_description}
         </Typography>
         <CardActions className={classes.actionsContainer}>
-          <div className={classes.approveReject}>
-            <Button
-              size="medium"
-              color="green"
-              onClick={e => props.updateProblem(e, problem)}
-              // href="/problems"
-            >
-              <FontAwesomeIcon icon={faCheck} color="green" size="2x" />
-            </Button>
-            <Button
-              size="medium"
-              color="red"
-              onClick={e => props.removeProblem(e, problem)}
-              // href="/admin-problems"
-            >
-              <FontAwesomeIcon icon={faBan} color="#FF0000" size="2x" />
-            </Button>
-          </div>
-          <div className={classes.infoDiv}>
-            <Button
-              size="small"
-              color="primary"
-              href={`/problem-details/${problem.id}`}
-              style={{ width: 10, marginRight: 30 }}
-            >
-              Learn More
-            </Button>
+          <button
+            className={classes.buttonYo1}
+            onClick={e => props.updateProblem(e, problem)}
+          >
+            Approve
+          </button>
+          <button
+            className={classes.buttonYo2}
+            onClick={e => props.updateProblem(e, problem)}
+            // onClick={e => props.removeProblem(e, problem)}
+          >
+            {/* <FontAwesomeIcon icon={faBan} color="#FF0000" size="2x" /> */}
+            Reject
+          </button>
+          <button className={classes.buttonYo3} onClick={deleteProblem}>
+            Delete
+          </button>
 
-            {/* new stuff for users modal */}
-            <Button
-              size="small"
-              color="primary"
-              onClick={e => props.seeUsers(e)}
-              style={{ width: 15 }}
-              // href="/admin-problems"
-            >
-              See list of volunteers
-            </Button>
-          </div>
+          <button
+            className={classes.buttonYo4}
+            href={`/problem-details/${problem.id}`}
+          >
+            Details
+          </button>
+
+          <button
+            className={classes.buttonYo5}
+            onClick={e => props.seeUsers(e, problem.id)}
+          >
+            Signees
+          </button>
         </CardActions>
-        {/* <UsersModal onClose={e => this.setState({ isOpenUsers: false })}>
-        {user.full_name}
-      </UsersModal> */}
       </Card>
     );
   } else {
