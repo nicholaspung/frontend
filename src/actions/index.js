@@ -36,6 +36,10 @@ export const UPDATE_ADMIN_PROBLEM_START = "UPDATE_ADMIN_PROBLEM_START";
 export const UPDATE_ADMIN_PROBLEM_SUCCESS = "UPDATE_ADMIN_PROBLEM_SUCCESS";
 export const UPDATE_ADMIN_PROBLEM_FAIL = "UPDATE_ADMIN_PROBLEM_FAIL";
 
+export const DELETE_ADMIN_PROBLEM_START = "UPDATE_ADMIN_PROBLEM_START";
+export const DELETE_ADMIN_PROBLEM_SUCCESS = "UPDATE_ADMIN_PROBLEM_SUCCESS";
+export const DELETE_ADMIN_PROBLEM_FAIL = "UPDATE_ADMIN_PROBLEM_FAIL";
+
 export const getProblems = () => dispatch => {
   dispatch({ type: FETCH_PROBLEMS_START });
 
@@ -64,6 +68,7 @@ export const addProblems = problem => dispatch => {
   return axios
     .post("https://labs15-lambdanext.herokuapp.com/problems", problem)
     .then(res => {
+      console.log("HELLO", res.data, problem);
       dispatch({ type: ADD_PROBLEM_SUCCESS, payload: res.data });
     })
     .catch(error => {
@@ -110,7 +115,7 @@ export const getUsers = () => dispatch => {
 };
 
 export const addUser = user => dispatch => {
-  console.log(user)
+  console.log(user);
   dispatch({ type: ADD_USER_START });
   return axios
     .post("https://labs15-lambdanext.herokuapp.com/users/signup", user)
@@ -127,7 +132,7 @@ export const getAdminProblems = () => dispatch => {
   return axios
     .get("https://labs15-lambdanext.herokuapp.com/admin/all")
     .then(res => {
-      console.log(res.data);
+      console.log("YOOOOOOOOO", res.data);
       dispatch({ type: FETCH_ADMIN_PROBLEM_SUCCESS, payload: res.data });
     })
     .catch(err => dispatch({ type: FETCH_ADMIN_PROBLEM_FAIL, payload: err }));
@@ -148,3 +153,20 @@ export const UpdateAdminProblems = (id, isApproved) => dispatch => {
     .catch(err => dispatch({ type: UPDATE_ADMIN_PROBLEM_FAIL, payload: err }));
 };
 
+export const deleteAdminProblem = id => {
+  return dispatch => {
+    dispatch({ type: DELETE_ADMIN_PROBLEM_START });
+    axios
+      .delete(`https://labs15-lambdanext.herokuapp.com/admin/all/${id}`)
+      .then(res => {
+        console.log(res.data);
+        dispatch({ type: DELETE_ADMIN_PROBLEM_SUCCESS, payload: res.data });
+      })
+      .catch(err => {
+        dispatch({
+          type: DELETE_ADMIN_PROBLEM_FAIL,
+          payload: "Error with deleting"
+        });
+      });
+  };
+};

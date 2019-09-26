@@ -3,16 +3,20 @@ import styled from "styled-components";
 
 import { connect } from "react-redux";
 
-import { getAdminProblems, UpdateAdminProblems } from "../actions";
+import {
+  getAdminProblems,
+  UpdateAdminProblems,
+  getUsers,
+  deleteAdminProblem
+} from "../actions";
 
 import AdminMiddle from "./AdminMiddle";
 import Modal from "./Modal";
 import ModalTwo from "./ModalTwo";
-// import UsersModal from "./UsersModal";
-import AdminModalFetchUsers from "./AdminModalFetchUsers";
+import UsersModal from "./UsersModal";
 
 const AdminMain = styled.div`
-  background: #394f4c;
+  background: #313635;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -26,13 +30,15 @@ class AdminDashboard extends React.Component {
     this.state = {
       isApproved: false,
       isOpen: false,
-      isOpenR: false
-      // isOpenUsers: false
+      isOpenR: false,
+      isOpenUsers: false,
+      problemUsers: []
     };
   }
 
   componentDidMount() {
     this.props.getAdminProblems();
+    this.props.getUsers();
   }
 
   updateProblem = (e, problem) => {
@@ -41,17 +47,39 @@ class AdminDashboard extends React.Component {
     if (problem.isApproved === false) {
       this.props.UpdateAdminProblems(problem.id, !problem.isApproved);
       this.setState({ isOpen: true });
+      this.setState({ isApproved: true });
+    } else if (problem.isApproved) {
+      this.props.UpdateAdminProblems(problem.id, !problem.isApproved);
+      this.setState({ isOpenR: true });
+      this.setState({ isApproved: false });
     }
   };
 
-  removeProblem = (e, problem) => {
+  // updateProblem = (e, problem) => {
+  //   e.preventDefault();
+
+  //   if (problem.isApproved === false) {
+  //     this.props.UpdateAdminProblems(problem.id, !problem.isApproved);
+  //     this.setState({ isOpen: true });
+  //   }
+  // };
+
+  // removeProblem = (e, problem) => {
+  //   e.preventDefault();
+
+  //   if (problem.isApproved) {
+  //     this.props.UpdateAdminProblems(problem.id, !problem.isApproved);
+
+  //     this.setState({ isOpenR: true });
+  //   }
+  // };
+
+  seeUsers = (e, id) => {
     e.preventDefault();
-
-    if (problem.isApproved) {
-      this.props.UpdateAdminProblems(problem.id, !problem.isApproved);
-
-      this.setState({ isOpenR: true });
-    }
+    console.log("PROBLEM ID", id);
+    const problemUsers = this.props.users.filter(u => u.problem_id === id);
+    this.setState({ problemUsers }, () => console.log(this.state));
+    this.setState({ isOpenUsers: true });
   };
 
   // seeUsers = e => {
@@ -61,13 +89,16 @@ class AdminDashboard extends React.Component {
   // };
 
   render() {
-    console.log(this.props.problems);
     return (
       <AdminMain>
         <AdminMiddle
           updateProblem={this.updateProblem}
           removeProblem={this.removeProblem}
           problems={this.props.problems}
+          seeUsers={this.seeUsers}
+          isOpenUsers={this.state.isOpenUsers}
+          deleteAdminProblem={this.props.deleteAdminProblem}
+          isApproved={this.state.isApproved}
         />
         <Modal
           isOpen={this.state.isOpen}
@@ -81,26 +112,34 @@ class AdminDashboard extends React.Component {
         >
           This problem has been successfully rejected!
         </ModalTwo>
-        <AdminModalFetchUsers />
 
-        {/* <UsersModal
+        <UsersModal
           isOpenUsers={this.state.isOpenUsers}
           onClose={e => this.setState({ isOpenUsers: false })}
         >
-          <AdminDashboardFetchUsers />
-        </UsersModal> */}
+          {this.state.problemUsers.map(problemUser => {
+            return (
+              <div>
+                <p style={{ textTransform: "capitalize" }}>
+                  Name: {problemUser.full_name} || Email: {problemUser.email}
+                </p>
+              </div>
+            );
+          })}
+        </UsersModal>
       </AdminMain>
     );
   }
 }
 
-const mapStateToProps = ({ problems }) => ({
-  problems: problems.problems
+const mapStateToProps = ({ problems, users }) => ({
+  problems: problems.problems,
+  users: users.users
 });
 
 export default connect(
   mapStateToProps,
-  { getAdminProblems, UpdateAdminProblems }
+  { getAdminProblems, UpdateAdminProblems, getUsers, deleteAdminProblem }
 )(AdminDashboard);
 
 // import React from "react";
