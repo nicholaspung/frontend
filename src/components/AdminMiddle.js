@@ -10,10 +10,10 @@ const AdminMiddleDiv = styled.div`
 
 export class AdminMiddle extends Component {
   render() {
-    console.log("ADMIN MIDDLE", this.props);
     return (
       <AdminMiddleDiv>
         {this.props.problems.map(problem => {
+          console.log("GEORGE", problem);
           return (
             <AdminProblem
               key={problem.id}
@@ -22,6 +22,7 @@ export class AdminMiddle extends Component {
               removeProblem={this.props.removeProblem}
               seeUsers={this.props.seeUsers}
               isOpenUsers={this.props.isOpenUsers}
+              deleteAdminProblem={this.props.deleteAdminProblem}
             />
           );
         })}

@@ -3,13 +3,17 @@ import styled from "styled-components";
 
 import { connect } from "react-redux";
 
-import { getAdminProblems, UpdateAdminProblems, getUsers } from "../actions";
+import {
+  getAdminProblems,
+  UpdateAdminProblems,
+  getUsers,
+  deleteAdminProblem
+} from "../actions";
 
 import AdminMiddle from "./AdminMiddle";
 import Modal from "./Modal";
 import ModalTwo from "./ModalTwo";
 import UsersModal from "./UsersModal";
-import AdminModalFetchUsers from "./AdminModalFetchUsers";
 
 const AdminMain = styled.div`
   background: #394f4c;
@@ -83,7 +87,6 @@ class AdminDashboard extends React.Component {
   // };
 
   render() {
-    console.log(this.props.problems);
     return (
       <AdminMain>
         <AdminMiddle
@@ -92,6 +95,7 @@ class AdminDashboard extends React.Component {
           problems={this.props.problems}
           seeUsers={this.seeUsers}
           isOpenUsers={this.state.isOpenUsers}
+          deleteAdminProblem={this.props.deleteAdminProblem}
         />
         <Modal
           isOpen={this.state.isOpen}
@@ -105,12 +109,6 @@ class AdminDashboard extends React.Component {
         >
           This problem has been successfully rejected!
         </ModalTwo>
-        <AdminModalFetchUsers
-          problems={this.props.problems}
-          updateProblem={this.updateProblem}
-          removeProblem={this.removeProblem}
-          seeUsers={this.seeUsers}
-        />
 
         <UsersModal
           isOpenUsers={this.state.isOpenUsers}
@@ -120,7 +118,7 @@ class AdminDashboard extends React.Component {
             return (
               <div>
                 <p style={{ textTransform: "capitalize" }}>
-                  Name: {problemUser.full_name} || Email: {problemUser.email}{" "}
+                  Name: {problemUser.full_name} || Email: {problemUser.email}
                 </p>
               </div>
             );
@@ -138,7 +136,7 @@ const mapStateToProps = ({ problems, users }) => ({
 
 export default connect(
   mapStateToProps,
-  { getAdminProblems, UpdateAdminProblems, getUsers }
+  { getAdminProblems, UpdateAdminProblems, getUsers, deleteAdminProblem }
 )(AdminDashboard);
 
 // import React from "react";
