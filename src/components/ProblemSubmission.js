@@ -60,7 +60,7 @@ class ProblemSubmission extends React.Component {
         created_by: ""
       },
       error: "",
-      modalHidden: true,
+      modalHidden: false,
       modalResponse: ""
     };
   }
@@ -89,13 +89,13 @@ class ProblemSubmission extends React.Component {
       return;
     }
 
+    // Setting a date for backend to index
     let today = new Date();
     problem.date_created = `${
       months[today.getMonth()]
     } ${today.getDate()}, ${today.getFullYear()}`;
 
-    console.log(problem);
-
+    // Created a promise in order to send data to modal & indicate to user that problem is submitted
     const modalPromise = new Promise((resolve, reject) => {
       this.setState(prevState => ({
         ...prevState,
@@ -124,10 +124,7 @@ class ProblemSubmission extends React.Component {
 
   render() {
     return (
-      <form
-        onSubmit={event => this.onButtonSubmit(event)}
-        autoComplete="off"
-      >
+      <form onSubmit={event => this.onButtonSubmit(event)} autoComplete="off">
         <Container>
           <Typography
             variant="subtitle2"

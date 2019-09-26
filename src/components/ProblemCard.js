@@ -10,11 +10,12 @@ import Grid from "@material-ui/core/Grid";
 import Tooltip from "@material-ui/core/Tooltip";
 import { withStyles } from "@material-ui/styles";
 
+import DefaultImage from '../static/images/cards/default-image.jpg';
 const ImageSetter = require("../static/stylingComponents/ImageSetter");
 
 const styles = {
   problemCards: { boxShadow: "1.5px silver", borderRadius: "0px" },
-  backgroundWhite: { backgroundColor: "white", width: "100%" },
+  background: { backgroundColor: "#6c757c", width: "100%" },
   callToActionBtn2: {
     backgroundColor: "#bb1333",
     borderRadius: "0px",
@@ -35,9 +36,9 @@ const ProblemCard = props => {
   return (
     <Card className={classes.problemCards} raised>
       <CardMedia
-        className={classes.backgroundWhite}
+        className={classes.background}
         component="img"
-        src={ImageSetter.staticImage(problem.problem_category)}
+        src={ImageSetter.staticImage(problem.problem_category) || DefaultImage}
         title={problem.problem_title}
       />
       <Grid

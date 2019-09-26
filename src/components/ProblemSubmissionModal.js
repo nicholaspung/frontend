@@ -11,7 +11,7 @@ const ProblemSubmissionModal = props => {
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
-        <DialogTitle id="alert-dialog-title">{props.text}</DialogTitle>
+        <DialogTitle id="alert-dialog-title">Hello there, changing CSS</DialogTitle>
       </Dialog>
     </div>
   );

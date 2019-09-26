@@ -50,7 +50,6 @@ class ProblemDashboard extends React.Component {
     this.props.getProblems();
     this.props.getPopular();
     this.props.getUsers().then(() => {
-      console.log(this.props.problems);
       const idObject = {};
       this.props.users.map(user => {
         if (idObject[user.problem_id]) {
@@ -241,12 +240,14 @@ ProblemDashboard.propTypes = {
   problems: PropTypes.arrayOf(PropTypes.object),
   featured: PropTypes.arrayOf(PropTypes.object),
   classes: PropTypes.objectOf(PropTypes.string),
-  users: PropTypes.shape({
-    email: PropTypes.string,
-    full_name: PropTypes.string,
-    id: PropTypes.number,
-    problem_id: PropTypes.number
-  })
+  users: PropTypes.arrayOf(
+    PropTypes.shape({
+      email: PropTypes.string,
+      full_name: PropTypes.string,
+      id: PropTypes.number,
+      problem_id: PropTypes.number
+    })
+  )
 };
 
 const mapStateToProps = ({ problems, users }) => ({
