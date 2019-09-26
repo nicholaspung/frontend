@@ -4,20 +4,21 @@ import {
   //   ProblemCardLink,
 
   CallToActionBtn2
-} from "../../static/stylingComponents";
+} from "../static/stylingComponents";
 
 let dialogStyles = {
   width: "500px",
+  height: "500px",
   maxWidth: "100%",
-  margin: "0 auto",
+  margin: "2 auto",
   position: "fixed",
   left: "50%",
   top: "50%",
   transform: "translate(-50%,-50%)",
   zIndex: "999",
   backgroundColor: "#A9A9A9",
-  fontWeight: "bold",
-  padding: "10px 20px 40px",
+  // fontWeight: "bold",
+  padding: "5px 5px 5px 5px",
   borderRadius: "8px",
   display: "flex",
   flexDirection: "column"
@@ -35,7 +36,7 @@ let dialogCloseButtonStyles = {
   alignSelf: "flex-end"
 };
 
-class ModalTwo extends Component {
+class UsersModal extends Component {
   render() {
     let popup = (
       <div style={dialogStyles}>
@@ -50,11 +51,11 @@ class ModalTwo extends Component {
       </div>
     );
 
-    if (!this.props.isOpenR) {
+    if (!this.props.isOpenUsers) {
       popup = null;
     }
     return <div>{popup}</div>;
   }
 }
 
-export default ModalTwo;
+export default UsersModal;
