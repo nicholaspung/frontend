@@ -9,6 +9,7 @@ import Select from "@material-ui/core/Select";
 import TextField from "@material-ui/core/TextField";
 import MenuItem from "@material-ui/core/MenuItem";
 import Typography from "@material-ui/core/Typography";
+import CircularProgress from "@material-ui/core/CircularProgress";
 
 import { getProblems, getPopular, getUsers } from "../../actions";
 import ProblemCard from "./ProblemCard";
@@ -32,7 +33,8 @@ const styles = {
   divider: { borderTop: "1px #bdb7b7 solid" },
   topPadding: { paddingTop: "3rem" },
   whiteBackground: { backgroundColor: "#fffff" },
-  bottomMargin: { marginBottom: "1.5rem" }
+  bottomMargin: { marginBottom: "1.5rem" },
+  red: { color: "#bb1333" }
 };
 
 class ProblemDashboard extends React.Component {
@@ -180,7 +182,10 @@ class ProblemDashboard extends React.Component {
             </Typography>
 
             {this.props.fetchingPopular ? (
-              <Typography align="center">Loading data...</Typography>
+              <Grid container alignItems="center" direction="column">
+                <Typography align="center">Loading data...</Typography>
+                <CircularProgress className={this.props.classes.red} />
+              </Grid>
             ) : (
               <Grid container spacing={2}>
                 {this.props.featured.map(feature => (
@@ -199,7 +204,16 @@ class ProblemDashboard extends React.Component {
               Problem Cards
             </Typography>
             {this.props.fetchingProblems ? (
-              <Typography align="center">Loading data...</Typography>
+              // Need to figure out how to hide "error message", currently using 'height:40rem' to mask text lol
+              <Grid
+                container
+                alignItems="center"
+                direction="column"
+                style={{ height: "40rem" }}
+              >
+                <Typography align="center">Loading data...</Typography>
+                <CircularProgress className={this.props.classes.red} />
+              </Grid>
             ) : null}
             {this.allProblems().length > 0 ? (
               <Grid container spacing={2}>

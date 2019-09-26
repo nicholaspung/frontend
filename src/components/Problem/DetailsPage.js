@@ -14,6 +14,7 @@ import Paper from "@material-ui/core/Paper";
 import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
 import Breadcrumbs from "@material-ui/core/Breadcrumbs";
+import CircularProgress from "@material-ui/core/CircularProgress";
 import { getProblemsByID, getUsers, updateVote } from "../../actions";
 import { CardTitle } from "../../static/stylingComponents";
 import ModalSignUp from "./ModalSignUp";
@@ -142,9 +143,10 @@ class DetailsPage extends React.Component {
               elevation={6}
               className={this.props.classes.lostPaper}
             >
-              <Typography variant="h4" component="h3">
-                Loading problem...
-              </Typography>
+              <Grid container alignItems="center" direction="column">
+                <Typography align="center">Loading data...</Typography>
+                <CircularProgress className={this.props.classes.linkRed} />
+              </Grid>
             </Paper>
           </Grid>
         </Grid>
