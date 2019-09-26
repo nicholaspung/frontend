@@ -4,24 +4,19 @@ You can find the deployed project at [https://www.lambdaschoolnext.com/](https:/
 
 ## Contributors
 
-|                                                [Henry Leverette](https://github.com/trucane)                                                |                                               [Nicholas Pung](https://github.com/nicholaspung)                                                |                                                      [Student 3](https://github.com/)                                                       |
-| :-----------------------------------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------------------------: |
-| [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-male.png" width = "200" />](https://github.com/) | [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-female.png" width = "200" />](https://github.com/) | [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-male.png" width = "200" />](https://github.com/) |
-|                            [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/trucane)                             |                           [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/nicholaspung)                           |                          [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/Mister-Corn)                           |
-|      [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/henry-leverette/)       |         [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/nicholas-pung)         |                [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/)                |
+|                                          [Henry Leverette](https://github.com/trucane)                                           |                                       [Nicholas Pung](https://github.com/nicholaspung)                                        |                                                      [Student 3](https://github.com/)                                                       |
+| :------------------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------------------------: |
+|         [<img src="https://avatars1.githubusercontent.com/u/20119360?v=4" width = "200" />](https://github.com/trucane)          |     [<img src="https://avatars3.githubusercontent.com/u/22228236?v=4" width = "200" />](https://github.com/nicholaspung)      | [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-male.png" width = "200" />](https://github.com/) |
+|                       [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/trucane)                       |                   [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/nicholaspung)                   |                          [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/Mister-Corn)                           |
+| [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/henry-leverette/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/nicholas-pung) |                [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/)                |
 
 <br>
 <br>
-
-🚫 4️⃣ Optional examples of using images with links for your tech stack, make sure to change these to fit your project
 
 ![MIT](https://img.shields.io/packagist/l/doctrine/orm.svg)
-![React](https://img.shields.io/badge/react-v16.7.0--alpha.2-blue.svg)
-![Typescript](https://img.shields.io/npm/types/typescript.svg?style=flat)
-[![Netlify Status](https://api.netlify.com/api/v1/badges/b5c4db1c-b10d-42c3-b157-3746edd9e81d/deploy-status)](netlify link goes in these parenthesis)
-[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
-
-🚫 more info on using badges [here](https://github.com/badges/shields)
+![React](https://img.shields.io/badge/react-v16.9.0-blue)
+![Netlify Status](https://api.netlify.com/api/v1/badges/b5c4db1c-b10d-42c3-b157-3746edd9e81d/deploy-status)
+![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 
 ## Project Overview
 
@@ -31,7 +26,7 @@ You can find the deployed project at [https://www.lambdaschoolnext.com/](https:/
 
 [UX Design files](https://whimsical.com/Dt7eJMeLhuWtdDUngNQA6J)
 
-Lambda NeXt is Lambda School's flagship program to help their students build a fully functional project to showcase their skills. The goal of Lambda NeXt is to build projects that solve a real world problem. 
+Lambda NeXt is Lambda School's flagship program to help their students build a fully functional project to showcase their skills. The goal of Lambda NeXt is to build projects that solve a real world problem.
 
 This website was created to help alleviate the pain in choosing which problem to solve by helping source volunteers and research the problem before committing teams to creating a working prototype.
 
@@ -55,6 +50,7 @@ Why did we choose React.js + Redux.js?
 - Easiest to get started with, and familiarity with framework
 
 Libraries
+
 - FontAwesome
 - MaterialUI
 - Axios
@@ -65,7 +61,7 @@ Libraries
 
 #### Front end deployed to `Netlify`
 
-#### [Back end](https://github.com/labs15-lambda-next/backend) built using:
+### [Back end](https://github.com/labs15-lambda-next/backend) built using:
 
 #### Node.js + Express.js + PostgreSQL
 
@@ -77,6 +73,7 @@ Why did we choose Node.js + Express.js + PostgreSQL?
 - Clear documentation
 
 Libraries
+
 - SendGrid Email
 - JsonWebToken
 - Passport
@@ -95,7 +92,7 @@ Libraries
 
 No Environment Variables were used.
 
-# 5️⃣ Content Licenses
+# Content Licenses
 
 | Image Filename | Source / Creator | License                                                                      |
 | -------------- | ---------------- | ---------------------------------------------------------------------------- |
@@ -107,17 +104,18 @@ No Environment Variables were used.
 For testing, we mainly used PropType validation, and began testing with Jest.
 
 - PropTypes
-    - Used to make sure props were passed down correctly.
+  - Used to make sure props were passed down correctly.
 - Jest
-    - Used to check a few actions.
-    - Future work:
-        - Currently not all tests are passing
-        - Figure out how to mock test reducers
-        - Needs more test coverage.
+  - Used to check a few actions.
+  - Future work:
+    - Currently not all tests are passing
+    - Figure out how to mock test reducers
+    - Needs more test coverage.
 
 # Installation Instructions
 
 To get client running locally:
+
 - Clone this repo
 - npm install to install all required dependencies
 - Delete 'package-lock.json' after dependencies are installed
