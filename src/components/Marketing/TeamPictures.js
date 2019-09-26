@@ -32,6 +32,7 @@ const styles = {
 const TeamPictures = ({ name, github, position, classes, githubname }) => {
   const [avatar, setAvatar] = useState(DefaultGitHubPicture);
 
+  // Has a default picture when it first loads, then gets replaced with GitHub picture
   useEffect(() => {
     fetch(`https://api.github.com/users/${githubname}`)
       .then(response => response.json())

@@ -13,11 +13,11 @@ import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
 import Breadcrumbs from "@material-ui/core/Breadcrumbs";
 import Link from "@material-ui/core/Link";
-import { getProblemsByID, getUsers, updateVote } from "../actions";
-import { CardTitle } from "../static/stylingComponents";
-import SignUpModal from "./ModalSignUp";
+import { getProblemsByID, getUsers, updateVote } from "../../actions";
+import { CardTitle } from "../../static/stylingComponents";
+import SignUpModal from "../ModalSignUp";
 
-const ImageSetter = require("../static/stylingComponents/ImageSetter");
+const ImageSetter = require("../../static/stylingComponents/ImageSetter");
 
 const styles = {
   wholeContainer: { background: "#f6f7fb" },

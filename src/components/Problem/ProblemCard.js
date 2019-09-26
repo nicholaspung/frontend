@@ -10,8 +10,9 @@ import Grid from "@material-ui/core/Grid";
 import Tooltip from "@material-ui/core/Tooltip";
 import { withStyles } from "@material-ui/styles";
 
-import DefaultImage from '../static/images/cards/default-image.jpg';
-const ImageSetter = require("../static/stylingComponents/ImageSetter");
+import DefaultImage from '../../static/images/cards/default-image.jpg';
+
+const ImageSetter = require("../../static/stylingComponents/ImageSetter");
 
 const styles = {
   problemCards: { boxShadow: "1.5px silver", borderRadius: "0px" },

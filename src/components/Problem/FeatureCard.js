@@ -9,7 +9,7 @@ import Tooltip from "@material-ui/core/Tooltip";
 import { withStyles } from "@material-ui/styles";
 import { Link } from "react-router-dom";
 
-const ImageSetter = require("../static/stylingComponents/ImageSetter");
+const ImageSetter = require("../../static/stylingComponents/ImageSetter");
 
 const styles = {
   problemCards: { boxShadow: "2px 3px silver", borderRadius: "0px" },

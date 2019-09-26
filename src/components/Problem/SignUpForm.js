@@ -1,10 +1,10 @@
 import React from "react";
 import Grid from "@material-ui/core/Grid";
 import { connect } from "react-redux";
-import { addUser } from "../actions";
-import "../styles/SignUpForm.css";
+import { addUser } from "../../actions";
+import "../../styles/SignUpForm.css";
 
-import { DetailsBackButton } from "../static/stylingComponents";
+import { DetailsBackButton } from "../../static/stylingComponents";
 
 class SignUpForm extends React.Component {
   constructor(props) {

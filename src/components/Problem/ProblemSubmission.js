@@ -12,7 +12,7 @@ import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
 import { withStyles } from "@material-ui/styles";
 import ProblemSubmissionModal from "./ProblemSubmissionModal";
-import { addProblems } from "../actions";
+import { addProblems } from "../../actions";
 
 const months = [
   "Jan",
@@ -60,7 +60,7 @@ class ProblemSubmission extends React.Component {
         created_by: ""
       },
       error: "",
-      modalHidden: false,
+      modalHidden: true,
       modalResponse: ""
     };
   }
@@ -80,17 +80,15 @@ class ProblemSubmission extends React.Component {
     event.preventDefault();
     let problem = this.state.newProblem;
     if (problem.problem_category === "") {
-      this.setState(prevState => {
-        return {
-          ...prevState,
-          error: "You must choose a category."
-        };
-      });
+      this.setState(prevState => ({
+        ...prevState,
+        error: "You must choose a category."
+      }));
       return;
     }
 
     // Setting a date for backend to index
-    let today = new Date();
+    const today = new Date();
     problem.date_created = `${
       months[today.getMonth()]
     } ${today.getDate()}, ${today.getFullYear()}`;

@@ -7,12 +7,13 @@ import Header from "./Marketing/Header";
 import HomePage from "./Marketing/HomePage";
 import About from "./Marketing/About";
 import Footer from "./Marketing/Footer";
-import ProblemDashboard from "./ProblemDashboard";
-import ProblemCard from "./ProblemCard";
-import DetailsPage from "./DetailsPage";
-import ProblemSubmissionHolder from "./ProblemSubmissionHolder";
+import ProblemDashboard from "./Problem/ProblemDashboard";
+import ProblemCard from "./Problem/ProblemCard";
+import DetailsPage from "./Problem/DetailsPage";
+import ProblemSubmissionHolder from "./Problem/ProblemSubmissionHolder";
 import AdminDashboard from "./AdminDashboard";
 
+// This is mainly used for ThemeProvider - future work can make styles not use theme
 const theme = createMuiTheme({
   palette: {
     primary: { main: "#ffffff", secondary: "#55596d" },

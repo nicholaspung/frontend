@@ -55,6 +55,7 @@ const HomePage = ({ classes }) => {
           <Typography component="h2" variant="h5">
             We have Lambda School students build working prototypes for your
             next problem.{" "}
+            {/* Used to link to page at a specific section, currently only way to do this with React Router */}
             <HashLink to="/about#howitworks" className={classes.link}>
               Learn more→
             </HashLink>
