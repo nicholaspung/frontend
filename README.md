@@ -1,159 +1,148 @@
-🚫 Note: All lines that start with 🚫 are instructions and should be deleted before this is posted to your portfolio. This is intended to be a guideline, feel free to add your own flare to it.
+# Lambda School NeXt
 
-🚫 The numbers 1️⃣ through 5️⃣ next to each item represent the week that part of the docs needs to be comepleted by. Make sure to delete the numbers by the end of Labs.
+You can find the deployed project at [https://www.lambdaschoolnext.com/](https://www.lambdaschoolnext.com/).
 
-🚫 Each student has a required minimum number of meaningful PRs each week per the rubric. Contributing to docs does NOT count as a PR to meet your weekly requirements.
+## Contributors
 
-# 1️⃣ Title of project goes here
-
-1️⃣ You can find the deployed project at [🚫URL NAME GOES HERE](🚫copy and paste URL here).
-
-## 4️⃣ Contributors
-
-🚫Add contributor info below, make sure add images and edit the social links for each member. Add to or delete these place-holders as needed
-
-|                                                      [Henry Leverette](https://https://github.com/trucane)                                                       |                                                       [Student 2](https://github.com/)                                                        |                                                      [Student 3](https://github.com/)                                                       |                                                       [Student 4](https://github.com/)                                                        |                                                      [Student 5](https://github.com/)                                                       |
-| :-----------------------------------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------------------------: |
-| [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-male.png" width = "200" />](https://github.com/) | [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-female.png" width = "200" />](https://github.com/) | [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-male.png" width = "200" />](https://github.com/) | [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-female.png" width = "200" />](https://github.com/) | [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-male.png" width = "200" />](https://github.com/) |
-|                                [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/)                                |                            [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/honda0306)                             |                          [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/Mister-Corn)                           |                          [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/NandoTheessen)                           |                           [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/wvandolah)                            |
-|                [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/henry-leverette/)                |                 [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/)                 |                [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/)                |                 [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/)                 |                [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/)                |
+|                                          [Henry Leverette](https://github.com/trucane)                                           |                                       [Nicholas Pung](https://github.com/nicholaspung)                                        |                                                      [Student 3](https://github.com/)                                                       |
+| :------------------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------------------------: |
+|         [<img src="https://avatars1.githubusercontent.com/u/20119360?v=4" width = "200" />](https://github.com/trucane)          |     [<img src="https://avatars3.githubusercontent.com/u/22228236?v=4" width = "200" />](https://github.com/nicholaspung)      | [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-male.png" width = "200" />](https://github.com/) |
+|                       [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/trucane)                       |                   [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/nicholaspung)                   |                          [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/Mister-Corn)                           |
+| [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/henry-leverette/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/nicholas-pung) |                [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/)                |
 
 <br>
 <br>
-
-🚫 4️⃣ Optional examples of using images with links for your tech stack, make sure to change these to fit your project
 
 ![MIT](https://img.shields.io/packagist/l/doctrine/orm.svg)
-![React](https://img.shields.io/badge/react-v16.7.0--alpha.2-blue.svg)
-![Typescript](https://img.shields.io/npm/types/typescript.svg?style=flat)
-[![Netlify Status](https://api.netlify.com/api/v1/badges/b5c4db1c-b10d-42c3-b157-3746edd9e81d/deploy-status)](netlify link goes in these parenthesis)
+![React](https://img.shields.io/badge/react-v16.9.0-blue)
+![Netlify Status](https://api.netlify.com/api/v1/badges/b5c4db1c-b10d-42c3-b157-3746edd9e81d/deploy-status)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
-
-🚫 more info on using badges [here](https://github.com/badges/shields)
 
 ## Project Overview
 
-1️⃣ [Trello Board](🚫add link to trello board here)
+[Trello Board](https://trello.com/b/sdINEbm3)
 
-1️⃣ [Product Canvas](🚫add link to product canvas here)
+[Product Canvas](https://www.notion.so/Labs-neXt-Problem-Validation-Sourcing-cc4614726ee54fd3a11292907282264a)
 
-1️⃣ [UX Design files](🚫add link to design files here) - 🚫 delete if not applicable
+[UX Design files](https://whimsical.com/Dt7eJMeLhuWtdDUngNQA6J)
 
-🚫 Replace lorem ipsum with a description of your project
+Lambda NeXt is Lambda School's flagship program to help their students build a fully functional project to showcase their skills. The goal of Lambda NeXt is to build projects that solve a real world problem.
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+This website was created to help alleviate the pain in choosing which problem to solve by helping source volunteers and research the problem before committing teams to creating a working prototype.
 
-Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+### Key Features
 
-### 4️⃣ Key Features
+- View list of problems approved by Admins
+- Vote on a problem you want featured
+- Sign up to help with research for a problem
+- Add a problem for Admins to approve
 
-- feature one
-- feature two
-- feature three
-- feature four
-- feature five
-
-## 1️⃣ Tech Stack
+## Tech Stack
 
 ### Front end built using:
 
-#### _Front end framework goes here_
+#### _React.js + Redux.js_
 
-🚫 Why did you choose this framework?
+Why did we choose React.js + Redux.js?
 
-- point one
-- point two
-- point three
-- point four
+- React scales nicely for complex projects
+- Redux is a great global state management tool
+- Easiest to get started with, and familiarity with framework
 
-🚫List the rest of the front end features and libraries in the same format as the framework above.
+Libraries
 
-#### Front end deployed to `🚫insert service here`
+- FontAwesome
+- MaterialUI
+- Axios
+- PropTypes
+- React Router
+- React Router Hash Link
+- Redux Thunk
 
-#### [Back end](🚫link to back end repo here) built using:
+#### Front end deployed to `Netlify`
 
-#### 🚫 back end framework goes here
+### [Back end](https://github.com/labs15-lambda-next/backend) built using:
 
-- point one
-- point two
-- point three
+#### Node.js + Express.js + PostgreSQL
 
-🚫 List the rest of the back end end features and libraries in the same format as the framework above
+Why did we choose Node.js + Express.js + PostgreSQL?
+
+- Based off experience alone and also fits perfectly for the project.
+- Easy Scalability
+- Express makes it easier by having to write less code vs using only node.
+- Clear documentation
+
+Libraries
+
+- SendGrid Email
+- JsonWebToken
+- Passport
+- Helmet
+- Cors
+
+#### Back end deployed to `Heroku`
 
 # APIs
 
-## 2️⃣ Authentication API here
+### SendGrid Email
 
-🚫Replace text below with a description of the API
+- Used to send transactional email
 
-Water's like me. It's laaazy ... Boy, it always looks for the easiest way to do things A little happy sunlight shining through there. Let all these little things happen. Don't fight them. Learn to use them. Even the worst thing we can do here is good.
+#### _Future work can connect a Lambda School DS project where it automatically generates Problems for administrators to approve._
 
-## 2️⃣ Payment API here
+# Environment Variables
 
-🚫Replace text below with a description of the API
+No Environment Variables were used.
 
-This is the way you take out your flustrations. Get away from those little Christmas tree things we used to make in school. Isn't it fantastic that you can change your mind and create all these happy things? Everything's not great in life, but we can still find beauty in it.
+# Content Licenses
 
-## 3️⃣ Misc API here
-
-🚫Replace text below with a description of the API
-
-You can do anything your heart can imagine. In life you need colors. This is where you take out all your hostilities and frustrations. It's better than kicking the puppy dog around and all that so. I'm sort of a softy, I couldn't shoot Bambi except with a camera. Trees get lonely too, so we'll give him a little friend. We'll lay all these little funky little things in there.
-
-## 3️⃣ Misc API here
-
-🚫Replace text below with a description of the API
-
-When you do it your way you can go anywhere you choose. Let your heart take you to wherever you want to be. If I paint something, I don't want to have to explain what it is. A tree needs to be your friend if you're going to paint him. That's a son of a gun of a cloud. Even the worst thing we can do here is good.
-
-## 3️⃣ Misc API here
-
-🚫Replace text below with a description of the API
-
-Volunteering your time; it pays you and your whole community fantastic dividends. Maybe there's a happy little waterfall happening over here. You can spend all day playing with mountains. We don't have to be committed. We are just playing here. You have freedom here. The only guide is your heart. It's cold, but it's beautiful.
-
-# 3️⃣ Environment Variables
-
-In order for the app to function correctly, the user must set up their own environment variables. There should be a .env file containing the following:
-
-🚫These are just examples, replace them with the specifics for your app
-
-    *  REACT_APP_apiKey - this is your Google API key, which can be generated in the Google Cloud Console
-    *  REACT_APP_authDomain - when you set up your Firebase project, this information will be in the dashboard
-    *  REACT_APP_databaseURL - in the Firebase dashboard
-    *  REACT_APP_projectID - in the Firebase dashboard
-    *  REACT_APP_storageBucket - in the Firebase dashboard
-    *  REACT_APP_messagingSenderId - in the Firebase dashboard
-    *  REACT_APP_stripe_API - this is your public Stripe API key, generated in the Stripe dashboard
-    *  REACT_APP_backendURL - optional for your local development server
-    *  REACT_APP_clientid - this is the Stripe_connect clientID, generated in Stripe_connect settings
-    *  REACT_APP_stripe_plan - this is the ID for a second Stripe subscription plan, generated under Stripe products
-
-# 5️⃣ Content Licenses
-
-🚫For all content - images, icons, etc, use this table to document permission of use. Remove the two placeholders and add you content to this table
+We could not find licensing information for all photos used in this project. If an image of yours is used in our project, please contact us to remove the picture, and it will be done ASAP. Create a GitHub issue to notify us to take picture down.
 
 | Image Filename | Source / Creator | License                                                                      |
 | -------------- | ---------------- | ---------------------------------------------------------------------------- |
-| doodles.png    | Nicole Bennett   | [Creative Commons](https://www.toptal.com/designers/subtlepatterns/doodles/) |
-| rings.svg      | Sam Herbert      | [MIT](https://github.com/SamHerbert/SVG-Loaders)                             |
+| n/a            | n/a              | [Creative Commons](https://creativecommons.org/) |
 
-# 4️⃣ Testing
+# Testing
 
-🚫Document what you used for testing and why
+For testing, we mainly used PropType validation, and began testing with Jest.
 
-# 4️⃣ Installation Instructions
+- PropTypes
+  - Used to make sure props were passed down correctly.
+- Jest
+  - Used to check a few actions.
+  - Future work:
+    - Currently not all tests are passing
+    - Figure out how to mock test reducers
+    - Needs more test coverage.
 
-🚫explain how to install the required dependencies to get this project up and running with yarn and NPM
+# Future Features + Needs Work
+
+- Transition Class components to use React Hooks for entire site
+- Switch Material UI styles to use 'styled' hooks
+
+- Need to increase Performance score in [Google Lighthouse](https://developers.google.com/web/tools/lighthouse) (Chrome DevTools -> Audits)
+- Need styling in ProblemSubmissionModal (couldn't figure out how to style Dialog component from Material UI)
+- Need to switch Admin Components to Material UI (currently using Styled Components)
+- Need to adjust styling for Admin Components to match entire site
+- Remove unneccessary files from repository
+- Remove unneccessary code from JS files
+- Increasing test coverage
+- Connect back end with DS project to autopopulate problem dashboard
+  - Add some kind of pagination to application when there's too many problems
+
+# Installation Instructions
+
+To get client running locally:
+
+- Clone this repo
+- npm install to install all required dependencies
+- Delete 'package-lock.json' after dependencies are installed (very important)
+- yarn start to start the local server
+- yarn test to start using testing environment
 
 ## Other Scripts
 
-🚫replace these examples with your own
-
-    * typecheck - runs the TypeScript compiler
-    * build - creates a build of the application
-    * start - starts the production server after a build is created
-    * test - runs tests in **tests** directory \* eject - copy the configuration files and dependencies into the project so you have full control over them
+No other scripts were made.
 
 # Contributing
 
@@ -194,4 +183,4 @@ These contribution guidelines have been adapted from [this good-Contributing.md-
 
 ## Documentation
 
-See [Backend Documentation](🚫*link to your backend readme here*) for details on the backend of our project.
+See [Backend Documentation](https://github.com/labs15-lambda-next/backend/blob/master/README.md) for details on the backend of our project.
