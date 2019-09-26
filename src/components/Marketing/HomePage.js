@@ -1,5 +1,5 @@
 import React from "react";
-//import { HashLink } from "react-router-hash-link";
+import { HashLink } from "react-router-hash-link";
 import PropTypes from "prop-types";
 import Card from "@material-ui/core/Card";
 import CardMedia from "@material-ui/core/CardMedia";
@@ -55,9 +55,10 @@ const HomePage = ({ classes }) => {
           <Typography component="h2" variant="h5">
             We have Lambda School students build working prototypes for your
             next problem.{" "}
-            {/* <HashLink to="/about#howitworks" className={classes.link}>
+            {/* Used to link to page at a specific section, currently only way to do this with React Router */}
+            <HashLink to="/about#howitworks" className={classes.link}>
               Learn more→
-            </HashLink> */}
+            </HashLink>
           </Typography>
         </Grid>
       </Grid>

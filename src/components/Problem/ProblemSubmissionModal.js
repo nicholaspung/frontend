@@ -4,16 +4,17 @@ import Dialog from "@material-ui/core/Dialog";
 import DialogTitle from "@material-ui/core/DialogTitle";
 
 const ProblemSubmissionModal = props => {
+  // Can't figure out how to change style of Modal, didn't have enough time to change style completely
   return (
-    <div>
-      <Dialog
-        open={!props.hidden}
-        aria-labelledby="alert-dialog-title"
-        aria-describedby="alert-dialog-description"
-      >
-        <DialogTitle id="alert-dialog-title">{props.text}</DialogTitle>
-      </Dialog>
-    </div>
+    <Dialog
+      open={!props.hidden}
+      aria-labelledby="confirmation-dialog-title"
+      aria-describedby="confirmation-dialog-description"
+    >
+      <DialogTitle id="confirmation-dialog-title" disableTypography>
+        {props.text}
+      </DialogTitle>
+    </Dialog>
   );
 };
 

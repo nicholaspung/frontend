@@ -34,6 +34,7 @@ const styles = {
 const Header = props => {
   const { checked, setHeaderNavFalse, setHeaderNavOpposite, classes } = props;
 
+  // Used to make Nav Bar in mobile view act like a regular Nav Bar
   useEffect(() => {
     window.addEventListener("resize", () => {
       if (window.innerWidth > 600) {
