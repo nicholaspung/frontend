@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { getUsers } from "../actions";
 
 // import UsersModal from "./UsersModal";
-import AdminModalMiddle from "./AdminModalMiddle";
+import AdminMiddle from "./AdminMiddle";
 
 class AdminModalFetchUsers extends React.Component {
   state = {
@@ -14,19 +14,15 @@ class AdminModalFetchUsers extends React.Component {
     this.props.getUsers();
   }
 
-  seeUsers = e => {
-    e.preventDefault();
-    this.setState({ isOpenUsers: true });
-  };
-
   render() {
-    console.log(this.props.users);
     return (
       <div>
-        <AdminModalMiddle
+        <AdminMiddle
           users={this.props.users}
-          seeUsers={this.seeUsers}
-          // isOpenUsers={this.state.isOpenUsers}
+          seeUsers={this.props.seeUsers}
+          problems={this.props.problems}
+          updateProblem={this.props.updateProblem}
+          removeProblem={this.props.removeProblem}
         />
       </div>
     );

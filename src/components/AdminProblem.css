@@ -1,0 +1,12 @@
+@media (max-width: 800px) {
+  .card {
+    width: 800px;
+    background-color: black;
+  }
+}
+
+@media (max-width: 500px) {
+  .container {
+    width: 500px;
+  }
+}
