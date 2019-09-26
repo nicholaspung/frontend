@@ -1,43 +1,48 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 import { withStyles } from "@material-ui/styles";
 import Grid from "@material-ui/core/Grid";
 import Container from "@material-ui/core/Container";
 import Button from "@material-ui/core/Button";
-import Box from "@material-ui/core/Box";
 import Card from "@material-ui/core/Card";
 import Icon from "@material-ui/core/Icon";
 import Paper from "@material-ui/core/Paper";
 import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
 import Breadcrumbs from "@material-ui/core/Breadcrumbs";
-import Link from "@material-ui/core/Link";
 import { getProblemsByID, getUsers, updateVote } from "../../actions";
 import { CardTitle } from "../../static/stylingComponents";
 import SignUpModal from "../ModalSignUp";
+import DefaultImage from "../../static/images/cards/default-image.jpg";
 
 const ImageSetter = require("../../static/stylingComponents/ImageSetter");
 
 const styles = {
-  wholeContainer: { background: "#f6f7fb" },
-  gridCenter: {
-    width: "80%",
-    margin: "0px auto",
+  wholeContainer: {
+    background: "#f6f7fb",
     paddingTop: "2.5rem",
     paddingBottom: "2.5rem",
-    minHeight: "615px"
+    minHeight: window.innerHeight - 8 * 16
   },
-  lostPaper: { padding: "1rem", marginTop: "2rem", background: "#fff" },
-  crumbs: { marginBottom: "35px" },
+  crumbs: { marginBottom: "2rem" },
+  bolded: { fontWeight: "bold" },
+  lostPaper: { padding: "1.5rem" },
+  linkGrey: { color: "#55596d", textDecoration: "none" },
+  linkRed: { color: "#bb1333", textDecoration: "none" },
   detailProfileImage: {
     width: "100%",
-    borderRadius: "1%",
-    padding: 0,
-    margin: 0
+    borderRadius: "0px"
   },
-  detailCard: { height: "100%", padding: 20, background: "#fff" },
-  myPaper: { padding: 10, marginBottom: 20 }
+  detailCard: {
+    height: "100%",
+    padding: "1.5rem",
+    background: "#ffffff",
+    borderRadius: "0px"
+  },
+  votesSignees: { padding: "1.5rem", margin: "1rem" },
+  paddedBottom: { paddingBottom: "1rem" }
 };
 
 class DetailsPage extends React.Component {
@@ -93,33 +98,41 @@ class DetailsPage extends React.Component {
     const { problem } = this.props;
     const { id } = this.props.match.params;
 
-    if (!problem || problem.isApproved === false) {
+    if (!problem.id || problem.isApproved === false) {
       return (
-        <Grid className={this.props.classes.wholeContainer}>
-          <Grid className={this.props.classes.gridCenter}>
+        <Grid
+          container
+          justify="center"
+          className={this.props.classes.wholeContainer}
+        >
+          <Grid item xs={9}>
             <Breadcrumbs
               aria-label="breadcrumb"
               className={this.props.classes.crumbs}
             >
-              <Link color="inherit" href="/" style={{ fontWeight: "bold" }}>
+              <Link
+                to="/"
+                className={`${this.props.classes.bolded} ${this.props.classes.linkGrey}`}
+              >
                 Home
               </Link>
               <Link
-                color="inherit"
-                href="/problems"
-                style={{ fontWeight: "bold" }}
+                to="/problems"
+                className={`${this.props.classes.bolded} ${this.props.classes.linkGrey}`}
               >
                 Problems
               </Link>
             </Breadcrumbs>
-            <Paper className={this.props.classes.lostPaper}>
-              <Typography variant="h2" component="h3">
-                You must be lost return to
-                <small>
-                  <Link color="inherit" href="/problems">
-                    problems
-                  </Link>
-                </small>
+            <Paper
+              square
+              elevation={6}
+              className={this.props.classes.lostPaper}
+            >
+              <Typography variant="h4" component="h3">
+                You must be lost. Return to the{" "}
+                <Link to="/problems" className={this.props.classes.linkRed}>
+                  problems dashboard.
+                </Link>
               </Typography>
             </Paper>
           </Grid>
@@ -134,42 +147,52 @@ class DetailsPage extends React.Component {
           onClose={() => this.setState({ isOpen: false })}
           id={id}
         />
-        <Container className={this.props.classes.gridCenter}>
+        <Container>
           <Breadcrumbs
             aria-label="breadcrumb"
             className={this.props.classes.crumbs}
           >
-            <Link color="inherit" href="/" style={{ fontWeight: "bold" }}>
+            <Link
+              to="/"
+              className={`${this.props.classes.linkGrey} ${this.props.classes.bolded}`}
+            >
               Home
             </Link>
             <Link
-              color="inherit"
-              href="/problems"
-              style={{ fontWeight: "bold" }}
+              to="/problems"
+              className={`${this.props.classes.linkGrey} ${this.props.classes.bolded}`}
             >
               Problems
             </Link>
-            <Typography style={{ color: "rgb(187, 19, 51)" }}>
+            <Typography className={this.props.classes.linkRed}>
               {problem.problem_title}
             </Typography>
           </Breadcrumbs>
 
           <Grid container spacing={2}>
             <Grid item xs={12} md={6}>
-              <Box>
+              <Card square>
                 <CardMedia
                   className={this.props.classes.detailProfileImage}
                   component="img"
                   alt={`${problem.problem_category}: ${problem.problem_title}`}
                   height="auto"
-                  src={ImageSetter.staticImage(`${problem.problem_category}`)}
+                  src={
+                    ImageSetter.staticImage(`${problem.problem_category}`) ||
+                    DefaultImage
+                  }
                   title={`${problem.problem_category}: ${problem.problem_title}`}
                 />
-              </Box>
+              </Card>
             </Grid>
+
             <Grid item xs={12} md={6}>
               <Card className={this.props.classes.detailCard}>
-                <Grid container justify="space-between">
+                <Grid
+                  container
+                  justify="space-between"
+                  className={this.props.classes.paddedBottom}
+                >
                   <CardTitle
                     variant="headline"
                     color="textSecondary"
@@ -178,46 +201,48 @@ class DetailsPage extends React.Component {
                     {problem.problem_title}
                   </CardTitle>
 
-                  <Box style={{}}>
-                    <Typography variant="body2" component="p">
-                      <Icon>
-                        {ImageSetter.staticIcon(`${problem.problem_category}`)}
-                      </Icon>
-                    </Typography>
-                  </Box>
+                  <Icon>
+                    {ImageSetter.staticIcon(`${problem.problem_category}`)}
+                  </Icon>
                 </Grid>
-                <Box style={{ margin: "20px 0px", textAlign: "center" }}>
-                  <Typography variant="body2" component="">
-                    Description:
-                  </Typography>
-                  <Typography>{problem.problem_description}</Typography>
-                </Box>
+                <Typography variant="body2" component="p" align="center">
+                  Description:
+                </Typography>
+                <Typography variant="h5" component="h3" align="center">
+                  {problem.problem_description}
+                </Typography>
 
-                <Paper className={this.props.classes.myPaper}>
-                  <Grid container justify="space-between">
-                    <Typography>
-                      Votes: {this.getVotes(problem.numOfRatings)}
+                <Paper square className={this.props.classes.votesSignees}>
+                  <Grid container justify="space-between" alignItems="center">
+                    <Typography component="h3" variant="h5">
+                      Votes:{" "}
+                      <span className={this.props.classes.bolded}>
+                        {this.getVotes(problem.numOfRatings)}
+                      </span>
                     </Typography>
-                    <Box>
-                      <Icon onClick={() => this.vote(problem.numOfRatings)}>
-                        thumb_up
-                      </Icon>
-                    </Box>
+                    <Icon onClick={() => this.vote(problem.numOfRatings)}>
+                      thumb_up
+                    </Icon>
                   </Grid>
                 </Paper>
 
-                <Paper className={this.props.classes.myPaper}>
-                  <Grid container justify="space-between">
-                    <Typography onClick={this.getSignee}>
-                      Signess: {this.getSignee()}
+                <Paper square className={this.props.classes.votesSignees}>
+                  <Grid container justify="space-between" alignItems="center">
+                    <Typography
+                      component="h3"
+                      variant="h5"
+                      onClick={this.getSignee}
+                    >
+                      Signess:{" "}
+                      <span className={this.props.classes.bolded}>
+                        {this.getSignee()}
+                      </span>
                     </Typography>
-                    <Box>
-                      {problem.isAccepting ? (
-                        <Button onClick={this.openModal}>Sign Up</Button>
-                      ) : (
-                        <Button disabled>Sign Up</Button>
-                      )}
-                    </Box>
+                    {problem.isAccepting ? (
+                      <Button onClick={this.openModal}>Sign Up</Button>
+                    ) : (
+                      <Button disabled>Sign Up</Button>
+                    )}
                   </Grid>
                 </Paper>
               </Card>

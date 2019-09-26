@@ -53,7 +53,6 @@ const ProblemCard = props => {
             <Tooltip title={problem.problem_title}>
               <Typography
                 className={classes.bolded}
-                noWrap
                 gutterBottom
                 variant="h5"
                 color="initial"
