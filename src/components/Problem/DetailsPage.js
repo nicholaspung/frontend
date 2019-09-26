@@ -8,6 +8,8 @@ import Container from "@material-ui/core/Container";
 import Button from "@material-ui/core/Button";
 import Card from "@material-ui/core/Card";
 import Icon from "@material-ui/core/Icon";
+import ThumbUpIcon from "@material-ui/icons/ThumbUp";
+import ThumbUpAltOutlinedIcon from "@material-ui/icons/ThumbUpAltOutlined";
 import Paper from "@material-ui/core/Paper";
 import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
@@ -42,14 +44,24 @@ const styles = {
     borderRadius: "0px"
   },
   votesSignees: { padding: "1.5rem", margin: "1rem" },
-  paddedBottom: { paddingBottom: "1rem" }
+  paddedBottom: { paddingBottom: "1rem" },
+  button: {
+    backgroundColor: "#bb1333",
+    borderRadius: "0px",
+    color: "#ffffff",
+    "&:hover": {
+      backgroundColor: "#750808"
+    }
+  },
+  vote: { cursor: "pointer" }
 };
 
 class DetailsPage extends React.Component {
   constructor() {
     super();
     this.state = {
-      isOpen: false
+      isOpen: false,
+      voteClicked: false
     };
   }
 
@@ -92,6 +104,7 @@ class DetailsPage extends React.Component {
     let newVote = vote + 1;
     vote = newVote;
     this.props.updateVote(id, vote);
+    this.setState(prevState => ({ ...prevState, voteClicked: true }));
   };
 
   render() {
@@ -221,9 +234,14 @@ class DetailsPage extends React.Component {
                         {this.getVotes(problem.numOfRatings)}
                       </span>
                     </Typography>
-                    <Icon onClick={() => this.vote(problem.numOfRatings)}>
-                      thumb_up
-                    </Icon>
+                    {this.state.voteClicked ? (
+                      <ThumbUpIcon className={this.props.classes.linkRed} />
+                    ) : (
+                      <ThumbUpAltOutlinedIcon
+                        className={this.props.classes.vote}
+                        onClick={() => this.vote(problem.numOfRatings)}
+                      />
+                    )}
                   </Grid>
                 </Paper>
 
@@ -234,13 +252,18 @@ class DetailsPage extends React.Component {
                       variant="h5"
                       onClick={this.getSignee}
                     >
-                      Signess:{" "}
+                      # of Sign Ups:{" "}
                       <span className={this.props.classes.bolded}>
                         {this.getSignee()}
                       </span>
                     </Typography>
                     {problem.isAccepting ? (
-                      <Button onClick={this.openModal}>Sign Up</Button>
+                      <Button
+                        className={this.props.classes.button}
+                        onClick={this.openModal}
+                      >
+                        Sign Up Here!
+                      </Button>
                     ) : (
                       <Button disabled>Sign Up</Button>
                     )}
