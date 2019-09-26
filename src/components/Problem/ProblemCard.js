@@ -10,11 +10,13 @@ import Grid from "@material-ui/core/Grid";
 import Tooltip from "@material-ui/core/Tooltip";
 import { withStyles } from "@material-ui/styles";
 
-const ImageSetter = require("../static/stylingComponents/ImageSetter");
+import DefaultImage from '../../static/images/cards/default-image.jpg';
+
+const ImageSetter = require("../../static/stylingComponents/ImageSetter");
 
 const styles = {
-  problemCards: { boxShadow: "1.5px 1.5px silver", borderRadius: "0px" },
-  backgroundWhite: { backgroundColor: "white", width: "100%" },
+  problemCards: { boxShadow: "1.5px silver", borderRadius: "0px" },
+  background: { backgroundColor: "#6c757c", width: "100%" },
   callToActionBtn2: {
     backgroundColor: "#bb1333",
     borderRadius: "0px",
@@ -30,14 +32,14 @@ const styles = {
 };
 
 const ProblemCard = props => {
-  const { problem, classes } = props;
+  const { problem, classes, signups } = props;
 
   return (
-    <Card className={classes.problemCards}>
+    <Card className={classes.problemCards} raised>
       <CardMedia
-        className={classes.backgroundWhite}
+        className={classes.background}
         component="img"
-        src={ImageSetter.staticImage(problem.problem_category)}
+        src={ImageSetter.staticImage(problem.problem_category) || DefaultImage}
         title={problem.problem_title}
       />
       <Grid
@@ -51,7 +53,6 @@ const ProblemCard = props => {
             <Tooltip title={problem.problem_title}>
               <Typography
                 className={classes.bolded}
-                noWrap
                 gutterBottom
                 variant="h5"
                 color="initial"
@@ -76,12 +77,12 @@ const ProblemCard = props => {
         <Grid container alignItems="center" direction="row-reverse">
           <Grid item xs={12} sm={6} className={classes.buttonPadding}>
             <Typography variant="body2" component="p" align="center">
-              # of Sign Ups: <span className={classes.bolded}>{1}</span>
+              # of Sign Ups: <span className={classes.bolded}>{signups}</span>
             </Typography>
           </Grid>
           <Grid item xs={12} sm={6}>
             <Link
-              to={`/problem-details/${problem.id}`}
+              to={`/problems/${problem.id}`}
               className={classes.noTextDecoration}
             >
               <Button
@@ -102,7 +103,8 @@ const ProblemCard = props => {
 
 ProblemCard.defaultProps = {
   problem: {},
-  classes: {}
+  classes: {},
+  signups: 0
 };
 
 ProblemCard.propTypes = {
@@ -112,7 +114,8 @@ ProblemCard.propTypes = {
     problem_title: PropTypes.string,
     problem_description: PropTypes.string
   }),
-  classes: PropTypes.objectOf(PropTypes.string)
+  classes: PropTypes.objectOf(PropTypes.string),
+  signups: PropTypes.number
 };
 
 export default withStyles(styles)(ProblemCard);

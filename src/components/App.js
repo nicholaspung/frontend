@@ -1,5 +1,5 @@
 import React from "react";
-import { Route } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import createMuiTheme from "@material-ui/core/styles/createMuiTheme";
 import ThemeProvider from "@material-ui/styles/ThemeProvider";
@@ -7,12 +7,13 @@ import Header from "./Marketing/Header";
 import HomePage from "./Marketing/HomePage";
 import About from "./Marketing/About";
 import Footer from "./Marketing/Footer";
-import ProblemDashboard from "./ProblemDashboard";
-import ProblemCard from "./ProblemCard";
-import DetailsPage from "./DetailsPage";
-import ProblemSubmissionHolder from "./ProblemSubmissionHolder";
-import AdminDashboard from "./AdminDashboard";
+import ProblemDashboard from "./Problem/ProblemDashboard";
+import NoMatchPage from "./Marketing/NoMatchPage";
+import DetailsPage from "./Problem/DetailsPage";
+import ProblemSubmissionHolder from "./Problem/ProblemSubmissionHolder";
+import AdminDashboard from "./Admin/AdminDashboard";
 
+// This is mainly used for ThemeProvider - future work can make styles not use theme
 const theme = createMuiTheme({
   palette: {
     primary: { main: "#ffffff", secondary: "#55596d" },
@@ -28,13 +29,15 @@ export default function App() {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <Header />
-      <Route exact path="/" component={HomePage} />
-      <Route path="/problems" component={ProblemDashboard} />
-      <Route path="/admin-problems" component={AdminDashboard} />
-      <Route path="/submitaproblem" component={ProblemSubmissionHolder} />
-      <Route path="/about" component={About} />
-      <Route exact path="/problem-details" component={ProblemCard} />
-      <Route path="/problem-details/:id" component={DetailsPage} />
+      <Switch>
+        <Route exact path="/" component={HomePage} />
+        <Route exact path="/problems" component={ProblemDashboard} />
+        <Route path="/admin" component={AdminDashboard} />
+        <Route path="/submitaproblem" component={ProblemSubmissionHolder} />
+        <Route path="/about" component={About} />
+        <Route path="/problems/:id" component={DetailsPage} />
+        <Route exact component={NoMatchPage} />
+      </Switch>
       <Footer />
     </ThemeProvider>
   );

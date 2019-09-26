@@ -9,8 +9,9 @@ import Select from "@material-ui/core/Select";
 import TextField from "@material-ui/core/TextField";
 import MenuItem from "@material-ui/core/MenuItem";
 import Typography from "@material-ui/core/Typography";
+import CircularProgress from "@material-ui/core/CircularProgress";
 
-import { getProblems, getPopular } from "../actions";
+import { getProblems, getPopular, getUsers } from "../../actions";
 import ProblemCard from "./ProblemCard";
 import FeatureCard from "./FeatureCard";
 
@@ -32,7 +33,8 @@ const styles = {
   divider: { borderTop: "1px #bdb7b7 solid" },
   topPadding: { paddingTop: "3rem" },
   whiteBackground: { backgroundColor: "#fffff" },
-  bottomMargin: { marginBottom: "1.5rem" }
+  bottomMargin: { marginBottom: "1.5rem" },
+  red: { color: "#bb1333" }
 };
 
 class ProblemDashboard extends React.Component {
@@ -41,13 +43,33 @@ class ProblemDashboard extends React.Component {
     this.state = {
       selectedCategory: "all",
       selectByName: "",
-      selectedStatus: "start"
+      selectedStatus: "start",
+      idsObject: {}
     };
   }
 
   componentDidMount() {
     this.props.getProblems();
     this.props.getPopular();
+    this.props.getUsers().then(() => {
+      const idObject = {};
+      this.props.users.map(user => {
+        if (idObject[user.problem_id]) {
+          idObject[user.problem_id] += 1;
+          return null;
+        }
+        idObject[user.problem_id] = 1;
+        return null;
+      });
+      this.props.problems.map(problem => {
+        if (!idObject[problem.id]) {
+          idObject[problem.id] = 0;
+          return null;
+        }
+        return null;
+      });
+      this.setState(prevState => ({ ...prevState, idsObject: idObject }));
+    });
   }
 
   handleChange = event => {
@@ -88,13 +110,14 @@ class ProblemDashboard extends React.Component {
     if (this.state.selectedStatus === "start") {
       return this.props.problems;
     }
-
     if (this.state.selectedStatus === "category") {
       return this.findByCategory();
     }
     if (this.state.selectedStatus === "name") {
       return this.findByName();
     }
+
+    return null;
   };
 
   render() {
@@ -149,6 +172,7 @@ class ProblemDashboard extends React.Component {
             </Grid>
           </FormControl>
         </div>
+
         <div
           className={`${this.props.classes.greyBackground} ${this.props.classes.divider}`}
         >
@@ -157,13 +181,20 @@ class ProblemDashboard extends React.Component {
               Featured Cards
             </Typography>
 
-            <Grid container spacing={2}>
-              {this.props.featured.map(feature => (
-                <Grid item key={feature.id} xs={12} sm={6} md={3}>
-                  <FeatureCard problem={feature} />
-                </Grid>
-              ))}
-            </Grid>
+            {this.props.fetchingPopular ? (
+              <Grid container alignItems="center" direction="column">
+                <Typography align="center">Loading data...</Typography>
+                <CircularProgress className={this.props.classes.red} />
+              </Grid>
+            ) : (
+              <Grid container spacing={2}>
+                {this.props.featured.map(feature => (
+                  <Grid item key={feature.id} xs={12} sm={6} md={3}>
+                    <FeatureCard problem={feature} />
+                  </Grid>
+                ))}
+              </Grid>
+            )}
           </Grid>
         </div>
 
@@ -172,11 +203,26 @@ class ProblemDashboard extends React.Component {
             <Typography component="h1" variant="h4" gutterBottom>
               Problem Cards
             </Typography>
+            {this.props.fetchingProblems ? (
+              // Need to figure out how to hide "error message", currently using 'height:40rem' to mask text lol
+              <Grid
+                container
+                alignItems="center"
+                direction="column"
+                style={{ height: "40rem" }}
+              >
+                <Typography align="center">Loading data...</Typography>
+                <CircularProgress className={this.props.classes.red} />
+              </Grid>
+            ) : null}
             {this.allProblems().length > 0 ? (
               <Grid container spacing={2}>
                 {this.allProblems().map(problem => (
                   <Grid item key={problem.id} xs={12} sm={6} md={4}>
-                    <ProblemCard problem={problem} />
+                    <ProblemCard
+                      problem={problem}
+                      signups={this.state.idsObject[problem.id]}
+                    />
                   </Grid>
                 ))}
               </Grid>
@@ -202,27 +248,45 @@ class ProblemDashboard extends React.Component {
 ProblemDashboard.defaultProps = {
   getProblems: function hi() {},
   getPopular: function hi() {},
+  getUsers: function hi() {},
+  fetchingPopular: false,
+  fetchingProblems: false,
   problems: [],
   featured: [],
-  classes: {}
+  classes: {},
+  users: []
 };
 
 ProblemDashboard.propTypes = {
   getProblems: PropTypes.func,
   getPopular: PropTypes.func,
+  getUsers: PropTypes.func,
   problems: PropTypes.arrayOf(PropTypes.object),
   featured: PropTypes.arrayOf(PropTypes.object),
-  classes: PropTypes.objectOf(PropTypes.string)
+  classes: PropTypes.objectOf(PropTypes.string),
+  users: PropTypes.arrayOf(
+    PropTypes.shape({
+      email: PropTypes.string,
+      full_name: PropTypes.string,
+      id: PropTypes.number,
+      problem_id: PropTypes.number
+    })
+  ),
+  fetchingPopular: PropTypes.bool,
+  fetchingProblems: PropTypes.bool
 };
 
-const mapStateToProps = ({ problems }) => ({
+const mapStateToProps = ({ problems, users }) => ({
   problems: problems.problems,
-  featured: problems.popular
+  fetchingPopular: problems.fetchingPopular,
+  fetchingProblems: problems.fetchingProblems,
+  featured: problems.popular,
+  users: users.users
 });
 
 export default withStyles(styles)(
   connect(
     mapStateToProps,
-    { getProblems, getPopular }
+    { getProblems, getPopular, getUsers }
   )(ProblemDashboard)
 );
