@@ -82,7 +82,7 @@ const ProblemCard = props => {
           </Grid>
           <Grid item xs={12} sm={6}>
             <Link
-              to={`/problem-details/${problem.id}`}
+              to={`/problems/${problem.id}`}
               className={classes.noTextDecoration}
             >
               <Button
