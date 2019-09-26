@@ -21,73 +21,84 @@ const ImageSetter = require("../static/stylingComponents/ImageSetter");
 
 // #adc7e0
 
-const useStyles = makeStyles({
-  card: {
-    maxWidth: "30%",
-    marginTop: 20,
-    display: "flex",
-    flexDirection: "row",
-    flexWrap: "wrap",
-    backgroundColor: "#778899",
-    // opacity: 0.8,
-    "&:hover": {
-      backgroundColor: "#ccd6e0"
+const useStyles = makeStyles(theme => {
+  return {
+    card: {
+      maxWidth: "30%",
+      marginTop: 20,
+      display: "flex",
+      flexDirection: "row",
+      flexWrap: "wrap",
+      backgroundColor: "#778899",
+      "&:hover": {
+        backgroundColor: "#ccd6e0"
+      }
+    },
+
+    actionarea: {
+      display: "flex",
+      flexDirection: "row",
+      justifyContent: "space-around",
+
+      [theme.breakpoints.down("sm")]: {
+        border: "1px solid black",
+        width: "80%"
+      }
+    },
+
+    media: {
+      height: 100,
+      width: "20%"
+    },
+    // content: {
+    //   maxWidth: "30%",
+    //   display: "flex",
+    //   flexDirection: "row"
+    // },
+    ratingStatus: {
+      display: "flex",
+      flexDirection: "column"
+      // justifyContent: "space-between"
+    },
+    category: {
+      textTransform: "capitalize"
+    },
+    mainTitle: {
+      display: "flex",
+      justifyContent: "center",
+      textAlign: "center",
+      width: "100%",
+      textTransform: "uppercase",
+      paddingBottom: 5
+    },
+    actionsContainer: {
+      display: "flex",
+      justifyContent: "space-between",
+      flexDirection: "row",
+      maxWidth: "90%"
     }
-  },
-
-  actionarea: {
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "space-around"
-  },
-
-  media: {
-    height: 100,
-    width: "20%"
-  },
-  // content: {
-  //   maxWidth: "30%",
-  //   display: "flex",
-  //   flexDirection: "row"
-  // },
-  ratingStatus: {
-    display: "flex",
-    flexDirection: "column"
-    // justifyContent: "space-between"
-  },
-  category: {
-    textTransform: "capitalize"
-  },
-  mainTitle: {
-    display: "flex",
-    justifyContent: "center",
-    textAlign: "center",
-    width: "100%",
-    textTransform: "uppercase",
-    paddingBottom: 5
-  },
-  actionsContainer: {
-    display: "flex",
-    justifyContent: "space-between",
-    flexDirection: "row",
-    maxWidth: "90%"
-  },
-  approveReject: {
-    display: "flex",
-    flexDirection: "row"
-  },
-  infoDiv: {
-    display: "flex",
-    flexDirection: "row",
-    alignContent: "flex-end",
-    paddingLeft: 30
-  }
+    // approveReject: {
+    //   display: "flex",
+    //   flexDirection: "row"
+    // },
+    // infoDiv: {
+    //   display: "flex",
+    //   flexDirection: "row",
+    //   alignContent: "flex-end",
+    //   paddingLeft: 30
+    // }
+  };
 });
 
 const AdminProblem = props => {
   const classes = useStyles();
   const problem = props.problem;
   const user = props.user;
+
+  const deleteProblem = e => {
+    props.deleteAdminProblem(problem.id);
+  };
+
   console.log("ADMIN PROBLEM", props);
   if (problem) {
     return (
@@ -141,48 +152,55 @@ const AdminProblem = props => {
           {problem.problem_description}
         </Typography>
         <CardActions className={classes.actionsContainer}>
-          <div className={classes.approveReject}>
-            <Button
-              size="medium"
-              color="green"
-              onClick={e => props.updateProblem(e, problem)}
-              // href="/problems"
-            >
-              {/* <FontAwesomeIcon icon={faCheck} color="green" size="2x" /> */}
-              Approve
-            </Button>
-            <Button
-              size="medium"
-              color="red"
-              onClick={e => props.updateProblem(e, problem)}
-              // onClick={e => props.removeProblem(e, problem)}
-              style={{ paddingLeft: 20 }}
-              // href="/admin-problems"
-            >
-              {/* <FontAwesomeIcon icon={faBan} color="#FF0000" size="2x" /> */}
-              Reject
-            </Button>
-          </div>
-          <div className={classes.infoDiv}>
-            <Button
-              size="small"
-              // color="primary"
-              href={`/problem-details/${problem.id}`}
-              style={{ width: 10, marginRight: 40 }}
-            >
-              Details
-            </Button>
+          {/* <div className={classes.approveReject}> */}
+          <Button
+            size="small"
+            color="green"
+            onClick={e => props.updateProblem(e, problem)}
+            // href="/problems"
+          >
+            {/* <FontAwesomeIcon icon={faCheck} color="green" size="2x" /> */}
+            Approve
+          </Button>
+          <Button
+            size="small"
+            color="red"
+            onClick={e => props.updateProblem(e, problem)}
+            // onClick={e => props.removeProblem(e, problem)}
+            style={{ paddingLeft: 5 }}
+            // href="/admin-problems"
+          >
+            {/* <FontAwesomeIcon icon={faBan} color="#FF0000" size="2x" /> */}
+            Reject
+          </Button>
+          <Button
+            size="small"
+            onClick={deleteProblem}
+            style={{ paddingLeft: 5 }}
+          >
+            Delete
+          </Button>
+          {/* </div>
+          <div className={classes.infoDiv}> */}
+          <Button
+            size="small"
+            // color="primary"
+            href={`/problem-details/${problem.id}`}
+            style={{ paddingLeft: 5 }}
+          >
+            Details
+          </Button>
 
-            {/* new stuff for users modal */}
-            <Button
-              size="small"
-              // color="primary"
-              onClick={e => props.seeUsers(e, problem.id)}
-              style={{ width: 15 }}
-            >
-              Volunteers
-            </Button>
-          </div>
+          {/* new stuff for users modal */}
+          <Button
+            size="small"
+            // color="primary"
+            onClick={e => props.seeUsers(e, problem.id)}
+            style={{ paddingLeft: 5 }}
+          >
+            Volunteers
+          </Button>
+          {/* </div> */}
         </CardActions>
         {/* <UsersModal onClose={e => this.setState({ isOpenUsers: false })}>
           {user.full_name}
