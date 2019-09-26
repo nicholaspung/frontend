@@ -14,7 +14,7 @@ import Typography from "@material-ui/core/Typography";
 import Breadcrumbs from "@material-ui/core/Breadcrumbs";
 import { getProblemsByID, getUsers, updateVote } from "../../actions";
 import { CardTitle } from "../../static/stylingComponents";
-import SignUpModal from "../ModalSignUp";
+import ModalSignUp from "./ModalSignUp";
 import DefaultImage from "../../static/images/cards/default-image.jpg";
 
 const ImageSetter = require("../../static/stylingComponents/ImageSetter");
@@ -141,11 +141,12 @@ class DetailsPage extends React.Component {
     }
     return (
       <Grid container className={this.props.classes.wholeContainer}>
-        <SignUpModal
+        <ModalSignUp
           modaler={this.openModal}
           isOpen={this.state.isOpen}
           onClose={() => this.setState({ isOpen: false })}
           id={id}
+          problem={problem}
         />
         <Container>
           <Breadcrumbs
@@ -259,7 +260,8 @@ DetailsPage.defaultProps = {
   getUsers: function hi() {},
   getProblemsByID: function hi() {},
   users: [],
-  classes: {}
+  classes: {},
+  updateVote: function hi() {}
 };
 
 DetailsPage.propTypes = {
@@ -270,7 +272,8 @@ DetailsPage.propTypes = {
     isAccepting: PropTypes.bool,
     problem_description: PropTypes.string,
     problem_category: PropTypes.string,
-    problem_title: PropTypes.string
+    problem_title: PropTypes.string,
+    id: PropTypes.number
   }),
   match: PropTypes.shape({
     params: PropTypes.shape({
@@ -286,6 +289,7 @@ DetailsPage.propTypes = {
   ),
   getUsers: PropTypes.func,
   getProblemsByID: PropTypes.func,
+  updateVote: PropTypes.func,
   classes: PropTypes.objectOf(PropTypes.string)
 };
 

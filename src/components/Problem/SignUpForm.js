@@ -1,20 +1,39 @@
 import React from "react";
+import PropTypes from "prop-types";
+import { withStyles } from "@material-ui/styles";
 import Grid from "@material-ui/core/Grid";
+import Button from "@material-ui/core/Button";
+import Paper from "@material-ui/core/Paper";
+import TextField from "@material-ui/core/TextField";
+import Container from "@material-ui/core/Container";
+import Typography from "@material-ui/core/Typography";
 import { connect } from "react-redux";
-import { addUser } from "../../actions";
-import "../../styles/SignUpForm.css";
+import { addUser, getUsers } from "../../actions";
 
-import { DetailsBackButton } from "../../static/stylingComponents";
-
+const styles = {
+  button: {
+    backgroundColor: "#bb1333",
+    borderRadius: "0px",
+    color: "#ffffff",
+    "&:hover": {
+      backgroundColor: "#750808"
+    }
+  },
+  paddedBottom: { paddingBottom: "1.5rem" },
+  paddedTop: { paddingTop: "1.5rem" },
+  padding: { padding: "1.5rem" },
+  color: { color: "#bb1333" }
+};
 class SignUpForm extends React.Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.state = {
       newUser: {
         full_name: "",
         email: ""
       },
-      error: ""
+      error: "",
+      isSubmitted: false
     };
   }
 
@@ -41,48 +60,114 @@ class SignUpForm extends React.Component {
     };
 
     this.props.addUser(user);
-    this.setState({
-      full_name: "",
-      email: ""
-    });
+    this.setState(prevState => ({
+      ...prevState,
+      newUser: { full_name: "", email: "" },
+      isSubmitted: true
+    }));
+    setTimeout(() => {
+      this.props.getUsers();
+      this.props.opener();
+    }, 2000);
   };
-
-  //email must be unique and all fields are required
 
   render() {
     return (
-      <div className="form-style-6">
-        <form onSubmit={this.handleSubmit}>
-          <input
-            type="text"
-            name="full_name"
-            placeholder="Full Name"
-            onChange={this.handleInputChange("full_name")}
-            value={this.state.newUser.full_name}
-          />
-          <input
-            name="email"
-            type="email"
-            placeholder="Email"
-            onChange={this.handleInputChange("email")}
-            value={this.state.newUser.email}
-          />
-          <Grid container justify="space-between">
-            <DetailsBackButton onClick={this.handleSubmit}>
-              Sign up!
-            </DetailsBackButton>
-
-            <DetailsBackButton onClick={this.props.opener}>
-              cancel
-            </DetailsBackButton>
-          </Grid>
-        </form>
-      </div>
+      <Grid container justify="center">
+        <Grid item xs={11} sm={7} md={5}>
+          <Paper square>
+            {this.state.isSubmitted ? (
+              <Typography
+                component="h2"
+                variant="h4"
+                className={this.props.classes.padding}
+              >
+                You have been signed up! Returning to the problem details for{" "}
+                <span className={this.props.classes.color}>
+                  {this.props.problem.problem_title}
+                </span>
+              </Typography>
+            ) : (
+              <form onSubmit={this.handleSubmit} autoComplete="off">
+                <Container className={this.props.classes.paddedBottom}>
+                  <Typography className={this.props.classes.paddedTop}>
+                    Please provide your name and email address. We will contact
+                    you through email when the problem has been approved for
+                    Lambda students start working on the problem.
+                  </Typography>
+                  <TextField
+                    id="full_name"
+                    label="Full Name"
+                    value={this.state.newUser.full_name}
+                    onChange={this.handleInputChange("full_name")}
+                    margin="normal"
+                    fullWidth
+                    required
+                  />
+                  <TextField
+                    id="email"
+                    label="Email"
+                    value={this.state.newUser.email}
+                    onChange={this.handleInputChange("email")}
+                    margin="normal"
+                    fullWidth
+                    required
+                  />
+                </Container>
+                <Grid container justify="space-between">
+                  <Grid item xs={12} sm={6}>
+                    <Button
+                      type="submit"
+                      fullWidth
+                      onClick={this.handleSubmit}
+                      className={this.props.classes.button}
+                    >
+                      Sign up!
+                    </Button>
+                  </Grid>
+                  <Grid item xs={12} sm={6}>
+                    <Button fullWidth onClick={this.props.opener}>
+                      cancel
+                    </Button>
+                  </Grid>
+                </Grid>
+              </form>
+            )}
+          </Paper>
+        </Grid>
+      </Grid>
     );
   }
 }
 
-export default connect(
-  null,
-  { addUser }
-)(SignUpForm);
+SignUpForm.defaultProps = {
+  classes: {},
+  opener: function hi() {},
+  problem: {},
+  addUser: function hi() {},
+  getUsers: function hi() {}
+};
+
+SignUpForm.propTypes = {
+  classes: PropTypes.objectOf(PropTypes.string),
+  opener: PropTypes.func,
+  addUser: PropTypes.func,
+  getUsers: PropTypes.func,
+  problem: PropTypes.shape({
+    find: PropTypes.func,
+    isApproved: PropTypes.bool,
+    numOfRatings: PropTypes.number,
+    isAccepting: PropTypes.bool,
+    problem_description: PropTypes.string,
+    problem_category: PropTypes.string,
+    problem_title: PropTypes.string,
+    id: PropTypes.number
+  })
+};
+
+export default withStyles(styles)(
+  connect(
+    null,
+    { addUser, getUsers }
+  )(SignUpForm)
+);
