@@ -1,5 +1,5 @@
 import React from "react";
-import "./AdminProblem.css";
+
 import styled from "styled-components";
 
 import { makeStyles } from "@material-ui/core/styles";
@@ -41,20 +41,22 @@ const useStyles = makeStyles(theme => {
       justifyContent: "space-around",
 
       [theme.breakpoints.down("sm")]: {
-        border: "1px solid black",
-        width: "80%"
+        width: "80%",
+        fontSize: ".5rem"
       }
     },
 
     media: {
       height: 100,
-      width: "20%"
+      width: "20%",
+      [theme.breakpoints.down("sm")]: {
+        paddingLeft: "10%",
+        width: "60%",
+        paddingRight: "5%",
+        height: 60
+      }
     },
-    // content: {
-    //   maxWidth: "30%",
-    //   display: "flex",
-    //   flexDirection: "row"
-    // },
+
     ratingStatus: {
       display: "flex",
       flexDirection: "column"
@@ -69,13 +71,56 @@ const useStyles = makeStyles(theme => {
       textAlign: "center",
       width: "100%",
       textTransform: "uppercase",
-      paddingBottom: 5
+      paddingBottom: 5,
+      [theme.breakpoints.down("sm")]: {
+        fontSize: "0.8rem"
+      }
+    },
+    descriptionYo: {
+      [theme.breakpoints.down("sm")]: {
+        fontSize: "0.7rem"
+      }
     },
     actionsContainer: {
       display: "flex",
-      justifyContent: "space-between",
+      justifyContent: "center",
       flexDirection: "row",
-      maxWidth: "90%"
+      alignItems: "center",
+      [theme.breakpoints.down("sm")]: {
+        // width: "10%"
+      }
+    },
+    buttonYo1: {
+      backgroundColor: "#313635",
+      color: black,
+      textTransform: "uppercase",
+      [theme.breakpoints.down("sm")]: {
+        fontSize: ".5rem",
+        width: "5%"
+      }
+    },
+
+    buttonYo2: {
+      [theme.breakpoints.down("sm")]: {
+        fontSize: ".5rem",
+        paddingLeft: "1",
+        width: "5%"
+      }
+    },
+    buttonYo3: {
+      [theme.breakpoints.down("sm")]: {
+        fontSize: ".5rem"
+      }
+    },
+    buttonYo4: {
+      [theme.breakpoints.down("sm")]: {
+        fontSize: ".5rem"
+      }
+    },
+    buttonYo5: {
+      [theme.breakpoints.down("sm")]: {
+        fontSize: ".5rem"
+      }
     }
     // approveReject: {
     //   display: "flex",
@@ -106,11 +151,13 @@ const AdminProblem = props => {
         <Typography className={classes.mainTitle} variant="h6" component="h3">
           {problem.problem_title} || {problem.problem_category}
         </Typography>
+
         <CardActionArea className={classes.actionarea}>
           <CardMedia
             className={classes.media}
-            image={healthImage}
-            title="Contemplative Reptile"
+            component="img"
+            src={ImageSetter.staticImage(problem.problem_category)}
+            title={problem.problem_title}
           />
           {/* <CardContent className={classes.content}> */}
 
@@ -138,6 +185,7 @@ const AdminProblem = props => {
           {/* </CardContent> */}
         </CardActionArea>
         <Typography
+          className={classes.descriptionYo}
           variant="body2"
           color="textSecondary"
           component="p"
@@ -152,59 +200,48 @@ const AdminProblem = props => {
           {problem.problem_description}
         </Typography>
         <CardActions className={classes.actionsContainer}>
-          {/* <div className={classes.approveReject}> */}
-          <Button
-            size="small"
-            color="green"
+          <button
+            className={classes.buttonYo1}
+            // size="small"
+            // color="green"
             onClick={e => props.updateProblem(e, problem)}
-            // href="/problems"
           >
-            {/* <FontAwesomeIcon icon={faCheck} color="green" size="2x" /> */}
             Approve
-          </Button>
-          <Button
-            size="small"
-            color="red"
+          </button>
+          <button
+            className={classes.buttonYo2}
+            // size="small"
+            // color="red"
             onClick={e => props.updateProblem(e, problem)}
             // onClick={e => props.removeProblem(e, problem)}
-            style={{ paddingLeft: 5 }}
-            // href="/admin-problems"
           >
             {/* <FontAwesomeIcon icon={faBan} color="#FF0000" size="2x" /> */}
             Reject
-          </Button>
-          <Button
-            size="small"
+          </button>
+          <button
+            className={classes.buttonYo3}
+            // size="small"
             onClick={deleteProblem}
-            style={{ paddingLeft: 5 }}
           >
             Delete
-          </Button>
-          {/* </div>
-          <div className={classes.infoDiv}> */}
-          <Button
-            size="small"
-            // color="primary"
+          </button>
+
+          <button
+            className={classes.buttonYo4}
+            // size="small"
             href={`/problem-details/${problem.id}`}
-            style={{ paddingLeft: 5 }}
           >
             Details
-          </Button>
+          </button>
 
-          {/* new stuff for users modal */}
-          <Button
-            size="small"
-            // color="primary"
+          <button
+            className={classes.buttonYo5}
+            // size="small"
             onClick={e => props.seeUsers(e, problem.id)}
-            style={{ paddingLeft: 5 }}
           >
             Volunteers
-          </Button>
-          {/* </div> */}
+          </button>
         </CardActions>
-        {/* <UsersModal onClose={e => this.setState({ isOpenUsers: false })}>
-          {user.full_name}
-        </UsersModal> */}
       </Card>
     );
   } else {
