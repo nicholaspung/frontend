@@ -12,7 +12,7 @@ import { Link } from "react-router-dom";
 const ImageSetter = require("../../static/stylingComponents/ImageSetter");
 
 const styles = {
-  problemCards: { boxShadow: "2px 3px silver", borderRadius: "0px" },
+  problemCards: { boxShadow: "1.5px silver", borderRadius: "0px" },
   bolded: { fontWeight: "bold" },
   featureCard: {
     padding: "1.25rem",
@@ -24,7 +24,7 @@ const styles = {
       backgroundColor: "#750808"
     }
   },
-  noTextDecoration: {textDecoration: 'none'}
+  noTextDecoration: { textDecoration: "none" }
 };
 
 const FeatureCard = props => {
