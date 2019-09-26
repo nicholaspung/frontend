@@ -47,9 +47,11 @@ class AdminDashboard extends React.Component {
     if (problem.isApproved === false) {
       this.props.UpdateAdminProblems(problem.id, !problem.isApproved);
       this.setState({ isOpen: true });
+      this.setState({ isApproved: true });
     } else if (problem.isApproved) {
       this.props.UpdateAdminProblems(problem.id, !problem.isApproved);
       this.setState({ isOpenR: true });
+      this.setState({ isApproved: false });
     }
   };
 
@@ -96,6 +98,7 @@ class AdminDashboard extends React.Component {
           seeUsers={this.seeUsers}
           isOpenUsers={this.state.isOpenUsers}
           deleteAdminProblem={this.props.deleteAdminProblem}
+          isApproved={this.state.isApproved}
         />
         <Modal
           isOpen={this.state.isOpen}
