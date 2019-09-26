@@ -16,7 +16,7 @@ import ModalTwo from "./ModalTwo";
 import UsersModal from "./UsersModal";
 
 const AdminMain = styled.div`
-  background: #394f4c;
+  background: #313635;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
