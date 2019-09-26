@@ -10,7 +10,7 @@ import TextField from "@material-ui/core/TextField";
 import MenuItem from "@material-ui/core/MenuItem";
 import Typography from "@material-ui/core/Typography";
 
-import { getProblems, getPopular, getUsers } from "../actions";
+import { getProblems, getPopular, getUsers } from "../../actions";
 import ProblemCard from "./ProblemCard";
 import FeatureCard from "./FeatureCard";
 
