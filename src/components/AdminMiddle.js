@@ -23,6 +23,7 @@ export class AdminMiddle extends Component {
               seeUsers={this.props.seeUsers}
               isOpenUsers={this.props.isOpenUsers}
               deleteAdminProblem={this.props.deleteAdminProblem}
+              isApproved={this.props.isApproved}
             />
           );
         })}

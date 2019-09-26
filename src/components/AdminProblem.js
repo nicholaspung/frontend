@@ -59,8 +59,10 @@ const useStyles = makeStyles(theme => {
 
     ratingStatus: {
       display: "flex",
-      flexDirection: "column"
-      // justifyContent: "space-between"
+      flexDirection: "column",
+      [theme.breakpoints.down("sm")]: {
+        fontSize: "0.4rem"
+      }
     },
     category: {
       textTransform: "capitalize"
@@ -78,46 +80,71 @@ const useStyles = makeStyles(theme => {
     },
     descriptionYo: {
       [theme.breakpoints.down("sm")]: {
-        fontSize: "0.7rem"
+        fontSize: "0.5rem",
+        marginBottom: "5%"
       }
     },
     actionsContainer: {
       display: "flex",
       justifyContent: "center",
+
       flexDirection: "row",
       alignItems: "center",
+      width: "100%",
       [theme.breakpoints.down("sm")]: {
         // width: "10%"
+        flexWrap: "wrap",
+        width: "100%"
       }
     },
     buttonYo1: {
-      backgroundColor: "#313635",
-      color: black,
+      background: "none",
       textTransform: "uppercase",
+      border: "none",
+      font: "black",
+      fontWeight: "bold",
       [theme.breakpoints.down("sm")]: {
-        fontSize: ".5rem",
-        width: "5%"
+        fontSize: ".5rem"
       }
     },
 
     buttonYo2: {
+      background: "none",
+      textTransform: "uppercase",
+      border: "none",
+      font: "black",
+      fontWeight: "bold",
       [theme.breakpoints.down("sm")]: {
         fontSize: ".5rem",
-        paddingLeft: "1",
-        width: "5%"
+        paddingLeft: "1"
       }
     },
     buttonYo3: {
+      background: "none",
+      textTransform: "uppercase",
+      border: "none",
+      font: "black",
+      fontWeight: "bold",
       [theme.breakpoints.down("sm")]: {
         fontSize: ".5rem"
       }
     },
     buttonYo4: {
+      background: "none",
+      textTransform: "uppercase",
+      border: "none",
+      font: "black",
+      fontWeight: "bold",
       [theme.breakpoints.down("sm")]: {
         fontSize: ".5rem"
       }
     },
     buttonYo5: {
+      background: "none",
+      textTransform: "uppercase",
+      border: "none",
+      font: "black",
+      fontWeight: "bold",
       [theme.breakpoints.down("sm")]: {
         fontSize: ".5rem"
       }
@@ -159,21 +186,9 @@ const AdminProblem = props => {
             src={ImageSetter.staticImage(problem.problem_category)}
             title={problem.problem_title}
           />
-          {/* <CardContent className={classes.content}> */}
 
           <div className={classes.ratingStatus}>
-            {/* <Typography
-              className={classes.category}
-              variant="h6"
-              component="h2"
-            >
-              {problem.problem_category}
-            </Typography> */}
-            {/* <Typography variant="headline" component="h2">
-              Upvotes: {problem.numOfRatings}
-            </Typography> */}
             <Typography variant="headline" component="h2">
-              {/* show if the problem is approved or not */}
               Status:
               {problem.isApproved ? (
                 <span style={{ color: "green" }}> Approved</span>
@@ -182,7 +197,6 @@ const AdminProblem = props => {
               )}
             </Typography>
           </div>
-          {/* </CardContent> */}
         </CardActionArea>
         <Typography
           className={classes.descriptionYo}
@@ -202,33 +216,24 @@ const AdminProblem = props => {
         <CardActions className={classes.actionsContainer}>
           <button
             className={classes.buttonYo1}
-            // size="small"
-            // color="green"
             onClick={e => props.updateProblem(e, problem)}
           >
             Approve
           </button>
           <button
             className={classes.buttonYo2}
-            // size="small"
-            // color="red"
             onClick={e => props.updateProblem(e, problem)}
             // onClick={e => props.removeProblem(e, problem)}
           >
             {/* <FontAwesomeIcon icon={faBan} color="#FF0000" size="2x" /> */}
             Reject
           </button>
-          <button
-            className={classes.buttonYo3}
-            // size="small"
-            onClick={deleteProblem}
-          >
+          <button className={classes.buttonYo3} onClick={deleteProblem}>
             Delete
           </button>
 
           <button
             className={classes.buttonYo4}
-            // size="small"
             href={`/problem-details/${problem.id}`}
           >
             Details
@@ -236,10 +241,9 @@ const AdminProblem = props => {
 
           <button
             className={classes.buttonYo5}
-            // size="small"
             onClick={e => props.seeUsers(e, problem.id)}
           >
-            Volunteers
+            Signees
           </button>
         </CardActions>
       </Card>
