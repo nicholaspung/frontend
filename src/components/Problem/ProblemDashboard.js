@@ -170,6 +170,7 @@ class ProblemDashboard extends React.Component {
             </Grid>
           </FormControl>
         </div>
+
         <div
           className={`${this.props.classes.greyBackground} ${this.props.classes.divider}`}
         >
@@ -178,13 +179,17 @@ class ProblemDashboard extends React.Component {
               Featured Cards
             </Typography>
 
-            <Grid container spacing={2}>
-              {this.props.featured.map(feature => (
-                <Grid item key={feature.id} xs={12} sm={6} md={3}>
-                  <FeatureCard problem={feature} />
-                </Grid>
-              ))}
-            </Grid>
+            {this.props.fetchingPopular ? (
+              <Typography align="center">Loading data...</Typography>
+            ) : (
+              <Grid container spacing={2}>
+                {this.props.featured.map(feature => (
+                  <Grid item key={feature.id} xs={12} sm={6} md={3}>
+                    <FeatureCard problem={feature} />
+                  </Grid>
+                ))}
+              </Grid>
+            )}
           </Grid>
         </div>
 
@@ -193,6 +198,9 @@ class ProblemDashboard extends React.Component {
             <Typography component="h1" variant="h4" gutterBottom>
               Problem Cards
             </Typography>
+            {this.props.fetchingProblems ? (
+              <Typography align="center">Loading data...</Typography>
+            ) : null}
             {this.allProblems().length > 0 ? (
               <Grid container spacing={2}>
                 {this.allProblems().map(problem => (
@@ -227,6 +235,8 @@ ProblemDashboard.defaultProps = {
   getProblems: function hi() {},
   getPopular: function hi() {},
   getUsers: function hi() {},
+  fetchingPopular: false,
+  fetchingProblems: false,
   problems: [],
   featured: [],
   classes: {},
@@ -247,11 +257,15 @@ ProblemDashboard.propTypes = {
       id: PropTypes.number,
       problem_id: PropTypes.number
     })
-  )
+  ),
+  fetchingPopular: PropTypes.bool,
+  fetchingProblems: PropTypes.bool
 };
 
 const mapStateToProps = ({ problems, users }) => ({
   problems: problems.problems,
+  fetchingPopular: problems.fetchingPopular,
+  fetchingProblems: problems.fetchingProblems,
   featured: problems.popular,
   users: users.users
 });
