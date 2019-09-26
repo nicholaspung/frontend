@@ -111,6 +111,46 @@ class DetailsPage extends React.Component {
     const { problem } = this.props;
     const { id } = this.props.match.params;
 
+    // Can probably refactor this somehow
+    if (this.props.fetchingProblem) {
+      return (
+        <Grid
+          container
+          justify="center"
+          className={this.props.classes.wholeContainer}
+        >
+          <Grid item xs={9}>
+            <Breadcrumbs
+              aria-label="breadcrumb"
+              className={this.props.classes.crumbs}
+            >
+              <Link
+                to="/"
+                className={`${this.props.classes.bolded} ${this.props.classes.linkGrey}`}
+              >
+                Home
+              </Link>
+              <Link
+                to="/problems"
+                className={`${this.props.classes.bolded} ${this.props.classes.linkGrey}`}
+              >
+                Problems
+              </Link>
+            </Breadcrumbs>
+            <Paper
+              square
+              elevation={6}
+              className={this.props.classes.lostPaper}
+            >
+              <Typography variant="h4" component="h3">
+                Loading problem...
+              </Typography>
+            </Paper>
+          </Grid>
+        </Grid>
+      );
+    }
+
     if (!problem.id || problem.isApproved === false) {
       return (
         <Grid
@@ -284,7 +324,8 @@ DetailsPage.defaultProps = {
   getProblemsByID: function hi() {},
   users: [],
   classes: {},
-  updateVote: function hi() {}
+  updateVote: function hi() {},
+  fetchingProblem: false
 };
 
 DetailsPage.propTypes = {
@@ -310,6 +351,7 @@ DetailsPage.propTypes = {
       problem_id: PropTypes.number
     })
   ),
+  fetchingProblem: PropTypes.bool,
   getUsers: PropTypes.func,
   getProblemsByID: PropTypes.func,
   updateVote: PropTypes.func,
@@ -318,8 +360,10 @@ DetailsPage.propTypes = {
 
 const mapStateToProps = ({ problems, users }) => ({
   problem: problems.problem,
+  fetchingProblem: problems.fetchingProblem,
   users: users.users
 });
+
 export default withStyles(styles)(
   connect(
     mapStateToProps,
