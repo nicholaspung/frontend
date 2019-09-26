@@ -94,6 +94,7 @@ class ProblemSubmission extends React.Component {
     } ${today.getDate()}, ${today.getFullYear()}`;
 
     // Created a promise in order to send data to modal & indicate to user that problem is submitted
+    // Just tested and you don't need to create a promise, recommend only using setTimeout()
     const modalPromise = new Promise((resolve, reject) => {
       this.setState(prevState => ({
         ...prevState,
