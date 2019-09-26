@@ -1,4 +1,5 @@
 import React from "react";
+import "./AdminProblem.css";
 import styled from "styled-components";
 
 import { makeStyles } from "@material-ui/core/styles";
@@ -18,6 +19,8 @@ import healthImage from "../static/images/cards/health.jpg";
 
 const ImageSetter = require("../static/stylingComponents/ImageSetter");
 
+// #adc7e0
+
 const useStyles = makeStyles({
   card: {
     maxWidth: "30%",
@@ -28,7 +31,7 @@ const useStyles = makeStyles({
     backgroundColor: "#778899",
     // opacity: 0.8,
     "&:hover": {
-      backgroundColor: "#adc7e0"
+      backgroundColor: "#ccd6e0"
     }
   },
 
@@ -37,6 +40,7 @@ const useStyles = makeStyles({
     flexDirection: "row",
     justifyContent: "space-around"
   },
+
   media: {
     height: 100,
     width: "20%"
@@ -49,6 +53,7 @@ const useStyles = makeStyles({
   ratingStatus: {
     display: "flex",
     flexDirection: "column"
+    // justifyContent: "space-between"
   },
   category: {
     textTransform: "capitalize"
@@ -58,12 +63,14 @@ const useStyles = makeStyles({
     justifyContent: "center",
     textAlign: "center",
     width: "100%",
-    textTransform: "uppercase"
+    textTransform: "uppercase",
+    paddingBottom: 5
   },
   actionsContainer: {
     display: "flex",
     justifyContent: "space-between",
-    flexDirection: "row"
+    flexDirection: "row",
+    maxWidth: "90%"
   },
   approveReject: {
     display: "flex",
@@ -73,7 +80,7 @@ const useStyles = makeStyles({
     display: "flex",
     flexDirection: "row",
     alignContent: "flex-end",
-    paddingLeft: 90
+    paddingLeft: 30
   }
 });
 
@@ -81,12 +88,12 @@ const AdminProblem = props => {
   const classes = useStyles();
   const problem = props.problem;
   const user = props.user;
-
+  console.log("ADMIN PROBLEM", props);
   if (problem) {
     return (
       <Card className={classes.card}>
         <Typography className={classes.mainTitle} variant="h6" component="h3">
-          {problem.problem_title}
+          {problem.problem_title} || {problem.problem_category}
         </Typography>
         <CardActionArea className={classes.actionarea}>
           <CardMedia
@@ -97,17 +104,17 @@ const AdminProblem = props => {
           {/* <CardContent className={classes.content}> */}
 
           <div className={classes.ratingStatus}>
-            <Typography
+            {/* <Typography
               className={classes.category}
               variant="h6"
               component="h2"
             >
               {problem.problem_category}
-            </Typography>
-            <Typography variant="headline" component="h3">
+            </Typography> */}
+            {/* <Typography variant="headline" component="h2">
               Upvotes: {problem.numOfRatings}
-            </Typography>
-            <Typography variant="headline" component="h3">
+            </Typography> */}
+            <Typography variant="headline" component="h2">
               {/* show if the problem is approved or not */}
               Status:
               {problem.isApproved ? (
@@ -127,7 +134,8 @@ const AdminProblem = props => {
             height: 40,
             textAlign: "center",
             width: "100%",
-            paddingTop: 8
+            paddingTop: 8,
+            marginBottom: 5
           }}
         >
           {problem.problem_description}
@@ -140,42 +148,45 @@ const AdminProblem = props => {
               onClick={e => props.updateProblem(e, problem)}
               // href="/problems"
             >
-              <FontAwesomeIcon icon={faCheck} color="green" size="2x" />
+              {/* <FontAwesomeIcon icon={faCheck} color="green" size="2x" /> */}
+              Approve
             </Button>
             <Button
               size="medium"
               color="red"
-              onClick={e => props.removeProblem(e, problem)}
+              onClick={e => props.updateProblem(e, problem)}
+              // onClick={e => props.removeProblem(e, problem)}
+              style={{ paddingLeft: 20 }}
               // href="/admin-problems"
             >
-              <FontAwesomeIcon icon={faBan} color="#FF0000" size="2x" />
+              {/* <FontAwesomeIcon icon={faBan} color="#FF0000" size="2x" /> */}
+              Reject
             </Button>
           </div>
           <div className={classes.infoDiv}>
             <Button
               size="small"
-              color="primary"
+              // color="primary"
               href={`/problem-details/${problem.id}`}
-              style={{ width: 10, marginRight: 30 }}
+              style={{ width: 10, marginRight: 40 }}
             >
-              Learn More
+              Details
             </Button>
 
             {/* new stuff for users modal */}
             <Button
               size="small"
-              color="primary"
-              onClick={e => props.seeUsers(e)}
+              // color="primary"
+              onClick={e => props.seeUsers(e, problem.id)}
               style={{ width: 15 }}
-              // href="/admin-problems"
             >
-              See list of volunteers
+              Volunteers
             </Button>
           </div>
         </CardActions>
         {/* <UsersModal onClose={e => this.setState({ isOpenUsers: false })}>
-        {user.full_name}
-      </UsersModal> */}
+          {user.full_name}
+        </UsersModal> */}
       </Card>
     );
   } else {
