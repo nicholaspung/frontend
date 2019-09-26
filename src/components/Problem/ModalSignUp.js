@@ -15,6 +15,12 @@ const styles = {
 const ModalSignUp = props => {
   const { classes } = props;
 
+  // No idea what this does, but it removed a warning about React.forwardRef...
+  // Didn't include in PropTypes validation, since no idea what this is
+  const RemoveRefWarning = React.forwardRef((props, ref) => (
+    <div ref={ref}>{props.children}</div>
+  ));
+
   return (
     <>
       {props.isOpen ? (
@@ -24,8 +30,15 @@ const ModalSignUp = props => {
           open={props.isOpen}
           onClose={props.modaler}
           className={classes.modal}
+          disableAutoFocus
         >
-          <SignUpForm id={props.id} opener={props.modaler} problem={props.problem} />
+          <RemoveRefWarning>
+            <SignUpForm
+              id={props.id}
+              opener={props.modaler}
+              problem={props.problem}
+            />
+          </RemoveRefWarning>
         </Modal>
       ) : null}
     </>
@@ -36,14 +49,25 @@ ModalSignUp.defaultProps = {
   classes: {},
   isOpen: false,
   modaler: function hi() {},
-  id: 0
+  id: 0,
+  problem: {}
 };
 
 ModalSignUp.propTypes = {
   classes: PropTypes.objectOf(PropTypes.string),
   isOpen: PropTypes.bool,
   modaler: PropTypes.func,
-  id: PropTypes.string
+  id: PropTypes.string,
+  problem: PropTypes.shape({
+    find: PropTypes.func,
+    isApproved: PropTypes.bool,
+    numOfRatings: PropTypes.number,
+    isAccepting: PropTypes.bool,
+    problem_description: PropTypes.string,
+    problem_category: PropTypes.string,
+    problem_title: PropTypes.string,
+    id: PropTypes.number
+  })
 };
 
 export default withStyles(styles)(ModalSignUp);
