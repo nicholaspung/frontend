@@ -4,7 +4,7 @@ import {
   //   ProblemCardLink,
 
   CallToActionBtn2
-} from "../static/stylingComponents";
+} from "../../static/stylingComponents";
 
 let dialogStyles = {
   width: "500px",
@@ -35,7 +35,7 @@ let dialogCloseButtonStyles = {
   alignSelf: "flex-end"
 };
 
-class Modal extends Component {
+class ModalTwo extends Component {
   render() {
     let popup = (
       <div style={dialogStyles}>
@@ -57,4 +57,4 @@ class Modal extends Component {
   }
 }
 
-export default Modal;
+export default ModalTwo;

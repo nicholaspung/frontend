@@ -4,7 +4,7 @@ import {
   //   ProblemCardLink,
 
   CallToActionBtn2
-} from "../static/stylingComponents";
+} from "../../static/stylingComponents";
 
 let dialogStyles = {
   width: "500px",

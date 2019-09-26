@@ -19,7 +19,10 @@ import {
   FETCH_ADMIN_PROBLEM_FAIL,
   UPDATE_ADMIN_PROBLEM_START,
   UPDATE_ADMIN_PROBLEM_SUCCESS,
-  UPDATE_ADMIN_PROBLEM_FAIL
+  UPDATE_ADMIN_PROBLEM_FAIL,
+  DELETE_ADMIN_PROBLEM_START,
+  DELETE_ADMIN_PROBLEM_SUCCESS,
+  DELETE_ADMIN_PROBLEM_FAIL
 } from "../actions";
 
 const initialState = {
@@ -31,7 +34,8 @@ const initialState = {
   fetchingProblems: false,
   fetchingProblem: false,
   fetchingPopular: false,
-  addingNewProblem: false
+  addingNewProblem: false,
+  deletingProblem: false
 };
 
 const problems = (state = initialState, action) => {
@@ -187,6 +191,18 @@ const problems = (state = initialState, action) => {
         ...state,
         error: action.payload,
         updatingProblem: false
+      };
+    case DELETE_ADMIN_PROBLEM_START:
+      return {
+        ...state,
+        deletingProblem: true
+      };
+
+    case DELETE_ADMIN_PROBLEM_SUCCESS:
+      return {
+        ...state,
+        problems: action.payload,
+        deletingProblem: false
       };
 
     default:

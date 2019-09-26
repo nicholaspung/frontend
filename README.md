@@ -117,6 +117,9 @@ For testing, we mainly used PropType validation, and began testing with Jest.
 
 # Future Features + Needs Work
 
+- Transition Class components to use React Hooks for entire site
+- Switch Material UI styles to use 'styled' hooks
+
 - Need to increase Performance score in [Google Lighthouse](https://developers.google.com/web/tools/lighthouse) (Chrome DevTools -> Audits)
 - Need styling in ProblemSubmissionModal (couldn't figure out how to style Dialog component from Material UI)
 - Need to switch Admin Components to Material UI (currently using Styled Components)

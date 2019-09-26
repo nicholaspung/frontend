@@ -11,7 +11,7 @@ import ProblemDashboard from "./Problem/ProblemDashboard";
 import NoMatchPage from "./Marketing/NoMatchPage";
 import DetailsPage from "./Problem/DetailsPage";
 import ProblemSubmissionHolder from "./Problem/ProblemSubmissionHolder";
-import AdminDashboard from "./AdminDashboard";
+import AdminDashboard from "./Admin/AdminDashboard";
 
 // This is mainly used for ThemeProvider - future work can make styles not use theme
 const theme = createMuiTheme({
@@ -32,7 +32,7 @@ export default function App() {
       <Switch>
         <Route exact path="/" component={HomePage} />
         <Route exact path="/problems" component={ProblemDashboard} />
-        <Route path="/admin-problems" component={AdminDashboard} />
+        <Route path="/admin" component={AdminDashboard} />
         <Route path="/submitaproblem" component={ProblemSubmissionHolder} />
         <Route path="/about" component={About} />
         <Route path="/problems/:id" component={DetailsPage} />

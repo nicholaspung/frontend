@@ -13,12 +13,17 @@ export class AdminMiddle extends Component {
     return (
       <AdminMiddleDiv>
         {this.props.problems.map(problem => {
+          console.log("GEORGE", problem);
           return (
             <AdminProblem
               key={problem.id}
               problem={problem}
               updateProblem={this.props.updateProblem}
               removeProblem={this.props.removeProblem}
+              seeUsers={this.props.seeUsers}
+              isOpenUsers={this.props.isOpenUsers}
+              deleteAdminProblem={this.props.deleteAdminProblem}
+              isApproved={this.props.isApproved}
             />
           );
         })}
