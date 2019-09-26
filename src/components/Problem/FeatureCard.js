@@ -31,7 +31,7 @@ const FeatureCard = props => {
   const { problem, classes } = props;
 
   return (
-    <Link to={`/problem-details/${problem.id}`} className={classes.noTextDecoration}>
+    <Link to={`/problems/${problem.id}`} className={classes.noTextDecoration}>
       <Card className={classes.problemCards}>
         <CardMedia
           component="img"
