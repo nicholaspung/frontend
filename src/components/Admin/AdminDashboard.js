@@ -1,24 +1,22 @@
 import React from "react";
 import { withStyles } from "@material-ui/styles";
-import Modal from "@material-ui/core/Modal";
-import Typography from "@material-ui/core/Typography";
-import Grid from "@material-ui/core/Grid";
-import Paper from "@material-ui/core/Paper";
 import { connect } from "react-redux";
 
 import {
   getAdminProblems,
-  updateAdminProblems,
   getUsers,
+  updateAdminProblems,
   deleteAdminProblem
 } from "../../actions";
 
+import ActionModal from "./ActionModal";
 import AdminProblemList from "./AdminProblemList";
 import UsersModal from "./UsersModal";
-import RemoveRefWarning from "../RemoveRefWarning";
 
 const styles = {
-  background: { minHeight: window.innerHeight - 8 * 16 },
+  background: {
+    minHeight: window.innerHeight - 8 * 16
+  },
   modal: {
     display: "flex",
     justifyContent: "center",
@@ -32,8 +30,9 @@ class AdminDashboard extends React.Component {
     super();
     this.state = {
       isApproved: false,
-      isOpen: false,
-      isOpenR: false,
+      isOpenApprove: false,
+      isOpenReject: false,
+      isOpenDelete: false,
       isOpenUsers: false,
       problemUsers: []
     };
@@ -43,26 +42,6 @@ class AdminDashboard extends React.Component {
     this.props.getAdminProblems();
     this.props.getUsers();
   }
-
-  updateProblem = (e, problem) => {
-    e.preventDefault();
-
-    if (!problem.isApproved) {
-      this.props.updateAdminProblems(problem.id, !problem.isApproved);
-      this.setState(prevState => ({
-        ...prevState,
-        isOpen: true,
-        isApproved: true
-      }));
-    } else {
-      this.props.updateAdminProblems(problem.id, !problem.isApproved);
-      this.setState(prevState => ({
-        ...prevState,
-        isOpenR: true,
-        isApproved: false
-      }));
-    }
-  };
 
   seeUsers = (e, id) => {
     e.preventDefault();
@@ -74,71 +53,88 @@ class AdminDashboard extends React.Component {
     }));
   };
 
+  approveProblem = id => {
+    const isApproved = true;
+    this.props
+      .updateAdminProblems(id, isApproved)
+      .then(() => {
+        return this.props.getAdminProblems();
+      })
+      .then(() => {
+        this.openModal("isOpenApprove");
+      });
+  };
+
+  // Currently buggy in terms of UI, clicking on any of the buttons shifts the UI
+  rejectProblem = id => {
+    const isApproved = false;
+    this.props
+      .updateAdminProblems(id, isApproved)
+      .then(() => {
+        return this.props.getAdminProblems();
+      })
+      .then(() => {
+        this.openModal("isOpenReject");
+      });
+  };
+
+  deleteProblem = id => {
+    this.props
+      .deleteAdminProblem(id)
+      .then(() => {
+        return this.props.getAdminProblems();
+      })
+      .then(() => {
+        this.openModal("isOpenDelete");
+      });
+  };
+
+  closeModal = () => {
+    this.setState(prevState => ({
+      ...prevState,
+      isOpenApprove: false,
+      isOpenReject: false,
+      isOpenDelete: false
+    }));
+  };
+
+  openModal = type => {
+    this.setState(prevState => ({
+      ...prevState,
+      [type]: true
+    }));
+  };
+
   render() {
     return (
       <div className={this.props.classes.background}>
         <AdminProblemList
-          updateProblem={this.updateProblem}
-          removeProblem={this.removeProblem}
           problems={this.props.problems}
           seeUsers={this.seeUsers}
           isOpenUsers={this.state.isOpenUsers}
-          deleteAdminProblem={this.props.deleteAdminProblem}
           isApproved={this.state.isApproved}
+          approveProblem={this.approveProblem}
+          rejectProblem={this.rejectProblem}
+          deleteProblem={this.deleteProblem}
         />
-        <Modal
-          aria-labelledby="problem-approval-modal-title"
-          aria-describedby="problem-approval-modal-description"
-          open={this.state.isOpen}
-          disableAutoFocus
-          className={this.props.classes.modal}
-          onClose={e =>
-            this.setState(prevState => ({ ...prevState, isOpen: false }))
-          }
-        >
-          <RemoveRefWarning>
-            <Grid container justify="center">
-              <Grid item xs={11} sm={7}>
-                <Paper square>
-                  <Typography
-                    component="h4"
-                    variant="h6"
-                    className={this.props.classes.padding}
-                  >
-                    This problem has been successfully approved!
-                  </Typography>
-                </Paper>
-              </Grid>
-            </Grid>
-          </RemoveRefWarning>
-        </Modal>
-        <Modal
-          aria-labelledby="problem-rejection-modal-title"
-          aria-describedby="problem-rejection-modal-description"
-          open={this.state.isOpenR}
-          disableAutoFocus
-          className={this.props.classes.modal}
-          onClose={e =>
-            this.setState(prevState => ({ ...prevState, isOpenR: false }))
-          }
-        >
-          <RemoveRefWarning>
-            <Grid container justify="center">
-              <Grid item xs={11} sm={7}>
-                <Paper square>
-                  <Typography
-                    component="h4"
-                    variant="h6"
-                    className={this.props.classes.padding}
-                  >
-                    This problem has been successfully rejected!
-                  </Typography>
-                </Paper>
-              </Grid>
-            </Grid>
-          </RemoveRefWarning>
-        </Modal>
-
+        <ActionModal
+          type="problem-approval"
+          text="This problem has been successfully approved."
+          isOpenApprove={this.state.isOpenApprove}
+          closeModal={this.closeModal}
+        />
+        <ActionModal
+          type="problem-rejection"
+          text="This problem has been rejected."
+          isOpenApprove={this.state.isOpenReject}
+          closeModal={this.closeModal}
+        />
+        <ActionModal
+          type="problem-delete"
+          text="This problem has been successfully deleted."
+          isOpenApprove={this.state.isOpenDelete}
+          closeModal={this.closeModal}
+        />
         <UsersModal
           isOpenUsers={this.state.isOpenUsers}
           onClose={e =>
@@ -168,6 +164,6 @@ const mapStateToProps = ({ problems, users }) => ({
 export default withStyles(styles)(
   connect(
     mapStateToProps,
-    { getAdminProblems, updateAdminProblems, getUsers, deleteAdminProblem }
+    { getAdminProblems, getUsers, updateAdminProblems, deleteAdminProblem }
   )(AdminDashboard)
 );

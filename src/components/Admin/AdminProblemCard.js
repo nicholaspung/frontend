@@ -1,5 +1,6 @@
 import React from "react";
 import { withStyles } from "@material-ui/styles";
+import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import Grid from "@material-ui/core/Grid";
 import Card from "@material-ui/core/Card";
@@ -7,8 +8,13 @@ import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
-
 import DefaultImage from "../../static/images/cards/default-image.jpg";
+import {
+  updateAdminProblems,
+  deleteAdminProblem,
+  getAdminProblems
+} from "../../actions/index";
+
 const ImageSetter = require("../../static/stylingComponents/ImageSetter");
 
 const styles = {
@@ -20,12 +26,14 @@ const styles = {
   paddingTop: { paddingTop: "1.5rem" }
 };
 
-const AdminProblem = props => {
-  const { classes, problem } = props;
-
-  const deleteProblem = e => {
-    props.deleteAdminProblem(problem.id);
-  };
+const AdminProblemCard = props => {
+  const {
+    classes,
+    problem,
+    approveProblem,
+    rejectProblem,
+    deleteProblem
+  } = props;
 
   return (
     <Card square>
@@ -75,17 +83,13 @@ const AdminProblem = props => {
         </Typography>
         <Grid container>
           <Grid item xs={12} sm={6} md={4}>
-            <Button onClick={e => props.updateProblem(e, problem)}>
-              Approve
-            </Button>
+            <Button onClick={() => approveProblem(problem.id)}>Approve</Button>
           </Grid>
           <Grid item xs={12} sm={6} md={4}>
-            <Button onClick={e => props.updateProblem(e, problem)}>
-              Reject
-            </Button>
+            <Button onClick={() => rejectProblem(problem.id)}>Reject</Button>
           </Grid>
           <Grid item xs={12} sm={6} md={4}>
-            <Button onClick={deleteProblem}>Delete</Button>
+            <Button onClick={() => deleteProblem(problem.id)}>Delete</Button>
           </Grid>
           <Grid item xs={12} sm={6} md={4}>
             <Link to={`/problems/${problem.id}`} className={classes.link}>
@@ -103,4 +107,9 @@ const AdminProblem = props => {
   );
 };
 
-export default withStyles(styles)(AdminProblem);
+export default withStyles(styles)(
+  connect(
+    null,
+    { updateAdminProblems, deleteAdminProblem, getAdminProblems }
+  )(AdminProblemCard)
+);

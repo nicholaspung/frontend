@@ -17,12 +17,12 @@ const AdminMiddle = props => {
         <Grid item key={problem.id} xs={12} sm={6} md={4}>
           <AdminProblemCard
             problem={problem}
-            updateProblem={props.updateProblem}
-            removeProblem={props.removeProblem}
             seeUsers={props.seeUsers}
             isOpenUsers={props.isOpenUsers}
-            deleteAdminProblem={props.deleteAdminProblem}
             isApproved={props.isApproved}
+            approveProblem={props.approveProblem}
+            rejectProblem={props.rejectProblem}
+            deleteProblem={props.deleteProblem}
           />
         </Grid>
       ))}
