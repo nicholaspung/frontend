@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import Modal from "@material-ui/core/Modal";
 import { withStyles } from "@material-ui/styles";
 import SignUpForm from "./SignUpForm";
+import RemoveRefWarning from "../RemoveRefWarning";
 
 const styles = {
   modal: {
@@ -14,12 +15,6 @@ const styles = {
 
 const ModalSignUp = props => {
   const { classes } = props;
-
-  // No idea what this does, but it removed a warning about React.forwardRef...
-  // Didn't include in PropTypes validation, since no idea what this is
-  const RemoveRefWarning = React.forwardRef((props, ref) => (
-    <div ref={ref}>{props.children}</div>
-  ));
 
   return (
     <>
