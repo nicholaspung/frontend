@@ -68,7 +68,6 @@ export const addProblems = problem => dispatch => {
   return axios
     .post("https://labs15-lambdanext.herokuapp.com/problems", problem)
     .then(res => {
-      console.log("HELLO", res.data, problem);
       dispatch({ type: ADD_PROBLEM_SUCCESS, payload: res.data });
     })
     .catch(error => {
@@ -104,6 +103,7 @@ export const getPopular = () => dispatch => {
 
 export const getUsers = () => dispatch => {
   dispatch({ type: FETCH_USERS_START });
+
   return axios
     .get("https://labs15-lambdanext.herokuapp.com/users")
     .then(res => {
@@ -115,8 +115,8 @@ export const getUsers = () => dispatch => {
 };
 
 export const addUser = user => dispatch => {
-  console.log(user);
   dispatch({ type: ADD_USER_START });
+
   return axios
     .post("https://labs15-lambdanext.herokuapp.com/users/signup", user)
     .then(res => {
@@ -129,16 +129,16 @@ export const addUser = user => dispatch => {
 
 export const getAdminProblems = () => dispatch => {
   dispatch({ type: FETCH_ADMIN_PROBLEM_START });
+
   return axios
     .get("https://labs15-lambdanext.herokuapp.com/admin/all")
     .then(res => {
-      console.log("YOOOOOOOOO", res.data);
       dispatch({ type: FETCH_ADMIN_PROBLEM_SUCCESS, payload: res.data });
     })
     .catch(err => dispatch({ type: FETCH_ADMIN_PROBLEM_FAIL, payload: err }));
 };
 
-export const UpdateAdminProblems = (id, isApproved) => dispatch => {
+export const updateAdminProblems = (id, isApproved) => dispatch => {
   dispatch({ type: UPDATE_ADMIN_PROBLEM_START });
 
   return axios
@@ -148,25 +148,21 @@ export const UpdateAdminProblems = (id, isApproved) => dispatch => {
     .then(res => {
       dispatch({ type: UPDATE_ADMIN_PROBLEM_SUCCESS, payload: res.data });
     })
-    .then(() => dispatch(getAdminProblems()))
-
     .catch(err => dispatch({ type: UPDATE_ADMIN_PROBLEM_FAIL, payload: err }));
 };
 
-export const deleteAdminProblem = id => {
-  return dispatch => {
-    dispatch({ type: DELETE_ADMIN_PROBLEM_START });
-    axios
-      .delete(`https://labs15-lambdanext.herokuapp.com/admin/all/${id}`)
-      .then(res => {
-        console.log(res.data);
-        dispatch({ type: DELETE_ADMIN_PROBLEM_SUCCESS, payload: res.data });
-      })
-      .catch(err => {
-        dispatch({
-          type: DELETE_ADMIN_PROBLEM_FAIL,
-          payload: "Error with deleting"
-        });
+export const deleteAdminProblem = id => dispatch => {
+  dispatch({ type: DELETE_ADMIN_PROBLEM_START });
+
+  return axios
+    .delete(`https://labs15-lambdanext.herokuapp.com/admin/all/${id}`)
+    .then(res => {
+      dispatch({ type: DELETE_ADMIN_PROBLEM_SUCCESS, payload: res.data });
+    })
+    .catch(err => {
+      dispatch({
+        type: DELETE_ADMIN_PROBLEM_FAIL,
+        payload: "Error with deleting"
       });
-  };
+    });
 };
