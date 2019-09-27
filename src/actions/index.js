@@ -68,7 +68,6 @@ export const addProblems = problem => dispatch => {
   return axios
     .post("https://labs15-lambdanext.herokuapp.com/problems", problem)
     .then(res => {
-      console.log("HELLO", res.data, problem);
       dispatch({ type: ADD_PROBLEM_SUCCESS, payload: res.data });
     })
     .catch(error => {
@@ -149,15 +148,13 @@ export const updateAdminProblems = (id, isApproved) => dispatch => {
     .then(res => {
       dispatch({ type: UPDATE_ADMIN_PROBLEM_SUCCESS, payload: res.data });
     })
-    .then(() => dispatch(getAdminProblems()))
-
     .catch(err => dispatch({ type: UPDATE_ADMIN_PROBLEM_FAIL, payload: err }));
 };
 
 export const deleteAdminProblem = id => dispatch => {
   dispatch({ type: DELETE_ADMIN_PROBLEM_START });
 
-  axios
+  return axios
     .delete(`https://labs15-lambdanext.herokuapp.com/admin/all/${id}`)
     .then(res => {
       dispatch({ type: DELETE_ADMIN_PROBLEM_SUCCESS, payload: res.data });
