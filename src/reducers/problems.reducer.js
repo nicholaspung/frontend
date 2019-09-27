@@ -195,7 +195,8 @@ const problems = (state = initialState, action) => {
     case DELETE_ADMIN_PROBLEM_START:
       return {
         ...state,
-        deletingProblem: true
+        deletingProblem: true,
+        error: ""
       };
 
     case DELETE_ADMIN_PROBLEM_SUCCESS:
@@ -204,7 +205,12 @@ const problems = (state = initialState, action) => {
         problems: action.payload,
         deletingProblem: false
       };
-
+    case DELETE_ADMIN_PROBLEM_FAIL:
+      return {
+        ...state,
+        deletingProblem: false,
+        error: action.payload
+      };
     default:
       return state;
   }

@@ -1,36 +1,38 @@
 import React from "react";
-import styled from "styled-components";
-
+import { withStyles } from "@material-ui/styles";
 import { connect } from "react-redux";
 
 import {
   getAdminProblems,
-  UpdateAdminProblems,
   getUsers,
+  updateAdminProblems,
   deleteAdminProblem
 } from "../../actions";
 
-import AdminMiddle from "./AdminMiddle";
-import Modal from "./Modal";
-import ModalTwo from "./ModalTwo";
+import ActionModal from "./ActionModal";
+import AdminProblemList from "./AdminProblemList";
 import UsersModal from "./UsersModal";
 
-const AdminMain = styled.div`
-  background: #313635;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  width: 100%;
-`;
+const styles = {
+  background: {
+    minHeight: window.innerHeight - 8 * 16
+  },
+  modal: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center"
+  },
+  padding: { padding: "1.5rem" }
+};
 
 class AdminDashboard extends React.Component {
   constructor() {
     super();
     this.state = {
       isApproved: false,
-      isOpen: false,
-      isOpenR: false,
+      isOpenApprove: false,
+      isOpenReject: false,
+      isOpenDelete: false,
       isOpenUsers: false,
       problemUsers: []
     };
@@ -41,81 +43,103 @@ class AdminDashboard extends React.Component {
     this.props.getUsers();
   }
 
-  updateProblem = (e, problem) => {
-    e.preventDefault();
-
-    if (problem.isApproved === false) {
-      this.props.UpdateAdminProblems(problem.id, !problem.isApproved);
-      this.setState({ isOpen: true });
-      this.setState({ isApproved: true });
-    } else if (problem.isApproved) {
-      this.props.UpdateAdminProblems(problem.id, !problem.isApproved);
-      this.setState({ isOpenR: true });
-      this.setState({ isApproved: false });
-    }
-  };
-
-  // updateProblem = (e, problem) => {
-  //   e.preventDefault();
-
-  //   if (problem.isApproved === false) {
-  //     this.props.UpdateAdminProblems(problem.id, !problem.isApproved);
-  //     this.setState({ isOpen: true });
-  //   }
-  // };
-
-  // removeProblem = (e, problem) => {
-  //   e.preventDefault();
-
-  //   if (problem.isApproved) {
-  //     this.props.UpdateAdminProblems(problem.id, !problem.isApproved);
-
-  //     this.setState({ isOpenR: true });
-  //   }
-  // };
-
   seeUsers = (e, id) => {
     e.preventDefault();
-    console.log("PROBLEM ID", id);
     const problemUsers = this.props.users.filter(u => u.problem_id === id);
-    this.setState({ problemUsers }, () => console.log(this.state));
-    this.setState({ isOpenUsers: true });
+    this.setState(prevState => ({
+      ...prevState,
+      problemUsers,
+      isOpenUsers: true
+    }));
   };
 
-  // seeUsers = e => {
-  //   e.preventDefault();
+  approveProblem = id => {
+    const isApproved = true;
+    this.props
+      .updateAdminProblems(id, isApproved)
+      .then(() => {
+        return this.props.getAdminProblems();
+      })
+      .then(() => {
+        this.openModal("isOpenApprove");
+      });
+  };
 
-  //   this.setState({ isOpenUsers: true });
-  // };
+  // Currently buggy in terms of UI, clicking on any of the buttons shifts the UI
+  rejectProblem = id => {
+    const isApproved = false;
+    this.props
+      .updateAdminProblems(id, isApproved)
+      .then(() => {
+        return this.props.getAdminProblems();
+      })
+      .then(() => {
+        this.openModal("isOpenReject");
+      });
+  };
+
+  deleteProblem = id => {
+    this.props
+      .deleteAdminProblem(id)
+      .then(() => {
+        return this.props.getAdminProblems();
+      })
+      .then(() => {
+        this.openModal("isOpenDelete");
+      });
+  };
+
+  closeModal = () => {
+    this.setState(prevState => ({
+      ...prevState,
+      isOpenApprove: false,
+      isOpenReject: false,
+      isOpenDelete: false
+    }));
+  };
+
+  openModal = type => {
+    this.setState(prevState => ({
+      ...prevState,
+      [type]: true
+    }));
+  };
 
   render() {
     return (
-      <AdminMain>
-        <AdminMiddle
-          updateProblem={this.updateProblem}
-          removeProblem={this.removeProblem}
+      <div className={this.props.classes.background}>
+        <AdminProblemList
           problems={this.props.problems}
           seeUsers={this.seeUsers}
           isOpenUsers={this.state.isOpenUsers}
-          deleteAdminProblem={this.props.deleteAdminProblem}
           isApproved={this.state.isApproved}
+          approveProblem={this.approveProblem}
+          rejectProblem={this.rejectProblem}
+          deleteProblem={this.deleteProblem}
         />
-        <Modal
-          isOpen={this.state.isOpen}
-          onClose={e => this.setState({ isOpen: false })}
-        >
-          This problem has been successfully approved!
-        </Modal>
-        <ModalTwo
-          isOpenR={this.state.isOpenR}
-          onClose={e => this.setState({ isOpenR: false })}
-        >
-          This problem has been successfully rejected!
-        </ModalTwo>
-
+        <ActionModal
+          type="problem-approval"
+          text="This problem has been successfully approved."
+          isOpenApprove={this.state.isOpenApprove}
+          closeModal={this.closeModal}
+        />
+        <ActionModal
+          type="problem-rejection"
+          text="This problem has been rejected."
+          isOpenApprove={this.state.isOpenReject}
+          closeModal={this.closeModal}
+        />
+        <ActionModal
+          type="problem-delete"
+          text="This problem has been successfully deleted."
+          isOpenApprove={this.state.isOpenDelete}
+          closeModal={this.closeModal}
+        />
         <UsersModal
           isOpenUsers={this.state.isOpenUsers}
-          onClose={e => this.setState({ isOpenUsers: false })}
+          onClose={e =>
+            this.setState(prevState => ({ ...prevState, isOpenUsers: false }))
+          }
         >
           {this.state.problemUsers.map(problemUser => {
             return (
@@ -127,7 +151,7 @@ class AdminDashboard extends React.Component {
             );
           })}
         </UsersModal>
-      </AdminMain>
+      </div>
     );
   }
 }
@@ -137,7 +161,9 @@ const mapStateToProps = ({ problems, users }) => ({
   users: users.users
 });
 
-export default connect(
-  mapStateToProps,
-  { getAdminProblems, UpdateAdminProblems, getUsers, deleteAdminProblem }
-)(AdminDashboard);
+export default withStyles(styles)(
+  connect(
+    mapStateToProps,
+    { getAdminProblems, getUsers, updateAdminProblems, deleteAdminProblem }
+  )(AdminDashboard)
+);
