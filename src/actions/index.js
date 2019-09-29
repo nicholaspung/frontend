@@ -44,7 +44,7 @@ export const getProblems = () => (dispatch) => {
   dispatch({ type: FETCH_PROBLEMS_START });
 
   return axios
-    .get('http://labs15-lambdanext.herokuapp.com/problems')
+    .get('https://labs15-lambdanext.herokuapp.com/problems')
     .then((res) => {
       dispatch({ type: FETCH_PROBLEMS_SUCCESS, payload: res.data });
     })
@@ -55,7 +55,7 @@ export const getProblemsByID = (id) => (dispatch) => {
   dispatch({ type: FETCH_PROBLEM_START });
 
   return axios
-    .get(`http://labs15-lambdanext.herokuapp.com/problems/${id}`)
+    .get(`https://labs15-lambdanext.herokuapp.com/problems/${id}`)
     .then((res) => {
       dispatch({ type: FETCH_PROBLEM_SUCCESS, payload: res.data });
     })
@@ -66,7 +66,7 @@ export const addProblems = (problem) => (dispatch) => {
   dispatch({ type: ADD_PROBLEM_START });
 
   return axios
-    .post('http://labs15-lambdanext.herokuapp.com/problems', problem)
+    .post('https://labs15-lambdanext.herokuapp.com/problems', problem)
     .then((res) => {
       dispatch({ type: ADD_PROBLEM_SUCCESS, payload: res.data });
     })
@@ -79,7 +79,7 @@ export const updateVote = (id, vote) => (dispatch) => {
   dispatch({ type: UPDATE_PROBLEM_START });
 
   return axios
-    .put(`http://labs15-lambdanext.herokuapp.com/problems/${id}/rate`, vote)
+    .put(`https://labs15-lambdanext.herokuapp.com/problems/${id}/rate`, vote)
     .then((res) => {
       dispatch({ type: UPDATE_PROBLEM_SUCCESS, payload: res.data });
     })
@@ -92,7 +92,7 @@ export const getPopular = () => (dispatch) => {
   dispatch({ type: FETCH_POPULAR_START });
 
   return axios
-    .get('http://labs15-lambdanext.herokuapp.com/problems/popular')
+    .get('https://labs15-lambdanext.herokuapp.com/problems/popular')
     .then((res) => {
       dispatch({ type: FETCH_POPULAR_SUCCESS, payload: res.data });
     })
@@ -105,7 +105,7 @@ export const getUsers = () => (dispatch) => {
   dispatch({ type: FETCH_USERS_START });
 
   return axios
-    .get('http://labs15-lambdanext.herokuapp.com/users')
+    .get('https://labs15-lambdanext.herokuapp.com/users')
     .then((res) => {
       dispatch({ type: FETCH_USERS_SUCCESS, payload: res.data });
     })
@@ -118,7 +118,7 @@ export const addUser = (user) => (dispatch) => {
   dispatch({ type: ADD_USER_START });
 
   return axios
-    .post('http://labs15-lambdanext.herokuapp.com/users/signup', user)
+    .post('https://labs15-lambdanext.herokuapp.com/users/signup', user)
     .then((res) => {
       dispatch({ type: ADD_USER_SUCCESS, payload: res.data });
     })
@@ -134,7 +134,7 @@ export const getAdminProblems = () => (dispatch) => {
   //   console.log('LS JWT', JWT);
   // });
   return axios
-    .get('http://labs15-lambdanext.herokuapp.com/admin/all', { credentials: true })
+    .get('https://labs15-lambdanext.herokuapp.com/admin/all', { credentials: true })
     .then((res) => {
       console.log('clg res', res);
       // console.log('res . req info fe', res.req.authInfo);
@@ -148,7 +148,7 @@ export const updateAdminProblems = (id, isApproved) => (dispatch) => {
   dispatch({ type: UPDATE_ADMIN_PROBLEM_START });
 
   return axios
-    .put(`http://labs15-lambdanext.herokuapp.com/admin/all/${id}`, {
+    .put(`https://labs15-lambdanext.herokuapp.com/admin/all/${id}`, {
       isApproved
     })
     .then((res) => {
@@ -162,7 +162,7 @@ export const deleteAdminProblem = (id) => (dispatch) => {
   dispatch({ type: DELETE_ADMIN_PROBLEM_START });
 
   return axios
-    .delete(`http://labs15-lambdanext.herokuapp.com/admin/all/${id}`)
+    .delete(`https://labs15-lambdanext.herokuapp.com/admin/all/${id}`)
     .then((res) => {
       dispatch({ type: DELETE_ADMIN_PROBLEM_SUCCESS, payload: res.data });
     })
