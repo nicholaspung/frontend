@@ -134,7 +134,7 @@ export const getAdminProblems = () => (dispatch) => {
   //   console.log('LS JWT', JWT);
   // });
   return axios
-    .get('http://127.0.0.1:5000/admin/all', { credentials: true })
+    .get('http://labs15-lambdanext.herokuapp.com/admin/all', { credentials: true })
     .then((res) => {
       console.log('clg res', res);
       // console.log('res . req info fe', res.req.authInfo);
@@ -148,7 +148,7 @@ export const updateAdminProblems = (id, isApproved) => (dispatch) => {
   dispatch({ type: UPDATE_ADMIN_PROBLEM_START });
 
   return axios
-    .put(`http://127.0.0.1:5000/admin/all/${id}`, {
+    .put(`http://labs15-lambdanext.herokuapp.com/admin/all/${id}`, {
       isApproved
     })
     .then((res) => {
