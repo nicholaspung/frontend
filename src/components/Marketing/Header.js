@@ -76,7 +76,7 @@ const Header = (props) => {
                 <Link to="/about" className={classes.headerLink}>
                   <Button>About Us</Button>
                 </Link>
-                <a href={`${process.env.REACT_APP_API_URL}/auth/google`} className={classes.headerLink}>
+                <a href={`${process.env.REACT_APP_API_URL2}/auth/google`} className={classes.headerLink}>
                   <Button>Login</Button>
                 </a>
               </Grid>
@@ -124,7 +124,7 @@ const Header = (props) => {
               </Button>
             </Paper>
           </Link>
-          <a href={`${process.env.REACT_APP_API_URL}/auth/google`} className={classes.navMenuLink}>
+          <a href={`${process.env.REACT_APP_API_URL2}/auth/google`} className={classes.navMenuLink}>
             <Paper square className={classes.navMenuButton}>
               <Button
                 fullWidth
