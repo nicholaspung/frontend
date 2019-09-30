@@ -1,42 +1,44 @@
-import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
-import { connect } from "react-redux";
-import { withStyles } from "@material-ui/styles";
-import PropTypes from "prop-types";
-import Button from "@material-ui/core/Button";
-import Toolbar from "@material-ui/core/Toolbar";
-import AppBar from "@material-ui/core/AppBar";
-import Grid from "@material-ui/core/Grid";
-import Hidden from "@material-ui/core/Hidden";
-import Collapse from "@material-ui/core/Collapse";
-import Paper from "@material-ui/core/Paper";
-import MenuIcon from "@material-ui/icons/Menu";
-import LambdaLogo from "../../static/images/marketing/LambdaNeXt-14.png";
+import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { withStyles } from '@material-ui/styles';
+import PropTypes from 'prop-types';
+import Button from '@material-ui/core/Button';
+import Toolbar from '@material-ui/core/Toolbar';
+import AppBar from '@material-ui/core/AppBar';
+import Grid from '@material-ui/core/Grid';
+import Hidden from '@material-ui/core/Hidden';
+import Collapse from '@material-ui/core/Collapse';
+import Paper from '@material-ui/core/Paper';
+import MenuIcon from '@material-ui/icons/Menu';
+import LambdaLogo from '../../static/images/marketing/LambdaNeXt-14.png';
 import {
   setHeaderNavFalse,
   setHeaderNavOpposite
-} from "../../actions/nav.action";
+} from '../../actions/nav.action';
 
 const styles = {
-  navMenu: { cursor: "pointer" },
-  navMenuLink: { color: "white", textDecoration: "none", width: "100%" },
-  headerLink: { color: "#55596d", textDecoration: "none", borderRadius: "0px" },
+  navMenu: { cursor: 'pointer' },
+  navMenuLink: { color: 'white', textDecoration: 'none', width: '100%' },
+  headerLink: { color: '#55596d', textDecoration: 'none', borderRadius: '0px' },
   logo: {
-    paddingTop: "5px",
-    width: "150",
-    position: "relative",
-    float: "left"
+    paddingTop: '5px',
+    width: '150',
+    position: 'relative',
+    float: 'left'
   },
-  navMenuButton: { backgroundColor: "#233d6e", width: "100%" },
-  colorWhite: { color: "white" }
+  navMenuButton: { backgroundColor: '#233d6e', width: '100%' },
+  colorWhite: { color: 'white' }
 };
 
-const Header = props => {
-  const { checked, setHeaderNavFalse, setHeaderNavOpposite, classes } = props;
+const Header = (props) => {
+  const {
+    checked, setHeaderNavFalse, setHeaderNavOpposite, classes
+  } = props;
 
   // Used to make Nav Bar in mobile view act like a regular Nav Bar
   useEffect(() => {
-    window.addEventListener("resize", () => {
+    window.addEventListener('resize', () => {
       if (window.innerWidth > 600) {
         setHeaderNavFalse();
       }
@@ -74,6 +76,9 @@ const Header = props => {
                 <Link to="/about" className={classes.headerLink}>
                   <Button>About Us</Button>
                 </Link>
+                <a href={`${process.env.REACT_APP_API_URL}/auth/google`} className={classes.headerLink}>
+                  <Button>Login</Button>
+                </a>
               </Grid>
             </Hidden>
             <Hidden smUp>
@@ -119,6 +124,17 @@ const Header = props => {
               </Button>
             </Paper>
           </Link>
+          <a href={`${process.env.REACT_APP_API_URL}/auth/google`} className={classes.navMenuLink}>
+            <Paper square className={classes.navMenuButton}>
+              <Button
+                fullWidth
+                onClick={handleLinkChange}
+                className={classes.colorWhite}
+              >
+                Login
+              </Button>
+            </Paper>
+          </a>
         </Grid>
       </Collapse>
     </div>
