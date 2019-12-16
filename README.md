@@ -1,6 +1,6 @@
-# Lambda School NeXt
+# Prod VaLid
 
-You can find the deployed project at [https://www.lambdaschoolnext.com/](https://www.lambdaschoolnext.com/).
+You can find the deployed project at [https://prod-valid.netlify.com/](https://prod-valid.netlify.com/).
 
 ## Contributors
 
