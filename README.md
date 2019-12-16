@@ -28,7 +28,7 @@ You can find the deployed project at [https://prod-valid.netlify.com/](https://p
 
 [UX Design files](https://whimsical.com/Dt7eJMeLhuWtdDUngNQA6J)
 
-Lambda NeXt is Lambda School's flagship program to help their students build a fully functional project to showcase their skills. The goal of Lambda NeXt is to build projects that solve a real world problem.
+Prod VaLid is an application to help validate problems to problems for students to build a fully functional project to showcase their skills. The goal of Prod VaLid is help validate real world problems and give to students to solve them.
 
 This website was created to help alleviate the pain in choosing which problem to solve by helping source volunteers and research the problem before committing teams to creating a working prototype.
 
