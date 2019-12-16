@@ -50,10 +50,10 @@ const HomePage = ({ classes }) => {
       <Grid container justify="center" className={classes.description}>
         <Grid item xs={10} md={8} lg={5}>
           <Typography component="h1" variant="h3" gutterBottom>
-            Discover Projects For Lambda to Build
+            Validate Projects For Students to Build
           </Typography>
           <Typography component="h2" variant="h5">
-            We have Lambda School students build working prototypes for your
+            We have students world-wide build working prototypes for your
             next problem.{" "}
             {/* Used to link to page at a specific section, currently only way to do this with React Router */}
             <HashLink to="/about#howitworks" className={classes.link}>

@@ -24,14 +24,14 @@ const howItWorks = [
   {
     step: "Step 3",
     description:
-      "Lambda School students will reach out to ask for help. Afterwards, they will start building the project that solves your problem.",
+      "Students will reach out to ask for help. Afterwards, they will start building the project that solves your problem.",
     icon: <HowToRegIcon fontSize="large" />,
     grey: true
   },
   {
     step: "Step 4",
     description:
-      "After 8 weeks, Lambda School students have finished Version 1.0 of the project! You'll be able to try out the project as soon as they are finished.",
+      "After 8 weeks, students have finished Version 1.0 of the project! You'll be able to try out the project as soon as they are finished.",
     icon: <DoneAllIcon fontSize="large" />
   }
 ];

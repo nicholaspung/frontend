@@ -61,13 +61,12 @@ const About = props => {
             component="p"
             className={classes.centering}
           >
-            Lambda NeXt is Lambda School's flagship program to help their
-            students build a fully functional project to showcase their skills.
-            The goal of Lambda NeXt is to build projects that solve a real world
-            problem. This website was created to help alleviate the pain in
-            choosing which problem to solve by helping source volunteers and
-            research the problem before committing teams to creating a working
-            prototype.
+            Prod VaLid is a project to help students find problems to build a
+            fully functional project to showcase their skills. The goal of Prod
+            VaLid is to build projects that solve a real world problem. This
+            website was created to help alleviate the pain in choosing which
+            problem to solve by helping source volunteers and research the
+            problem before committing teams to creating a working prototype.
           </Typography>
         </Grid>
       </Grid>

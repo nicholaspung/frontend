@@ -11,7 +11,7 @@ import Hidden from '@material-ui/core/Hidden';
 import Collapse from '@material-ui/core/Collapse';
 import Paper from '@material-ui/core/Paper';
 import MenuIcon from '@material-ui/icons/Menu';
-import LambdaLogo from '../../static/images/marketing/LambdaNeXt-14.png';
+import Logo from '../../static/images/marketing/prod-valid.png';
 import {
   setHeaderNavFalse,
   setHeaderNavOpposite
@@ -63,7 +63,7 @@ const Header = (props) => {
               onClick={handleLinkChange}
               className={`${classes.headerLink} ${classes.logo}`}
             >
-              <img src={LambdaLogo} width="130px" alt="Lambda School Logo" />
+              <img src={Logo} width="130px" alt="Lambda School Logo" />
             </Link>
             <Hidden xsDown>
               <Grid container justify="flex-end">
@@ -76,9 +76,6 @@ const Header = (props) => {
                 <Link to="/about" className={classes.headerLink}>
                   <Button>About Us</Button>
                 </Link>
-                <a href={`${process.env.REACT_APP_API_URL}/auth/google`} className={classes.headerLink}>
-                  <Button>Login</Button>
-                </a>
               </Grid>
             </Hidden>
             <Hidden smUp>
