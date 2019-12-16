@@ -36,12 +36,6 @@ export default [
     position: "Front End Developer"
   },
   {
-    name: "Robert Harris",
-    github: "https://www.github.com/aquariax",
-    githubname: 'aquariax',
-    position: "Back End Developer"
-  },
-  {
     name: "Ryan Boris",
     github: "https://www.github.com/ryanboris",
     githubname: 'ryanboris',
@@ -51,6 +45,6 @@ export default [
     name: "Alando Appling",
     github: "https://www.github.com/landoooooo",
     githubname: 'landoooooo',
-    position: "Current Team Lead"
+    position: "Team Lead"
   }
 ];
