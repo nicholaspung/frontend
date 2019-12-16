@@ -50,7 +50,7 @@ const HomePage = ({ classes }) => {
       <Grid container justify="center" className={classes.description}>
         <Grid item xs={10} md={8} lg={5}>
           <Typography component="h1" variant="h3" gutterBottom>
-            Validate Projects For Students to Build
+            Validate Problems For Students to Build Projects to Solve
           </Typography>
           <Typography component="h2" variant="h5">
             We have students world-wide build working prototypes for your
